@@ -42,6 +42,69 @@ const marketOptions = [
 ];
 
 
+const sportMenus = {
+
+  football: [
+    {
+      id:"live",
+      label:"Live"
+    },
+    {
+      id:"incoming",
+      label:"Upcoming"
+    },
+    {
+      id:"popular",
+      label:"Popular"
+    },
+    {
+      id:"competition",
+      label:"Competitions"
+    }
+  ],
+
+
+  basketball:[
+    {
+      id:"live",
+      label:"Live"
+    },
+    {
+      id:"incoming",
+      label:"Upcoming"
+    },
+    {
+      id:"popular",
+      label:"Popular"
+    },
+    {
+      id:"competition",
+      label:"Leagues"
+    }
+  ],
+
+
+  tennis:[
+    {
+      id:"live",
+      label:"Live"
+    },
+    {
+      id:"incoming",
+      label:"Upcoming"
+    },
+    {
+      id:"popular",
+      label:"Popular"
+    },
+    {
+      id:"competition",
+      label:"Tournaments"
+    }
+  ]
+
+};
+
 const EventsPage = ({
   feed,
   onOddSelect,
@@ -53,6 +116,8 @@ const EventsPage = ({
   // ============================================================
   // STATE
   // ============================================================
+
+  const [eventMenu, setEventMenu] = useState("incoming");
 
   const [date, setDate] = useState("today");
 
@@ -83,6 +148,25 @@ const EventsPage = ({
     );
 
   }, [market]);*/
+
+  const eventMenus = [
+  {
+    id: "live",
+    label: "Live",
+  },
+  {
+    id: "incoming",
+    label: "Incoming",
+  },
+  {
+    id: "popular",
+    label: "Popular",
+  },
+  {
+    id: "competition",
+    label: "Competitions",
+  },
+];
 
   const activeMarketName = 
     marketOptions.find(
@@ -235,6 +319,27 @@ const EventsPage = ({
 
     <section className="events-page">
 
+
+
+      <div className="event-category-menu">
+
+        {
+        eventMenus.map((item)=>(
+            <button
+              key={item.id}
+              className={
+                eventMenu === item.id
+                ? "active"
+                : ""
+              }
+              onClick={()=>setEventMenu(item.id)}
+            >
+              {item.label}
+            </button>
+        ))
+        }
+
+      </div>
 
       {/* ======================================================
           HEADER
