@@ -1,0 +1,539 @@
+
+/* ============================================================
+   BETSLIP
+============================================================ */
+
+.betslip-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.betslip-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: #f90;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.betslip-header h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  text-transform: uppercase;
+  justify-content: center;
+  
+}
+
+.betslip-count {
+  min-width: 24px;
+  height: 24px;
+  padding: 0 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #036;
+  color: #ffffff;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   TABS
+============================================================ */
+
+.betslip-tabs {
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.betslip-tabs button {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 12px 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+  border-bottom: 2px solid transparent;
+}
+
+.betslip-tabs button:hover {
+  color: #036;
+}
+
+.betslip-tabs button.active {
+  color: #036;
+  border-bottom-color: #036;
+}
+
+
+/* ============================================================
+   CONTENT
+============================================================ */
+
+.betslip-content {
+  padding: 12px;
+}
+
+
+/* ============================================================
+   EMPTY BETSLIP
+============================================================ */
+
+.empty-betslip {
+  padding: 35px 15px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.empty-betslip h4 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.empty-betslip p {
+  margin: 0;
+  color: #8a8f98;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   BET LIST
+============================================================ */
+
+.bets-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+
+/* ============================================================
+   BET CARD
+============================================================ */
+
+.bet-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 10px;
+  background: #fafafa;
+}
+
+.bet-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.bet-event {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.remove-bet {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  background-color: #036;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 15px;
+  padding: 0;
+}
+
+.remove-bet:hover {
+  color: #a71d2a;
+}
+
+.bet-market {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #8a8f98;
+}.bet-teams {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1.4;
+  color: #000;
+}
+
+.bet-teams strong {
+  display: inline-block;
+}
+
+.bet-vs {
+  flex-shrink: 0;
+  color: #777;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Long team names */
+.bet-teams.long-team-names {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+
+.bet-teams.long-team-names .bet-vs {
+  margin-left: 5px;
+}
+
+.bet-selection {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color:#036;
+  
+}
+
+.bet-label {
+  display: inline-flex;
+  padding: 3px 5px;
+  background: #e6f7ff;
+  /*color: #1677ff;*/
+  color: green;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.bet-odd {
+  font-size: 14px;
+}
+
+
+/* ============================================================
+   STAKE
+============================================================ */
+
+.stake-section {
+  margin-top: 14px;
+}
+
+.stake-section label,
+.load-ticket-content label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.stake-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.stake-input-wrapper span {
+  padding: 9px 10px;
+  background: #f3f4f6;
+  border-right: 1px solid #d1d5db;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.stake-input-wrapper input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 9px 10px;
+  font-size: 14px;
+}
+
+
+/* ============================================================
+   SUMMARY
+============================================================ */
+
+.bet-summary {
+  margin-top: 14px;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 6px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  font-size: 13px;
+}
+
+.summary-row span {
+  color: #6b7280;
+}
+
+.summary-row strong {
+  color: #111827;
+}
+
+.summary-row.net-win {
+  margin-top: 5px;
+  padding-top: 9px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.summary-row.net-win strong {
+  color: #16803c;
+}
+
+
+/* ============================================================
+   MESSAGE
+============================================================ */
+
+.betslip-message {
+  margin-top: 10px;
+  padding: 8px 10px;
+  background: #f0f7ff;
+  border: 1px solid #cfe5ff;
+  border-radius: 5px;
+  color: #1677ff;
+  font-size: 12px;
+}
+
+
+/* ============================================================
+   ACTION BUTTONS
+============================================================ */
+
+.bet-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.bet-actions button,
+.book-ticket-button,
+.load-ticket-button {
+  min-height: 38px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.clear-bets-button {
+  border: none;
+  background: #f90;
+  color: #ffffff;
+  border:1px solid #f90;
+}
+
+.clear-bets-button:hover {
+  background: #f70;
+  border:1px solid #f70;
+}
+
+.place-bet-button {
+  border: none;
+  background: rgb(5,160,5);
+  color: #ffffff;
+}
+
+.place-bet-button:hover {
+  background: #3c0;
+}
+
+.book-ticket-button {
+  width: 100%;
+  margin-top: 8px;
+  border: 1px solid #036;
+  background: #036;
+  color: #fff;
+}
+
+.book-ticket-button:hover {
+  background: #0958d9;
+  border: 1px solid #0958d9;
+}
+
+
+/* ============================================================
+   LOAD TICKET
+============================================================ */
+
+.load-ticket-content {
+  padding: 15px;
+}
+
+.load-ticket-content input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  outline: none;
+  font-size: 13px;
+}
+
+.load-ticket-content input:focus {
+  border-color: #1677ff;
+}
+
+.load-ticket-button {
+  width: 100%;
+  margin-top: 10px;
+  border: none;
+  background: #1677ff;
+  color: #ffffff;
+}
+
+.load-ticket-button:hover {
+  background: #0958d9;
+}
+
+
+/* ============================================================
+   BOOKING MODAL
+============================================================ */
+
+.booking-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.booking-modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+  padding: 28px;
+  background: #ffffff;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.booking-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.booking-success-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #e8f7ed;
+  color: #16803c;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.booking-modal h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.booking-modal p {
+  margin: 7px 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.booking-code {
+  margin: 15px 0;
+  padding: 13px;
+  border: 1px dashed #1677ff;
+  border-radius: 6px;
+  background: #f5f9ff;
+  color: #1677ff;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.copy-code-button,
+.close-modal-button {
+  width: 100%;
+  min-height: 38px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.copy-code-button {
+  border: none;
+  background: #1677ff;
+  color: #ffffff;
+}
+
+.close-modal-button {
+  margin-top: 8px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #374151;
+}
+
+.booking-help {
+  margin-top: 14px !important;
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 768px) {
+
+  .betslip-card {
+    border-radius: 6px;
+  }
+
+  .booking-modal {
+    padding: 22px;
+  }
+
+}
+

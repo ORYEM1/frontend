@@ -1,0 +1,45 @@
+.footer {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  margin-top: 0px;
+  background: #036;
+  border-radius: 0 0 5px 5px;
+  color: #fff;
+  
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: minmax(190px, 1.1fr) minmax(260px, 1.8fr);
+  gap: 24px;
+}
+.footer-terms{
+font-size: 15px;
+margin-bottom: 20px;
+}
+.footer img{
+    width: 50px;
+    gap: 30px;
+    height: 40px;
+    justify-content: center;
+    
+}
+.footer-deposit p{
+    font-size: 15px;
+}
+
+.footer-contact
+{
+    text-decoration: none;
+    font-weight: bold;
+
+}
+.footer-sports{
+    font-size: 15px;
+}
+
+
+

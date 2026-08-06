@@ -1,0 +1,116 @@
+
+/* ============================================================
+   APP
+============================================================ */
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+
+/* ============================================================
+   SPORTS LAYOUT
+============================================================ */
+
+.sports-layout {
+  display: flex;
+
+  width: 100%;
+
+  min-height: calc(100vh - 110px);
+}
+
+
+/* ============================================================
+   LEFT - LEAGUES
+============================================================ */
+
+.league-section {
+  width: 240px;
+
+  flex-shrink: 0;
+
+  border-right: 1px solid #ddd;
+
+  background: #fff;
+}
+
+
+/* ============================================================
+   CENTER - EVENTS
+============================================================ */
+
+.events-section {
+  flex: 1;
+
+  min-width: 0;
+
+  background: #fff;
+}
+
+
+/* ============================================================
+   RIGHT - BETSLIP
+============================================================ */
+
+.betslip-section {
+  width: 320px;
+
+  flex-shrink: 0;
+
+  border-left: 1px solid #ddd;
+
+  background: #fff;
+}
+
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 1000px) {
+
+  .league-section {
+    width: 200px;
+  }
+
+  .betslip-section {
+    width: 280px;
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 768px) {
+
+  .sports-layout {
+    display: block;
+  }
+
+
+  .league-section,
+  .betslip-section {
+    width: 100%;
+  }
+
+
+  .league-section {
+    border-right: none;
+
+    border-bottom: 1px solid #ddd;
+  }
+
+
+  .betslip-section {
+    border-left: none;
+
+    border-top: 1px solid #ddd;
+  }
+
+}
+

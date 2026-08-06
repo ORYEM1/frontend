@@ -1,0 +1,206 @@
+
+/* ============================================================
+   SPORTS HEADER
+============================================================ */
+
+.sports-header {
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid #dddddd;
+  position: sticky;
+}
+
+
+/* ============================================================
+   TOP SECTION
+============================================================ */
+
+.sports-header-top {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  margin-top: 0px;
+  background: #036;
+  border-radius: 5px 5px 0 0;
+  
+}
+
+
+/* ============================================================
+   LOGO
+============================================================ */
+
+.sports-header-logo {
+  font-size: 26px;
+  font-weight: 700;
+}
+.sports-header-logo img{
+    width: 20%;
+}
+
+
+/* ============================================================
+   AUTH
+============================================================ */
+
+.sports-header-auth {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.sports-header-auth button {
+  height: 38px;
+
+  padding: 0 20px;
+
+  border: none;
+  border-radius: 5px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+/* REGISTER */
+
+.header-register-button {
+  background: #eeeeee;
+}
+
+
+/* LOGIN */
+
+.header-login-button {
+  background: #f90;
+  color: #ffffff;
+}
+
+
+/* ============================================================
+   MENU
+============================================================ */
+
+.sports-header-menu {
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 24px;
+  border: 1px solid #f90;
+  background: #444;
+  color: #f90;
+
+}
+
+
+/* ============================================================
+   MENU ITEM
+============================================================ */
+
+.header-menu-item {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 52px;
+  padding: 0 18px;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+
+/* ============================================================
+   MENU ICON
+============================================================ */
+
+.header-menu-icon {
+  display: flex;
+  align-items: center;
+
+  font-size: 15px;
+}
+
+
+/* ============================================================
+   MENU LABEL
+============================================================ */
+
+.header-menu-label {
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   ACTIVE MENU
+============================================================ */
+
+.header-menu-item.active {
+  font-weight: 700;
+  color:#f90;
+}
+
+
+/* ACTIVE INDICATOR */
+
+.header-menu-item.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 18px;
+  right: 18px;
+  bottom: 0;
+
+  height: 3px;
+
+  background: currentColor;
+}
+
+
+/* ============================================================
+   HOVER
+============================================================ */
+
+.header-menu-item:hover {
+  color: #f90;
+  
+}
+
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 768px) {
+
+  .sports-header-top {
+    padding: 0 12px;
+  }
+
+
+  .sports-header-menu {
+    padding: 0 8px;
+
+    overflow-x: auto;
+  }
+
+
+  .header-menu-item {
+    flex-shrink: 0;
+
+    padding: 0 12px;
+  }
+
+}
+

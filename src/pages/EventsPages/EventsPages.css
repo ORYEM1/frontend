@@ -1,0 +1,632 @@
+/* ============================================================
+   EVENTS PAGE
+   ============================================================ */
+
+.market-board {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 0px;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: fixed;
+  
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.market-header {
+  display: flex;
+  justify-content: center;
+  padding: 0px 12px;
+  background: #036;
+  min-height: 30px;
+  border-bottom: 1px solid #036;
+  
+}
+
+.market-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+/* ============================================================
+   FILTERS
+   ============================================================ */
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #f7f9f9;
+  border-bottom: 1px solid #e4e9e9;
+  flex-wrap: wrap;
+}
+
+
+/* ============================================================
+   SELECTS
+   ============================================================ */
+
+.date-filter,
+.market-filter {
+  height: 36px;
+  min-width: 125px;
+  padding: 0 10px;
+  border: 1px solid #d8dfdf;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #303838;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+}
+
+.date-filter:focus,
+.market-filter:focus {
+  border-color: #03a6a1;
+  box-shadow: 0 0 0 2px rgba(3, 166, 161, 0.1);
+}
+
+
+/* ============================================================
+   SEARCH
+   ============================================================ */
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 200px;
+  max-width: 360px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 11px;
+  font-size: 14px;
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+.search-input {
+  width: 100%;
+  height: 36px;
+  padding: 0 34px 0 34px;
+  border: 1px solid #d8dfdf;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #303838;
+  font-size: 13px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.search-input::placeholder {
+  color: #9aa3a3;
+}
+
+.search-input:focus {
+  border-color: #036;
+  box-shadow: 0 0 0 2px rgba(3, 166, 161, 0.1);
+}
+
+.clear-search {
+  position: absolute;
+  right: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 24px;
+  height: 24px;
+
+  border: none;
+  background: transparent;
+
+  color: #7b8585;
+  font-size: 20px;
+  line-height: 20px;
+
+  cursor: pointer;
+}
+
+.clear-search:hover {
+  color: #333;
+}
+
+
+/* ============================================================
+   SEARCH BUTTON
+   ============================================================ */
+
+.search-button {
+  height: 36px;
+  padding: 0 15px;
+
+  border: none;
+  border-radius: 5px;
+
+  background: #036;
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.search-button:hover {
+  background: #036;
+}
+
+
+/* ============================================================
+   CLEAR LEAGUE
+   ============================================================ */
+
+.clear-league-button {
+  height: 36px;
+  padding: 0 15px;
+
+  border: 1px solid #03a6a1;
+  border-radius: 5px;
+
+  background: #ffffff;
+  color: #03a6a1;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.clear-league-button:hover {
+  background: #03a6a1;
+  color: #ffffff;
+}
+
+
+/* ============================================================
+   TABLE CONTAINER
+   ============================================================ */
+
+.table-container {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+
+/* ============================================================
+   ODDS TABLE
+   ============================================================ */
+
+.odds-table {
+  width: 100%;
+  min-width: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 13px;
+}
+
+
+/* ============================================================
+   TABLE HEADER
+   ============================================================ */
+
+.odds-table thead th {
+  height: 38px;
+  padding: 8px 6px;
+  background: #eef3f3;
+  border-bottom: 1px solid #dce4e4;
+  color: #596363;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  
+}
+
+/* ============================================================
+   COLUMN WIDTHS
+   ============================================================ */
+.time-column {
+  width: 70px;
+  min-width: 70px;
+  text-align: center !important;
+}
+
+.versus-column {
+  width: 40px;
+  min-width: 40px;
+  text-align: center !important;
+}
+
+.odd-column {
+  width: 58px;
+  min-width: 58px;
+  padding: 3px 1px !important;
+  text-align: center !important;
+}
+
+.more-column {
+  width: 38px;
+  min-width: 38px;
+  text-align: center !important;
+}
+/* Home and Away */
+
+
+
+
+
+.odds-table th:nth-child(2),
+.odds-table td:nth-child(2){
+  width: auto;
+  min-width: 0;
+  overflow: hidden;
+  text-align: right;
+}
+.odds-table th:nth-child(4){
+  width: auto;
+  min-width: 0;
+  overflow: hidden;
+  text-align: left;
+}
+
+/* ============================================================
+   TABLE BODY
+   ============================================================ */
+
+.odds-table tbody td {
+  height: 30px;
+  padding: 3px 5px;
+  border-bottom: 1px solid #edf0f0;
+  color: #2d3535;
+  vertical-align: middle;
+}
+
+.table-row-even {
+  background: #fafcfc;
+}
+
+.odds-table tbody tr:not(.league-group-table-row):hover {
+  background: #f5fafa;
+}
+
+
+/* ============================================================
+   LEAGUE GROUP
+   ============================================================ */
+
+.league-group-table-row td {
+  height: auto !important;
+  padding: 0 !important;
+  background: #036;
+  border-bottom: 1px solid #d3e8e6 !important;
+}
+
+.league-group-cell {
+  width: 100%;
+}
+
+.league-group-row {
+  display: flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  color: #fff;
+}
+
+.league-group-row strong {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ============================================================
+   TEAM CELL
+   ============================================================ */
+
+.team-cell-home {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+  width: 100%;
+}
+
+.team-cell-away {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+  width: 100%;
+}
+
+.team-cell strong {
+  display: -webkit-box;
+
+  /* Normal short names stay on one line.
+     Long names can use a second line. */
+
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: normal;
+
+  line-height: 16px;
+
+  color: #252d2d;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+/* ============================================================
+   VERSUS
+   ============================================================ */
+
+.versus {
+  color: #9aa2a2;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   ODDS BUTTON
+   ============================================================ */
+.odd-button {
+  width: 50px;
+  max-width: 100%;
+  height: 30px;
+  padding: 0;
+  border: 1px solid #036;
+  border-radius: 4px;
+  background: #036;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.odd-button:hover:not(:disabled) {
+  border:1px solid #03b;
+  background: #03b;
+  color: #fff;
+}
+
+.odd-button:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+
+/* ============================================================
+   SELECTED ODD
+   ============================================================ */
+
+.odd-button.selected-odd {
+  border-color: rgb(5, 160, 5);
+  background: rgb(5,160,5);
+  color: #ffffff;
+}
+
+.odd-button.selected-odd:hover {
+  border: 1px solid #3c0;
+  background: #3c0;
+  color: #ffffff;
+}
+
+
+/* ============================================================
+   LOCKED ODD
+   ============================================================ */
+
+.odd-button.locked-odd,
+.odd-button:disabled {
+  border-color: #aaa;
+  background: #aaa;
+  color: #555;
+
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+
+/* ============================================================
+   EMPTY ODD
+   ============================================================ */
+
+.empty-odd {
+  color: #b4bcbc;
+  font-size: 13px;
+}
+/* ============================================================
+   MORE MARKETS BUTTON
+   ============================================================ */
+
+.more-odds-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid #036;
+  background: #036;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.more-odds-button:hover {
+  border:1px solid #03b;
+  background: #03b;
+  cursor: pointer;
+}
+
+.more-odds-button:active {
+  transform: scale(0.94);
+}
+/* ============================================================
+   NO EVENTS
+   ============================================================ */
+
+.no-events {
+  height: 100px !important;
+
+  text-align: center !important;
+
+  color: #8b9595 !important;
+
+  font-size: 13px;
+}
+
+
+/* ============================================================
+   RESPONSIVE - TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  .market-header {
+    padding: 12px;
+  }
+
+  .filters {
+    gap: 7px;
+    padding: 10px;
+  }
+
+  .date-filter,
+  .market-filter {
+    min-width: 110px;
+  }
+
+  .search-wrapper {
+    min-width: 180px;
+  }
+
+}
+
+
+/* ============================================================
+   RESPONSIVE - MOBILE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .market-board {
+    border-radius: 0;
+  }
+
+  .market-header {
+    padding: 12px;
+  }
+
+  .market-header h3 {
+    font-size: 14px;
+  }
+
+  .filters {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    padding: 10px;
+
+    gap: 8px;
+  }
+
+  .date-filter,
+  .market-filter {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .search-wrapper {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+
+    grid-column: 1 / -1;
+  }
+
+  .search-button {
+    width: 100%;
+    grid-column: 1 / -1;
+  }
+
+  .clear-league-button {
+    width: 100%;
+    grid-column: 1 / -1;
+  }
+
+  .odds-table {
+    min-width: 700px;
+  }
+
+  .odds-table tbody td {
+    height: 45px;
+    padding: 4px 5px;
+  }
+
+  .team-cell strong {
+    font-size: 12px;
+  }
+
+  .odd-button {
+    width: 52px;
+    height: 28px;
+    font-size: 11px;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .date-filter,
+  .market-filter,
+  .search-wrapper,
+  .search-button,
+  .clear-league-button {
+    grid-column: 1;
+    width: 100%;
+  }
+
+  .market-header h3 {
+    font-size: 13px;
+  }
+
+}

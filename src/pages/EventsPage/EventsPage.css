@@ -1,0 +1,262 @@
+
+/* ============================================================
+   EVENTS PAGE
+============================================================ */
+
+.events-page {
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* ============================================================
+   PAGE HEADER
+============================================================ */
+
+.events-page-header {
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+}
+
+
+/* ============================================================
+   MARKET HEADER
+============================================================ */
+
+.market-header {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 15px;
+
+}
+
+
+.market-header h3 {
+  margin: 0;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  color: #fff;
+}
+
+
+/* ============================================================
+   FILTERS
+============================================================ */
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  width: 100%;
+
+  padding: 10px 15px;
+
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   SELECTS
+============================================================ */
+
+.date-filter,
+.market-filter {
+  height: 36px;
+
+  padding: 0 10px;
+
+  border: 1px solid #d5d5d5;
+  border-radius: 4px;
+
+  background: #ffffff;
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+
+.date-filter {
+  width: 110px;
+}
+
+
+.market-filter {
+  width: 190px;
+}
+
+
+/* ============================================================
+   SEARCH
+============================================================ */
+
+.search-wrapper {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  flex: 1;
+
+  min-width: 180px;
+}
+
+
+.search-icon {
+  position: absolute;
+
+  left: 10px;
+
+  font-size: 13px;
+
+  color: #777;
+}
+
+
+.search-input {
+  width: 100%;
+  height: 36px;
+
+  box-sizing: border-box;
+
+  padding: 0 35px;
+
+  border: 1px solid #d5d5d5;
+  border-radius: 4px;
+
+  outline: none;
+
+  font-size: 13px;
+}
+
+
+.search-input:focus {
+  border-color: #999;
+}
+
+
+/* ============================================================
+   CLEAR SEARCH
+============================================================ */
+
+.clear-search {
+  position: absolute;
+
+  right: 8px;
+
+  border: none;
+
+  background: transparent;
+
+  font-size: 20px;
+
+  line-height: 1;
+
+  color: #777;
+
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   SEARCH BUTTON
+============================================================ */
+
+.search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  height: 36px;
+
+  padding: 0 15px;
+
+  border: none;
+  border-radius: 4px;
+
+  background: #333;
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+
+.search-button:hover {
+  background: #222;
+}
+
+
+/* ============================================================
+   ALL BUTTON
+============================================================ */
+
+.clear-league-button {
+  height: 36px;
+
+  padding: 0 14px;
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  background: #ffffff;
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+
+.clear-league-button:hover {
+  background: #f5f5f5;
+}
+
+
+/* ============================================================
+   EVENT CONTENT
+============================================================ */
+
+.events-page-content {
+  width: 100%;
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 768px) {
+
+  .filters {
+    flex-wrap: wrap;
+  }
+
+
+  .date-filter,
+  .market-filter {
+    flex: 1;
+    min-width: 120px;
+  }
+
+
+  .search-wrapper {
+    flex-basis: 100%;
+    order: 3;
+  }
+
+
+  .search-button {
+    flex: 1;
+  }
+
+}
+
