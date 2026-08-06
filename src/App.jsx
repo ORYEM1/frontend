@@ -1,18 +1,23 @@
-
 import { useState } from "react";
+
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
 
+
 import PageHeader from "./components/PageHeader/PageHeader.jsx";
 import LeaguePanel from "./components/LeaguePanel/LeaguePanel.jsx";
 import Betslips from "./components/Betslips/Betslips.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+
 import EventsPage from "./pages/EventsPage/EventsPage.jsx";
 
+
 import "./App.css";
+
+
 
 
 // ============================================================
@@ -26,23 +31,31 @@ const getSavedBets = () => {
     const saved =
       localStorage.getItem("bets");
 
-    if (!saved) {
+
+    if(!saved)
+    {
       return [];
     }
 
+
     const parsed =
       JSON.parse(saved);
+
 
     return Array.isArray(parsed)
       ? parsed
       : [];
 
-  } catch (error) {
+
+  }
+  catch(error)
+  {
 
     console.error(
       "Unable to load saved bets:",
       error
     );
+
 
     return [];
 
@@ -51,169 +64,344 @@ const getSavedBets = () => {
 };
 
 
+
+
+
 // ============================================================
 // LOAD SELECTED ODDS
 // ============================================================
 
 const getSavedSelectedOdds = () => {
 
+
   try {
 
-    const saved =
-      localStorage.getItem("selectedOdds");
 
-    if (!saved) {
+    const saved =
+      localStorage.getItem(
+        "selectedOdds"
+      );
+
+
+    if(!saved)
+    {
       return {};
     }
+
 
     const parsed =
       JSON.parse(saved);
 
+
+
     return parsed &&
       typeof parsed === "object"
-      ? parsed
-      : {};
 
-  } catch (error) {
+      ?
+
+      parsed
+
+      :
+
+      {};
+
+
+
+  }
+  catch(error)
+  {
 
     console.error(
       "Unable to load selected odds:",
       error
     );
 
+
     return {};
 
   }
 
+
 };
+
+
+
+
 
 
 // ============================================================
 // APP
 // ============================================================
 
+
 const App = () => {
 
 
+
   // ==========================================================
-  // HEADER MENU
+  // ACTIVE SPORT
   // ==========================================================
 
-  const [activeMenu, setActiveMenu] =
-    useState("popular");
+
+  const [
+    activeSport,
+    setActiveSport
+  ] = useState("football");
+
+
+
+
 
 
   // ==========================================================
   // SELECTED LEAGUE
   // ==========================================================
 
-  const [selectedLeague, setSelectedLeague] =
-    useState(null);
+
+  const [
+    selectedLeague,
+    setSelectedLeague
+  ] = useState(null);
+
+
+
+
+
 
 
   // ==========================================================
   // BETSLIP
   // ==========================================================
 
-  const [bets, setBets] =
-    useState(getSavedBets);
+
+  const [
+    bets,
+    setBets
+  ] = useState(
+    getSavedBets
+  );
 
 
-  const [selectedOdds, setSelectedOdds] =
-    useState(getSavedSelectedOdds);
+
+  const [
+    selectedOdds,
+    setSelectedOdds
+  ] = useState(
+    getSavedSelectedOdds
+  );
+
+
+
+
+
+
 
 
   // ==========================================================
-  // HEADER MENU CHANGE
+  // SPORT CHANGE
   // ==========================================================
 
-  const handleMenuChange = (menu) => {
 
-    setActiveMenu(menu);
+  const handleSportChange = (sport)=>{
 
-    // For now we simply change
-    // the active menu.
 
-    console.log(
-      "Active menu:",
-      menu
+    setActiveSport(
+      sport.toLowerCase()
     );
 
+
+    // reset league
+
+    setSelectedLeague(null);
+
+
   };
+
+
+
+
+
+
+
 
 
   // ==========================================================
   // LEAGUE CHANGE
   // ==========================================================
 
-  const handleLeagueChange = (league) => {
 
-    setSelectedLeague(league);
+  const handleLeagueChange = (league)=>{
+
+
+    setSelectedLeague(
+      league
+    );
+
 
   };
+
+
+
+
+
+
+
 
 
   // ==========================================================
   // SELECT ODDS
   // ==========================================================
 
-const handleOddSelect = (selection) => {
 
-  if (!selection) {
-    return;
-  }
+  const handleOddSelect = (selection)=>{
 
 
-  const eventId =
-    String(selection.eventId);
+    if(!selection)
+    {
+      return;
+    }
 
 
-  // ============================================================
-  // CREATE BET
-  // ============================================================
 
-  const bet = {
 
-    ...selection,
+    const eventId =
+      String(
+        selection.eventId
+      );
 
-    event:
+
+
+
+
+    const bet = {
+
+
+      ...selection,
+
+
+
+      event:
+
       `${selection.home} - ${selection.away}`,
 
-    home:
-      selection.home,
 
-    away:
-      selection.away,
 
-    league:
-      selection.league,
+      time:
 
-    time:
       selection.kickoff_time,
 
-    market:
+
+
+      market:
+
       selection.marketName,
 
-  };
+
+    };
 
 
-  // ============================================================
-  // SAME BET SELECTED AGAIN
-  // ============================================================
 
-  if (
-    selectedOdds[eventId]?.id ===
-    selection.id
-  ) {
 
-    setSelectedOdds((current) => {
 
-      const updated = {
+
+
+
+    // REMOVE EXISTING SELECTION
+
+    if(
+      selectedOdds[eventId]?.id
+      ===
+      selection.id
+    )
+    {
+
+
+      setSelectedOdds(current=>{
+
+
+        const updated={
+          ...current
+        };
+
+
+        delete updated[eventId];
+
+
+        localStorage.setItem(
+          "selectedOdds",
+          JSON.stringify(updated)
+        );
+
+
+        return updated;
+
+      });
+
+
+
+
+
+      setBets(current=>{
+
+
+        const updated =
+          current.filter(
+
+            item=>
+
+            String(item.eventId)
+            !==
+            eventId
+
+          );
+
+
+
+        localStorage.setItem(
+          "bets",
+          JSON.stringify(updated)
+        );
+
+
+
+        return updated;
+
+
+      });
+
+
+
+      return;
+
+    }
+
+
+
+
+
+
+
+
+
+    // ADD / REPLACE SELECTION
+
+
+    setSelectedOdds(current=>{
+
+
+      const updated={
+
+
         ...current,
+
+
+        [eventId]:
+
+          bet,
+
+
       };
 
-
-      delete updated[eventId];
 
 
       localStorage.setItem(
@@ -222,19 +410,44 @@ const handleOddSelect = (selection) => {
       );
 
 
+
       return updated;
+
 
     });
 
 
-    setBets((current) => {
 
-      const updated =
+
+
+
+
+    setBets(current=>{
+
+
+      const filtered =
+
         current.filter(
-          (item) =>
-            String(item.eventId) !==
-            eventId
+
+          item=>
+
+          String(item.eventId)
+          !==
+          eventId
+
         );
+
+
+
+      const updated=[
+
+        ...filtered,
+
+        bet
+
+      ];
+
+
 
 
       localStorage.setItem(
@@ -243,76 +456,20 @@ const handleOddSelect = (selection) => {
       );
 
 
+
       return updated;
+
 
     });
 
 
-    return;
 
-  }
-
-
-  // ============================================================
-  // SELECT NEW ODDS
-  // ============================================================
-
-  setSelectedOdds((current) => {
-
-    const updated = {
-
-      ...current,
-
-      [eventId]: bet,
-
-    };
+  };
 
 
-    localStorage.setItem(
-      "selectedOdds",
-      JSON.stringify(updated)
-    );
 
 
-    return updated;
 
-  });
-
-
-  // ============================================================
-  // REPLACE PREVIOUS BET FROM SAME EVENT
-  // ============================================================
-
-  setBets((current) => {
-
-    const filtered =
-      current.filter(
-        (item) =>
-          String(item.eventId) !==
-          eventId
-      );
-
-
-    const updated = [
-
-      ...filtered,
-
-      bet,
-
-    ];
-
-
-    localStorage.setItem(
-      "bets",
-      JSON.stringify(updated)
-    );
-
-
-    return updated;
-
-  });
-
-};
 
 
 
@@ -321,109 +478,173 @@ const handleOddSelect = (selection) => {
   // REMOVE BET
   // ==========================================================
 
-  const handleRemoveBet = (id) => {
+
+  const handleRemoveBet=(id)=>{
+
 
     const bet =
       bets.find(
-        (item) =>
-          item.id === id
+        item=>
+        item.id===id
       );
 
 
-    if (!bet) {
+
+    if(!bet)
+    {
       return;
     }
 
 
+
     const eventId =
-      String(bet.eventId);
+      String(
+        bet.eventId
+      );
 
 
-    setSelectedOdds((current) => {
 
-      const updated = {
-        ...current,
+
+    setSelectedOdds(current=>{
+
+
+      const updated={
+        ...current
       };
 
+
       delete updated[eventId];
+
+
 
       localStorage.setItem(
         "selectedOdds",
         JSON.stringify(updated)
       );
 
+
       return updated;
+
 
     });
 
 
-    setBets((current) => {
 
-      const updated =
+
+
+
+    setBets(current=>{
+
+
+      const updated=
+
         current.filter(
-          (item) =>
-            item.id !== id
+
+          item=>
+
+          item.id!==id
+
         );
+
+
 
       localStorage.setItem(
         "bets",
         JSON.stringify(updated)
       );
 
+
+
       return updated;
+
 
     });
 
+
   };
+
+
+
+
+
+
+
 
 
   // ==========================================================
   // CLEAR BETSLIP
   // ==========================================================
 
-  const handleClear = () => {
+
+  const handleClear=()=>{
+
 
     setBets([]);
 
     setSelectedOdds({});
 
-    localStorage.removeItem("bets");
+
+    localStorage.removeItem(
+      "bets"
+    );
+
 
     localStorage.removeItem(
       "selectedOdds"
     );
 
+
   };
+
+
+
+
+
+
 
 
   // ==========================================================
   // LOAD BOOKED TICKET
   // ==========================================================
 
-  const handleLoadTicket = (loadedBets) => {
 
-    if (!Array.isArray(loadedBets)) {
+  const handleLoadTicket=(loadedBets)=>{
+
+
+    if(!Array.isArray(loadedBets))
+    {
       return;
     }
 
 
-    const newSelectedOdds = {};
+
+    const selected={};
 
 
-    loadedBets.forEach((bet) => {
 
-      newSelectedOdds[
+    loadedBets.forEach(bet=>{
+
+
+      selected[
         String(bet.eventId)
-      ] = bet;
+      ]=bet;
+
 
     });
 
 
-    setBets(loadedBets);
+
+
+
+    setBets(
+      loadedBets
+    );
+
 
     setSelectedOdds(
-      newSelectedOdds
+      selected
     );
+
 
 
     localStorage.setItem(
@@ -434,151 +655,254 @@ const handleOddSelect = (selection) => {
 
     localStorage.setItem(
       "selectedOdds",
-      JSON.stringify(
-        newSelectedOdds
-      )
+      JSON.stringify(selected)
     );
 
+
   };
+
+
+
+
+
+
+
 
 
   // ==========================================================
   // MORE MARKETS
   // ==========================================================
 
-  const handleMoreClick = (event) => {
+
+  const handleMoreClick=(event)=>{
+
 
     console.log(
       "More markets:",
       event
     );
 
+
   };
 
 
-  // ==========================================================
-  // RENDER
-  // ==========================================================
+
+
+
+
+
+
+
 
   return (
 
+
     <Router>
+
 
       <div className="app">
 
-        {/* ==================================================
-            TOP HEADER
-        ================================================== */}
+
+
+
+
 
         <PageHeader
-          activeMenu={activeMenu}
-          onMenuChange={handleMenuChange}
+
+          activeSport={
+            activeSport
+          }
+
+
+          onSportChange={
+            handleSportChange
+          }
+
+
         />
+
+
+
+
+
 
 
         <Routes>
 
+
           <Route
+
+
             path="/"
+
+
+
             element={
+
+
+
 
               <div className="sports-layout">
 
-                {/* ==========================================
-                    LEFT - LEAGUES
-                ========================================== */}
+
+
+
 
                 <aside className="league-section">
 
+
                   <LeaguePanel
+
+
+                    activeSport={
+                      activeSport
+                    }
+
+
                     selectedLeague={
                       selectedLeague
                     }
+
 
                     onLeagueChange={
                       handleLeagueChange
                     }
+
+
                   />
+
+
 
                 </aside>
 
 
-                {/* ==========================================
-                    CENTER - EVENTS
-                ========================================== */}
+
+
+
+
+
 
                 <main className="events-section">
 
+
                   <EventsPage
+
 
                     selectedLeague={
                       selectedLeague
                     }
 
+
                     activeMenu={
-                      activeMenu
+                      activeSport
                     }
+
+
 
                     onOddSelect={
                       handleOddSelect
                     }
 
+
+
                     selectedOdds={
                       selectedOdds
                     }
+
+
+
 
                     onMoreClick={
                       handleMoreClick
                     }
 
+
                   />
+
+
 
                 </main>
 
 
-                {/* ==========================================
-                    RIGHT - BETSLIP
-                ========================================== */}
+
+
+
+
+
 
                 <aside className="betslip-section">
 
+
                   <Betslips
 
-                    bets={bets}
+
+                    bets={
+                      bets
+                    }
+
 
                     onRemove={
                       handleRemoveBet
                     }
 
+
+
                     onClear={
                       handleClear
                     }
+
+
 
                     onLoadTicket={
                       handleLoadTicket
                     }
 
+
                   />
+
 
                 </aside>
 
+
+
+
+
+
               </div>
 
+
+
             }
+
+
           />
+
+
 
         </Routes>
 
-        <Footer/>
+
+
+
+
+
+        <Footer />
+
+
+
 
       </div>
 
+
+
     </Router>
 
+
   );
+
 
 };
 
 
-export default App;
 
+export default App;
