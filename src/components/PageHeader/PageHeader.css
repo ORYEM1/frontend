@@ -14,9 +14,8 @@
 /* ============================================================
    TOP SECTION
 ============================================================ */
-
 .sports-header-top {
-  height: 70px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,11 +26,9 @@
   
 }
 
-
 /* ============================================================
    LOGO
 ============================================================ */
-
 .sports-header-logo {
   font-size: 26px;
   font-weight: 700;
@@ -54,15 +51,11 @@
 
 .sports-header-auth button {
   height: 38px;
-
   padding: 0 20px;
-
   border: none;
   border-radius: 5px;
-
   font-size: 14px;
   font-weight: 600;
-
   cursor: pointer;
 }
 
@@ -104,7 +97,6 @@
 
 .header-menu-item {
   position: relative;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,7 +119,6 @@
 .header-menu-icon {
   display: flex;
   align-items: center;
-
   font-size: 15px;
 }
 
@@ -155,15 +146,11 @@
 
 .header-menu-item.active::after {
   content: "";
-
   position: absolute;
-
   left: 18px;
   right: 18px;
   bottom: 0;
-
   height: 3px;
-
   background: currentColor;
 }
 

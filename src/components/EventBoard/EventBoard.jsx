@@ -21,11 +21,6 @@ function EventBoard({
           const events =
             Object.entries(leagueEvents);
 
-
-          // ==================================================
-          // FIRST EVENT
-          // ==================================================
-
           const firstEvent =
             events[0]?.[1];
 
@@ -266,9 +261,7 @@ function EventBoard({
                                   event.blocked
                                 ) === "1";
 
-
                               return (
-
                                 <button
                                   key={header}
 
@@ -329,11 +322,7 @@ function EventBoard({
 
                                       eventDate:
                                         event.date,
-
-                                      // =================================
-                                      // MARKET INFORMATION
-                                      // =================================
-
+                                   
                                       marketId:
                                         marketId,
 
