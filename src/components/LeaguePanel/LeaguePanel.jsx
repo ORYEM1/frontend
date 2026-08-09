@@ -1,46 +1,111 @@
+import {
+  useMemo,
+} from "react";
 
-import { useMemo } from "react";
+import {
+  useSports,
+} from "../../contexts/SportsContext.jsx";
 
-import { feedData } from "../../data/data.js";
+import {
+  feedData,
+} from "../../data/feedData.js";
 
 import "./LeaguePanel.css";
 
+const LeaguePanel = () => {
 
-const LeaguePanel = ({
-  selectedLeague,
-  onLeagueSelect,
-}) => {
+  const {
+    activeSport,
+
+    selectedLeague,
+    selectLeague,
+  } = useSports();
+
 
   // ==========================================================
-  // BUILD LEAGUE LIST FROM RAW FEED
+  // BUILD LEAGUE LIST
   // ==========================================================
 
   const leagues = useMemo(() => {
 
-    const result = [];
+    const leagueList = [];
+
 
     Object.entries(feedData).forEach(
-      ([leagueKey, leagueEvents]) => {
+      ([leagueName, leagueEvents]) => {
 
-        const firstEvent =
-          Object.values(leagueEvents)[0];
+        // ====================================================
+        // FILTER EVENTS BY SPORT
+        // ====================================================
 
-        if (!firstEvent) {
+        const sportEvents =
+          Object.values(
+            leagueEvents || {}
+          ).filter((event) => {
+
+            if (!event) {
+              return false;
+            }
+
+
+            return (
+              String(
+                event.sport || ""
+              ).toLowerCase() ===
+              String(
+                activeSport || ""
+              ).toLowerCase()
+            );
+
+          });
+
+
+        // ====================================================
+        // NO EVENTS FOR THIS SPORT
+        // ====================================================
+
+        if (
+          sportEvents.length === 0
+        ) {
           return;
         }
 
-        result.push({
-          key: leagueKey,
-          name: firstEvent.league,
-          region: firstEvent.region,
+
+        // ====================================================
+        // FIRST EVENT
+        // ====================================================
+
+        const firstEvent =
+          sportEvents[0];
+
+
+        // ====================================================
+        // CREATE LEAGUE
+        // ====================================================
+
+        leagueList.push({
+
+          name:
+            leagueName,
+
+          region:
+            firstEvent?.region ||
+            "",
+
+          events:
+            sportEvents.length,
+
         });
 
       }
     );
 
-    return result;
 
-  }, []);
+    return leagueList;
+
+  }, [
+    activeSport,
+  ]);
 
 
   // ==========================================================
@@ -51,49 +116,86 @@ const LeaguePanel = ({
 
     <aside className="league-panel">
 
-      {/* ================================================
+      {/* ==================================================
           HEADER
-      ================================================ */}
+      ================================================== */}
 
       <div className="league-panel-header">
 
         <h3>
-          Leagues
+          {activeSport
+            ? `${activeSport
+                .charAt(0)
+                .toUpperCase()}${activeSport.slice(1)} Leagues`
+            : "Leagues"}
         </h3>
 
       </div>
 
 
-      {/* ================================================
-          LEAGUES
-      ================================================ */}
+      {/* ==================================================
+          ALL LEAGUES
+      ================================================== */}
 
       <div className="league-list">
 
-        {leagues.map((league) => {
+        <button
+          type="button"
 
-          const isSelected =
-            selectedLeague === league.key;
+          className={`
+            league-item
+
+            ${
+              !selectedLeague
+                ? "active"
+                : ""
+            }
+          `}
+
+          onClick={() =>
+            selectLeague(null)
+          }
+        >
+
+          <span className="league-name">
+            All Leagues
+          </span>
+
+        </button>
 
 
-          return (
+        {/* ==================================================
+            LEAGUES
+        ================================================== */}
 
-            <button
-              key={league.key}
-              type="button"
-              className={
-                `league-item ${
-                  isSelected
-                    ? "active"
-                    : ""
-                }`
+        {leagues.map((league) => (
+
+          <button
+            key={league.name}
+
+            type="button"
+
+            className={`
+              league-item
+
+              ${
+                selectedLeague?.name ===
+                league.name
+                  ? "active"
+                  : ""
               }
-              onClick={() =>
-                onLeagueSelect(
-                  league.key
-                )
-              }
-            >
+            `}
+
+            onClick={() =>
+              selectLeague(league)
+            }
+          >
+
+            {/* ============================================
+                REGION
+            ============================================ */}
+
+            {league.region && (
 
               <span className="league-region">
 
@@ -101,18 +203,48 @@ const LeaguePanel = ({
 
               </span>
 
+            )}
 
-              <span className="league-name">
 
-                {league.name}
+            {/* ============================================
+                LEAGUE NAME
+            ============================================ */}
 
-              </span>
+            <span className="league-name">
 
-            </button>
+              {league.name}
 
-          );
+            </span>
 
-        })}
+
+            {/* ============================================
+                EVENT COUNT
+            ============================================ */}
+
+            <span className="league-event-count">
+
+              {league.events}
+
+            </span>
+
+          </button>
+
+        ))}
+
+
+        {/* ==================================================
+            EMPTY STATE
+        ================================================== */}
+
+        {leagues.length === 0 && (
+
+          <div className="no-leagues">
+
+            No {activeSport} leagues available.
+
+          </div>
+
+        )}
 
       </div>
 
@@ -122,6 +254,4 @@ const LeaguePanel = ({
 
 };
 
-
 export default LeaguePanel;
-

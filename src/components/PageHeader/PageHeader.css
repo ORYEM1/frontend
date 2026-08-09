@@ -5,9 +5,16 @@
 
 .sports-header {
   width: 100%;
+
   background: #ffffff;
-  border-bottom: 1px solid #dddddd;
+
+  border-bottom: 1px solid #ddd;
+
   position: sticky;
+
+  top: 0;
+
+  z-index: 1000;
 }
 
 
@@ -17,14 +24,20 @@
 
 .sports-header-top {
   height: 100px;
+
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   padding: 0 24px;
-  margin-top: 0px;
+
   background: #036;
+
   border-radius: 5px 5px 0 0;
-  
+
+  box-sizing: border-box;
 }
 
 
@@ -33,11 +46,22 @@
 ============================================================ */
 
 .sports-header-logo {
-  font-size: 26px;
-  font-weight: 700;
+  display: flex;
+
+  align-items: center;
+
+  height: 100%;
+
+  
+
+  
 }
-.sports-header-logo img{
-    width: 20%;
+
+
+.sports-header-logo img {
+  
+  width: 40px;
+  
 }
 
 
@@ -47,7 +71,9 @@
 
 .sports-header-auth {
   display: flex;
+
   align-items: center;
+
   gap: 10px;
 }
 
@@ -58,27 +84,46 @@
   padding: 0 20px;
 
   border: none;
+
   border-radius: 5px;
 
   font-size: 14px;
+
   font-weight: 600;
 
   cursor: pointer;
 }
 
 
-/* REGISTER */
+/* ============================================================
+   REGISTER
+============================================================ */
 
 .header-register-button {
-  background: #eeeeee;
+  background: #eee;
+
+  color: #333;
 }
 
 
-/* LOGIN */
+.header-register-button:hover {
+  background: #ddd;
+}
+
+
+/* ============================================================
+   LOGIN
+============================================================ */
 
 .header-login-button {
   background: #f90;
-  color: #ffffff;
+
+  color: #fff;
+}
+
+
+.header-login-button:hover {
+  background: #e88b00;
 }
 
 
@@ -88,13 +133,20 @@
 
 .sports-header-menu {
   display: flex;
+
   align-items: center;
+
   min-height: 52px;
+
   padding: 0 24px;
+
   border: 1px solid #f90;
+
   background: #444;
+
   color: #f90;
 
+  box-sizing: border-box;
 }
 
 
@@ -106,17 +158,28 @@
   position: relative;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   gap: 8px;
+
   height: 52px;
+
   padding: 0 18px;
+
   background: transparent;
+
   border: none;
+
   font-size: 14px;
+
   font-weight: 600;
+
   cursor: pointer;
-  color: #ffffff;
+
+  color: #fff;
 }
 
 
@@ -126,7 +189,10 @@
 
 .header-menu-icon {
   display: flex;
+
   align-items: center;
+
+  justify-content: center;
 
   font-size: 15px;
 }
@@ -147,11 +213,14 @@
 
 .header-menu-item.active {
   font-weight: 700;
-  color:#f90;
+
+  color: #f90;
 }
 
 
-/* ACTIVE INDICATOR */
+/* ============================================================
+   ACTIVE INDICATOR
+============================================================ */
 
 .header-menu-item.active::after {
   content: "";
@@ -159,7 +228,9 @@
   position: absolute;
 
   left: 18px;
+
   right: 18px;
+
   bottom: 0;
 
   height: 3px;
@@ -174,7 +245,6 @@
 
 .header-menu-item:hover {
   color: #f90;
-  
 }
 
 
@@ -185,7 +255,30 @@
 @media (max-width: 768px) {
 
   .sports-header-top {
+    height: 75px;
+
     padding: 0 12px;
+  }
+
+
+  .sports-header-logo img {
+    width: 100px;
+
+    max-height: 55px;
+  }
+
+
+  .sports-header-auth {
+    gap: 5px;
+  }
+
+
+  .sports-header-auth button {
+    height: 34px;
+
+    padding: 0 12px;
+
+    font-size: 12px;
   }
 
 

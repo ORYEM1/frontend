@@ -1,13 +1,11 @@
-
-import { useMemo, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
 import EventBoard from "../../components/EventBoard/EventBoard.jsx";
 import MoreMarkets from "../../components/MoreMarket/MoreMarkets.jsx";
-import { feedData } from "../../data/feedData.js";
+
+import { useSports } from "../../contexts/SportsContext.jsx";
 
 import "./EventsPage.css";
-
 
 // ============================================================
 // MARKET OPTIONS
@@ -41,115 +39,11 @@ const marketOptions = [
   },
 ];
 
+// ============================================================
+// EVENT CATEGORY MENU
+// ============================================================
 
-const sportMenus = {
-
-  football: [
-    {
-      id:"live",
-      label:"Live"
-    },
-    {
-      id:"incoming",
-      label:"Upcoming"
-    },
-    {
-      id:"popular",
-      label:"Popular"
-    },
-    {
-      id:"competition",
-      label:"Competitions"
-    }
-  ],
-
-
-  basketball:[
-    {
-      id:"live",
-      label:"Live"
-    },
-    {
-      id:"incoming",
-      label:"Upcoming"
-    },
-    {
-      id:"popular",
-      label:"Popular"
-    },
-    {
-      id:"competition",
-      label:"Leagues"
-    }
-  ],
-
-
-  tennis:[
-    {
-      id:"live",
-      label:"Live"
-    },
-    {
-      id:"incoming",
-      label:"Upcoming"
-    },
-    {
-      id:"popular",
-      label:"Popular"
-    },
-    {
-      id:"competition",
-      label:"Tournaments"
-    }
-  ]
-
-};
-
-const EventsPage = ({
-  feed,
-  onOddSelect,
-  activeMenu,
-  selectedOdds,
-  onMoreClick,
-}) => {
-
-  // ============================================================
-  // STATE
-  // ============================================================
-
-  const [eventMenu, setEventMenu] = useState("incoming");
-
-  const [date, setDate] = useState("today");
-
-  const [market, setMarket] = useState("3");
-
-  const [search, setSearch] = useState("");
-
-  const [selectedLeague, setSelectedLeague] =
-    useState(null);
-  const [selectedEvent,setSelectedEvent] = useState(null);
-
-
-  // ============================================================
-  // ACTIVE MARKET NAME
-  // ============================================================
-
-  /*const activeMarketName = useMemo(() => {
-
-    const selectedMarket =
-      marketOptions.find(
-        (option) =>
-          option.value === market
-      );
-
-    return (
-      selectedMarket?.label ||
-      "Match Result (1X2)"
-    );
-
-  }, [market]);*/
-
-  const eventMenus = [
+const eventMenus = [
   {
     id: "live",
     label: "Live",
@@ -168,185 +62,144 @@ const EventsPage = ({
   },
 ];
 
-  const activeMarketName = 
+// ============================================================
+// EVENTS PAGE
+// ============================================================
+
+const EventsPage = () => {
+  // ==========================================================
+  // SPORTS CONTEXT
+  // ==========================================================
+
+  const {
+    // Menu
+    activeMenu,
+    setActiveMenu,
+
+    // Feed
+    filteredFeed,
+
+    // League
+    selectedLeague,
+    clearLeague,
+
+    // More markets
+    selectedEvent,
+    openMoreMarkets,
+    closeMoreMarkets,
+
+    // Filters
+    market,
+    setMarket,
+
+    date,
+    setDate,
+
+    search,
+    setSearch,
+
+    // Betslip
+    selectedOdds,
+    selectOdd,
+  } = useSports();
+
+  // ==========================================================
+  // ACTIVE MARKET NAME
+  // ==========================================================
+
+  const activeMarketName =
     marketOptions.find(
-        (item)=>item.value === market
-    )?.label || "Match Result";
+      (item) =>
+        item.value === market
+    )?.label ||
+    "Match Result (1X2)";
 
-
-  // ============================================================
-  // FEED
-  // ============================================================
-
-  const filteredFeed = useMemo(() => {
-
-    const result = {};
-    Object.entries(feedData).forEach(
-        ([leagueName,leagueEvents])=>{
-            if(selectedLeague &&
-                selectedLeague.name !== leagueName 
-            )
-            {
-                return;
-            }
-            const filteredEvents = {};
-
-            //events
-            Object.entries(leagueEvents).forEach(
-                ([eventKey,event])=>{
-
-                    //search
-                    const searchValue = 
-                    search.trim().toLowerCase();
-
-                    if(searchValue)
-                    {
-                        const home = 
-                        String(event.home || "")
-                        .toLowerCase();
-
-                        const away =
-                        String(event.away || "")
-                        .toLowerCase();
-
-                        const league = 
-                        String(event.league ||
-                            leagueName || ""
-                        ).toLowerCase();
-
-                        const matchesSearch = 
-                        home.includes(searchValue) ||
-                        away.includes(searchValue) ||
-                        league.includes(searchValue) ||
-                        leagueName 
-                        .toLowerCase()
-                        .includes(searchValue);
-
-                        if(!matchesSearch)
-                        {
-                            return;
-                        }
-                    }
-
-                    //date filter
-                    if(date !== "all")
-                    {
-                        const eventDate = 
-                        String(
-                            event.date || ""
-                        ).toLowerCase();
-
-                        if(date === "today" && !eventDate.includes("today"))
-                        {
-
-                        }
-                        if(
-                            date === "tomorrow" && 
-                            eventDate.includes("today")
-                                
-                        )
-                        {
-                            return;
-                        }
-                    }
-                    //market
-                    const selectedMarket = 
-                    event.markets?.[market];
-                    if(!selectedMarket)
-                    {
-                        return;
-                    }
-                    //add event
-                    filteredEvents[eventKey] = event;
-                }
-            );
-
-            if(Object.keys(filteredEvents).length>0)
-            {
-                result[leagueName] = filteredEvents;
-            }
-        }
-    );
-    return result;
-
-  }, [selectedLeague,market,search,date]);
-
-
-  // ============================================================
+  // ==========================================================
   // SEARCH
-  // ============================================================
+  // ==========================================================
 
   const clearSearch = () => {
-
     setSearch("");
-
   };
 
-
-  // ============================================================
-  // CLEAR LEAGUE
-  // ============================================================
-
-  const clearLeague = () => {
-
-    setSelectedLeague(null);
-
-  };
-
-
-  // ============================================================
-  // SELECTED MARKET CHANGE
-  // ============================================================
+  // ==========================================================
+  // MARKET CHANGE
+  // ==========================================================
 
   const handleMarketChange = (event) => {
-
-    setMarket(event.target.value);
-
-  };
-  const handleMoreClick =()=>{
-    setSelectedEvent(event);
+    setMarket(
+      event.target.value
+    );
   };
 
-  const handleBack = ()=>{
-    setSelectedEvent(null);
+  // ==========================================================
+  // EVENT MENU CHANGE
+  // ==========================================================
+
+  const handleEventMenuChange = (
+    menuId
+  ) => {
+    setActiveMenu(menuId);
   };
 
-  // ============================================================
+  // ==========================================================
+  // PAGE TITLE
+  // ==========================================================
+
+  const pageTitle =
+    selectedLeague
+      ? `${selectedLeague.name} - ${activeMarketName}`
+      : activeMenu === "live"
+      ? `Live - ${activeMarketName}`
+      : activeMenu === "incoming"
+      ? `Incoming - ${activeMarketName}`
+      : activeMenu === "popular"
+      ? `Popular - ${activeMarketName}`
+      : activeMenu === "competition"
+      ? `Competitions - ${activeMarketName}`
+      : activeMarketName;
+
+  // ==========================================================
   // RENDER
-  // ============================================================
+  // ==========================================================
 
   return (
-
     <section className="events-page">
 
-
+      {/* ======================================================
+          EVENT CATEGORY MENU
+      ====================================================== */}
 
       <div className="event-category-menu">
 
-        {
-        eventMenus.map((item)=>(
+        {eventMenus.map(
+          (item) => (
             <button
               key={item.id}
+              type="button"
               className={
-                eventMenu === item.id
-                ? "active"
-                : ""
+                activeMenu === item.id
+                  ? "active"
+                  : ""
               }
-              onClick={()=>setEventMenu(item.id)}
+              onClick={() =>
+                handleEventMenuChange(
+                  item.id
+                )
+              }
             >
               {item.label}
             </button>
-        ))
-        }
+          )
+        )}
 
       </div>
 
       {/* ======================================================
-          HEADER
+          PAGE HEADER
       ====================================================== */}
 
       <div className="events-page-header">
-
 
         {/* ====================================================
             MARKET TITLE
@@ -354,17 +207,17 @@ const EventsPage = ({
 
         <div className="market-header">
 
-          <h3> {selectedLeague ? `${selectedLeague.name} - ${activeMarketName}` : activeMenu === "live" ? `Live - ${activeMarketName}` : activeMenu === "football" ? `Football - ${activeMarketName}` : activeMarketName } </h3>
+          <h3>
+            {pageTitle}
+          </h3>
 
         </div>
-
 
         {/* ====================================================
             FILTERS
         ==================================================== */}
 
         <div className="filters">
-
 
           {/* ==================================================
               DATE
@@ -374,11 +227,13 @@ const EventsPage = ({
             className="date-filter"
             value={date}
             onChange={(event) =>
-              setDate(event.target.value)
+              setDate(
+                event.target.value
+              )
             }
           >
             <option value="all">
-                All
+              All
             </option>
 
             <option value="today">
@@ -388,9 +243,7 @@ const EventsPage = ({
             <option value="tomorrow">
               Tomorrow
             </option>
-
           </select>
-
 
           {/* ==================================================
               MARKET
@@ -399,32 +252,31 @@ const EventsPage = ({
           <select
             className="market-filter"
             value={market}
-            onChange={handleMarketChange}
+            onChange={
+              handleMarketChange
+            }
           >
-
             {marketOptions.map(
               (option) => (
-
                 <option
                   key={option.id}
                   value={option.value}
                 >
                   {option.label}
                 </option>
-
               )
             )}
-
           </select>
 
-
           {/* ==================================================
-              SEARCH INPUT
+              SEARCH
           ================================================== */}
 
           <div className="search-wrapper">
 
-            <FaSearch className="search-icon" />
+            <FaSearch
+              className="search-icon"
+            />
 
             <input
               className="search-input"
@@ -432,26 +284,26 @@ const EventsPage = ({
               placeholder="Search team or league"
               value={search}
               onChange={(event) =>
-                setSearch(event.target.value)
+                setSearch(
+                  event.target.value
+                )
               }
             />
 
-
             {search && (
-
               <button
                 type="button"
                 className="clear-search"
-                onClick={clearSearch}
+                onClick={
+                  clearSearch
+                }
                 aria-label="Clear search"
               >
                 ×
               </button>
-
             )}
 
           </div>
-
 
           {/* ==================================================
               SEARCH BUTTON
@@ -461,67 +313,74 @@ const EventsPage = ({
             className="search-button"
             type="button"
           >
-
             <FaSearch />
 
             <span>
               Search
             </span>
-
           </button>
-
 
           {/* ==================================================
               CLEAR LEAGUE
           ================================================== */}
 
           {selectedLeague && (
-
             <button
               className="clear-league-button"
               type="button"
-              onClick={clearLeague}
+              onClick={
+                clearLeague
+              }
             >
               All
             </button>
-
           )}
 
         </div>
 
       </div>
 
-
       {/* ======================================================
-          EVENTS
+          CONTENT
       ====================================================== */}
 
       <div className="events-page-content">
 
-        {selectedEvent? (
-            <MoreMarkets
-            event={selectedEvent}
-            onBack={()=>setSelectedEvent(null)}
-            setSelectedOdds={selectedOdds}/>
-        ):(
+        {selectedEvent ? (
 
-        <EventBoard
-          feed={filteredFeed}
-          marketId={market}
-          onOddSelect={onOddSelect}
-          selectedOdds={selectedOdds}
-          onMoreClick={(event)=>setSelectedEvent(event)}
-        />
+          <MoreMarkets
+            event={selectedEvent}
+            selectedOdds={selectedOdds}
+            onBack={
+              closeMoreMarkets
+            }
+            onOddSelect={
+              selectOdd
+            }
+          />
+
+        ) : (
+
+          <EventBoard
+            feed={filteredFeed}
+            marketId={market}
+            onOddSelect={
+              selectOdd
+            }
+            selectedOdds={
+              selectedOdds
+            }
+            onMoreClick={
+              openMoreMarkets
+            }
+          />
+
         )}
 
       </div>
 
     </section>
-
   );
-
 };
 
-
 export default EventsPage;
-
