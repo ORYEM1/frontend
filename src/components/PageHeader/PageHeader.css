@@ -46,11 +46,12 @@
 ============================================================ */
 
 .sports-header-logo {
-  display: flex;
+  width: 20%;
+  font-weight: 700;
 
-  align-items: center;
+  
 
-  height: 100%;
+  
 
   
 
