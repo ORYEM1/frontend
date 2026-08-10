@@ -14,12 +14,15 @@ import "./App.css";
 
 function App() {
 
-  return (
+ return (
+  <SportsProvider>
 
-    <SportsProvider>
+    <Router>
 
-      <Router>
+      <div className="app">
+
         <PageHeader />
+
         <Routes>
 
           <Route
@@ -28,26 +31,16 @@ function App() {
 
               <div className="sports-layout">
 
-                
-                {/**left side panel/league panel */}
-
-                <LeaguePanel />
-
-
-                {/**main page/event page */}
+                <section className="league-section">
+                  <LeaguePanel />
+                </section>
 
                 <main className="events-section">
-
                   <EventsPage />
-
                 </main>
 
-                {/**betslip section */}
-
                 <aside className="betslip-section">
-
                   <Betslips />
-
                 </aside>
 
               </div>
@@ -56,13 +49,15 @@ function App() {
           />
 
         </Routes>
-        <Footer/>
 
-      </Router>
+        <Footer />
 
-    </SportsProvider>
+      </div>
 
-  );
+    </Router>
+
+  </SportsProvider>
+);
 
 }
 

@@ -98,13 +98,13 @@ const marketOptionsBySport = {
       id: "501",
       value: "501",
       label: "Match Result",
-    
+
   },
     {
       id: "502",
       value: "502",
       label: "Total Goals",
-    
+
   },
   ],
 };
@@ -342,7 +342,8 @@ export const SportsProvider = ({ children }) => {
         selection.market ||
         selection.market_name ||
         selection.marketName ||
-        "",
+        selection.market_name ||
+        "Unknown Market",
 
       label:
         selection.label ||

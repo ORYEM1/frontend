@@ -59,7 +59,7 @@ const PageHeader = () => {
         <div className="sports-logo">
 
           <strong>
-            <img src="/logo.png" alt="Logo" />
+            <img src="/logo.webp" alt="Logo" />
           </strong>
 
         </div>
