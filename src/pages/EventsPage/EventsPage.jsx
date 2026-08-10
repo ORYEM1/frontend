@@ -1,72 +1,52 @@
-import { FaSearch } from "react-icons/fa";
-
+import { FaSearch,FaFire,FaBroadcastTower,FaClock,FaClipboardList } from "react-icons/fa";
 import EventBoard from "../../components/EventBoard/EventBoard.jsx";
 import MoreMarkets from "../../components/MoreMarket/MoreMarkets.jsx";
-
 import { useSports } from "../../contexts/SportsContext.jsx";
-
 import "./EventsPage.css";
 
-// ============================================================
+
+
 // EVENT CATEGORY MENU
-// ============================================================
 
 const eventMenus = [
   {
     id: "live",
     label: "Live",
+    
   },
   {
     id: "incoming",
     label: "Incoming",
+    icon: FaClock,
+    colorClass: "incoming-icon",
   },
   {
     id: "popular",
     label: "Popular",
+    icon: FaFire,
+    colorClass: "popular-icon",
   },
   {
-    id: "competition",
-    label: "Competitions",
+    id: "results",
+    label: "Results",
+    icon: FaClipboardList,
+    colorClass: "results-icon",
   },
-  {
-    id:"result",
-    label:"Results",
-  }
 ];
-
 // ============================================================
 // EVENTS PAGE
 // ============================================================
 
 const EventsPage = () => {
-  // ==========================================================
-  // SPORTS CONTEXT
-  // ==========================================================
+  
+  // from sportcontext
+  
 
   const {
-    // ========================================================
-    // SPORT
-    // ========================================================
-
     activeSport,
-
-    // ========================================================
-    // MENU
-    // ========================================================
-
     activeMenu,
     setActiveMenu,
-
-    // ========================================================
-    // FEED
-    // ========================================================
-
     filteredFeed,
-
-    // ========================================================
-    // LEAGUE
-    // ========================================================
-
     selectedLeague,
     clearLeague,
     selectedEvent,
@@ -125,27 +105,27 @@ const EventsPage = () => {
   return (
     <section className="events-page">
       <div className="event-category-menu">
-        {eventMenus.map(
-          (item) => (
-            <button
-              key={item.id}
-              type="button"
-              className={
-                activeMenu ===
-                item.id
-                  ? "active"
-                  : ""
-              }
-              onClick={() =>
-                handleEventMenuChange(
-                  item.id
-                )
-              }
-            >
-              {item.label}
-            </button>
-          )
-        )}
+        {eventMenus.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <button
+                key={item.id}
+                type="button"
+                className={
+                  activeMenu === item.id
+                    ? "active"
+                    : ""
+                }
+                onClick={() =>
+                  handleEventMenuChange(item.id)
+                }
+              >
+               
+                <span>{item.label}</span>
+              </button>
+            );
+        })}
       </div>
       <div className="events-page-header">
         <div className="market-header">

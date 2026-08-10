@@ -207,11 +207,13 @@ function EventBoard({
 
                              
 
-                              const selectionLabel =
-                                bet.bet ||
-                                bet.label ||
-                                bet.name ||
-                                header;
+                             const selectionLabel =
+                              bet.line
+                                ? `${bet.bet || bet.label || bet.name || header} ${bet.line}`
+                                : bet.bet ||
+                                  bet.label ||
+                                  bet.name ||
+                                  header;
 
                               // =================================
                               // SELECTED

@@ -245,24 +245,15 @@
 
 .odd-button {
   width: 60px;
-
   height: 32px;
-
   padding: 0;
-
-  border: 1px solid #ddd;
-
+  border: 1px solid #036;
   border-radius: 4px;
-
-  background: #fff;
-
+  background: #036;
   cursor: pointer;
-  color: #036;
-
+  color: #fff;
   font-size: 13px;
-
   font-weight: 600;
-
   transition:
     background 0.15s ease,
     border-color 0.15s ease;
@@ -282,9 +273,9 @@
 ========================================================= */
 
 .odd-selected {
-  border-color: #000;
+  border-color: #3a0;
   color: #fff;
-  background: #036;
+  background: #3a0;
 }
 
 
@@ -331,11 +322,11 @@
   justify-content: center;
   width: 30px;
   height: 30px;
+  color: #fff;
   padding: 0;
-  border: 1px solid #ddd;
+  border: 1px solid #036;
   border-radius: 4px;
-  
-  background: #fff;
+  background: #036;
   cursor: pointer;
   font-size: 18px;
   line-height: 1;

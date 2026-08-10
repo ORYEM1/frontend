@@ -56,14 +56,34 @@
     color 0.2s ease;
 }
 
+    .menu-icon {
+      font-size: 18px;
+    }
+
+    .live-icon {
+      color: #e53935;
+    }
+
+    .incoming-icon {
+      color: #45ac0a;
+    }
+
+    .popular-icon {
+      color: #d49408;
+    }
+
+    .results-icon {
+      color: #2196f3;
+    }
+
 
 /* ============================================================
    HOVER
 ============================================================ */
 
 .event-category-menu button:hover {
-  background: #f2f2f2;
-  color: #222;
+  background: #444;
+  color: #f90;
 }
 
 
@@ -72,8 +92,8 @@
 ============================================================ */
 
 .event-category-menu button.active {
-  background: #111;
-  color: #fff;
+  background: #444;
+  color: #f90;
   font-weight: 600;
 }
 
