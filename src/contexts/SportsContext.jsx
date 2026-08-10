@@ -1,3 +1,4 @@
+
 import {
   createContext,
   useContext,
@@ -14,7 +15,7 @@ import { feedData } from "../data/feedData.js";
 const SportsContext = createContext(null);
 
 // ============================================================
-// DEFAULT MARKETS
+// DEFAULT MARKETS BY SPORT
 // ============================================================
 
 const defaultMarkets = {
@@ -23,6 +24,16 @@ const defaultMarkets = {
   tennis: "3",
   volleyball: "3",
   rugby: "3",
+};
+
+// ============================================================
+// NORMALIZE SPORT
+// ============================================================
+
+const normalizeSport = (sport) => {
+  return String(sport || "")
+    .trim()
+    .toLowerCase();
 };
 
 // ============================================================
@@ -53,7 +64,9 @@ export const SportsProvider = ({ children }) => {
     useState("all");
 
   const [market, setMarket] =
-    useState("3");
+    useState(
+      defaultMarkets.football
+    );
 
   const [search, setSearch] =
     useState("");
@@ -76,37 +89,40 @@ export const SportsProvider = ({ children }) => {
   // BETSLIP
   // ==========================================================
 
-  const [bets, setBets] =
-    useState(() => {
+  const [bets, setBets] = useState(() => {
 
-      try {
+    try {
 
-        const saved =
-          localStorage.getItem("bets");
+      const saved =
+        localStorage.getItem("bets");
 
-        if (!saved) {
-          return [];
-        }
-
-        const parsed =
-          JSON.parse(saved);
-
-        return Array.isArray(parsed)
-          ? parsed
-          : [];
-
-      } catch (error) {
-
-        console.error(
-          "Unable to load saved bets:",
-          error
-        );
-
+      if (!saved) {
         return [];
       }
 
-    });
+      const parsed =
+        JSON.parse(saved);
 
+      return Array.isArray(parsed)
+        ? parsed
+        : [];
+
+    } catch (error) {
+
+      console.error(
+        "Unable to load saved bets:",
+        error
+      );
+
+      return [];
+
+    }
+
+  });
+
+  // ==========================================================
+  // SELECTED ODDS
+  // ==========================================================
 
   const [selectedOdds, setSelectedOdds] =
     useState(() => {
@@ -138,13 +154,13 @@ export const SportsProvider = ({ children }) => {
         );
 
         return {};
+
       }
 
     });
 
-
   // ==========================================================
-  // SPORT CHANGE
+  // CHANGE SPORT
   // ==========================================================
 
   const changeActiveSport = (sport) => {
@@ -153,43 +169,50 @@ export const SportsProvider = ({ children }) => {
       return;
     }
 
-    setActiveSport(sport);
+    const normalizedSport =
+      normalizeSport(sport);
 
-    // Clear previous sport league
+    console.log(
+      "Changing sport to:",
+      normalizedSport
+    );
+
+    setActiveSport(
+      normalizedSport
+    );
+
+    // Reset sport-specific filters
     setSelectedLeague(null);
 
-    // Close More Markets
     setSelectedEvent(null);
 
-    // Reset filters
     setDate("all");
+
     setSearch("");
 
-    // Set default market for sport
+    // Set the default market
+    // for the selected sport
     setMarket(
-      defaultMarkets[sport] || "3"
+      defaultMarkets[
+        normalizedSport
+      ] || "3"
     );
 
   };
 
-
   // ==========================================================
-  // EVENT MENU CHANGE
+  // CHANGE EVENT MENU
   // ==========================================================
 
   const changeActiveMenu = (menu) => {
 
     setActiveMenu(menu);
 
-    // A menu change removes
-    // a previously selected league.
     setSelectedLeague(null);
 
-    // Close More Markets
     setSelectedEvent(null);
 
   };
-
 
   // ==========================================================
   // SELECT LEAGUE
@@ -198,16 +221,18 @@ export const SportsProvider = ({ children }) => {
   const selectLeague = (league) => {
 
     if (!league) {
+
+      setSelectedLeague(null);
+
       return;
+
     }
 
     setSelectedLeague(league);
 
-    // Close More Markets
     setSelectedEvent(null);
 
   };
-
 
   // ==========================================================
   // CLEAR LEAGUE
@@ -218,7 +243,6 @@ export const SportsProvider = ({ children }) => {
     setSelectedLeague(null);
 
   };
-
 
   // ==========================================================
   // MORE MARKETS
@@ -234,13 +258,11 @@ export const SportsProvider = ({ children }) => {
 
   };
 
-
   const closeMoreMarkets = () => {
 
     setSelectedEvent(null);
 
   };
-
 
   // ==========================================================
   // SEARCH
@@ -251,7 +273,6 @@ export const SportsProvider = ({ children }) => {
     setSearch("");
 
   };
-
 
   // ==========================================================
   // FIND EVENT
@@ -269,7 +290,9 @@ export const SportsProvider = ({ children }) => {
 
       for (
         const event
-        of Object.values(leagueEvents)
+        of Object.values(
+          leagueEvents || {}
+        )
       ) {
 
         if (
@@ -288,7 +311,6 @@ export const SportsProvider = ({ children }) => {
     return null;
 
   };
-
 
   // ==========================================================
   // SELECT ODDS
@@ -314,8 +336,8 @@ export const SportsProvider = ({ children }) => {
       );
 
       return;
-    }
 
+    }
 
     // ========================================================
     // CREATE BET
@@ -337,34 +359,34 @@ export const SportsProvider = ({ children }) => {
       league:
         event.league,
 
+      sport:
+        event.sport,
+
       time:
         event.kickoff_time,
 
-      /*
-       * Important:
-       * Keep both names available.
-       */
-
       market:
+        selection.market ||
         selection.market_name ||
         selection.marketName ||
         "",
 
-      market_name:
-        selection.market_name ||
-        selection.marketName ||
+      label:
+        selection.label ||
+        selection.bet ||
         "",
 
     };
-
 
     // ========================================================
     // SAME ODDS SELECTED
     // ========================================================
 
     if (
-      selectedOdds[eventId]?.id ===
-      selection.id
+      String(
+        selectedOdds[eventId]?.id
+      ) ===
+      String(selection.id)
     ) {
 
       setSelectedOdds((current) => {
@@ -383,7 +405,6 @@ export const SportsProvider = ({ children }) => {
         return updated;
 
       });
-
 
       setBets((current) => {
 
@@ -407,7 +428,6 @@ export const SportsProvider = ({ children }) => {
 
     }
 
-
     // ========================================================
     // SAVE SELECTED ODDS
     // ========================================================
@@ -430,7 +450,6 @@ export const SportsProvider = ({ children }) => {
       return updated;
 
     });
-
 
     // ========================================================
     // REPLACE BET FOR SAME EVENT
@@ -461,7 +480,6 @@ export const SportsProvider = ({ children }) => {
 
   };
 
-
   // ==========================================================
   // REMOVE BET
   // ==========================================================
@@ -471,17 +489,16 @@ export const SportsProvider = ({ children }) => {
     const bet =
       bets.find(
         (item) =>
-          item.id === id
+          String(item.id) ===
+          String(id)
       );
 
     if (!bet) {
       return;
     }
 
-
     const eventId =
       String(bet.eventId);
-
 
     setSelectedOdds((current) => {
 
@@ -500,13 +517,13 @@ export const SportsProvider = ({ children }) => {
 
     });
 
-
     setBets((current) => {
 
       const updated =
         current.filter(
           (item) =>
-            item.id !== id
+            String(item.id) !==
+            String(id)
         );
 
       localStorage.setItem(
@@ -519,7 +536,6 @@ export const SportsProvider = ({ children }) => {
     });
 
   };
-
 
   // ==========================================================
   // CLEAR BETSLIP
@@ -541,7 +557,6 @@ export const SportsProvider = ({ children }) => {
 
   };
 
-
   // ==========================================================
   // LOAD TICKET
   // ==========================================================
@@ -554,7 +569,6 @@ export const SportsProvider = ({ children }) => {
 
     const newSelectedOdds = {};
 
-
     loadedBets.forEach((bet) => {
 
       newSelectedOdds[
@@ -563,13 +577,11 @@ export const SportsProvider = ({ children }) => {
 
     });
 
-
     setBets(loadedBets);
 
     setSelectedOdds(
       newSelectedOdds
     );
-
 
     localStorage.setItem(
       "bets",
@@ -577,7 +589,6 @@ export const SportsProvider = ({ children }) => {
         loadedBets
       )
     );
-
 
     localStorage.setItem(
       "selectedOdds",
@@ -588,7 +599,6 @@ export const SportsProvider = ({ children }) => {
 
   };
 
-
   // ==========================================================
   // FILTER FEED
   // ==========================================================
@@ -597,17 +607,27 @@ export const SportsProvider = ({ children }) => {
 
     const result = {};
 
+    const normalizedActiveSport =
+      normalizeSport(
+        activeSport
+      );
+
     const searchValue =
       search
         .trim()
         .toLowerCase();
 
+    // ========================================================
+    // LOOP THROUGH LEAGUES
+    // ========================================================
 
-    Object.entries(feedData).forEach(
+    Object.entries(
+      feedData || {}
+    ).forEach(
       ([leagueName, leagueEvents]) => {
 
         // ====================================================
-        // LEAGUE FILTER
+        // SELECTED LEAGUE
         // ====================================================
 
         if (
@@ -620,48 +640,128 @@ export const SportsProvider = ({ children }) => {
 
         }
 
-
         const filteredEvents = {};
 
+        // ====================================================
+        // LOOP EVENTS
+        // ====================================================
 
         Object.entries(
-          leagueEvents
+          leagueEvents || {}
         ).forEach(
           ([eventKey, event]) => {
 
+            if (!event) {
+              return;
+            }
+
             // ==============================================
-            // SPORT FILTER
+            // SPORT
             // ==============================================
 
             const eventSport =
-              String(
-                event.sport || ""
-              ).toLowerCase();
+              normalizeSport(
+                event.sport
+              );
 
+            /*
+             * IMPORTANT:
+             *
+             * Feed:
+             * "Football"
+             *
+             * activeSport:
+             * "football"
+             *
+             * Both become:
+             * "football"
+             */
 
             if (
               eventSport !==
-              activeSport.toLowerCase()
+              normalizedActiveSport
             ) {
 
               return;
 
             }
-
 
             // ==============================================
             // LIVE
             // ==============================================
 
             if (
-              activeMenu === "live" &&
-              !event.live
+              activeMenu === "live"
             ) {
 
-              return;
+              if (
+                String(
+                  event.live
+                ) !== "1"
+              ) {
+
+                return;
+
+              }
 
             }
 
+            // ==============================================
+            // INCOMING
+            // ==============================================
+
+            if (
+              activeMenu === "incoming"
+            ) {
+
+              if (
+                String(
+                  event.live
+                ) === "1"
+              ) {
+
+                return;
+
+              }
+
+            }
+
+            // ==============================================
+            // POPULAR
+            // ==============================================
+
+            /*
+             * For now Popular displays
+             * all events for the selected
+             * sport.
+             *
+             * Later we can add a proper
+             * popular flag/ranking.
+             */
+
+            if (
+              activeMenu === "popular"
+            ) {
+
+              // No additional filter
+              // for now.
+
+            }
+
+            // ==============================================
+            // COMPETITIONS
+            // ==============================================
+
+            if (
+              activeMenu ===
+              "competition"
+            ) {
+
+              // Competition filtering
+              // is handled by league
+              // selection.
+
+            }
 
             // ==============================================
             // SEARCH
@@ -674,20 +774,22 @@ export const SportsProvider = ({ children }) => {
                   event.home || ""
                 ).toLowerCase();
 
-
               const away =
                 String(
                   event.away || ""
                 ).toLowerCase();
 
-
-              const league =
+              const eventLeague =
                 String(
                   event.league ||
                   leagueName ||
                   ""
                 ).toLowerCase();
 
+              const region =
+                String(
+                  event.region || ""
+                ).toLowerCase();
 
               const matchesSearch =
                 home.includes(
@@ -696,7 +798,10 @@ export const SportsProvider = ({ children }) => {
                 away.includes(
                   searchValue
                 ) ||
-                league.includes(
+                eventLeague.includes(
+                  searchValue
+                ) ||
+                region.includes(
                   searchValue
                 ) ||
                 leagueName
@@ -705,43 +810,46 @@ export const SportsProvider = ({ children }) => {
                     searchValue
                   );
 
+              if (
+                !matchesSearch
+              ) {
 
-              if (!matchesSearch) {
                 return;
+
               }
 
             }
-
 
             // ==============================================
             // DATE
             // ==============================================
 
-            if (date !== "all") {
+            if (
+              date !== "all"
+            ) {
 
               const eventDate =
                 String(
                   event.date || ""
-                ).toLowerCase();
+                ).trim().toLowerCase();
 
+              /*
+               * Current feed examples:
+               *
+               * 30/07
+               *
+               * Therefore "today"/"tomorrow"
+               * cannot be matched directly
+               * against event.date.
+               *
+               * Until we convert the feed
+               * date into a real Date object,
+               * don't incorrectly remove
+               * events.
+               */
 
               if (
-                date === "today" &&
-                !eventDate.includes(
-                  "today"
-                )
-              ) {
-
-                return;
-
-              }
-
-
-              if (
-                date === "tomorrow" &&
-                !eventDate.includes(
-                  "tomorrow"
-                )
+                eventDate === ""
               ) {
 
                 return;
@@ -750,34 +858,37 @@ export const SportsProvider = ({ children }) => {
 
             }
 
-
             // ==============================================
             // MARKET
             // ==============================================
 
+            const eventMarkets =
+              event.markets || {};
+
             if (
-              !event.markets?.[market]
+              !eventMarkets[
+                String(market)
+              ]
             ) {
 
               return;
 
             }
 
-
             // ==============================================
             // KEEP EVENT
             // ==============================================
 
-            filteredEvents[eventKey] =
-              event;
+            filteredEvents[
+              eventKey
+            ] = event;
 
           }
         );
 
-
-        // ====================================================
+        // ==================================================
         // KEEP LEAGUE
-        // ====================================================
+        // ==================================================
 
         if (
           Object.keys(
@@ -785,14 +896,14 @@ export const SportsProvider = ({ children }) => {
           ).length > 0
         ) {
 
-          result[leagueName] =
-            filteredEvents;
+          result[
+            leagueName
+          ] = filteredEvents;
 
         }
 
       }
     );
-
 
     return result;
 
@@ -805,24 +916,34 @@ export const SportsProvider = ({ children }) => {
     date,
   ]);
 
-
   // ==========================================================
   // CONTEXT VALUE
   // ==========================================================
 
   const value = {
 
-    // Sport
+    // ========================================================
+    // SPORT
+    // ========================================================
+
     activeSport,
+
     setActiveSport:
       changeActiveSport,
 
-    // Menu
+    // ========================================================
+    // MENU
+    // ========================================================
+
     activeMenu,
+
     setActiveMenu:
       changeActiveMenu,
 
-    // Filters
+    // ========================================================
+    // FILTERS
+    // ========================================================
+
     date,
     setDate,
 
@@ -834,29 +955,49 @@ export const SportsProvider = ({ children }) => {
 
     clearSearch,
 
-    // League
+    // ========================================================
+    // LEAGUE
+    // ========================================================
+
     selectedLeague,
+
     selectLeague,
+
     clearLeague,
 
-    // More markets
+    // ========================================================
+    // MORE MARKETS
+    // ========================================================
+
     selectedEvent,
+
     openMoreMarkets,
+
     closeMoreMarkets,
 
-    // Feed
+    // ========================================================
+    // FEED
+    // ========================================================
+
     filteredFeed,
 
-    // Betslip
+    // ========================================================
+    // BETSLIP
+    // ========================================================
+
     bets,
+
     selectedOdds,
 
     selectOdd,
-    removeBet,
-    clearBetslip,
-    loadTicket,
-  };
 
+    removeBet,
+
+    clearBetslip,
+
+    loadTicket,
+
+  };
 
   return (
     <SportsContext.Provider
@@ -868,7 +1009,6 @@ export const SportsProvider = ({ children }) => {
 
 };
 
-
 // ============================================================
 // CUSTOM HOOK
 // ============================================================
@@ -876,7 +1016,9 @@ export const SportsProvider = ({ children }) => {
 export const useSports = () => {
 
   const context =
-    useContext(SportsContext);
+    useContext(
+      SportsContext
+    );
 
   if (!context) {
 
@@ -889,3 +1031,4 @@ export const useSports = () => {
   return context;
 
 };
+

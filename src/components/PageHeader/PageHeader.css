@@ -46,7 +46,7 @@
 ============================================================ */
 
 .sports-header-logo {
-  width: 20%;
+  width: 40px;
   font-weight: 700;
 
   
@@ -59,9 +59,9 @@
 }
 
 
-.sports-header-logo img {
+.sports-logo img {
   
-  width: 40px;
+  width: 20%;
   
 }
 
@@ -100,14 +100,14 @@
    REGISTER
 ============================================================ */
 
-.header-register-button {
+.register-button {
   background: #eee;
 
   color: #333;
 }
 
 
-.header-register-button:hover {
+.register-button:hover {
   background: #ddd;
 }
 
@@ -116,14 +116,14 @@
    LOGIN
 ============================================================ */
 
-.header-login-button {
+.login-button {
   background: #f90;
 
   color: #fff;
 }
 
 
-.header-login-button:hover {
+.login-button:hover {
   background: #e88b00;
 }
 

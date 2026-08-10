@@ -4,71 +4,34 @@ import { useSports } from "../../contexts/SportsContext.jsx";
 
 import "./Betslips.css";
 
-// ============================================================
-// BOOKING CODE
-// ============================================================
 
-const createBookingCode = () => {
-  return `BK${Date.now()}`;
-};
 
-// ============================================================
+
 // BETSLIPS
-// ============================================================
+
 
 const Betslips = () => {
-  // ==========================================================
-  // SPORTS CONTEXT
-  // ==========================================================
+  
+  const {bets,removeBet,clearBetslip} = useSports();
 
-  const {
-    bets,
-    removeBet,
-    clearBetslip,
-    loadTicket,
-  } = useSports();
+  const [stake, setStake] = useState("");
+  const [activeTab, setActiveTab] = useState("bets");
+  const [bookingCode, setBookingCode] = useState("");
+  const [message, setMessage] = useState("");
+  const [bookingResult, setBookingResult] = useState(null);
 
-  // ==========================================================
-  // LOCAL STATE
-  // ==========================================================
-
-  const [stake, setStake] =
-    useState("");
-
-  const [activeTab, setActiveTab] =
-    useState("bets");
-
-  const [bookingCode, setBookingCode] =
-    useState("");
-
-  const [message, setMessage] =
-    useState("");
-
-  const [bookingResult, setBookingResult] =
-    useState(null);
-
-  // ==========================================================
+  
   // TOTAL ODDS
-  // ==========================================================
 
-  const totalOdds = bets.reduce(
-    (product, bet) =>
-      product *
-      Number(bet.odds || 0),
-    1
-  );
+  const totalOdds = bets.reduce((product, bet) => product * Number(bet.odds || 0), 1 );
 
-  // ==========================================================
+ 
   // POSSIBLE WIN
-  // ==========================================================
+  
+  const possibleWin = Number(stake || 0) * totalOdds;
 
-  const possibleWin =
-    Number(stake || 0) *
-    totalOdds;
 
-  // ==========================================================
   // FORMAT MONEY
-  // ==========================================================
 
   const formatMoney = (amount) => {
     return new Intl.NumberFormat(
@@ -79,18 +42,16 @@ const Betslips = () => {
     ).format(amount);
   };
 
-  // ==========================================================
+  
   // REMOVE BET
-  // ==========================================================
-
+ 
   const handleRemove = (id) => {
     removeBet(id);
   };
 
-  // ==========================================================
+  
   // CLEAR BETSLIP
-  // ==========================================================
-
+  
   const handleClear = () => {
     clearBetslip();
 
@@ -98,219 +59,7 @@ const Betslips = () => {
     setStake("");
   };
 
-  // ==========================================================
-  // PLACE BET
-  // ==========================================================
-
-  const handlePlaceBet = () => {
-    if (bets.length === 0) {
-      setMessage(
-        "Please select at least one bet."
-      );
-
-      return;
-    }
-
-    if (
-      !stake ||
-      Number(stake) < 500
-    ) {
-      setMessage(
-        "Minimum stake is UGX 500."
-      );
-
-      return;
-    }
-
-    const ticket = {
-      bets,
-
-      stake:
-        Number(stake),
-
-      totalOdds:
-        Number(
-          totalOdds.toFixed(2)
-        ),
-
-      possibleWin:
-        Number(
-          possibleWin.toFixed(2)
-        ),
-
-      eventCount:
-        bets.length,
-
-      createdAt:
-        new Date().toISOString(),
-    };
-
-    console.log(
-      "Bet ticket:",
-      ticket
-    );
-
-    setMessage(
-      "Bet submitted successfully."
-    );
-  };
-
-  // ==========================================================
-  // BOOK TICKET
-  // ==========================================================
-
-  const handleBookTicket = () => {
-    if (bets.length === 0) {
-      setMessage(
-        "Please select at least one bet."
-      );
-
-      return;
-    }
-
-    const newBookingCode =
-      createBookingCode();
-
-    const booking = {
-      bookingCode:
-        newBookingCode,
-
-      bets: bets.map(
-        (bet) => ({
-          ...bet,
-
-          odds:
-            Number(
-              Number(
-                bet.odds
-              ).toFixed(2)
-            ),
-        })
-      ),
-
-      totalOdds:
-        Number(
-          totalOdds.toFixed(2)
-        ),
-
-      eventCount:
-        bets.length,
-
-      createdAt:
-        new Date().toISOString(),
-    };
-
-    const existingBookings =
-      JSON.parse(
-        localStorage.getItem(
-          "bookings"
-        ) || "[]"
-      );
-
-    existingBookings.push(
-      booking
-    );
-
-    localStorage.setItem(
-      "bookings",
-      JSON.stringify(
-        existingBookings
-      )
-    );
-
-    setBookingResult(
-      newBookingCode
-    );
-
-    setMessage("");
-  };
-
-  // ==========================================================
-  // COPY BOOKING CODE
-  // ==========================================================
-
-  const copyBookingCode = async () => {
-    if (!bookingResult) {
-      return;
-    }
-
-    try {
-      await navigator.clipboard.writeText(
-        bookingResult
-      );
-
-      setMessage(
-        "Booking code copied."
-      );
-    } catch (error) {
-      console.error(
-        "Unable to copy booking code:",
-        error
-      );
-
-      setMessage(
-        "Unable to copy booking code."
-      );
-    }
-  };
-
-  // ==========================================================
-  // LOAD TICKET
-  // ==========================================================
-
-  const handleLoadTicket = () => {
-    const code =
-      bookingCode.trim();
-
-    if (!code) {
-      setMessage(
-        "Enter a booking code."
-      );
-
-      return;
-    }
-
-    const bookings =
-      JSON.parse(
-        localStorage.getItem(
-          "bookings"
-        ) || "[]"
-      );
-
-    const booking =
-      bookings.find(
-        (item) =>
-          item.bookingCode ===
-          code
-      );
-
-    if (!booking) {
-      setMessage(
-        "Invalid booking code."
-      );
-
-      return;
-    }
-
-    loadTicket(
-      booking.bets
-    );
-
-    setMessage(
-      "Ticket loaded successfully."
-    );
-
-    setActiveTab("bets");
-  };
-
-  // ==========================================================
-  // CLOSE BOOKING RESULT
-  // ==========================================================
-
-  const closeBookingResult = () => {
-    setBookingResult(null);
-  };
-
+   
   // ==========================================================
   // RENDER
   // ==========================================================
@@ -600,9 +349,7 @@ const Betslips = () => {
                 <button
                   type="button"
                   className="place-bet-button"
-                  onClick={
-                    handlePlaceBet
-                  }
+                  
                 >
                   Place Bet
                 </button>
@@ -612,9 +359,7 @@ const Betslips = () => {
               <button
                 type="button"
                 className="book-ticket-button"
-                onClick={
-                  handleBookTicket
-                }
+                
               >
                 Book Ticket
               </button>
@@ -653,9 +398,7 @@ const Betslips = () => {
           <button
             type="button"
             className="load-ticket-button"
-            onClick={
-              handleLoadTicket
-            }
+            
           >
             Load Ticket
           </button>
@@ -671,74 +414,7 @@ const Betslips = () => {
         </div>
 
       )}
-
-      {/* ====================================================
-          BOOKING SUCCESS MODAL
-      ==================================================== */}
-
-      {bookingResult && (
-
-        <div className="booking-overlay">
-
-          <div className="booking-modal">
-
-            <button
-              type="button"
-              className="booking-close"
-              onClick={
-                closeBookingResult
-              }
-            >
-              ×
-            </button>
-
-            <div className="booking-success-icon">
-              ✓
-            </div>
-
-            <h3>
-              Ticket Booked Successfully
-            </h3>
-
-            <p>
-              Your booking code is
-            </p>
-
-            <div className="booking-code">
-              {bookingResult}
-            </div>
-
-            <button
-              type="button"
-              className="copy-code-button"
-              onClick={
-                copyBookingCode
-              }
-            >
-              Copy Booking Code
-            </button>
-
-            <p className="booking-help">
-              Keep your booking code safe.
-              You can use it to reload
-              this ticket later.
-            </p>
-
-            <button
-              type="button"
-              className="close-modal-button"
-              onClick={
-                closeBookingResult
-              }
-            >
-              Done
-            </button>
-
-          </div>
-
-        </div>
-
-      )}
+ 
 
     </div>
   );

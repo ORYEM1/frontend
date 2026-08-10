@@ -163,11 +163,6 @@ const LeaguePanel = () => {
 
         </button>
 
-
-        {/* ==================================================
-            LEAGUES
-        ================================================== */}
-
         {leagues.map((league) => (
 
           <button
@@ -177,7 +172,6 @@ const LeaguePanel = () => {
 
             className={`
               league-item
-
               ${
                 selectedLeague?.name ===
                 league.name
@@ -185,65 +179,30 @@ const LeaguePanel = () => {
                   : ""
               }
             `}
-
             onClick={() =>
               selectLeague(league)
             }
-          >
-
-            {/* ============================================
-                REGION
-            ============================================ */}
-
+          >          
             {league.region && (
-
               <span className="league-region">
-
                 {league.region}
-
               </span>
-
             )}
-
-
-            {/* ============================================
-                LEAGUE NAME
-            ============================================ */}
-
             <span className="league-name">
-
               {league.name}
-
             </span>
-
-
-            {/* ============================================
-                EVENT COUNT
-            ============================================ */}
-
             <span className="league-event-count">
-
               {league.events}
-
             </span>
-
           </button>
 
         ))}
 
-
-        {/* ==================================================
-            EMPTY STATE
-        ================================================== */}
-
         {leagues.length === 0 && (
 
           <div className="no-leagues">
-
             No {activeSport} leagues available.
-
           </div>
-
         )}
 
       </div>

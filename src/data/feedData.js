@@ -1471,4 +1471,669 @@ export const feedData = {
 
   },
 
+  //other sports
+
+
+  // ============================================================
+  // BASKETBALL
+  // ============================================================
+
+  "USA - NBA": {
+    "0": {
+      id: "295000",
+      sport: "Basketball",
+      region: "USA",
+      league: "NBA",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+
+      home: "Los Angeles Lakers",
+      away: "Golden State Warriors",
+
+      date: "30/07",
+      kickoff_time: "03:00",
+
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        // ------------------------------------------------------
+        // MONEYLINE
+        // ------------------------------------------------------
+
+        "101": {
+          cols: "2",
+          headers: "Home,Away",
+
+          bets: {
+            Home: {
+              id: "50520001",
+              event_id: "295000",
+              market_id: "101",
+              market_name: "Moneyline",
+              bet: "Home",
+              line: "",
+              odds: "1.75",
+              locked: "0",
+            },
+
+            Away: {
+              id: "50520002",
+              event_id: "295000",
+              market_id: "101",
+              market_name: "Moneyline",
+              bet: "Away",
+              line: "",
+              odds: "2.10",
+              locked: "0",
+            },
+          },
+        },
+
+        // ------------------------------------------------------
+        // SPREAD
+        // ------------------------------------------------------
+
+        "102": {
+          cols: "2",
+          headers: "Home,Away",
+
+          bets: {
+            Home: {
+              id: "50520003",
+              event_id: "295000",
+              market_id: "102",
+              market_name: "Point Spread",
+              bet: "Home",
+              line: "-4.5",
+              odds: "1.90",
+              locked: "0",
+            },
+
+            Away: {
+              id: "50520004",
+              event_id: "295000",
+              market_id: "102",
+              market_name: "Point Spread",
+              bet: "Away",
+              line: "+4.5",
+              odds: "1.90",
+              locked: "0",
+            },
+          },
+        },
+
+        // ------------------------------------------------------
+        // TOTAL POINTS
+        // ------------------------------------------------------
+
+        "103": {
+          cols: "2",
+          headers: "Over,Under",
+
+          bets: {
+            Over: {
+              id: "50520005",
+              event_id: "295000",
+              market_id: "103",
+              market_name: "Total Points",
+              bet: "Over",
+              line: "224.5",
+              odds: "1.85",
+              locked: "0",
+            },
+
+            Under: {
+              id: "50520006",
+              event_id: "295000",
+              market_id: "103",
+              market_name: "Total Points",
+              bet: "Under",
+              line: "224.5",
+              odds: "1.95",
+              locked: "0",
+            },
+          },
+        },
+      },
+    },
+
+    "1": {
+      id: "295001",
+      sport: "Basketball",
+      region: "USA",
+      league: "NBA",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+
+      home: "Boston Celtics",
+      away: "Miami Heat",
+
+      date: "30/07",
+      kickoff_time: "04:30",
+
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+        "101": {
+          cols: "2",
+          headers: "Home,Away",
+
+          bets: {
+            Home: {
+              id: "50520101",
+              event_id: "295001",
+              market_id: "101",
+              market_name: "Moneyline",
+              bet: "Home",
+              line: "",
+              odds: "1.55",
+              locked: "0",
+            },
+
+            Away: {
+              id: "50520102",
+              event_id: "295001",
+              market_id: "101",
+              market_name: "Moneyline",
+              bet: "Away",
+              line: "",
+              odds: "2.40",
+              locked: "0",
+            },
+          },
+        },
+
+        "103": {
+          cols: "2",
+          headers: "Over,Under",
+
+          bets: {
+            Over: {
+              id: "50520103",
+              event_id: "295001",
+              market_id: "103",
+              market_name: "Total Points",
+              bet: "Over",
+              line: "218.5",
+              odds: "1.90",
+              locked: "0",
+            },
+
+            Under: {
+              id: "50520104",
+              event_id: "295001",
+              market_id: "103",
+              market_name: "Total Points",
+              bet: "Under",
+              line: "218.5",
+              odds: "1.90",
+              locked: "0",
+            },
+          },
+        },
+      },
+    },
+  },
+
+
+  // ============================================================
+  // TENNIS
+  // ============================================================
+
+  "ATP - Wimbledon": {
+    "0": {
+      id: "395000",
+      sport: "Tennis",
+      region: "International",
+      league: "Wimbledon",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+
+      home: "Carlos Alcaraz",
+      away: "Jannik Sinner",
+
+      date: "30/07",
+      kickoff_time: "14:00",
+
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        // ------------------------------------------------------
+        // MATCH WINNER
+        // ------------------------------------------------------
+
+        "201": {
+          cols: "2",
+          headers: "Player 1,Player 2",
+
+          bets: {
+            "Player 1": {
+              id: "60520001",
+              event_id: "395000",
+              market_id: "201",
+              market_name: "Match Winner",
+              bet: "Player 1",
+              line: "",
+              odds: "1.80",
+              locked: "0",
+            },
+
+            "Player 2": {
+              id: "60520002",
+              event_id: "395000",
+              market_id: "201",
+              market_name: "Match Winner",
+              bet: "Player 2",
+              line: "",
+              odds: "2.00",
+              locked: "0",
+            },
+          },
+        },
+
+        // ------------------------------------------------------
+        // TOTAL SETS
+        // ------------------------------------------------------
+
+        "202": {
+          cols: "2",
+          headers: "Over,Under",
+
+          bets: {
+            Over: {
+              id: "60520003",
+              event_id: "395000",
+              market_id: "202",
+              market_name: "Total Sets",
+              bet: "Over",
+              line: "3.5",
+              odds: "1.70",
+              locked: "0",
+            },
+
+            Under: {
+              id: "60520004",
+              event_id: "395000",
+              market_id: "202",
+              market_name: "Total Sets",
+              bet: "Under",
+              line: "3.5",
+              odds: "2.10",
+              locked: "0",
+            },
+          },
+        },
+      },
+    },
+
+    "1": {
+      id: "395001",
+      sport: "Tennis",
+      region: "International",
+      league: "Wimbledon",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+
+      home: "Novak Djokovic",
+      away: "Alexander Zverev",
+
+      date: "30/07",
+      kickoff_time: "16:00",
+
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+        "201": {
+          cols: "2",
+          headers: "Player 1,Player 2",
+
+          bets: {
+            "Player 1": {
+              id: "60520101",
+              event_id: "395001",
+              market_id: "201",
+              market_name: "Match Winner",
+              bet: "Player 1",
+              line: "",
+              odds: "1.65",
+              locked: "0",
+            },
+
+            "Player 2": {
+              id: "60520102",
+              event_id: "395001",
+              market_id: "201",
+              market_name: "Match Winner",
+              bet: "Player 2",
+              line: "",
+              odds: "2.25",
+              locked: "0",
+            },
+          },
+        },
+      },
+    },
+  },
+
+
+  // ============================================================
+  // RUGBY
+  // ============================================================
+
+  "International - Rugby Championship": {
+    "0": {
+      id: "495000",
+      sport: "Rugby",
+      region: "International",
+      league: "Rugby Championship",
+
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+
+      home: "South Africa",
+      away: "New Zealand",
+
+      date: "30/07",
+      kickoff_time: "17:00",
+
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        // ------------------------------------------------------
+        // MATCH RESULT
+        // ------------------------------------------------------
+
+        "301": {
+          cols: "3",
+          headers: "1,X,2",
+
+          bets: {
+            "1": {
+              id: "70520001",
+              event_id: "495000",
+              market_id: "301",
+              market_name: "Match Result",
+              bet: "1",
+              line: "",
+              odds: "1.70",
+              locked: "0",
+            },
+
+            X: {
+              id: "70520002",
+              event_id: "495000",
+              market_id: "301",
+              market_name: "Match Result",
+              bet: "X",
+              line: "",
+              odds: "21.00",
+              locked: "0",
+            },
+
+            "2": {
+              id: "70520003",
+              event_id: "495000",
+              market_id: "301",
+              market_name: "Match Result",
+              bet: "2",
+              line: "",
+              odds: "2.20",
+              locked: "0",
+            },
+          },
+        },
+
+        // ------------------------------------------------------
+        // TOTAL POINTS
+        // ------------------------------------------------------
+
+        "302": {
+          cols: "2",
+          headers: "Over,Under",
+
+          bets: {
+            Over: {
+              id: "70520004",
+              event_id: "495000",
+              market_id: "302",
+              market_name: "Total Points",
+              bet: "Over",
+              line: "45.5",
+              odds: "1.90",
+              locked: "0",
+            },
+
+            Under: {
+              id: "70520005",
+              event_id: "495000",
+              market_id: "302",
+              market_name: "Total Points",
+              bet: "Under",
+              line: "45.5",
+              odds: "1.90",
+              locked: "0",
+            },
+          },
+        },
+      },
+    },
+  },
+
+
+  // ============================================================
+  // VOLLEYBALL
+  // ============================================================
+
+  "International - Nations League Volleyball": {
+    "0": {
+      id: "595000",
+      sport: "Volleyball",
+      region: "International",
+      league: "Nations League",
+
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+
+      home: "Brazil",
+      away: "Italy",
+
+      date: "30/07",
+      kickoff_time: "19:00",
+
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        // ------------------------------------------------------
+        // MATCH WINNER
+        // ------------------------------------------------------
+
+        "401": {
+          cols: "2",
+          headers: "Home,Away",
+
+          bets: {
+            Home: {
+              id: "80520001",
+              event_id: "595000",
+              market_id: "401",
+              market_name: "Match Winner",
+              bet: "Home",
+              line: "",
+              odds: "1.55",
+              locked: "0",
+            },
+
+            Away: {
+              id: "80520002",
+              event_id: "595000",
+              market_id: "401",
+              market_name: "Match Winner",
+              bet: "Away",
+              line: "",
+              odds: "2.30",
+              locked: "0",
+            },
+          },
+        },
+
+        // ------------------------------------------------------
+        // TOTAL SETS
+        // ------------------------------------------------------
+
+        "402": {
+          cols: "2",
+          headers: "Over,Under",
+
+          bets: {
+            Over: {
+              id: "80520003",
+              event_id: "595000",
+              market_id: "402",
+              market_name: "Total Sets",
+              bet: "Over",
+              line: "3.5",
+              odds: "1.80",
+              locked: "0",
+            },
+
+            Under: {
+              id: "80520004",
+              event_id: "595000",
+              market_id: "402",
+              market_name: "Total Sets",
+              bet: "Under",
+              line: "3.5",
+              odds: "2.00",
+              locked: "0",
+            },
+          },
+        },
+      },
+    },
+  },
+
+
+  // ============================================================
+  // HANDBALL
+  // ============================================================
+
+  "International - Handball Championship": {
+    "0": {
+      id: "695000",
+      sport: "Handball",
+      region: "International",
+      league: "Handball Championship",
+
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+
+      home: "France",
+      away: "Denmark",
+
+      date: "30/07",
+      kickoff_time: "18:00",
+
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        // ------------------------------------------------------
+        // MATCH RESULT
+        // ------------------------------------------------------
+
+        "501": {
+          cols: "3",
+          headers: "1,X,2",
+
+          bets: {
+            "1": {
+              id: "90520001",
+              event_id: "695000",
+              market_id: "501",
+              market_name: "Match Result",
+              bet: "1",
+              line: "",
+              odds: "1.80",
+              locked: "0",
+            },
+
+            X: {
+              id: "90520002",
+              event_id: "695000",
+              market_id: "501",
+              market_name: "Match Result",
+              bet: "X",
+              line: "",
+              odds: "9.00",
+              locked: "0",
+            },
+
+            "2": {
+              id: "90520003",
+              event_id: "695000",
+              market_id: "501",
+              market_name: "Match Result",
+              bet: "2",
+              line: "",
+              odds: "2.10",
+              locked: "0",
+            },
+          },
+        },
+
+        // ------------------------------------------------------
+        // TOTAL GOALS
+        // ------------------------------------------------------
+
+        "502": {
+          cols: "2",
+          headers: "Over,Under",
+
+          bets: {
+            Over: {
+              id: "90520004",
+              event_id: "695000",
+              market_id: "502",
+              market_name: "Total Goals",
+              bet: "Over",
+              line: "58.5",
+              odds: "1.85",
+              locked: "0",
+            },
+
+            Under: {
+              id: "90520005",
+              event_id: "695000",
+              market_id: "502",
+              market_name: "Total Goals",
+              bet: "Under",
+              line: "58.5",
+              odds: "1.95",
+              locked: "0",
+            },
+          },
+        },
+      },
+    },
+  },
+
+
 };

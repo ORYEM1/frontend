@@ -6,7 +6,77 @@
 .events-page {
   width: 100%;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
+
+/* ============================================================*/
+  /* EVENT CATEGORY MENU*/
+
+
+.event-category-menu {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 45px;
+  padding: 0 12px;
+  gap: 6px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.event-category-menu::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* ============================================================
+   CATEGORY BUTTON
+============================================================ */
+
+.event-category-menu button {
+  flex-shrink: 0;
+  height: 34px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #555;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+
+/* ============================================================
+   HOVER
+============================================================ */
+
+.event-category-menu button:hover {
+  background: #f2f2f2;
+  color: #222;
+}
+
+
+/* ============================================================
+   ACTIVE
+============================================================ */
+
+.event-category-menu button.active {
+  background: #111;
+  color: #fff;
+  font-weight: 600;
+}
+
 
 
 /* ============================================================

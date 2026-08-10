@@ -1,9 +1,5 @@
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
 
 import { SportsProvider } from "./contexts/SportsContext.jsx";
 
@@ -11,6 +7,7 @@ import PageHeader from "./components/PageHeader/PageHeader.jsx";
 import LeaguePanel from "./components/LeaguePanel/LeaguePanel.jsx";
 import EventsPage from "./pages/EventsPage/EventsPage.jsx";
 import Betslips from "./components/Betslips/Betslips.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 
 import "./App.css";
 
@@ -22,18 +19,7 @@ function App() {
     <SportsProvider>
 
       <Router>
-
-        {/* ================================================
-            TOP HEADER
-        ================================================= */}
-
         <PageHeader />
-
-
-        {/* ================================================
-            APPLICATION ROUTES
-        ================================================= */}
-
         <Routes>
 
           <Route
@@ -42,18 +28,13 @@ function App() {
 
               <div className="sports-layout">
 
-                {/* ========================================
-                    LEFT
-                    LEAGUES
-                ======================================== */}
+                
+                {/**left side panel/league panel */}
 
                 <LeaguePanel />
 
 
-                {/* ========================================
-                    CENTER
-                    EVENTS
-                ======================================== */}
+                {/**main page/event page */}
 
                 <main className="events-section">
 
@@ -61,11 +42,7 @@ function App() {
 
                 </main>
 
-
-                {/* ========================================
-                    RIGHT
-                    BETSLIP
-                ======================================== */}
+                {/**betslip section */}
 
                 <aside className="betslip-section">
 
@@ -79,6 +56,7 @@ function App() {
           />
 
         </Routes>
+        <Footer/>
 
       </Router>
 
