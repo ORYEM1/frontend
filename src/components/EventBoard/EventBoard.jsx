@@ -20,23 +20,11 @@ function EventBoard({
             return null;
           }
 
-          // ==================================================
-          // FIRST EVENT
-          // ==================================================
-
           const firstEvent =
             events[0]?.[1];
 
-          // ==================================================
-          // MARKET
-          // ==================================================
-
           const mainMarket =
             firstEvent?.markets?.[marketId];
-
-          // ==================================================
-          // MARKET HEADERS
-          // ==================================================
 
           const headers =
             mainMarket?.headers
@@ -187,31 +175,19 @@ function EventBoard({
 
                               if (!bet) {
                                 return (
-                                  <button
-                                    key={header}
-                                    type="button"
-                                    className="
-                                      odd-button
-                                      odd-unavailable
-                                    "
-                                    disabled
+                                  <button 
+                                  key={header} 
+                                  type="button" 
+                                  className=" 
+                                    odd-button 
+                                    odd-unavailable 
+                                  " 
+                                  disabled
                                   >
                                     -
                                   </button>
                                 );
                               }
-
-                              // =================================
-                              // IMPORTANT
-                              //
-                              // Feed structure:
-                              //
-                              // bet: "Yes"
-                              // market_name:
-                              // "Both Teams To Score"
-                              // odds: "1.55"
-                              //
-                              // =================================
 
                               const selectionLabel =
                                 bet.bet ||
@@ -219,39 +195,13 @@ function EventBoard({
                                 bet.name ||
                                 header;
 
-                              // =================================
-                              // SELECTED
-                              // =================================
+                              
 
-                              const isSelected =
-                                String(
-                                  selectedBet?.id
-                                ) ===
-                                String(
-                                  bet.id
-                                );
+                              const isSelected = String(selectedBet?.id) ===String(bet.id);
 
-                              // =================================
-                              // LOCKED
-                              // =================================
+                              const isLocked = String(bet.locked) === "1";
 
-                              const isLocked =
-                                String(
-                                  bet.locked
-                                ) === "1";
-
-                              // =================================
-                              // BLOCKED
-                              // =================================
-
-                              const isBlocked =
-                                String(
-                                  event.blocked
-                                ) === "1";
-
-                              // =================================
-                              // CLICK
-                              // =================================
+                              const isBlocked = String(event.blocked) === "1";
 
                               const handleOddClick =
                                 () => {
@@ -269,22 +219,10 @@ function EventBoard({
 
                                   const selection = {
 
-                                    // -----------------------------
-                                    // BET PROVIDER DATA
-                                    // -----------------------------
-
                                     ...bet,
-
-                                    // -----------------------------
-                                    // SELECTION LABEL
-                                    // -----------------------------
 
                                     label:
                                       selectionLabel,
-
-                                    // -----------------------------
-                                    // MARKET
-                                    // -----------------------------
 
                                     market:
                                       marketName,
@@ -295,14 +233,7 @@ function EventBoard({
                                     market_name:
                                       marketName,
 
-                                    marketId:
-                                      String(
-                                        marketId
-                                      ),
-
-                                    // -----------------------------
-                                    // EVENT
-                                    // -----------------------------
+                                    marketId:String(marketId),
 
                                     eventId:
                                       event.id,

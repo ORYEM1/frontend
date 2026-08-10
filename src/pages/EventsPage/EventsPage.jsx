@@ -8,38 +8,6 @@ import { useSports } from "../../contexts/SportsContext.jsx";
 import "./EventsPage.css";
 
 // ============================================================
-// MARKET OPTIONS
-// ============================================================
-
-const marketOptions = [
-  {
-    id: "3",
-    value: "3",
-    label: "Match Result (1X2)",
-  },
-  {
-    id: "304",
-    value: "304",
-    label: "Both Teams To Score",
-  },
-  {
-    id: "6",
-    value: "6",
-    label: "Double Chance",
-  },
-  {
-    id: "4",
-    value: "4",
-    label: "Over/Under",
-  },
-  {
-    id: "45",
-    value: "45",
-    label: "Odd/Even",
-  },
-];
-
-// ============================================================
 // EVENT CATEGORY MENU
 // ============================================================
 
@@ -60,6 +28,10 @@ const eventMenus = [
     id: "competition",
     label: "Competitions",
   },
+  {
+    id:"result",
+    label:"Results",
+  }
 ];
 
 // ============================================================
@@ -72,79 +44,69 @@ const EventsPage = () => {
   // ==========================================================
 
   const {
-    // Menu
+    // ========================================================
+    // SPORT
+    // ========================================================
+
+    activeSport,
+
+    // ========================================================
+    // MENU
+    // ========================================================
+
     activeMenu,
     setActiveMenu,
 
-    // Feed
+    // ========================================================
+    // FEED
+    // ========================================================
+
     filteredFeed,
 
-    // League
+    // ========================================================
+    // LEAGUE
+    // ========================================================
+
     selectedLeague,
     clearLeague,
-
-    // More markets
     selectedEvent,
     openMoreMarkets,
     closeMoreMarkets,
-
-    // Filters
     market,
     setMarket,
-
+    currentMarketOptions,
     date,
     setDate,
-
     search,
     setSearch,
-
-    // Betslip
+    clearSearch,
     selectedOdds,
     selectOdd,
   } = useSports();
 
-  // ==========================================================
-  // ACTIVE MARKET NAME
-  // ==========================================================
-
   const activeMarketName =
-    marketOptions.find(
+    currentMarketOptions.find(
       (item) =>
         item.value === market
     )?.label ||
-    "Match Result (1X2)";
+    currentMarketOptions[0]?.label ||
+    "Market";
 
-  // ==========================================================
-  // SEARCH
-  // ==========================================================
-
-  const clearSearch = () => {
-    setSearch("");
-  };
-
-  // ==========================================================
-  // MARKET CHANGE
-  // ==========================================================
-
-  const handleMarketChange = (event) => {
+  
+  const handleMarketChange = (
+    event
+  ) => {
     setMarket(
       event.target.value
     );
   };
 
-  // ==========================================================
-  // EVENT MENU CHANGE
-  // ==========================================================
 
   const handleEventMenuChange = (
     menuId
   ) => {
     setActiveMenu(menuId);
   };
-
-  // ==========================================================
-  // PAGE TITLE
-  // ==========================================================
 
   const pageTitle =
     selectedLeague
@@ -159,26 +121,18 @@ const EventsPage = () => {
       ? `Competitions - ${activeMarketName}`
       : activeMarketName;
 
-  // ==========================================================
-  // RENDER
-  // ==========================================================
-
+  
   return (
     <section className="events-page">
-
-      {/* ======================================================
-          EVENT CATEGORY MENU
-      ====================================================== */}
-
       <div className="event-category-menu">
-
         {eventMenus.map(
           (item) => (
             <button
               key={item.id}
               type="button"
               className={
-                activeMenu === item.id
+                activeMenu ===
+                item.id
                   ? "active"
                   : ""
               }
@@ -192,37 +146,14 @@ const EventsPage = () => {
             </button>
           )
         )}
-
       </div>
-
-      {/* ======================================================
-          PAGE HEADER
-      ====================================================== */}
-
       <div className="events-page-header">
-
-        {/* ====================================================
-            MARKET TITLE
-        ==================================================== */}
-
         <div className="market-header">
-
           <h3>
             {pageTitle}
           </h3>
-
         </div>
-
-        {/* ====================================================
-            FILTERS
-        ==================================================== */}
-
         <div className="filters">
-
-          {/* ==================================================
-              DATE
-          ================================================== */}
-
           <select
             className="date-filter"
             value={date}
@@ -245,9 +176,9 @@ const EventsPage = () => {
             </option>
           </select>
 
-          {/* ==================================================
+          {/* ================================================
               MARKET
-          ================================================== */}
+          ================================================ */}
 
           <select
             className="market-filter"
@@ -256,7 +187,7 @@ const EventsPage = () => {
               handleMarketChange
             }
           >
-            {marketOptions.map(
+            {currentMarketOptions.map(
               (option) => (
                 <option
                   key={option.id}
@@ -268,12 +199,11 @@ const EventsPage = () => {
             )}
           </select>
 
-          {/* ==================================================
+          {/* ================================================
               SEARCH
-          ================================================== */}
+          ================================================ */}
 
           <div className="search-wrapper">
-
             <FaSearch
               className="search-icon"
             />
@@ -304,11 +234,6 @@ const EventsPage = () => {
             )}
 
           </div>
-
-          {/* ==================================================
-              SEARCH BUTTON
-          ================================================== */}
-
           <button
             className="search-button"
             type="button"
@@ -320,37 +245,33 @@ const EventsPage = () => {
             </span>
           </button>
 
-          {/* ==================================================
-              CLEAR LEAGUE
-          ================================================== */}
-
-          {selectedLeague && (
-            <button
-              className="clear-league-button"
-              type="button"
-              onClick={
-                clearLeague
-              }
-            >
-              All
-            </button>
-          )}
+            {selectedLeague && (
+          <button
+            className="clear-league-button"
+            type="button"
+            onClick={
+              clearLeague
+            }
+          >
+            All
+          </button>
+            )}
 
         </div>
-
       </div>
 
-      {/* ======================================================
+      {/* ====================================================
           CONTENT
-      ====================================================== */}
+      ==================================================== */}
 
       <div className="events-page-content">
 
         {selectedEvent ? (
-
           <MoreMarkets
             event={selectedEvent}
-            selectedOdds={selectedOdds}
+            selectedOdds={
+              selectedOdds
+            }
             onBack={
               closeMoreMarkets
             }
@@ -358,9 +279,7 @@ const EventsPage = () => {
               selectOdd
             }
           />
-
         ) : (
-
           <EventBoard
             feed={filteredFeed}
             marketId={market}
@@ -374,7 +293,6 @@ const EventsPage = () => {
               openMoreMarkets
             }
           />
-
         )}
 
       </div>

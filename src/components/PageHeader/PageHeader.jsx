@@ -55,24 +55,11 @@ const PageHeader = () => {
 
   return (
     <header className="sports-header">
-
-      {/* ==================================================
-          TOP
-      ================================================== */}
-
       <div className="sports-header-top">
-
-        {/* ==================================================
-            LOGO
-        ================================================== */}
-
         <div className="sports-logo">
 
           <strong>
-            <img
-              src="/logo.png"
-              alt="Logo"
-            />
+            <img src="/logo.png" alt="Logo" />
           </strong>
 
         </div>

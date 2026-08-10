@@ -1,30 +1,12 @@
-import {
-  useMemo,
-} from "react";
-
-import {
-  useSports,
-} from "../../contexts/SportsContext.jsx";
-
-import {
-  feedData,
-} from "../../data/feedData.js";
+import {useMemo} from "react";
+import {useSports} from "../../contexts/SportsContext.jsx";
+import {feedData} from "../../data/feedData.js";
 
 import "./LeaguePanel.css";
 
 const LeaguePanel = () => {
 
-  const {
-    activeSport,
-
-    selectedLeague,
-    selectLeague,
-  } = useSports();
-
-
-  // ==========================================================
-  // BUILD LEAGUE LIST
-  // ==========================================================
+  const {activeSport,selectedLeague,selectLeague} = useSports();
 
   const leagues = useMemo(() => {
 
@@ -34,10 +16,6 @@ const LeaguePanel = () => {
     Object.entries(feedData).forEach(
       ([leagueName, leagueEvents]) => {
 
-        // ====================================================
-        // FILTER EVENTS BY SPORT
-        // ====================================================
-
         const sportEvents =
           Object.values(
             leagueEvents || {}
@@ -46,8 +24,6 @@ const LeaguePanel = () => {
             if (!event) {
               return false;
             }
-
-
             return (
               String(
                 event.sport || ""
@@ -59,29 +35,14 @@ const LeaguePanel = () => {
 
           });
 
-
-        // ====================================================
-        // NO EVENTS FOR THIS SPORT
-        // ====================================================
-
         if (
           sportEvents.length === 0
         ) {
           return;
         }
 
-
-        // ====================================================
-        // FIRST EVENT
-        // ====================================================
-
         const firstEvent =
           sportEvents[0];
-
-
-        // ====================================================
-        // CREATE LEAGUE
-        // ====================================================
 
         leagueList.push({
 
@@ -107,19 +68,9 @@ const LeaguePanel = () => {
     activeSport,
   ]);
 
-
-  // ==========================================================
-  // RENDER
-  // ==========================================================
-
   return (
 
     <aside className="league-panel">
-
-      {/* ==================================================
-          HEADER
-      ================================================== */}
-
       <div className="league-panel-header">
 
         <h3>
@@ -131,11 +82,6 @@ const LeaguePanel = () => {
         </h3>
 
       </div>
-
-
-      {/* ==================================================
-          ALL LEAGUES
-      ================================================== */}
 
       <div className="league-list">
 
