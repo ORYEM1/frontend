@@ -1,134 +1,96 @@
+import {
+  FaFutbol,
+  FaBasketballBall,
+  FaTableTennis,
+  FaVolleyballBall,
+  FaFootballBall,
+  FaTrophy,
+  FaUser,
+  FaLock
+} from "react-icons/fa";
 
 import {
-  FaBolt,
-  FaFire,
-  FaClock,
-  FaFutbol,
-  FaTrophy,
-  FaUserLock,
-  FaUser,
-  FaCube,
-  FaGamepad,
-  FaBasketballBall,
-  FaDice
-  
-
-  
-  
-} from "react-icons/fa";
+  useSports,
+} from "../../contexts/SportsContext.jsx";
 
 import "./PageHeader.css";
 
+const PageHeader = () => {
 
-const PageHeader = ({
-  activeMenu,
-  onMenuChange,
-}) => {
+  const {
+    activeSport,
+    setActiveSport,
+  } = useSports();
 
-  const menuItems = [
-    {
-      id: "live",
-      label: "Live",
-      icon: <FaBolt />,
-    },
+  // ==========================================================
+  // SPORTS
+  // ==========================================================
 
-    {
-      id: "popular",
-      label: "Popular Games",
-      icon: <FaFire />,
-    },
-
-    {
-      id: "incoming",
-      label: "Incoming",
-      icon: <FaClock />,
-    },
-
+  const sports = [
     {
       id: "football",
       label: "Football",
       icon: <FaFutbol />,
     },
-
     {
-      id: "competitions",
-      label: "Competitions",
-      icon: <FaTrophy />,
+      id: "basketball",
+      label: "Basketball",
+      icon: <FaBasketballBall />,
     },
-    {
-      id:"basketball",
-      label:"Basketball",
-      icon:<FaBasketballBall/>
-
-    },
-    {
-      id: "esport",
-      label: "e-Sports",
-      icon: <FaFutbol />,
-    },
-
     {
       id: "tennis",
       label: "Tennis",
-      icon: <FaTrophy />,
+      icon: <FaTableTennis />,
+    },
+  
+    {
+      id: "volleyball",
+      label: "Volleyball",
+      icon: <FaVolleyballBall />,
     },
     {
-      id:"casino",
-      label:"Casino",
-      icon:<FaDice/>
+      id: "rugby",
+      label: "Rugby",
+      icon: <FaFootballBall />,
     },
-    {
-      id:"virtual",
-      label:"Virtual",
-      icon:<FaGamepad/>
-    }
-
   ];
-
 
   return (
     <header className="sports-header">
-
-      {/* =====================================================
-          TOP SECTION
-      ===================================================== */}
-
       <div className="sports-header-top">
-
-
-        {/* ===================================================
-            LOGO
-        =================================================== */}
-
-        <div className="sports-header-logo">
+        <div className="sports-logo">
 
           <strong>
-            <img src="logo.png" alt="" />
+            <img src="/logo.webp" alt="Logo" />
           </strong>
 
         </div>
 
 
-        {/* ===================================================
-            AUTH BUTTONS
-        =================================================== */}
+        {/* ==================================================
+            AUTH
+        ================================================== */}
 
         <div className="sports-header-auth">
 
           <button
             type="button"
-            className="header-register-button"
-          >
+            className="register-button"
+          > 
+          <FaUser/>
+          
             Register
+            
           </button>
 
 
           <button
             type="button"
-            className="header-login-button"
+            className="login-button"
           >
-            <FaUser/> Login
-            
+            <FaLock/>
+
+            Login
           </button>
 
         </div>
@@ -136,36 +98,40 @@ const PageHeader = ({
       </div>
 
 
-      {/* =====================================================
-          MENU
-      ===================================================== */}
+      {/* ==================================================
+          SPORTS MENU
+      ================================================== */}
 
       <nav className="sports-header-menu">
 
-        {menuItems.map((item) => (
+        {sports.map((sport) => (
 
           <button
-            key={item.id}
+            key={sport.id}
             type="button"
 
-            className={`header-menu-item ${
-              activeMenu === item.id
-                ? "active"
-                : ""
-            }`}
+            className={`
+              header-menu-item
+              ${
+                activeSport === sport.id
+                  ? "active"
+                  : ""
+              }
+            `}
 
             onClick={() =>
-              onMenuChange?.(item.id)
+              setActiveSport(
+                sport.id
+              )
             }
           >
 
             <span className="header-menu-icon">
-              {item.icon}
+              {sport.icon}
             </span>
 
-
             <span className="header-menu-label">
-              {item.label}
+              {sport.label}
             </span>
 
           </button>
@@ -178,6 +144,4 @@ const PageHeader = ({
   );
 };
 
-
 export default PageHeader;
-

@@ -1,41 +1,66 @@
 
-import { feedData } from "../../data/feedData";
 import "./EventBoard.css";
+
+const marketNames = {
+  // Football
+  "3": "Match Result (1X2)",
+  "304": "Both Teams To Score",
+  "6": "Double Chance",
+  "4": "Over/Under",
+  "45": "Odd/Even",
+
+  // Basketball
+  "101": "Moneyline",
+  "102": "Point Spread",
+  "103": "Total Points",
+
+  // Tennis
+  "201": "Match Winner",
+  "202": "Total Sets",
+
+  // Rugby
+  "301": "Match Result",
+  "302": "Total Points",
+
+  // Volleyball
+  "401": "Match Winner",
+  "402": "Total Sets",
+
+  // Handball
+  "501": "Match Result",
+  "502": "Total Goals",
+};
 
 
 function EventBoard({
   feed,
   marketId = "3",
   onOddSelect,
-  selectedOdds,
+  selectedOdds = {},
   onMoreClick,
 }) {
+  
+  const activeMarketId = String(marketId);
+  const activeMarketName = marketNames[activeMarketId] || "Unknown Market";
 
   return (
-
     <div className="event-board">
 
-      {Object.entries(feedData).map(
+      {Object.entries(feed || {}).map(
         ([leagueName, leagueEvents]) => {
 
-          const events =
-            Object.entries(leagueEvents);
+          const events = Object.entries(
+              leagueEvents || {}
+            );
+
+          if (events.length === 0) {
+            return null;
+          }
 
           const firstEvent =
             events[0]?.[1];
 
-
-          // ==================================================
-          // MARKET
-          // ==================================================
-
-          const mainMarket =
-            firstEvent?.markets?.[marketId];
-
-
-          // ==================================================
-          // HEADERS
-          // ==================================================
+          const mainMarket = firstEvent?.markets?.[activeMarketId];
 
           const headers =
             mainMarket?.headers
@@ -46,14 +71,11 @@ function EventBoard({
                   )
               : [];
 
-
           return (
-
             <section
               key={leagueName}
               className="league-group"
             >
-
 
               {/* =================================================
                   LEAGUE HEADER
@@ -61,41 +83,26 @@ function EventBoard({
 
               <div className="league-header">
 
-
-                {/* LEAGUE */}
-
                 <div className="league-name">
-
                   <strong>
                     {leagueName}
                   </strong>
-
                 </div>
-
-
-                {/* MARKET HEADERS */}
 
                 <div className="league-market-headers">
 
                   {headers.map(
                     (header) => (
-
                       <div
                         key={header}
                         className="market-header"
                       >
-
                         {header}
-
                       </div>
-
                     )
                   )}
 
                 </div>
-
-
-                {/* MORE */}
 
                 <div className="league-more">
 
@@ -107,7 +114,6 @@ function EventBoard({
 
               </div>
 
-
               {/* =================================================
                   EVENTS
               ================================================= */}
@@ -117,40 +123,20 @@ function EventBoard({
                 {events.map(
                   ([eventKey, event]) => {
 
+                    const eventMarket = event?.markets?.[activeMarketId];
 
-                    // ==========================================
-                    // MARKET
-                    // ==========================================
+                    const eventBets = eventMarket?.bets || {};
 
-                    const eventMarket =
-                      event.markets?.[marketId];
-
-
-                    const eventBets =
-                      eventMarket?.bets || {};
-
-
-                    // ==========================================
-                    // SELECTED BET
-                    // ==========================================
-
-                    const selectedBet =
-                      selectedOdds?.[
-                        String(event.id)
-                      ];
-
+                    const selectedBet = selectedOdds?.[String(event.id)];
 
                     return (
-
                       <div
                         key={
                           event.id ||
                           eventKey
                         }
-
                         className="event-row"
                       >
-
 
                         {/* =====================================
                             TIME
@@ -162,7 +148,6 @@ function EventBoard({
                             "--:--"}
 
                         </div>
-
 
                         {/* =====================================
                             TEAMS
@@ -178,7 +163,6 @@ function EventBoard({
 
                           </div>
 
-
                           <div className="away-team">
 
                             <strong>
@@ -188,7 +172,6 @@ function EventBoard({
                           </div>
 
                         </div>
-
 
                         {/* =====================================
                             ODDS
@@ -200,47 +183,49 @@ function EventBoard({
                             (header) => {
 
                               const bet =
-                                eventBets[header];
-
-
-                              // =================================
-                              // NO BET
-                              // =================================
+                                eventBets[
+                                  header
+                                ];
 
                               if (!bet) {
 
                                 return (
-
                                   <button
                                     key={header}
-
                                     type="button"
-
                                     className="
                                       odd-button
                                       odd-unavailable
                                     "
-
                                     disabled
                                   >
-
                                     -
-
                                   </button>
-
                                 );
 
                               }
 
+                             
+
+                             const selectionLabel =
+                              bet.line
+                                ? `${bet.bet || bet.label || bet.name || header} ${bet.line}`
+                                : bet.bet ||
+                                  bet.label ||
+                                  bet.name ||
+                                  header;
 
                               // =================================
                               // SELECTED
                               // =================================
 
                               const isSelected =
-                                selectedBet?.id ===
-                                bet.id;
-
+                                String(
+                                  selectedBet?.id
+                                ) ===
+                                String(
+                                  bet.id
+                                );
 
                               // =================================
                               // LOCKED
@@ -251,7 +236,6 @@ function EventBoard({
                                   bet.locked
                                 ) === "1";
 
-
                               // =================================
                               // BLOCKED
                               // =================================
@@ -261,12 +245,80 @@ function EventBoard({
                                   event.blocked
                                 ) === "1";
 
+                              // =================================
+                              // SELECT ODD
+                              // =================================
+
+                              const handleOddClick =() => {
+
+                                  if (
+                                    isLocked ||
+                                    isBlocked
+                                  ) {
+                                    return;
+                                  }
+                                  const selection = {
+
+                                    ...bet,
+
+                                    id:
+                                      bet.id,
+
+                                    odds:
+                                      bet.odds,
+
+                                    label:
+                                      selectionLabel,
+
+                                    market:
+                                      activeMarketName,
+
+                                    marketName:
+                                      activeMarketName,
+
+                                    market_name:
+                                      activeMarketName,
+
+                                    marketId:
+                                      activeMarketId,
+
+                                    eventId:
+                                      event.id,
+
+                                    home:
+                                      event.home,
+
+                                    away:
+                                      event.away,
+
+                                    league:
+                                      event.league ||
+                                      leagueName,                                   
+
+                                    sport:
+                                      event.sport,
+
+                                    kickoff_time:
+                                      event.kickoff_time,
+
+                                    eventDate:
+                                      event.date,
+                                  };
+
+                                  onOddSelect?.(
+                                    selection
+                                  );
+
+                                };
+
+                              // =================================
+                              // BUTTON
+                              // =================================
+
                               return (
                                 <button
                                   key={header}
-
                                   type="button"
-
                                   className={`
                                     odd-button
 
@@ -275,70 +327,24 @@ function EventBoard({
                                         ? "odd-selected"
                                         : ""
                                     }
-                                    
+
                                     ${
                                       isLocked ||
                                       isBlocked
                                         ? "odd-locked"
                                         : ""
-                                        
                                     }
                                   `}
-
                                   disabled={
                                     isLocked ||
                                     isBlocked
                                   }
-
-
-                                  onClick={() => {
-
-                                    onOddSelect?.({
-
-                                      ...bet,
-
-                                      // =================================
-                                      // EVENT INFORMATION
-                                      // =================================
-
-                                      eventId:
-                                        event.id,
-
-                                      home:
-                                        event.home,
-
-                                      away:
-                                        event.away,
-
-                                      league:
-                                        event.league ||
-                                        leagueName,
-
-                                      kickoff_time:
-                                        event.kickoff_time,
-
-                                      sport:
-                                        event.sport,
-
-                                      eventDate:
-                                        event.date,
-                                   
-                                      marketId:
-                                        marketId,
-
-                                      marketName:
-                                        eventMarket.market_name,
-
-                                    });
-
-                                  }}
-
+                                  onClick={
+                                    handleOddClick
+                                  }
                                 >
-
                                   {bet.odds}
-
                                 </button>
-
                               );
 
                             }
@@ -346,24 +352,20 @@ function EventBoard({
 
                         </div>
 
-
                         {/* =====================================
-                            MORE
+                            MORE MARKETS
                         ===================================== */}
 
                         <div className="event-more">
 
                           <button
                             type="button"
-
                             className="more-button"
-
                             onClick={() =>
                               onMoreClick?.(
                                 event
                               )
                             }
-
                             aria-label={
                               `More markets for ${
                                 event.home
@@ -372,16 +374,12 @@ function EventBoard({
                               }`
                             }
                           >
-
                             +
-
                           </button>
 
                         </div>
 
-
                       </div>
-
                     );
 
                   }
@@ -390,18 +388,14 @@ function EventBoard({
               </div>
 
             </section>
-
           );
 
         }
       )}
 
     </div>
-
   );
-
 }
-
 
 export default EventBoard;
 

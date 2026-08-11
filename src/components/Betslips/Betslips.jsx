@@ -1,353 +1,75 @@
-
 import { useState } from "react";
+
+import { useSports } from "../../contexts/SportsContext.jsx";
+
 import "./Betslips.css";
 
-const createBookingCode = () => {
-  return `BK${Date.now()}`;
-};
 
-const Betslips = ({
-  bets = [],
-  onRemove,
-  onClear,
-  onLoadTicket,
-}) => {
+
+
+// BETSLIPS
+
+
+const Betslips = () => {
+  
+  const {bets,removeBet,clearBetslip} = useSports();
 
   const [stake, setStake] = useState("");
-
   const [activeTab, setActiveTab] = useState("bets");
-
   const [bookingCode, setBookingCode] = useState("");
-
   const [message, setMessage] = useState("");
-
   const [bookingResult, setBookingResult] = useState(null);
 
-
-  // ============================================================
+  
   // TOTAL ODDS
-  // ============================================================
 
-  const totalOdds = bets.reduce(
-    (product, bet) =>
-      product * Number(bet.odds || 0),
-    1
-  );
+  const totalOdds = bets.reduce((product, bet) => product * Number(bet.odds || 0), 1 );
 
-
-  // ============================================================
+ 
   // POSSIBLE WIN
-  // ============================================================
-
-  const possibleWin =
-    Number(stake || 0) * totalOdds;
+  
+  const possibleWin = Number(stake || 0) * totalOdds;
 
 
-  // ============================================================
   // FORMAT MONEY
-  // ============================================================
 
   const formatMoney = (amount) => {
-
     return new Intl.NumberFormat(
       "en-UG",
       {
         maximumFractionDigits: 0,
       }
     ).format(amount);
-
   };
 
-
-  // ============================================================
+  
   // REMOVE BET
-  // ============================================================
-
+ 
   const handleRemove = (id) => {
-
-    if (typeof onRemove === "function") {
-      onRemove(id);
-    }
-
+    removeBet(id);
   };
 
-  // ============================================================
+  
   // CLEAR BETSLIP
-  // ============================================================
-
+  
   const handleClear = () => {
-
-    if (typeof onClear === "function") {
-      onClear();
-    }
+    clearBetslip();
 
     setMessage("");
-
+    setStake("");
   };
 
-  // ============================================================
-  // PLACE BET
-  // ============================================================
-
-  const handlePlaceBet = () => {
-
-    if (bets.length === 0) {
-
-      setMessage(
-        "Please select at least one bet."
-      );
-
-      return;
-    }
-
-
-    if (!stake || stake < 500) {
-
-      setMessage(
-        "Minimum stake is UGX 500."
-      );
-
-      return;
-    }
-
-
-    const ticket = {
-
-      bets,
-
-      stake,
-
-      totalOdds:
-        Number(totalOdds.toFixed(2)),
-
-      possibleWin:
-        Number(possibleWin.toFixed(2)),
-
-      eventCount:
-        bets.length,
-
-      createdAt:
-        new Date().toISOString(),
-
-    };
-
-
-    console.log(
-      "Bet ticket:",
-      ticket
-    );
-
-
-    setMessage(
-      "Bet submitted successfully."
-    );
-
-  };
-
-
-  // ============================================================
-  // BOOK TICKET
-  // ============================================================
-
-  const handleBookTicket = () => {
-
-    if (bets.length === 0) {
-
-      setMessage(
-        "Please select at least one bet."
-      );
-
-      return;
-    }
-
-
-    const newBookingCode =
-      createBookingCode();
-
-
-    const booking = {
-
-      bookingCode:
-        newBookingCode,
-
-      bets:
-        bets.map((bet) => ({
-          ...bet,
-          odds:
-            Number(
-              Number(bet.odds).toFixed(2)
-            ),
-        })),
-
-      totalOdds:
-        Number(totalOdds.toFixed(2)),
-
-      eventCount:
-        bets.length,
-
-      createdAt:
-        new Date().toISOString(),
-
-    };
-
-
-    const existingBookings =
-      JSON.parse(
-        localStorage.getItem(
-          "bookings"
-        ) || "[]"
-      );
-
-
-    existingBookings.push(
-      booking
-    );
-
-
-    localStorage.setItem(
-      "bookings",
-      JSON.stringify(
-        existingBookings
-      )
-    );
-
-
-    setBookingResult(
-      newBookingCode
-    );
-
-    setMessage("");
-
-  };
-
-
-  // ============================================================
-  // COPY BOOKING CODE
-  // ============================================================
-
-  const copyBookingCode = async () => {
-
-    if (!bookingResult) {
-      return;
-    }
-
-
-    try {
-
-      await navigator.clipboard.writeText(
-        bookingResult
-      );
-
-      setMessage(
-        "Booking code copied."
-      );
-
-    } catch (error) {
-
-      setMessage(
-        "Unable to copy booking code."
-      );
-
-    }
-
-  };
-
-
-  // ============================================================
-  // LOAD TICKET
-  // ============================================================
-
-  const handleLoadTicket = () => {
-
-    const code =
-      bookingCode.trim();
-
-
-    if (!code) {
-
-      setMessage(
-        "Enter a booking code."
-      );
-
-      return;
-    }
-
-
-    const bookings =
-      JSON.parse(
-        localStorage.getItem(
-          "bookings"
-        ) || "[]"
-      );
-
-
-    const booking =
-      bookings.find(
-        (item) =>
-          item.bookingCode === code
-      );
-
-
-    if (!booking) {
-
-      setMessage(
-        "Invalid booking code."
-      );
-
-      return;
-    }
-
-
-    if (
-      typeof onClear === "function"
-    ) {
-      onClear();
-    }
-
-
-    /*
-     * We need to load the bets through
-     * the parent App component.
-     *
-     * This event will be added below.
-     */
-
-    if(typeof onLoadTicket === "function")
-    {
-        onLoadTicket(booking.bets);
-    }
-
-
-    setMessage(
-      "Ticket loaded successfully."
-    );
-
-
-    setActiveTab(
-      "bets"
-    );
-
-  };
-
-
-  // ============================================================
-  // CLOSE BOOKING RESULT
-  // ============================================================
-
-  const closeBookingResult = () => {
-
-    setBookingResult(null);
-
-  };
-
+   
+  // ==========================================================
+  // RENDER
+  // ==========================================================
 
   return (
-
     <div className="betslip-card">
 
-      {/* ======================================================
+      {/* ====================================================
           HEADER
-      ====================================================== */}
+      ==================================================== */}
 
       <div className="betslip-header">
 
@@ -356,17 +78,14 @@ const Betslips = ({
         </h3>
 
         <span className="betslip-count">
-
           {bets.length}
-
         </span>
 
       </div>
 
-
-      {/* ======================================================
+      {/* ====================================================
           TABS
-      ====================================================== */}
+      ==================================================== */}
 
       <div className="betslip-tabs">
 
@@ -384,7 +103,6 @@ const Betslips = ({
           Betslip
         </button>
 
-
         <button
           type="button"
           className={
@@ -401,10 +119,9 @@ const Betslips = ({
 
       </div>
 
-
-      {/* ======================================================
+      {/* ====================================================
           BETSLIP TAB
-      ====================================================== */}
+      ==================================================== */}
 
       {activeTab === "bets" && (
 
@@ -414,17 +131,16 @@ const Betslips = ({
 
             <div className="empty-betslip">
 
-              <div className="empty-icon">
-                
-              </div>
+              <div className="empty-icon"></div>
 
               <h4>
                 Your betslip is empty
               </h4>
 
               <p>
-                Select odds from the events
-                to add them to your betslip.
+                Select odds from the
+                events to add them
+                to your betslip.
               </p>
 
             </div>
@@ -433,9 +149,9 @@ const Betslips = ({
 
             <>
 
-              {/* ================================================
+              {/* ==========================================
                   BET ITEMS
-              ================================================ */}
+              ========================================== */}
 
               <div className="bets-list">
 
@@ -448,14 +164,25 @@ const Betslips = ({
 
                     <div className="bet-card-top">
 
-                     <div className="bet-event">
+                      <div className="bet-event">
+
                         <div className="bet-teams">
-                            <strong>{bet.home}</strong>
-                            <span>vs</span>
-                            <strong>{bet.away}</strong>
+
+                          <strong>
+                            {bet.home}
+                          </strong>
+
+                          <span>
+                            vs
+                          </span>
+
+                          <strong>
+                            {bet.away}
+                          </strong>
+
                         </div>
-                        
-                     </div>
+
+                      </div>
 
                       <button
                         type="button"
@@ -467,20 +194,20 @@ const Betslips = ({
                         }
                         title="Remove bet"
                       >
-                        x
+                        ×
                       </button>
 
                     </div>
 
                     <div className="bet-selection">
-                        
+
+                      <span>
                         {bet.market}
-                      <span className="bet-label">
-
-                        {bet.label}
-
                       </span>
 
+                      <span className="bet-label">
+                        {bet.label}
+                      </span>
 
                       <strong className="bet-odd">
 
@@ -498,10 +225,9 @@ const Betslips = ({
 
               </div>
 
-
-              {/* ================================================
+              {/* ==========================================
                   STAKE
-              ================================================ */}
+              ========================================== */}
 
               <div className="stake-section">
 
@@ -521,9 +247,7 @@ const Betslips = ({
                     value={stake}
                     onChange={(event) =>
                       setStake(
-                        Number(
-                          event.target.value
-                        )
+                        event.target.value
                       )
                     }
                   />
@@ -532,10 +256,9 @@ const Betslips = ({
 
               </div>
 
-
-              {/* ================================================
+              {/* ==========================================
                   SUMMARY
-              ================================================ */}
+              ========================================== */}
 
               <div className="bet-summary">
 
@@ -550,7 +273,6 @@ const Betslips = ({
                   </strong>
 
                 </div>
-
 
                 <div className="summary-row">
 
@@ -567,7 +289,6 @@ const Betslips = ({
 
                 </div>
 
-
                 <div className="summary-row">
 
                   <span>
@@ -579,7 +300,6 @@ const Betslips = ({
                   </strong>
 
                 </div>
-
 
                 <div className="summary-row net-win">
 
@@ -598,52 +318,48 @@ const Betslips = ({
 
               </div>
 
-
-              {/* ================================================
+              {/* ==========================================
                   MESSAGE
-              ================================================ */}
+              ========================================== */}
 
               {message && (
 
                 <div className="betslip-message">
-
                   {message}
-
                 </div>
 
               )}
 
-
-              {/* ================================================
+              {/* ==========================================
                   ACTIONS
-              ================================================ */}
+              ========================================== */}
 
               <div className="bet-actions">
 
                 <button
                   type="button"
                   className="clear-bets-button"
-                  onClick={handleClear}
+                  onClick={
+                    handleClear
+                  }
                 >
                   Clear Betslip
                 </button>
 
-
                 <button
                   type="button"
                   className="place-bet-button"
-                  onClick={handlePlaceBet}
+                  
                 >
                   Place Bet
                 </button>
 
               </div>
 
-
               <button
                 type="button"
                 className="book-ticket-button"
-                onClick={handleBookTicket}
+                
               >
                 Book Ticket
               </button>
@@ -656,10 +372,9 @@ const Betslips = ({
 
       )}
 
-
-      {/* ======================================================
+      {/* ====================================================
           LOAD TICKET TAB
-      ====================================================== */}
+      ==================================================== */}
 
       {activeTab === "load" && (
 
@@ -680,24 +395,18 @@ const Betslips = ({
             }
           />
 
-
           <button
             type="button"
             className="load-ticket-button"
-            onClick={
-              handleLoadTicket
-            }
+            
           >
-             Load Ticket
+            Load Ticket
           </button>
-
 
           {message && (
 
             <div className="betslip-message">
-
               {message}
-
             </div>
 
           )}
@@ -705,92 +414,10 @@ const Betslips = ({
         </div>
 
       )}
-
-
-      {/* ======================================================
-          BOOKING SUCCESS MODAL
-      ====================================================== */}
-
-      {bookingResult && (
-
-        <div className="booking-overlay">
-
-          <div className="booking-modal">
-
-            <button
-              type="button"
-              className="booking-close"
-              onClick={
-                closeBookingResult
-              }
-            >
-              ×
-            </button>
-
-
-            <div className="booking-success-icon">
-              ✓
-            </div>
-
-
-            <h3>
-              Ticket Booked Successfully
-            </h3>
-
-
-            <p>
-              Your booking code is
-            </p>
-
-
-            <div className="booking-code">
-
-              {bookingResult}
-
-            </div>
-
-
-            <button
-              type="button"
-              className="copy-code-button"
-              onClick={
-                copyBookingCode
-              }
-            >
-              Copy Booking Code
-            </button>
-
-
-            <p className="booking-help">
-
-              Keep your booking code safe.
-              You can use it to reload
-              this ticket later.
-
-            </p>
-
-
-            <button
-              type="button"
-              className="close-modal-button"
-              onClick={
-                closeBookingResult
-              }
-            >
-              Done
-            </button>
-
-          </div>
-
-        </div>
-
-      )}
+ 
 
     </div>
-
   );
-
 };
 
 export default Betslips;
-

@@ -34,7 +34,6 @@ const Footer = () => {
             <p> <FaMobile/>  Airtel: 0200307200, MTN: 0323002470</p>
             <p>  <FaMailBulk/> support@ababet.com</p>
         </div>
-
         
     </footer>
   )

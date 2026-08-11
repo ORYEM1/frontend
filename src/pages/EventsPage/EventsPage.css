@@ -6,7 +6,97 @@
 .events-page {
   width: 100%;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
+
+/* ============================================================*/
+  /* EVENT CATEGORY MENU*/
+
+
+.event-category-menu {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 45px;
+  padding: 0 12px;
+  gap: 6px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.event-category-menu::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* ============================================================
+   CATEGORY BUTTON
+============================================================ */
+
+.event-category-menu button {
+  flex-shrink: 0;
+  height: 34px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #555;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+    .menu-icon {
+      font-size: 18px;
+    }
+
+    .live-icon {
+      color: #e53935;
+    }
+
+    .incoming-icon {
+      color: #45ac0a;
+    }
+
+    .popular-icon {
+      color: #d49408;
+    }
+
+    .results-icon {
+      color: #2196f3;
+    }
+
+
+/* ============================================================
+   HOVER
+============================================================ */
+
+.event-category-menu button:hover {
+  background: #444;
+  color: #f90;
+}
+
+
+/* ============================================================
+   ACTIVE
+============================================================ */
+
+.event-category-menu button.active {
+  background: #444;
+  color: #f90;
+  font-weight: 600;
+}
+
 
 
 /* ============================================================
