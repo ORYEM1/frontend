@@ -1207,10 +1207,16 @@ export const feedData = {
 
   
 
+ 
+
+
+  // ============================================================
+  // ENGLAND
+  // ============================================================
+
   "England - Premier League": {
 
     "0": {
-
       id: "195100",
       sport: "Football",
       region: "England",
@@ -1224,11 +1230,13 @@ export const feedData = {
       kickoff_time: "18:30",
       live_time: null,
       live_scores: {},
+
       markets: {
 
         "3": {
           cols: "3",
           headers: "1,X,2",
+
           bets: {
             "1": {
               id: "40521001",
@@ -1262,14 +1270,13 @@ export const feedData = {
               odds: "3.90",
               locked: "0",
             },
-
           },
         },
 
         "4": {
-
           cols: "2",
           headers: "Over,Under",
+
           bets: {
             Over: {
               id: "40521004",
@@ -1292,16 +1299,14 @@ export const feedData = {
               odds: "2.15",
               locked: "0",
             },
-
           },
         },
 
         "304": {
-
           cols: "2",
           headers: "Yes,No",
-          bets: {
 
+          bets: {
             Yes: {
               id: "40521006",
               event_id: "195100",
@@ -1323,52 +1328,522 @@ export const feedData = {
               odds: "2.20",
               locked: "0",
             },
-
           },
         },
 
       },
     },
+  },
 
 
-    "1": {
+  // ============================================================
+  // SPAIN
+  // ============================================================
 
-      id: "195101",
+  "Spain - La Liga": {
+
+    "0": {
+      id: "196100",
       sport: "Football",
-      region: "England",
-      league: "Premier League",
+      region: "Spain",
+      league: "La Liga",
       live: "0",
       blocked: "0",
       event_status: "Not Started",
-      home: "Manchester United",
-      away: "Tottenham Hotspur",
+      home: "Barcelona",
+      away: "Real Madrid",
       date: "30/07",
-      kickoff_time: "20:00",
+      kickoff_time: "19:00",
       live_time: null,
       live_scores: {},
+
       markets: {
 
         "3": {
-
           cols: "3",
           headers: "1,X,2",
 
           bets: {
-
             "1": {
-              id: "40521101",
-              event_id: "195101",
+              id: "40610001",
+              event_id: "196100",
               market_id: "3",
               market_name: "Match Result",
               bet: "1",
               line: "",
-              odds: "2.15",
+              odds: "2.10",
               locked: "0",
             },
 
             X: {
-              id: "40521102",
-              event_id: "195101",
+              id: "40610002",
+              event_id: "196100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "X",
+              line: "",
+              odds: "3.60",
+              locked: "0",
+            },
+
+            "2": {
+              id: "40610003",
+              event_id: "196100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "2",
+              line: "",
+              odds: "3.10",
+              locked: "0",
+            },
+          },
+        },
+
+        "4": {
+          cols: "2",
+          headers: "Over,Under",
+
+          bets: {
+            Over: {
+              id: "40610004",
+              event_id: "196100",
+              market_id: "4",
+              market_name: "Over/Under",
+              bet: "Over",
+              line: "2.5",
+              odds: "1.70",
+              locked: "0",
+            },
+
+            Under: {
+              id: "40610005",
+              event_id: "196100",
+              market_id: "4",
+              market_name: "Over/Under",
+              bet: "Under",
+              line: "2.5",
+              odds: "2.05",
+              locked: "0",
+            },
+          },
+        },
+
+      },
+    },
+  },
+
+
+  // ============================================================
+  // GERMANY
+  // ============================================================
+
+  "Germany - Bundesliga": {
+
+    "0": {
+      id: "197100",
+      sport: "Football",
+      region: "Germany",
+      league: "Bundesliga",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+      home: "Bayern Munich",
+      away: "Borussia Dortmund",
+      date: "30/07",
+      kickoff_time: "17:30",
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        "3": {
+          cols: "3",
+          headers: "1,X,2",
+
+          bets: {
+            "1": {
+              id: "40710001",
+              event_id: "197100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "1",
+              line: "",
+              odds: "1.55",
+              locked: "0",
+            },
+
+            X: {
+              id: "40710002",
+              event_id: "197100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "X",
+              line: "",
+              odds: "4.20",
+              locked: "0",
+            },
+
+            "2": {
+              id: "40710003",
+              event_id: "197100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "2",
+              line: "",
+              odds: "5.00",
+              locked: "0",
+            },
+          },
+        },
+
+        "304": {
+          cols: "2",
+          headers: "Yes,No",
+
+          bets: {
+            Yes: {
+              id: "40710004",
+              event_id: "197100",
+              market_id: "304",
+              market_name: "Both Teams To Score",
+              bet: "Yes",
+              line: "",
+              odds: "1.55",
+              locked: "0",
+            },
+
+            No: {
+              id: "40710005",
+              event_id: "197100",
+              market_id: "304",
+              market_name: "Both Teams To Score",
+              bet: "No",
+              line: "",
+              odds: "2.30",
+              locked: "0",
+            },
+          },
+        },
+
+      },
+    },
+  },
+
+
+  // ============================================================
+  // ITALY
+  // ============================================================
+
+  "Italy - Serie A": {
+
+    "0": {
+      id: "198100",
+      sport: "Football",
+      region: "Italy",
+      league: "Serie A",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+      home: "Inter Milan",
+      away: "AC Milan",
+      date: "30/07",
+      kickoff_time: "20:45",
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        "3": {
+          cols: "3",
+          headers: "1,X,2",
+
+          bets: {
+            "1": {
+              id: "40810001",
+              event_id: "198100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "1",
+              line: "",
+              odds: "1.90",
+              locked: "0",
+            },
+
+            X: {
+              id: "40810002",
+              event_id: "198100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "X",
+              line: "",
+              odds: "3.40",
+              locked: "0",
+            },
+
+            "2": {
+              id: "40810003",
+              event_id: "198100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "2",
+              line: "",
+              odds: "4.00",
+              locked: "0",
+            },
+          },
+        },
+
+      },
+    },
+  },
+
+
+  // ============================================================
+  // FRANCE
+  // ============================================================
+
+  "France - Ligue 1": {
+
+    "0": {
+      id: "199100",
+      sport: "Football",
+      region: "France",
+      league: "Ligue 1",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+      home: "Paris Saint-Germain",
+      away: "Olympique Marseille",
+      date: "30/07",
+      kickoff_time: "20:00",
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        "3": {
+          cols: "3",
+          headers: "1,X,2",
+
+          bets: {
+            "1": {
+              id: "40910001",
+              event_id: "199100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "1",
+              line: "",
+              odds: "1.60",
+              locked: "0",
+            },
+
+            X: {
+              id: "40910002",
+              event_id: "199100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "X",
+              line: "",
+              odds: "4.00",
+              locked: "0",
+            },
+
+            "2": {
+              id: "40910003",
+              event_id: "199100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "2",
+              line: "",
+              odds: "5.20",
+              locked: "0",
+            },
+          },
+        },
+
+      },
+    },
+  },
+
+
+  // ============================================================
+  // PORTUGAL
+  // ============================================================
+
+  "Portugal - Primeira Liga": {
+
+    "0": {
+      id: "200100",
+      sport: "Football",
+      region: "Portugal",
+      league: "Primeira Liga",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+      home: "Benfica",
+      away: "FC Porto",
+      date: "30/07",
+      kickoff_time: "19:00",
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        "3": {
+          cols: "3",
+          headers: "1,X,2",
+
+          bets: {
+            "1": {
+              id: "41010001",
+              event_id: "200100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "1",
+              line: "",
+              odds: "2.00",
+              locked: "0",
+            },
+
+            X: {
+              id: "41010002",
+              event_id: "200100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "X",
+              line: "",
+              odds: "3.40",
+              locked: "0",
+            },
+
+            "2": {
+              id: "41010003",
+              event_id: "200100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "2",
+              line: "",
+              odds: "3.50",
+              locked: "0",
+            },
+          },
+        },
+
+      },
+    },
+  },
+
+
+  // ============================================================
+  // NETHERLANDS
+  // ============================================================
+
+  "Netherlands - Eredivisie": {
+
+    "0": {
+      id: "201100",
+      sport: "Football",
+      region: "Netherlands",
+      league: "Eredivisie",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+      home: "Ajax",
+      away: "PSV Eindhoven",
+      date: "30/07",
+      kickoff_time: "18:00",
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        "3": {
+          cols: "3",
+          headers: "1,X,2",
+
+          bets: {
+            "1": {
+              id: "41110001",
+              event_id: "201100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "1",
+              line: "",
+              odds: "2.05",
+              locked: "0",
+            },
+
+            X: {
+              id: "41110002",
+              event_id: "201100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "X",
+              line: "",
+              odds: "3.70",
+              locked: "0",
+            },
+
+            "2": {
+              id: "41110003",
+              event_id: "201100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "2",
+              line: "",
+              odds: "3.10",
+              locked: "0",
+            },
+          },
+        },
+
+      },
+    },
+  },
+
+
+  // ============================================================
+  // BELGIUM
+  // ============================================================
+
+  "Belgium - Pro League": {
+
+    "0": {
+      id: "202100",
+      sport: "Football",
+      region: "Belgium",
+      league: "Pro League",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+      home: "Club Brugge",
+      away: "Anderlecht",
+      date: "30/07",
+      kickoff_time: "19:30",
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        "3": {
+          cols: "3",
+          headers: "1,X,2",
+
+          bets: {
+            "1": {
+              id: "41210001",
+              event_id: "202100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "1",
+              line: "",
+              odds: "1.90",
+              locked: "0",
+            },
+
+            X: {
+              id: "41210002",
+              event_id: "202100",
               market_id: "3",
               market_name: "Match Result",
               bet: "X",
@@ -1378,98 +1853,365 @@ export const feedData = {
             },
 
             "2": {
-              id: "40521103",
-              event_id: "195101",
+              id: "41210003",
+              event_id: "202100",
               market_id: "3",
               market_name: "Match Result",
               bet: "2",
               line: "",
-              odds: "3.20",
+              odds: "3.80",
               locked: "0",
             },
-
-          },
-        },
-
-        "6": {
-
-          cols: "3",
-          headers: "1/X,1/2,X/2",
-
-          bets: {
-
-            "1X": {
-              id: "40521104",
-              event_id: "195101",
-              market_id: "6",
-              market_name: "Double Chance",
-              bet: "1/X",
-              line: "",
-              odds: "1.30",
-              locked: "0",
-            },
-
-            "12": {
-              id: "40521105",
-              event_id: "195101",
-              market_id: "6",
-              market_name: "Double Chance",
-              bet: "1/2",
-              line: "",
-              odds: "1.20",
-              locked: "0",
-            },
-
-            "X2": {
-              id: "40521106",
-              event_id: "195101",
-              market_id: "6",
-              market_name: "Double Chance",
-              bet: "X/2",
-              line: "",
-              odds: "1.55",
-              locked: "0",
-            },
-
-          },
-        },
-
-        "45": {
-
-          cols: "2",
-          headers: "Odd,Even",
-
-          bets: {
-
-            Odd: {
-              id: "40521107",
-              event_id: "195101",
-              market_id: "45",
-              market_name: "Odd/Even",
-              bet: "Odd",
-              line: "",
-              odds: "1.85",
-              locked: "0",
-            },
-
-            Even: {
-              id: "40521108",
-              event_id: "195101",
-              market_id: "45",
-              market_name: "Odd/Even",
-              bet: "Even",
-              line: "",
-              odds: "1.95",
-              locked: "0",
-            },
-
           },
         },
 
       },
     },
-
   },
+
+
+  // ============================================================
+  // SCOTLAND
+  // ============================================================
+
+  "Scotland - Premiership": {
+
+    "0": {
+      id: "203100",
+      sport: "Football",
+      region: "Scotland",
+      league: "Premiership",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+      home: "Celtic",
+      away: "Rangers",
+      date: "30/07",
+      kickoff_time: "15:00",
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        "3": {
+          cols: "3",
+          headers: "1,X,2",
+
+          bets: {
+            "1": {
+              id: "41310001",
+              event_id: "203100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "1",
+              line: "",
+              odds: "1.75",
+              locked: "0",
+            },
+
+            X: {
+              id: "41310002",
+              event_id: "203100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "X",
+              line: "",
+              odds: "3.80",
+              locked: "0",
+            },
+
+            "2": {
+              id: "41310003",
+              event_id: "203100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "2",
+              line: "",
+              odds: "4.20",
+              locked: "0",
+            },
+          },
+        },
+
+      },
+    },
+  },
+
+
+  // ============================================================
+  // TURKEY
+  // ============================================================
+
+  "Turkey - Super Lig": {
+
+    "0": {
+      id: "204100",
+      sport: "Football",
+      region: "Turkey",
+      league: "Super Lig",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+      home: "Galatasaray",
+      away: "Fenerbahce",
+      date: "30/07",
+      kickoff_time: "18:00",
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        "3": {
+          cols: "3",
+          headers: "1,X,2",
+
+          bets: {
+            "1": {
+              id: "41410001",
+              event_id: "204100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "1",
+              line: "",
+              odds: "1.85",
+              locked: "0",
+            },
+
+            X: {
+              id: "41410002",
+              event_id: "204100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "X",
+              line: "",
+              odds: "3.60",
+              locked: "0",
+            },
+
+            "2": {
+              id: "41410003",
+              event_id: "204100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "2",
+              line: "",
+              odds: "3.90",
+              locked: "0",
+            },
+          },
+        },
+
+      },
+    },
+  },
+
+
+  // ============================================================
+  // BRAZIL
+  // ============================================================
+
+  "Brazil - Serie A": {
+
+    "0": {
+      id: "205100",
+      sport: "Football",
+      region: "Brazil",
+      league: "Serie A",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+      home: "Flamengo",
+      away: "Palmeiras",
+      date: "30/07",
+      kickoff_time: "22:00",
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        "3": {
+          cols: "3",
+          headers: "1,X,2",
+
+          bets: {
+            "1": {
+              id: "41510001",
+              event_id: "205100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "1",
+              line: "",
+              odds: "2.10",
+              locked: "0",
+            },
+
+            X: {
+              id: "41510002",
+              event_id: "205100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "X",
+              line: "",
+              odds: "3.30",
+              locked: "0",
+            },
+
+            "2": {
+              id: "41510003",
+              event_id: "205100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "2",
+              line: "",
+              odds: "3.40",
+              locked: "0",
+            },
+          },
+        },
+
+      },
+    },
+  },
+
+
+  // ============================================================
+  // ARGENTINA
+  // ============================================================
+
+  "Argentina - Primera Division": {
+
+    "0": {
+      id: "206100",
+      sport: "Football",
+      region: "Argentina",
+      league: "Primera Division",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+      home: "River Plate",
+      away: "Boca Juniors",
+      date: "30/07",
+      kickoff_time: "21:00",
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        "3": {
+          cols: "3",
+          headers: "1,X,2",
+
+          bets: {
+            "1": {
+              id: "41610001",
+              event_id: "206100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "1",
+              line: "",
+              odds: "2.00",
+              locked: "0",
+            },
+
+            X: {
+              id: "41610002",
+              event_id: "206100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "X",
+              line: "",
+              odds: "3.30",
+              locked: "0",
+            },
+
+            "2": {
+              id: "41610003",
+              event_id: "206100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "2",
+              line: "",
+              odds: "3.60",
+              locked: "0",
+            },
+          },
+        },
+
+      },
+    },
+  },
+
+
+  // ============================================================
+  // SOUTH AFRICA
+  // ============================================================
+
+  "South Africa - Premier Soccer League": {
+
+    "0": {
+      id: "207100",
+      sport: "Football",
+      region: "South Africa",
+      league: "Premier Soccer League",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+      home: "Mamelodi Sundowns",
+      away: "Kaizer Chiefs",
+      date: "30/07",
+      kickoff_time: "16:00",
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        "3": {
+          cols: "3",
+          headers: "1,X,2",
+
+          bets: {
+            "1": {
+              id: "41710001",
+              event_id: "207100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "1",
+              line: "",
+              odds: "1.70",
+              locked: "0",
+            },
+
+            X: {
+              id: "41710002",
+              event_id: "207100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "X",
+              line: "",
+              odds: "3.50",
+              locked: "0",
+            },
+
+            "2": {
+              id: "41710003",
+              event_id: "207100",
+              market_id: "3",
+              market_name: "Match Result",
+              bet: "2",
+              line: "",
+              odds: "4.50",
+              locked: "0",
+            },
+          },
+        },
+
+      },
+    },
+  },
+
+
+
+
 
 
   "England - Championship": {
@@ -2495,6 +3237,10 @@ export const feedData = {
     },
   },
 },
+
+
+
+"Spain - La Liga": { "0": { id: "196100", sport: "Football", region: "Spain", league: "La Liga", live: "0", blocked: "0", event_status: "Not Started", home: "Barcelona", away: "Real Madrid", date: "30/07", kickoff_time: "19:00", live_time: null, live_scores: {}, markets: { "3": { cols: "3", headers: "1,X,2", bets: { "1": { id: "40610001", event_id: "196100", market_id: "3", market_name: "Match Result", bet: "1", line: "", odds: "2.10", locked: "0", }, X: { id: "40610002", event_id: "196100", market_id: "3", market_name: "Match Result", bet: "X", line: "", odds: "3.60", locked: "0", }, "2": { id: "40610003", event_id: "196100", market_id: "3", market_name: "Match Result", bet: "2", line: "", odds: "3.10", locked: "0", }, }, }, "4": { cols: "2", headers: "Over,Under", bets: { Over: { id: "40610004", event_id: "196100", market_id: "4", market_name: "Over/Under", bet: "Over", line: "2.5", odds: "1.70", locked: "0", }, Under: { id: "40610005", event_id: "196100", market_id: "4", market_name: "Over/Under", bet: "Under", line: "2.5", odds: "2.05", locked: "0", }, }, }, }, }, }, // ============================================================ // GERMANY // ============================================================ "Germany - Bundesliga": { "0": { id: "197100", sport: "Football", region: "Germany", league: "Bundesliga", live: "0", blocked: "0", event_status: "Not Started", home: "Bayern Munich", away: "Borussia Dortmund", date: "30/07", kickoff_time: "17:30", live_time: null, live_scores: {}, markets: { "3": { cols: "3", headers: "1,X,2", bets: { "1": { id: "40710001", event_id: "197100", market_id: "3", market_name: "Match Result", bet: "1", line: "", odds: "1.55", locked: "0", }, X: { id: "40710002", event_id: "197100", market_id: "3", market_name: "Match Result", bet: "X", line: "", odds: "4.20", locked: "0", }, "2": { id: "40710003", event_id: "197100", market_id: "3", market_name: "Match Result", bet: "2", line: "", odds: "5.00", locked: "0", }, }, }, "304": { cols: "2", headers: "Yes,No", bets: { Yes: { id: "40710004", event_id: "197100", market_id: "304", market_name: "Both Teams To Score", bet: "Yes", line: "", odds: "1.55", locked: "0", }, No: { id: "40710005", event_id: "197100", market_id: "304", market_name: "Both Teams To Score", bet: "No", line: "", odds: "2.30", locked: "0", }, }, }, }, }, }, // ============================================================ // ITALY // ============================================================ "Italy - Serie A": { "0": { id: "198100", sport: "Football", region: "Italy", league: "Serie A", live: "0", blocked: "0", event_status: "Not Started", home: "Inter Milan", away: "AC Milan", date: "30/07", kickoff_time: "20:45", live_time: null, live_scores: {}, markets: { "3": { cols: "3", headers: "1,X,2", bets: { "1": { id: "40810001", event_id: "198100", market_id: "3", market_name: "Match Result", bet: "1", line: "", odds: "1.90", locked: "0", }, X: { id: "40810002", event_id: "198100", market_id: "3", market_name: "Match Result", bet: "X", line: "", odds: "3.40", locked: "0", }, "2": { id: "40810003", event_id: "198100", market_id: "3", market_name: "Match Result", bet: "2", line: "", odds: "4.00", locked: "0", }, }, }, }, }, }, // ============================================================ // FRANCE // ============================================================ "France - Ligue 1": { "0": { id: "199100", sport: "Football", region: "France", league: "Ligue 1", live: "0", blocked: "0", event_status: "Not Started", home: "Paris Saint-Germain", away: "Olympique Marseille", date: "30/07", kickoff_time: "20:00", live_time: null, live_scores: {}, markets: { "3": { cols: "3", headers: "1,X,2", bets: { "1": { id: "40910001", event_id: "199100", market_id: "3", market_name: "Match Result", bet: "1", line: "", odds: "1.60", locked: "0", }, X: { id: "40910002", event_id: "199100", market_id: "3", market_name: "Match Result", bet: "X", line: "", odds: "4.00", locked: "0", }, "2": { id: "40910003", event_id: "199100", market_id: "3", market_name: "Match Result", bet: "2", line: "", odds: "5.20", locked: "0", }, }, }, }, }, }, // ============================================================ // PORTUGAL // ============================================================ "Portugal - Primeira Liga": { "0": { id: "200100", sport: "Football", region: "Portugal", league: "Primeira Liga", live: "0", blocked: "0", event_status: "Not Started", home: "Benfica", away: "FC Porto", date: "30/07", kickoff_time: "19:00", live_time: null, live_scores: {}, markets: { "3": { cols: "3", headers: "1,X,2", bets: { "1": { id: "41010001", event_id: "200100", market_id: "3", market_name: "Match Result", bet: "1", line: "", odds: "2.00", locked: "0", }, X: { id: "41010002", event_id: "200100", market_id: "3", market_name: "Match Result", bet: "X", line: "", odds: "3.40", locked: "0", }, "2": { id: "41010003", event_id: "200100", market_id: "3", market_name: "Match Result", bet: "2", line: "", odds: "3.50", locked: "0", }, }, }, }, }, }, // ============================================================ // NETHERLANDS // ============================================================ "Netherlands - Eredivisie": { "0": { id: "201100", sport: "Football", region: "Netherlands", league: "Eredivisie", live: "0", blocked: "0", event_status: "Not Started", home: "Ajax", away: "PSV Eindhoven", date: "30/07", kickoff_time: "18:00", live_time: null, live_scores: {}, markets: { "3": { cols: "3", headers: "1,X,2", bets: { "1": { id: "41110001", event_id: "201100", market_id: "3", market_name: "Match Result", bet: "1", line: "", odds: "2.05", locked: "0", }, X: { id: "41110002", event_id: "201100", market_id: "3", market_name: "Match Result", bet: "X", line: "", odds: "3.70", locked: "0", }, "2": { id: "41110003", event_id: "201100", market_id: "3", market_name: "Match Result", bet: "2", line: "", odds: "3.10", locked: "0", }, }, }, }, }, }, // ============================================================ // BELGIUM // ============================================================ "Belgium - Pro League": { "0": { id: "202100", sport: "Football", region: "Belgium", league: "Pro League", live: "0", blocked: "0", event_status: "Not Started", home: "Club Brugge", away: "Anderlecht", date: "30/07", kickoff_time: "19:30", live_time: null, live_scores: {}, markets: { "3": { cols: "3", headers: "1,X,2", bets: { "1": { id: "41210001", event_id: "202100", market_id: "3", market_name: "Match Result", bet: "1", line: "", odds: "1.90", locked: "0", }, X: { id: "41210002", event_id: "202100", market_id: "3", market_name: "Match Result", bet: "X", line: "", odds: "3.50", locked: "0", }, "2": { id: "41210003", event_id: "202100", market_id: "3", market_name: "Match Result", bet: "2", line: "", odds: "3.80", locked: "0", }, }, }, }, }, }, // ============================================================ // SCOTLAND // ============================================================ "Scotland - Premiership": { "0": { id: "203100", sport: "Football", region: "Scotland", league: "Premiership", live: "0", blocked: "0", event_status: "Not Started", home: "Celtic", away: "Rangers", date: "30/07", kickoff_time: "15:00", live_time: null, live_scores: {}, markets: { "3": { cols: "3", headers: "1,X,2", bets: { "1": { id: "41310001", event_id: "203100", market_id: "3", market_name: "Match Result", bet: "1", line: "", odds: "1.75", locked: "0", }, X: { id: "41310002", event_id: "203100", market_id: "3", market_name: "Match Result", bet: "X", line: "", odds: "3.80", locked: "0", }, "2": { id: "41310003", event_id: "203100", market_id: "3", market_name: "Match Result", bet: "2", line: "", odds: "4.20", locked: "0", }, }, }, }, }, }, // ============================================================ // TURKEY // ============================================================ "Turkey - Super Lig": { "0": { id: "204100", sport: "Football", region: "Turkey", league: "Super Lig", live: "0", blocked: "0", event_status: "Not Started", home: "Galatasaray", away: "Fenerbahce", date: "30/07", kickoff_time: "18:00", live_time: null, live_scores: {}, markets: { "3": { cols: "3", headers: "1,X,2", bets: { "1": { id: "41410001", event_id: "204100", market_id: "3", market_name: "Match Result", bet: "1", line: "", odds: "1.85", locked: "0", }, X: { id: "41410002", event_id: "204100", market_id: "3", market_name: "Match Result", bet: "X", line: "", odds: "3.60", locked: "0", }, "2": { id: "41410003", event_id: "204100", market_id: "3", market_name: "Match Result", bet: "2", line: "", odds: "3.90", locked: "0", }, }, }, }, }, }, // ============================================================ // BRAZIL // ============================================================ "Brazil - Serie A": { "0": { id: "205100", sport: "Football", region: "Brazil", league: "Serie A", live: "0", blocked: "0", event_status: "Not Started", home: "Flamengo", away: "Palmeiras", date: "30/07", kickoff_time: "22:00", live_time: null, live_scores: {}, markets: { "3": { cols: "3", headers: "1,X,2", bets: { "1": { id: "41510001", event_id: "205100", market_id: "3", market_name: "Match Result", bet: "1", line: "", odds: "2.10", locked: "0", }, X: { id: "41510002", event_id: "205100", market_id: "3", market_name: "Match Result", bet: "X", line: "", odds: "3.30", locked: "0", }, "2": { id: "41510003", event_id: "205100", market_id: "3", market_name: "Match Result", bet: "2", line: "", odds: "3.40", locked: "0", }, }, }, }, }, }, // ============================================================ // ARGENTINA // ============================================================ "Argentina - Primera Division": { "0": { id: "206100", sport: "Football", region: "Argentina", league: "Primera Division", live: "0", blocked: "0", event_status: "Not Started", home: "River Plate", away: "Boca Juniors", date: "30/07", kickoff_time: "21:00", live_time: null, live_scores: {}, markets: { "3": { cols: "3", headers: "1,X,2", bets: { "1": { id: "41610001", event_id: "206100", market_id: "3", market_name: "Match Result", bet: "1", line: "", odds: "2.00", locked: "0", }, X: { id: "41610002", event_id: "206100", market_id: "3", market_name: "Match Result", bet: "X", line: "", odds: "3.30", locked: "0", }, "2": { id: "41610003", event_id: "206100", market_id: "3", market_name: "Match Result", bet: "2", line: "", odds: "3.60", locked: "0", }, }, }, }, }, }, // ============================================================ // SOUTH AFRICA // ============================================================ "South Africa - Premier Soccer League": { "0": { id: "207100", sport: "Football", region: "South Africa", league: "Premier Soccer League", live: "0", blocked: "0", event_status: "Not Started", home: "Mamelodi Sundowns", away: "Kaizer Chiefs", date: "30/07", kickoff_time: "16:00", live_time: null, live_scores: {}, markets: { "3": { cols: "3", headers: "1,X,2", bets: { "1": { id: "41710001", event_id: "207100", market_id: "3", market_name: "Match Result", bet: "1", line: "", odds: "1.70", locked: "0", }, X: { id: "41710002", event_id: "207100", market_id: "3", market_name: "Match Result", bet: "X", line: "", odds: "3.50", locked: "0", }, "2": { id: "41710003", event_id: "207100", market_id: "3", market_name: "Match Result", bet: "2", line: "", odds: "4.50", locked: "0", }, }, }, }, }, }, };
   //other sports
 
 

@@ -168,7 +168,7 @@
   border: none;
   border-top: 1px solid #444;
   border-bottom: 1px solid #444;
-  background: #f90;
+  background: #444;
   cursor: pointer;
   color: #fff;
   font-weight: 700;
@@ -186,6 +186,14 @@
   font-weight: 700;
   text-transform: uppercase;
   color: #fff;
+  
+}
+
+.region-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
 }
 
 
@@ -199,6 +207,7 @@
   text-align: right;
   font-size: 11px;
   color: #fff;
+  gap: 10px;
 }
 
 
@@ -207,13 +216,12 @@
 ============================================================ */
 
 .region-arrow {
-  width: 18px;
-  margin-left: 8px;
-  text-align: center;
-  font-size: 9px;
-  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  gap: 10px;
 }
-
 
 /* ============================================================
    REGION HOVER

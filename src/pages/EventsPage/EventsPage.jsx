@@ -1,6 +1,7 @@
 import { FaSearch,FaFire,FaBroadcastTower,FaClock,FaClipboardList } from "react-icons/fa";
 import EventBoard from "../../components/EventBoard/EventBoard.jsx";
 import MoreMarkets from "../../components/MoreMarket/MoreMarkets.jsx";
+
 import { useSports } from "../../contexts/SportsContext.jsx";
 import "./EventsPage.css";
 

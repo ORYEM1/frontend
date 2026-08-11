@@ -6,6 +6,7 @@ import {
   FaFootballBall,
   FaTrophy,
   FaUser,
+  FaLock
 } from "react-icons/fa";
 
 import {
@@ -75,8 +76,11 @@ const PageHeader = () => {
           <button
             type="button"
             className="register-button"
-          >
+          > 
+          <FaUser/>
+          
             Register
+            
           </button>
 
 
@@ -84,7 +88,8 @@ const PageHeader = () => {
             type="button"
             className="login-button"
           >
-            <FaUser/>
+            <FaLock/>
+
             Login
           </button>
 
