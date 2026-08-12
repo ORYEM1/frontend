@@ -1,4 +1,3 @@
-import React from 'react'
 import { FaPhone,FaWallet,FaFile,FaMobile,FaMailBulk,FaFutbol} from 'react-icons/fa'
 import './Footer.css'
 const Footer = () => {
@@ -25,8 +24,8 @@ const Footer = () => {
             <img src="mtn.png" alt="" />
             <img src="airtel.png" alt="" />
             </div>
-            <p>Ababet is licenced and regulated by <p/>
-            <p></p>Uganda National Gamming Board</p>
+            <p>Ababet is licenced and regulated by</p>
+            <p>Uganda National Gamming Board</p>
         </div>
         
         <div className='footer-contact'>      
