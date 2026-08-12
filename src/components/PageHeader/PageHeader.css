@@ -55,7 +55,6 @@
   gap: 10px;
 }
 
-
 .sports-header-auth button {
   height: 38px;
   padding: 0 20px;
@@ -67,9 +66,8 @@
 }
 
 
-/* ============================================================
-   REGISTER
-============================================================ */
+   /*REGISTER*/
+
 
 .register-button {
   background: #eee;
