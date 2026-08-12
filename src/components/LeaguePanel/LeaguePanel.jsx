@@ -165,9 +165,9 @@ const LeaguePanel = () => {
           HEADER
       ==================================================== */}
 
-      <div className="league-panel-header">
+      {/*<div className="league-panel-header">
         <h3>{sportTitle}</h3>
-      </div>
+      </div>*/}
       <div className="league-list">
         <button
           type="button"

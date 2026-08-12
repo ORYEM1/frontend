@@ -5,7 +5,7 @@ import { countryCodes } from "../../data/countryCodes.js";
 import "./CountryFlag.css";
 
 const regionIcons = {
-  Africa: "🌍",
+  Africa: "UN",
   Europe: "🌍",
   World: "🌎",
   International: "🌐",

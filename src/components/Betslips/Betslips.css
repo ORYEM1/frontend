@@ -310,22 +310,6 @@
   color: #16803c;
 }
 
-
-/* ============================================================
-   MESSAGE
-============================================================ */
-
-.betslip-message {
-  margin-top: 10px;
-  padding: 8px 10px;
-  background: #f0f7ff;
-  border: 1px solid #cfe5ff;
-  border-radius: 5px;
-  color: #1677ff;
-  font-size: 12px;
-}
-
-
 /* ============================================================
    ACTION BUTTONS
 ============================================================ */
@@ -384,155 +368,220 @@
 
 
 /* ============================================================
-   LOAD TICKET
-============================================================ */
-
-.load-ticket-content {
-  padding: 15px;
-}
-
-.load-ticket-content input {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 10px;
-  border: 1px solid #d1d5db;
-  border-radius: 5px;
-  outline: none;
-  font-size: 13px;
-}
-
-.load-ticket-content input:focus {
-  border-color: #1677ff;
-}
-
-.load-ticket-button {
-  width: 100%;
-  margin-top: 10px;
-  border: none;
-  background: #1677ff;
-  color: #ffffff;
-}
-
-.load-ticket-button:hover {
-  background: #0958d9;
-}
-
-
-/* ============================================================
-   BOOKING MODAL
-============================================================ */
-
-.booking-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.45);
-}
-
-.booking-modal {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  box-sizing: border-box;
-  padding: 28px;
-  background: #ffffff;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-}
-
-.booking-close {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  border: none;
-  background: transparent;
-  color: #6b7280;
-  cursor: pointer;
-  font-size: 24px;
-}
-
-.booking-success-icon {
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #e8f7ed;
-  color: #16803c;
-  font-size: 25px;
-  font-weight: bold;
-}
-
-.booking-modal h3 {
-  margin: 0 0 8px;
-  font-size: 18px;
-}
-
-.booking-modal p {
-  margin: 7px 0;
-  color: #6b7280;
-  font-size: 13px;
-}
-
-.booking-code {
-  margin: 15px 0;
-  padding: 13px;
-  border: 1px dashed #1677ff;
-  border-radius: 6px;
-  background: #f5f9ff;
-  color: #1677ff;
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-
-.copy-code-button,
-.close-modal-button {
-  width: 100%;
-  min-height: 38px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.copy-code-button {
-  border: none;
-  background: #1677ff;
-  color: #ffffff;
-}
-
-.close-modal-button {
-  margin-top: 8px;
-  border: 1px solid #d1d5db;
-  background: #ffffff;
-  color: #374151;
-}
-
-.booking-help {
-  margin-top: 14px !important;
-  line-height: 1.5;
-}
-
-
-/* ============================================================
    RESPONSIVE
+============================================================ */
+/* ============================================================
+   RESPONSIVE — TABLET
+============================================================ */
+
+@media (max-width: 1024px) {
+
+  .betslip-card {
+    width: 100%;
+  }
+
+  .betslip-header {
+    padding: 10px 12px;
+  }
+
+  .betslip-header h3 {
+    font-size: 16px;
+  }
+
+  .betslip-content {
+    padding: 10px;
+  }
+
+}
+
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+   FULL SCREEN
 ============================================================ */
 
 @media (max-width: 768px) {
 
   .betslip-card {
-    border-radius: 6px;
+    width: 100vw;
+    min-height: 100vh;
+    height: 100vh;
+    border: none;
+    border-radius: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
 
+  /* HEADER */
+
+  .betslip-header {
+    width: 100%;
+    min-height: 45px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+  }
+
+  .betslip-header h3 {
+    font-size: 15px;
+  }
+
+  .betslip-count {
+    min-width: 24px;
+    height: 24px;
+  }
+
+
+  /* TABS */
+
+  .betslip-tabs {
+    width: 100%;
+  }
+
+  .betslip-tabs button {
+    padding: 12px 8px;
+    font-size: 13px;
+  }
+
+
+  /* CONTENT */
+
+  .betslip-content {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+
+  /* BET LIST */
+
+  .bets-list {
+    width: 100%;
+    gap: 8px;
+  }
+
+
+  /* BET CARD */
+
+  .bet-card {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+
+  /* TEAM NAMES */
+
+  .bet-teams {
+    flex-wrap: wrap;
+  }
+
+
+  /* STAKE */
+
+  .stake-section {
+    width: 100%;
+  }
+
+
+  .stake-input-wrapper {
+    width: 100%;
+  }
+
+
+  /* SUMMARY */
+
+  .bet-summary {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+
+  /* ACTION BUTTONS */
+
+  .bet-actions {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+  }
+
+
+  .book-ticket-button {
+    width: 100%;
+  }
+
+
+  /* BOOKING MODAL */
+
   .booking-modal {
-    padding: 22px;
+    width: 100%;
+    max-width: 100%;
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+}
+
+
+/* ============================================================
+   RESPONSIVE — SMALL MOBILE
+   STILL FULL SCREEN
+============================================================ */
+
+@media (max-width: 480px) {
+
+  .betslip-card {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    border: none;
+    border-radius: 0;
+  }
+
+  .betslip-header {
+    min-height: 45px;
+    padding: 10px;
+  }
+
+  .betslip-header h3 {
+    font-size: 14px;
+  }
+
+  .betslip-content {
+    padding: 10px;
+  }
+
+  .bet-card {
+    padding: 9px;
+  }
+
+  .bet-event {
+    font-size: 12px;
+  }
+
+  .bet-market {
+    font-size: 10px;
+  }
+
+  .bet-teams {
+    font-size: 12px;
+  }
+
+  .bet-label {
+    font-size: 11px;
+  }
+
+  .bet-odd {
+    font-size: 13px;
+  }
+
+  .summary-row {
+    font-size: 12px;
+  }
+
+  .bet-actions button,
+  .book-ticket-button,
+  .load-ticket-button {
+    min-height: 40px;
+    font-size: 12px;
   }
 
 }
