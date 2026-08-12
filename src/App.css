@@ -24,6 +24,15 @@
   overflow: hidden;
 }
 
+.auth-form-page {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 28px 18px 36px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
 
 /* ============================================================
    /LEFT - LEAGUES

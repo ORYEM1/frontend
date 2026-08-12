@@ -1,10 +1,13 @@
 import {
+  NavLink,
+} from "react-router-dom";
+
+import {
   FaFutbol,
   FaBasketballBall,
   FaTableTennis,
   FaVolleyballBall,
   FaFootballBall,
-  FaTrophy,
   FaUser,
   FaLock
 } from "react-icons/fa";
@@ -73,25 +76,22 @@ const PageHeader = () => {
 
         <div className="sports-header-auth">
 
-          <button
-            type="button"
+          <NavLink
+            to="/register"
             className="register-button"
           > 
-          <FaUser/>
-          
+            <FaUser/>
             Register
-            
-          </button>
+          </NavLink>
 
 
-          <button
-            type="button"
+          <NavLink
+            to="/login"
             className="login-button"
           >
             <FaLock/>
-
             Login
-          </button>
+          </NavLink>
 
         </div>
 

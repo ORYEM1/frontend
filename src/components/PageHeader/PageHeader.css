@@ -53,6 +53,7 @@
   gap: 10px;
 }
 
+.sports-header-auth a,
 .sports-header-auth button {
   height: 38px;
   padding: 0 20px;
@@ -61,6 +62,11 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
 
@@ -236,6 +242,7 @@
   }
 
 
+  .sports-header-auth a,
   .sports-header-auth button {
     height: 34px;
 
@@ -259,4 +266,3 @@
   }
 
 }
-

@@ -6,7 +6,7 @@
   --muted: #4d7094;
   --accent: #003366;
   --accent-2: #002e5c;
-  width: min(1120px, 40%);
+  width: min(560px, calc(100% - 32px));
   margin: 0 auto;
 }
 
@@ -94,10 +94,11 @@
 .generic-form__field input,
 .generic-form__field select,
 .generic-form__field textarea {
-  width: 95%;
+  width: 100%;
   border: 1px solid #6685a3;
   border-radius: 10px;
   padding: 7px 8px;
+  box-sizing: border-box;
   font: inherit;
   color: var(--ink);
   background: #fff;

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import './GenericForm.css'
 
 const NATIVE_INPUT_TYPES = new Set([
@@ -19,11 +19,15 @@ const NATIVE_INPUT_TYPES = new Set([
 const DEFAULT_TITLE = 'Dynamic Form'
 
 function resolveFields(requestContext) {
+  if (Array.isArray(requestContext)) {
+    return requestContext
+  }
+
   if (!requestContext || typeof requestContext !== 'object') {
     return []
   }
 
-  const schema = requestContext.schema
+  const schema = requestContext.schema || requestContext
 
   if (Array.isArray(schema)) {
     return schema
@@ -101,30 +105,40 @@ function sanitizeFieldValue(field, value) {
 }
 
 function getFieldError(field, value) {
+  const label = field.label || 'This field'
+
   if (field.required) {
     if (Array.isArray(value)) {
       if (value.length === 0) {
-        return `${field.label || 'This field'} is required.`
+        return `${label} is required.`
       }
 
       return ''
     }
 
     if (typeof value === 'boolean') {
-      return value ? '' : `${field.label || 'This field'} is required.`
+      return value ? '' : `${label} is required.`
     }
 
     if (!String(value || '').trim()) {
-      return `${field.label || 'This field'} is required.`
+      return `${label} is required.`
     }
   }
 
   if (isNumericField(field) && String(value || '').trim() && !/^[0-9]+$/.test(String(value))) {
-    return `${field.label || 'This field'} must contain numbers only.`
+    return `${label} must contain numbers only.`
   }
 
   if (isEmailField(field) && String(value || '').trim() && /\s/.test(String(value))) {
-    return `${field.label || 'This field'} must not contain spaces.`
+    return `${label} must not contain spaces.`
+  }
+
+  if (field['min-length'] && String(value || '').length < Number(field['min-length'])) {
+    return `${label} must be at least ${field['min-length']} characters.`
+  }
+
+  if (field['max-length'] && String(value || '').length > Number(field['max-length'])) {
+    return `${label} must be no more than ${field['max-length']} characters.`
   }
 
   return ''
@@ -145,6 +159,15 @@ function createInitialValues(fields) {
   }, {})
 }
 
+function createFormSignature(fields) {
+  return fields
+    .map((field, index) => {
+      const name = field.name || normalizeName(field.label || `field_${index + 1}`)
+      return `${name}:${field.type || 'text'}`
+    })
+    .join('|')
+}
+
 function GenericForm({
   title = DEFAULT_TITLE,
   submitLabel = 'Submit Form',
@@ -153,44 +176,73 @@ function GenericForm({
   requestContext = {},
   onSubmit,
 }) {
-  const resolvedTitle = title || requestContext?.title || DEFAULT_TITLE
+  const resolvedTitle = requestContext?.title || title || DEFAULT_TITLE
   const resolvedFields = useMemo(() => resolveFields(requestContext), [requestContext])
   const country = requestContext?.country || 'unknown'
+  const formSignature = useMemo(() => createFormSignature(resolvedFields), [resolvedFields])
+  const initialFormValues = useMemo(() => createInitialValues(resolvedFields), [resolvedFields])
 
-  const [formValues, setFormValues] = useState(() => createInitialValues(resolvedFields))
-  const [fieldErrors, setFieldErrors] = useState({})
-  const [submittedData, setSubmittedData] = useState(null)
+  const [formState, setFormState] = useState(() => ({
+    signature: formSignature,
+    values: initialFormValues,
+    errors: {},
+    submittedData: null,
+  }))
 
-  useEffect(() => {
-    setFormValues(createInitialValues(resolvedFields))
-    setFieldErrors({})
-    setSubmittedData(null)
-  }, [resolvedFields])
+  const isCurrentFormState = formState.signature === formSignature
+  const formValues = isCurrentFormState ? formState.values : initialFormValues
+  const fieldErrors = isCurrentFormState ? formState.errors : {}
+  const submittedData = isCurrentFormState ? formState.submittedData : null
+
+  const updateFormState = (updater) => {
+    setFormState((prev) => {
+      const currentState =
+        prev.signature === formSignature
+          ? prev
+          : {
+              signature: formSignature,
+              values: initialFormValues,
+              errors: {},
+              submittedData: null,
+            }
+
+      return updater(currentState)
+    })
+  }
 
   const handleFieldChange = (field, event) => {
     const fieldName = field.name || normalizeName(field.label)
     const type = String(field.type || 'text').toLowerCase()
     const { value, checked } = event.target
 
-    setFormValues((prev) => {
+    updateFormState((prev) => {
       if (type === 'checkbox' && Array.isArray(field.options)) {
-        const currentValues = Array.isArray(prev[fieldName]) ? prev[fieldName] : []
+        const currentValues = Array.isArray(prev.values[fieldName]) ? prev.values[fieldName] : []
         const nextValues = checked
           ? [...currentValues, value]
           : currentValues.filter((entry) => entry !== value)
 
-        return { ...prev, [fieldName]: nextValues }
+        return {
+          ...prev,
+          values: { ...prev.values, [fieldName]: nextValues },
+        }
       }
 
       if (type === 'checkbox') {
-        return { ...prev, [fieldName]: checked }
+        return {
+          ...prev,
+          values: { ...prev.values, [fieldName]: checked },
+        }
       }
 
-      return { ...prev, [fieldName]: sanitizeFieldValue(field, value) }
+      return {
+        ...prev,
+        values: { ...prev.values, [fieldName]: sanitizeFieldValue(field, value) },
+      }
     })
 
     if (!(type === 'checkbox' && Array.isArray(field.options))) {
-      setFieldErrors((prev) => {
+      updateFormState((prev) => {
         const nextValue =
           type === 'checkbox'
             ? checked
@@ -198,7 +250,10 @@ function GenericForm({
 
         return {
           ...prev,
-          [fieldName]: getFieldError(field, nextValue),
+          errors: {
+            ...prev.errors,
+            [fieldName]: getFieldError(field, nextValue),
+          },
         }
       })
     }
@@ -213,11 +268,14 @@ function GenericForm({
       return acc
     }, {})
 
-    setFieldErrors(nextErrors)
-
     const hasErrors = Object.values(nextErrors).some(Boolean)
 
     if (hasErrors) {
+      updateFormState((prev) => ({
+        ...prev,
+        errors: nextErrors,
+        submittedData: null,
+      }))
       return
     }
 
@@ -228,7 +286,11 @@ function GenericForm({
       values: formValues,
     }
 
-    setSubmittedData(payload)
+    updateFormState((prev) => ({
+      ...prev,
+      errors: nextErrors,
+      submittedData: payload,
+    }))
 
     if (typeof onSubmit === 'function') {
       onSubmit(payload)
@@ -246,7 +308,6 @@ function GenericForm({
     const min = field.min
     const max = field.max
     const placeholder = field.placeholder || `Enter ${label.toLowerCase()}`
-    const errorMessage = fieldErrors[name]
     const isNumeric = isNumericField(field)
     const sanitizedValue = sanitizeFieldValue(field, formValues[name] || '')
 
@@ -396,6 +457,7 @@ function GenericForm({
                     {field.required && <span className="generic-form__required">*</span>}
                   </label>
                   {renderField(field, index)}
+                  {fieldErrors[name] && <p className="generic-form__field-error">{fieldErrors[name]}</p>}
                 </div>
               )
             })}
@@ -410,7 +472,6 @@ function GenericForm({
       {submittedData && (
         <section className="generic-form__result">
           <h3>Submitted Payload</h3>
-                  {fieldErrors[name] && <p className="generic-form__field-error">{fieldErrors[name]}</p>}
           <pre>{JSON.stringify(submittedData, null, 2)}</pre>
         </section>
       )}
