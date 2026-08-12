@@ -8,6 +8,8 @@ import LeaguePanel from "./components/LeaguePanel/LeaguePanel.jsx";
 import EventsPage from "./pages/EventsPage/EventsPage.jsx";
 import Betslips from "./components/Betslips/Betslips.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+import formSchema from "./data/formSchema.json";
+import GenericForm from "./components/GenericForm/GenericForm.jsx";
 
 import "./App.css";
 

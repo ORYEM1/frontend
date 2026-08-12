@@ -1,0 +1,91 @@
+{
+  "country": "uganda",
+  "form-data": [
+    {
+      "type": "text",
+      "label": "First Name",
+      "name": "firstname",
+      "required": true,
+      "placeholder": "Enter your first name"
+    },
+    {
+      "type": "text",
+      "label": "Other Name",
+      "name": "other_name",
+      "required": false,
+      "placeholder": "Enter your other name"
+    },
+    {
+      "type": "date",
+      "label": "Date of Birth",
+      "name": "dob",
+      "required": true
+    },
+    {
+      "type": "email",
+      "label": "Email",
+      "name": "email",
+      "required": false,
+      "placeholder": "you@example.com"
+    },
+    {
+      "type": "number",
+      "label": "Mobile Number",
+      "name": "phone",
+      "required": true,
+      "placeholder": "256 700 000000",
+      "min-length": 10,
+      "max-length": 10
+    },
+    {
+      "type": "password",
+      "label": "Password",
+      "name": "password",
+      "required": true,
+      "min-length": 6
+    },
+    {
+      "type": "password",
+      "label": "Confirm Password",
+      "name": "confirm_password",
+      "required": true,
+      "min-length": 6
+    },
+    {
+      "type": "select",
+      "label": "Region",
+      "name": "region",
+      "required": true,
+      "options": ["Central", "Western", "Eastern", "Northern", "Others"]
+    },
+    {
+      "type": "radio",
+      "label": "Gender",
+      "name": "gender",
+      "required": true,
+      "options": ["Female", "Male"]
+    },
+    {
+      "type": "select",
+      "label": "How you heard about us?",
+      "name": "referral",
+      "required": false,
+      "options": ["Social Media", "Friend/Family", "Online Ad", "Search Engine", "Other"]
+    },
+    {
+      "type": "textarea",
+      "label": "Address",
+      "name": "address",
+      "required": false,
+      "rows": 3,
+      "placeholder": "Street, district, landmark"
+    },
+    {
+      "type": "checkbox",
+      "label": "Accept Terms",
+      "name": "accept_terms",
+      "required": true,
+      "description": "I agree to the terms and privacy policy"
+    }
+  ]
+}
