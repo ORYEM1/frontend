@@ -141,6 +141,7 @@ export const SportsProvider = ({ children }) => {
 
   const [selectedEvent, setSelectedEvent] = useState(null);
 
+  //using lazy initialization here to avoid rerender every time the components loads
   const [bets, setBets] = useState(() => {
     try {
       const saved = localStorage.getItem("bets");
@@ -167,8 +168,7 @@ export const SportsProvider = ({ children }) => {
   // SELECTED ODDS
   
 
-  const [selectedOdds, setSelectedOdds] =
-    useState(() => {
+  const [selectedOdds, setSelectedOdds] =  useState(() => {
       try {
         const saved = localStorage.getItem("selectedOdds" );
 
@@ -210,6 +210,7 @@ export const SportsProvider = ({ children }) => {
       return;
     }
 
+    //resetting sport when the sport is changed
     setActiveSport(normalizedSport);   
     setSelectedLeague(null);
     setSelectedEvent(null);
@@ -274,13 +275,14 @@ export const SportsProvider = ({ children }) => {
     setSearch("");
   };
 
-  // FIND EVENT
+  // finding an event
  
   const findEventById = (eventId) => {
     const targetId = String(eventId);
-
+    //looping through the leagues
     for (const leagueEvents of Object.values(feedData || {}))
     {
+        //looping through the events
       for (const event of Object.values( leagueEvents || {})) 
         {
             if (event && String(event.id) === targetId) 
@@ -293,15 +295,13 @@ export const SportsProvider = ({ children }) => {
   };
 
   
-  // SELECT ODDS
+  // Selecting odd for an event
   
   const selectOdd = (selection) => {
     if (!selection) {
       return;
     }
-
     const eventId = String(selection.eventId);
-
     const event = findEventById(eventId);
 
     if (!event) {
@@ -313,9 +313,8 @@ export const SportsProvider = ({ children }) => {
       return;
     }
 
-    // ========================================================
-    // CREATE BET
-    // ========================================================
+   
+    //creating the bet object
 
     const bet = {
       ...selection,
@@ -342,7 +341,6 @@ export const SportsProvider = ({ children }) => {
         selection.market ||
         selection.market_name ||
         selection.marketName ||
-        selection.market_name ||
         "Unknown Market",
 
       label:
@@ -351,15 +349,10 @@ export const SportsProvider = ({ children }) => {
         "",
     };
 
-    // ========================================================
-    // SAME ODDS SELECTED
-    // ========================================================
+    //selecting the same odd
 
     if (
-      String(
-        selectedOdds[eventId]?.id
-      ) ===
-      String(selection.id)
+      String(selectedOdds[eventId]?.id) === String(selection.id)
     ) {
       setSelectedOdds((current) => {
         const updated = {
@@ -376,12 +369,11 @@ export const SportsProvider = ({ children }) => {
         return updated;
       });
 
+
+      //removing the selection from bet
       setBets((current) => {
-        const updated =
-          current.filter(
-            (item) =>
-              String(item.eventId) !==
-              eventId
+        const updated = current.filter(
+          (item) =>String(item.eventId) !== eventId
           );
 
         localStorage.setItem(
@@ -395,10 +387,9 @@ export const SportsProvider = ({ children }) => {
       return;
     }
 
-    // ========================================================
+   
     // SAVE SELECTED ODDS
-    // ========================================================
-
+   
     setSelectedOdds((current) => {
       const updated = {
         ...current,
@@ -501,42 +492,6 @@ export const SportsProvider = ({ children }) => {
     localStorage.removeItem("bets");
     localStorage.removeItem(
       "selectedOdds"
-    );
-  };
-
-  // ==========================================================
-  // LOAD TICKET
-  // ==========================================================
-
-  const loadTicket = (loadedBets) => {
-    if (!Array.isArray(loadedBets)) {
-      return;
-    }
-
-    const newSelectedOdds = {};
-
-    loadedBets.forEach((bet) => {
-      newSelectedOdds[
-        String(bet.eventId)
-      ] = bet;
-    });
-
-    setBets(loadedBets);
-
-    setSelectedOdds(
-      newSelectedOdds
-    );
-
-    localStorage.setItem(
-      "bets",
-      JSON.stringify(loadedBets)
-    );
-
-    localStorage.setItem(
-      "selectedOdds",
-      JSON.stringify(
-        newSelectedOdds
-      )
     );
   };
 
@@ -739,14 +694,11 @@ export const SportsProvider = ({ children }) => {
   const value = {
 
     activeSport,
-
     setActiveSport:
       changeActiveSport,
 
     marketOptionsBySport,
-
     currentMarketOptions,
-
     activeMenu,
 
     setActiveMenu:
@@ -755,46 +707,25 @@ export const SportsProvider = ({ children }) => {
 
     date,
     setDate,
-
     market,
     setMarket,
-
     search,
     setSearch,
-
     clearSearch,
-
-
     selectedLeague,
-
     selectLeague,
-
     clearLeague,
-
-
     selectedEvent,
-
     openMoreMarkets,
-
     closeMoreMarkets,
-
-   
-
     filteredFeed,
-
-    
-
     bets,
-
     selectedOdds,
-
     selectOdd,
-
     removeBet,
-
     clearBetslip,
 
-    loadTicket,
+    
   };
 
   return (

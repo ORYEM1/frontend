@@ -111,7 +111,7 @@
 .region-event-count {
   min-width: 25px;
   margin-left: auto;
-  text-align: right;
+  text-align: center;
   font-size: 11px;
   color: #fff;
 }
