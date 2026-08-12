@@ -338,15 +338,10 @@ export const SportsProvider = ({ children }) => {
         event.kickoff_time,
 
       market:
-        selection.market ||
-        selection.market_name ||
-        selection.marketName ||
-        "Unknown Market",
+        selection.market_name,
 
       label:
-        selection.label ||
-        selection.bet ||
-        "",
+        selection.label
     };
 
     //selecting the same odd
