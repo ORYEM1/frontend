@@ -1,0 +1,70 @@
+.mobile-navigation {
+  display: none;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .mobile-navigation {
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 62px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-around;
+
+    background: #ffffff;
+
+    border-top: 1px solid #ddd;
+
+    z-index: 1000;
+  }
+
+
+  .mobile-navigation button {
+
+    flex: 1;
+
+    height: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    font-size: 11px;
+
+    cursor: pointer;
+  }
+
+
+  .mobile-navigation svg {
+
+    font-size: 18px;
+  }
+
+
+  .mobile-navigation span {
+    white-space: nowrap;
+  }
+
+}
