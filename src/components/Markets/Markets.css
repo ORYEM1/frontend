@@ -1,0 +1,232 @@
+.markets {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+/* ==========================================================
+   MARKET CARD
+   ========================================================== */
+
+.market-card {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+
+/* ==========================================================
+   MARKET HEADER
+   ========================================================== */
+
+.market-card-header {
+  min-height: 42px;
+  padding: 10px 14px;
+
+  display: flex;
+  align-items: center;
+
+  background: #f5f5f5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.market-card-header strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* ==========================================================
+   NORMAL BETS
+   ========================================================== */
+
+.market-bets {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(150px, 1fr)
+  );
+
+  gap: 8px;
+  padding: 10px;
+}
+
+
+/* ==========================================================
+   ODD BUTTON
+   ========================================================== */
+
+.market-odd {
+  min-height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding: 8px 12px;
+
+  border: 1px solid #ddd;
+  border-radius: 5px;
+
+  background: #fafafa;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.market-odd:hover {
+  background: #f0f0f0;
+}
+
+.market-odd span {
+  font-size: 13px;
+  text-align: left;
+}
+
+.market-odd strong {
+  font-size: 14px;
+}
+
+
+/* ==========================================================
+   SELECTED
+   ========================================================== */
+
+.market-odd.odd-selected {
+  border-color: #2196f3;
+  background: #eaf4ff;
+}
+
+
+/* ==========================================================
+   LOCKED
+   ========================================================== */
+
+.market-odd.odd-locked,
+.market-odd.odd-unavailable {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* ==========================================================
+   LINE MARKETS
+   ========================================================== */
+
+.market-line-market {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.market-line-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+
+  align-items: center;
+
+  border-bottom: 1px solid #eee;
+}
+
+.market-line-row:last-child {
+  border-bottom: none;
+}
+
+
+.market-line {
+  padding: 10px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-align: center;
+}
+
+
+.market-line-options {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(140px, 1fr)
+    );
+
+  gap: 8px;
+
+  padding: 8px;
+}
+
+
+/* ==========================================================
+   EMPTY
+   ========================================================== */
+
+.markets-empty {
+  padding: 30px;
+
+  text-align: center;
+
+  color: #777;
+
+  background: #fff;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 600px) {
+
+  .market-bets {
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    padding: 8px;
+    gap: 6px;
+  }
+
+
+  .market-odd {
+    min-height: 42px;
+    padding: 7px 9px;
+  }
+
+
+  .market-odd span {
+    font-size: 12px;
+  }
+
+
+  .market-odd strong {
+    font-size: 13px;
+  }
+
+
+  .market-line-row {
+    grid-template-columns: 55px 1fr;
+  }
+
+
+  .market-line-options {
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 5px;
+    padding: 6px;
+  }
+
+}
