@@ -4,11 +4,13 @@
 ============================================================ */
 
 .sports-header {
-  width: 100%;
+  width: min(1300px, 100%);
   background: #ffffff;
   border-bottom: 1px solid #ddd;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 1000;
   margin-top: 0;
   
@@ -25,15 +27,12 @@
   justify-content: space-between;
   padding: 0 24px;
   background: #036;
-  border-radius: 5px 5px 0 0;
   box-sizing: border-box;
 }
-
 
 /* ============================================================
    LOGO
 ============================================================ */
-
 .sports-header-logo {
   width: 40px;
   font-weight: 700;  
@@ -56,6 +55,7 @@
   gap: 10px;
 }
 
+.sports-header-auth a,
 .sports-header-auth button {
   height: 38px;
   padding: 0 20px;
@@ -64,6 +64,11 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
 
@@ -127,7 +132,6 @@
 
 .header-menu-item {
   position: relative;
-
   display: flex;
 
   align-items: center;
@@ -195,17 +199,13 @@
 
 .header-menu-item.active::after {
   content: "";
-
   position: absolute;
-
   left: 18px;
 
   right: 18px;
 
   bottom: 0;
-
   height: 3px;
-
   background: currentColor;
 }
 
@@ -244,6 +244,7 @@
   }
 
 
+  .sports-header-auth a,
   .sports-header-auth button {
     height: 34px;
 
@@ -267,4 +268,3 @@
   }
 
 }
-

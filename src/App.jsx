@@ -8,9 +8,23 @@ import LeaguePanel from "./components/LeaguePanel/LeaguePanel.jsx";
 import EventsPage from "./pages/EventsPage/EventsPage.jsx";
 import Betslips from "./components/Betslips/Betslips.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+import authFormSchemas from "./data/authFormSchemas.js";
+import GenericForm from "./components/GenericForm/GenericForm.jsx";
 
 import "./App.css";
 
+function AuthFormRoute({ formType }) {
+  const formConfig = authFormSchemas[formType];
+
+  return (
+    <div className="auth-form-page">
+      <GenericForm
+        requestContext={formConfig}
+        submitLabel={formConfig.submitLabel}
+      />
+    </div>
+  );
+}
 
 function App() {
 
@@ -23,32 +37,38 @@ function App() {
 
         <PageHeader />
 
-        <Routes>
+        <div className="sports-layout">
 
-          <Route
-            path="/"
-            element={
+          <section className="league-section">
+            <LeaguePanel />
+          </section>
 
-              <div className="sports-layout">
+          <main className="events-section">
+            <Routes>
 
-                <section className="league-section">
-                  <LeaguePanel />
-                </section>
+              <Route
+                path="/"
+                element={<EventsPage />}
+              />
 
-                <main className="events-section">
-                  <EventsPage />
-                </main>
+              <Route
+                path="/register"
+                element={<AuthFormRoute formType="register" />}
+              />
 
-                <aside className="betslip-section">
-                  <Betslips />
-                </aside>
+              <Route
+                path="/login"
+                element={<AuthFormRoute formType="login" />}
+              />
 
-              </div>
+            </Routes>
+          </main>
 
-            }
-          />
+          <aside className="betslip-section">
+            <Betslips />
+          </aside>
 
-        </Routes>
+        </div>
 
         <Footer />
 
@@ -63,4 +83,3 @@ function App() {
 
 
 export default App;
-

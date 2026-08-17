@@ -1,19 +1,23 @@
-import { FaSearch,FaFire,FaBroadcastTower,FaClock,FaClipboardList } from "react-icons/fa";
+import {FaSearch,FaFire,FaBroadcastTower,FaClock,FaClipboardList,} from "react-icons/fa";
+
+import { useEffect, useRef } from "react";
+
 import EventBoard from "../../components/EventBoard/EventBoard.jsx";
 import MoreMarkets from "../../components/MoreMarket/MoreMarkets.jsx";
 
 import { useSports } from "../../contexts/SportsContext.jsx";
+
 import "./EventsPage.css";
 
 
-
-// EVENT CATEGORY MENU
+/**category menu */
 
 const eventMenus = [
   {
     id: "live",
     label: "Live",
-    
+    icon:FaBroadcastTower,
+    colorClass:"live-icon",
   },
   {
     id: "incoming",
@@ -34,14 +38,17 @@ const eventMenus = [
     colorClass: "results-icon",
   },
 ];
+
+
 // ============================================================
 // EVENTS PAGE
 // ============================================================
 
 const EventsPage = () => {
-  
-  // from sportcontext
-  
+
+  // ==========================================================
+  // SPORTS CONTEXT
+  // ==========================================================
 
   const {
     activeSport,
@@ -65,6 +72,49 @@ const EventsPage = () => {
     selectOdd,
   } = useSports();
 
+
+  
+  // SAVE EVENTS PAGE SCROLL POSITION
+  // ==========================================================
+
+  const scrollPosition = useRef(0);
+
+
+  const handleMoreClick = (event) => {
+
+    // Save current browser scroll position
+    scrollPosition.current = window.scrollY;
+
+    // Open More Markets
+    openMoreMarkets(event);
+  };
+
+  useEffect(() => {
+
+    // Only restore when More Markets has been closed
+    if (
+      !selectedEvent &&
+      scrollPosition.current > 0
+    ) {
+
+      requestAnimationFrame(() => {
+
+        window.scrollTo({
+          top: scrollPosition.current,
+          left: 0,
+          behavior: "instant",
+        });
+
+      });
+    }
+
+  }, [selectedEvent]);
+
+
+  // ==========================================================
+  // ACTIVE MARKET NAME
+  // ==========================================================
+
   const activeMarketName =
     currentMarketOptions.find(
       (item) =>
@@ -73,21 +123,36 @@ const EventsPage = () => {
     currentMarketOptions[0]?.label ||
     "Market";
 
-  
-  const handleMarketChange = (
-    event
-  ) => {
+
+  // ==========================================================
+  // MARKET CHANGE
+  // ==========================================================
+
+  const handleMarketChange = (event) => {
+
     setMarket(
       event.target.value
     );
+
   };
 
+
+  // ==========================================================
+  // EVENT MENU CHANGE
+  // ==========================================================
 
   const handleEventMenuChange = (
     menuId
   ) => {
+
     setActiveMenu(menuId);
+
   };
+
+
+  // ==========================================================
+  // PAGE TITLE
+  // ==========================================================
 
   const pageTitle =
     selectedLeague
@@ -102,39 +167,87 @@ const EventsPage = () => {
       ? `Competitions - ${activeMarketName}`
       : activeMarketName;
 
-  
-  return (
-    <section className="events-page">
-      <div className="event-category-menu">
-        {eventMenus.map((item) => {
-            const Icon = item.icon;
 
-            return (
-              <button
-                key={item.id}
-                type="button"
-                className={
-                  activeMenu === item.id
-                    ? "active"
-                    : ""
-                }
-                onClick={() =>
-                  handleEventMenuChange(item.id)
-                }
-              >
-               
-                <span>{item.label}</span>
-              </button>
-            );
+/**render */
+
+  return (
+
+    <section className="events-page">
+
+      {/*
+          EVENT CATEGORY MENU
+      */}
+
+      <div className="event-category-menu">
+
+        {eventMenus.map((item) => {
+
+          const Icon = item.icon;
+
+          return (
+
+            <button
+              key={item.id}
+              type="button"
+              className={
+                activeMenu === item.id
+                  ? "active"
+                  : ""
+              }
+              onClick={() =>
+                handleEventMenuChange(
+                  item.id
+                )
+              }
+            >
+
+              {Icon && (
+                <Icon
+                  className={
+                    item.colorClass || ""
+                  }
+                />
+              )}
+
+              <span>
+                {item.label}
+              </span>
+
+            </button>
+
+          );
+
         })}
+
       </div>
+
+
+      {/* ======================================================
+          EVENTS PAGE HEADER
+      ====================================================== */}
+
       <div className="events-page-header">
+
         <div className="market-header">
+
           <h3>
             {pageTitle}
           </h3>
+
         </div>
+
+
+        {/* ====================================================
+            FILTERS
+        ==================================================== */}
+
         <div className="filters">
+
+
+          {/*
+              DATE FILTER
+           */}
+
           <select
             className="date-filter"
             value={date}
@@ -144,6 +257,7 @@ const EventsPage = () => {
               )
             }
           >
+
             <option value="all">
               All
             </option>
@@ -155,11 +269,13 @@ const EventsPage = () => {
             <option value="tomorrow">
               Tomorrow
             </option>
+
           </select>
 
-          {/* ================================================
-              MARKET
-          ================================================ */}
+
+          {/* ==================================================
+              MARKET FILTER
+          ================================================== */}
 
           <select
             className="market-filter"
@@ -168,23 +284,24 @@ const EventsPage = () => {
               handleMarketChange
             }
           >
+
             {currentMarketOptions.map(
               (option) => (
+
                 <option
                   key={option.id}
                   value={option.value}
                 >
                   {option.label}
                 </option>
+
               )
             )}
+
           </select>
 
-          {/* ================================================
-              SEARCH
-          ================================================ */}
-
           <div className="search-wrapper">
+
             <FaSearch
               className="search-icon"
             />
@@ -202,6 +319,7 @@ const EventsPage = () => {
             />
 
             {search && (
+
               <button
                 type="button"
                 className="clear-search"
@@ -212,6 +330,7 @@ const EventsPage = () => {
               >
                 ×
               </button>
+
             )}
 
           </div>
@@ -219,35 +338,36 @@ const EventsPage = () => {
             className="search-button"
             type="button"
           >
+
             <FaSearch />
 
             <span>
               Search
             </span>
-          </button>
 
-            {selectedLeague && (
-          <button
-            className="clear-league-button"
-            type="button"
-            onClick={
-              clearLeague
-            }
-          >
-            All
           </button>
-            )}
+          {selectedLeague && (
+
+            <button
+              className="clear-league-button"
+              type="button"
+              onClick={
+                clearLeague
+              }
+            >
+              All
+            </button>
+
+          )}
 
         </div>
-      </div>
 
-      {/* ====================================================
-          CONTENT
-      ==================================================== */}
+      </div>
 
       <div className="events-page-content">
 
         {selectedEvent ? (
+
           <MoreMarkets
             event={selectedEvent}
             selectedOdds={
@@ -260,7 +380,9 @@ const EventsPage = () => {
               selectOdd
             }
           />
+
         ) : (
+
           <EventBoard
             feed={filteredFeed}
             marketId={market}
@@ -271,15 +393,18 @@ const EventsPage = () => {
               selectedOdds
             }
             onMoreClick={
-              openMoreMarkets
+              handleMoreClick
             }
           />
+
         )}
 
       </div>
 
     </section>
+
   );
 };
+
 
 export default EventsPage;

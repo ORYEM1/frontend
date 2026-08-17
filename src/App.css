@@ -3,12 +3,15 @@
    ============================================================ */
 
 .app {
+  --header-height: 172px;
   width: 100%;
-  height: 150vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
   margin-top: 0;
+  padding-top: var(--header-height);
+  box-sizing: border-box;
 }
 
 
@@ -18,10 +21,20 @@
 
 .sports-layout {
   display: flex;
+  align-items: flex-start;
   width: 100%;
   flex: 1;
   min-height: 0;
-  overflow: hidden;
+  overflow: visible;
+}
+
+.auth-form-page {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 28px 18px 36px;
+  background: #fff;
+  box-sizing: border-box;
 }
 
 
@@ -34,7 +47,9 @@
   flex-shrink: 0;
   border-right: 1px solid #ddd;
   background: #fff;
-  min-height: 0;
+  position: sticky;
+  top: var(--header-height);
+  max-height: calc(100vh - var(--header-height));
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -49,8 +64,7 @@
   min-width: 0;
   min-height: 0;
   background: #fff;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: visible;
 }
 
 
@@ -63,7 +77,9 @@
   flex-shrink: 0;
   border-left: 1px solid #ddd;
   background: #fff;
-  min-height: 0;
+  position: sticky;
+  top: var(--header-height);
+  max-height: calc(100vh - var(--header-height));
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -111,6 +127,7 @@
 @media (max-width: 768px) {
 
   .app {
+    --header-height: 127px;
     height: auto;
     min-height: 100vh;
     overflow: visible;
@@ -130,6 +147,8 @@
     width: 100%;
 
     min-height: auto;
+    max-height: none;
+    position: static;
 
     overflow: visible;
   }

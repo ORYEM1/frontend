@@ -1,114 +1,577 @@
-.more-markets-page{
+/* =========================================================
+   MORE MARKETS
+========================================================= */
+
+.more-markets {
     width: 100%;
-    background: #fff;
+    min-height: 100%;
+    background: #f5f5f5;
 }
-.more-markets-header{
-    
-    align-items: center;
-    gap:15px;
-    min-height: 60px;
-    padding: 10px 15px;
-    border-bottom: 1px solid #ddd;
-    
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.more-markets-header {
+    /*width: 100%;*/
     background: #036;
+    padding: 10px 12px;
+    color: #fff;
+    border-bottom: 1px solid #036;
 }
-.back-button{
-    height: 30px;
-    padding: 0 12px;
-    border: 1px solid #ddd;
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.more-markets-back {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #036;
     border-radius: 4px;
+    border: none;
     background: #fff;
     cursor: pointer;
-    align-items: left;
-    font-size:12px;
-    justify-content: left;
+    font-size: 14px;
 }
-.back-button:hover{
-    background: #f5f5f5;
 
+
+/* =========================================================
+   EVENT
+========================================================= */
+
+.more-markets-event {
+    width: 100%;
+    margin-top: 8px;
 }
-/*event information*/
-.more-markets-event{
-    
-    align-items: center;
-    gap: 15px;
-    min-width: 0;
-}
-.more-market-league{
+
+
+/* =========================================================
+   LEAGUE
+========================================================= */
+
+.more-market-league {
     font-size: 12px;
-    color: #777;
-
-}
-.more-markets-teams{
-    text-align: center;
     color: #fff;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   TEAMS
+========================================================= */
+
+.more-markets-teams {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    align-items: center;
+    text-align: center;
     gap: 10px;
-    font-size: 16px;
-
+    font-weight: 600;
+    font-size: 15px;
 }
-.more-market-home,
-.more-market-away{
-    padding: 0 15px;
-    display: contents;
-    gap: 20px;
 
-}
-.more-market-teams span{
-    color: #888;
-    font-size: 12px;
 
+/* HOME TEAM */
+
+.more-market-home {
+    min-width: 0;
+    text-align: right;
+    padding-right: 10px;
+    white-space: normal;
+    word-break: break-word;
+    color: #fff;
+    font-size: 18px;
 }
-.more-market-time{
-    font-size: 12px;
+
+
+/* VS */
+
+.more-markets-teams span {
+    text-align: center;
+    font-size: 15px;
+    color: #fff;
+}
+
+
+/* AWAY TEAM */
+
+.more-market-away {
+    min-width: 0;
+    text-align: left;
+    padding-left: 10px;
+    white-space: normal;
+    word-break: break-word;
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   TIME
+========================================================= */
+
+.more-market-time {
+    text-align: center;
+    margin-top: 6px;
+    font-size: 15px;
     color: #777;
 }
-/*content*/
-.more-market-content{
-    padding: 10px 15px;
-}
-.market-card{
-    margin-bottom: 10px;
-    border:1px solid #ddd;
-    border-radius: 4px;
-    overflow: hidden;
-}
-.market-card-header{
-    display: flex;
-    align-items: center;
-    min-height: 40px;
-    padding: 0 12px;
-    background: #f1f3f5;
-    border-bottom:  1px solid #ddd;
-    font-size: 12px;
-}
-.market-bets{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
+
+
+/* =========================================================
+   MARKETS CONTENT
+========================================================= */
+
+.more-markets-content {
+    /*width: 100%;*/
+    align-content: center;
     padding: 10px;
 }
-.more-market-odd{
-    
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    min-width: 110px;
-    height: 38px;
-    padding: 0 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background: #ddd;
-    cursor: pointer;
-    font-size: 12px;
+
+
+/* =========================================================
+   MARKET CARD
+========================================================= */
+
+.market-card {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    border: 1px solid #036;
 }
-.more-market-odd:hover:not(:disabled){
-    background: #f5f5f5;
+
+
+/* =========================================================
+   MARKET NAME
+========================================================= */
+
+.market-card-header {
+    width: 100%;
+    padding: 8px 10px;
+    background: #eeeeee;
+    text-align: left;
+    font-size: 13px;
+    border-bottom: 1px solid #ddd;
+}
+
+.market-card-header strong {
+    display: block;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   ODDS CONTAINER
+========================================================= */
+
+.market-bets {
+    /*width: 100%;*/
+
+    display: grid;
+
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(70px, 1fr)
+    );
+
+    gap: 6px;
+
+    padding: 4px;
+}
+
+
+/* =========================================================
+   ODD BUTTON
+========================================================= */
+
+.more-market-odd {
+    width: 100%;
+    min-height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    gap: 4px;
+    border: 1px solid #036;
+    border-radius: 5px;
+    background: #036;
+    cursor: pointer;
+    padding: 7px 5px;
+}
+
+
+/* =========================================================
+   BET LABEL
+========================================================= */
+
+.more-market-odd span {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    line-height: 16px;
+    white-space: normal;
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   ODD VALUE
+========================================================= */
+
+.more-market-odd strong {
+    display: block;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   SELECTED
+========================================================= */
+
+.more-market-odd.odd-selected {
+    border: 2px solid rgb(5,160,5);
+    
+    background: rgb(5,160,5);
+}
+
+
+/* =========================================================
+   LOCKED
+========================================================= */
+
+.more-market-odd.odd-locked {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   UNAVAILABLE
+========================================================= */
+
+.more-market-odd.odd-unavailable {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .more-markets-header {
+        padding: 8px;
+    }
+
+    .more-markets-teams {
+        grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr);
+
+        gap: 5px;
+
+        font-size: 14px;
+    }
+
+    .more-market-home {
+        padding-right: 8px;
+    }
+
+    .more-market-away {
+        padding-left: 8px;
+    }
+
+    .more-markets-content {
+        padding: 7px;
+    }
+
+    .market-card-header {
+        padding: 8px;
+
+        text-align: center;
+    }
+
+    .market-bets {
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 5px;
+
+        padding: 6px;
+    }
+
+    .more-market-odd {
+        min-height: 52px;
+    }
 
 }
-.more-market-odd strong{
-    font-size:13px;
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .more-markets-teams {
+        font-size: 13px;
+    }
+
+    .market-bets {
+        gap: 4px;
+    }
+
+    .more-market-odd {
+        min-height: 50px;
+
+        padding: 5px 3px;
+    }
+
+    .more-market-odd span {
+        font-size: 11px;
+    }
+
+    .more-market-odd strong {
+        font-size: 13px;
+    }
+
 }
-.more-market-odd.odd-selected{
-    background: #036;
-    border-color: #000;
+/* =========================================================
+   OVER / UNDER MARKET
+========================================================= */
+
+.over-under-market {
+    width: 100%;
+}
+
+
+/* =========================================================
+   COLUMN HEADERS
+========================================================= */
+
+.over-under-header {
+    display: grid;
+
+    grid-template-columns:
+        70px
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    align-items: center;
+
+    text-align: center;
+
+    background: #eeeeee;
+
+    border-bottom: 1px solid #ddd;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    padding: 8px 5px;
+}
+
+
+/* =========================================================
+   ROW
+========================================================= */
+
+.over-under-row {
+    display: grid;
+
+    grid-template-columns:
+        70px
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 5px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+/* =========================================================
+   LINE
+========================================================= */
+
+.over-under-line {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   OVER / UNDER CELL
+========================================================= */
+
+.over-under-cell {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   ODD BUTTON
+========================================================= */
+
+.over-under-cell .more-market-odd {
+    width: 100%;
+
+    min-height: 50px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 3px;
+
+    padding: 5px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 5px;
+
+    background: #f8f8f8;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.over-under-cell
+.more-market-odd span {
+    font-size: 11px;
+
+    line-height: 14px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   ODDS
+========================================================= */
+
+.over-under-cell
+.more-market-odd strong {
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   SELECTED
+========================================================= */
+
+.over-under-cell
+.more-market-odd.odd-selected {
+    border: 2px solid #2196f3;
+
+    background: #eaf4ff;
+}
+
+
+/* =========================================================
+   LOCKED
+========================================================= */
+
+.over-under-cell
+.more-market-odd.odd-locked {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   UNAVAILABLE
+========================================================= */
+
+.over-under-cell
+.more-market-odd.odd-unavailable {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .over-under-header {
+        grid-template-columns:
+            55px
+            minmax(0, 1fr)
+            minmax(0, 1fr);
+
+        padding: 7px 4px;
+
+        font-size: 10px;
+    }
+
+    .over-under-row {
+        grid-template-columns:
+            55px
+            minmax(0, 1fr)
+            minmax(0, 1fr);
+
+        gap: 4px;
+
+        padding: 4px;
+    }
+
+    .over-under-line {
+        font-size: 12px;
+    }
+
+    .over-under-cell
+    .more-market-odd {
+        min-height: 48px;
+
+        padding: 4px;
+    }
+
+    .over-under-cell
+    .more-market-odd span {
+        font-size: 10px;
+    }
+
+    .over-under-cell
+    .more-market-odd strong {
+        font-size: 13px;
+    }
 }

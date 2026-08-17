@@ -66,8 +66,6 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  margin-top: 20px;
-  border-radius: 10px;
 }
 
 h1,
