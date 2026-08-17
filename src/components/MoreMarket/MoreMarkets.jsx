@@ -336,16 +336,9 @@ const MoreMarkets = ({
               getMarketName(market) ||
               `Market ${marketId}`;
 
-            // =================================================
-            // CHECK OVER / UNDER MARKET
-            // =================================================
 
             const isOverUnder =
               String(marketId) === "4";
-
-            // =================================================
-            // GET OVER/UNDER LINES
-            // =================================================
 
             const overUnderLines =
               isOverUnder
@@ -367,20 +360,11 @@ const MoreMarkets = ({
                   )
                 : [];
 
-            // =================================================
-            // MARKET CARD
-            // =================================================
-
             return (
               <div
                 key={marketId}
                 className="market-card"
               >
-
-                {/* ==========================================
-                    MARKET NAME
-                ========================================== */}
-
                 <div className="market-card-header">
 
                   <strong>
