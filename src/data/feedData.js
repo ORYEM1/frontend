@@ -1204,16 +1204,6 @@ export const feedData = {
 
   },
 
-
-  
-
- 
-
-
-  // ============================================================
-  // ENGLAND
-  // ============================================================
-
   "England - Premier League": {
 
     "0": {
@@ -1335,11 +1325,6 @@ export const feedData = {
     },
   },
 
-
-  // ============================================================
-  // SPAIN
-  // ============================================================
-
   "Spain - La Liga": {
 
     "0": {
@@ -1400,42 +1385,169 @@ export const feedData = {
         },
 
         "4": {
-          cols: "2",
-          headers: "Over,Under",
-
-          bets: {
-            Over: {
-              id: "40610004",
-              event_id: "196100",
-              market_id: "4",
-              market_name: "Over/Under",
-              bet: "Over",
-              line: "2.5",
-              odds: "1.70",
-              locked: "0",
-            },
-
-            Under: {
-              id: "40610005",
-              event_id: "196100",
-              market_id: "4",
-              market_name: "Over/Under",
-              bet: "Under",
-              line: "2.5",
-              odds: "2.05",
-              locked: "0",
-            },
+        cols: "3",
+        headers: "Over,Under",
+              
+        bets: {
+          "Over 0.5": {
+            id: "40610001",
+            event_id: "196100",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Over",
+            line: "0.5",
+            odds: "1.10",
+            locked: "0",
+          },
+        
+          "Under 0.5": {
+            id: "40610002",
+            event_id: "196100",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Under",
+            line: "0.5",
+            odds: "6.50",
+            locked: "0",
+          },
+        
+          "Over 1.5": {
+            id: "40610003",
+            event_id: "196100",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Over",
+            line: "1.5",
+            odds: "1.35",
+            locked: "0",
+          },
+        
+          "Under 1.5": {
+            id: "40610004",
+            event_id: "196100",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Under",
+            line: "1.5",
+            odds: "3.20",
+            locked: "0",
+          },
+        
+          "Over 2.5": {
+            id: "40610005",
+            event_id: "196100",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Over",
+            line: "2.5",
+            odds: "1.70",
+            locked: "0",
+          },
+        
+          "Under 2.5": {
+            id: "40610006",
+            event_id: "196100",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Under",
+            line: "2.5",
+            odds: "2.05",
+            locked: "0",
+          },
+        
+          "Over 3.5": {
+            id: "40610007",
+            event_id: "196100",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Over",
+            line: "3.5",
+            odds: "2.10",
+            locked: "0",
+          },
+        
+          "Under 3.5": {
+            id: "40610008",
+            event_id: "196100",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Under",
+            line: "3.5",
+            odds: "1.65",
+            locked: "0",
+          },
+        
+          "Over 4.5": {
+            id: "40610009",
+            event_id: "196100",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Over",
+            line: "4.5",
+            odds: "2.80",
+            locked: "0",
+          },
+        
+          "Under 4.5": {
+            id: "40610010",
+            event_id: "196100",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Under",
+            line: "4.5",
+            odds: "1.40",
+            locked: "0",
+          },
+        
+          "Over 5.5": {
+            id: "40610011",
+            event_id: "196100",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Over",
+            line: "5.5",
+            odds: "3.50",
+            locked: "0",
+          },
+        
+          "Under 5.5": {
+            id: "40610012",
+            event_id: "196100",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Under",
+            line: "5.5",
+            odds: "1.25",
+            locked: "0",
+          },
+        
+          "Over 6.5": {
+            id: "40610013",
+            event_id: "196100",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Over",
+            line: "6.5",
+            odds: "4.20",
+            locked: "0",
+          },
+        
+          "Under 6.5": {
+            id: "40610014",
+            event_id: "196100",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Under",
+            line: "6.5",
+            odds: "1.15",
+            locked: "0",
           },
         },
+      },      
 
       },
     },
   },
-
-
-  // ============================================================
-  // GERMANY
-  // ============================================================
 
   "Germany - Bundesliga": {
 
@@ -1733,11 +1845,6 @@ export const feedData = {
     },
   },
 
-
-  // ============================================================
-  // NETHERLANDS
-  // ============================================================
-
   "Netherlands - Eredivisie": {
 
     "0": {
@@ -1800,11 +1907,6 @@ export const feedData = {
       },
     },
   },
-
-
-  // ============================================================
-  // BELGIUM
-  // ============================================================
 
   "Belgium - Pro League": {
 
@@ -1870,10 +1972,6 @@ export const feedData = {
   },
 
 
-  // ============================================================
-  // SCOTLAND
-  // ============================================================
-
   "Scotland - Premiership": {
 
     "0": {
@@ -1936,11 +2034,6 @@ export const feedData = {
       },
     },
   },
-
-
-  // ============================================================
-  // TURKEY
-  // ============================================================
 
   "Turkey - Super Lig": {
 
@@ -2005,11 +2098,6 @@ export const feedData = {
     },
   },
 
-
-  // ============================================================
-  // BRAZIL
-  // ============================================================
-
   "Brazil - Serie A": {
 
     "0": {
@@ -2072,11 +2160,6 @@ export const feedData = {
       },
     },
   },
-
-
-  // ============================================================
-  // ARGENTINA
-  // ============================================================
 
   "Argentina - Primera Division": {
 
@@ -2141,11 +2224,6 @@ export const feedData = {
     },
   },
 
-
-  // ============================================================
-  // SOUTH AFRICA
-  // ============================================================
-
   "South Africa - Premier Soccer League": {
 
     "0": {
@@ -2208,10 +2286,6 @@ export const feedData = {
       },
     },
   },
-
-
-
-
 
 
   "England - Championship": {

@@ -507,9 +507,6 @@ export const SportsProvider = ({ children }) => {
         .trim()
         .toLowerCase();
 
-    // ========================================================
-    // LOOP LEAGUES
-    // ========================================================
 
     Object.entries(
       feedData || {}

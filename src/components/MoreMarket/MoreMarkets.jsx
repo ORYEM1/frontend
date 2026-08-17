@@ -1,4 +1,3 @@
-
 import React from "react";
 import "./MoreMarkets.css";
 import { FaArrowLeft } from "react-icons/fa";
@@ -13,16 +12,8 @@ const MoreMarkets = ({
     return null;
   }
 
-  // ==========================================================
-  // GET MARKETS FROM FEED
-  // ==========================================================
 
   const markets = Object.entries(event.markets || {});
-
-  // ==========================================================
-  // SELECTED BET
-  // ==========================================================
-
   const selectedBet =
     selectedOdds?.[String(event.id)];
 
@@ -35,21 +26,17 @@ const MoreMarkets = ({
       return "";
     }
 
-    // Prefer market_name from the market itself
+    // Prefer market_name from market itself
     if (market.market_name) {
       return market.market_name;
     }
 
-    // If market name is not directly on market,
-    // get it from the first available bet.
+    // Otherwise get it from first bet
     const firstBet = Object.values(
       market.bets || {}
     )[0];
 
-    return (
-      firstBet?.market_name ||
-      ""
-    );
+    return firstBet?.market_name || "";
   };
 
   // ==========================================================
@@ -70,20 +57,195 @@ const MoreMarkets = ({
     const line =
       String(bet.line || "").trim();
 
-    /*
-     * Examples:
-     *
-     * Over + 2.5  -> Over 2.5
-     * Under + 1.5 -> Under 1.5
-     * Yes + ""    -> Yes
-     * 1/X + ""    -> 1/X
-     */
-
     if (line) {
       return `${betName} ${line}`;
     }
 
     return betName;
+  };
+
+  // ==========================================================
+  // HANDLE ODD SELECTION
+  // ==========================================================
+
+  const handleOddSelect = (
+    bet,
+    marketId,
+    marketName,
+    betLabel
+  ) => {
+    if (!bet) {
+      return;
+    }
+
+    const isLocked =
+      String(bet.locked) === "1";
+
+    const isBlocked =
+      String(bet.blocked) === "1";
+
+    if (isLocked || isBlocked) {
+      return;
+    }
+
+    // ========================================================
+    // BUILD COMPLETE SELECTION
+    // ========================================================
+
+    const selection = {
+      ...bet,
+
+      // Bet information
+      id: bet.id,
+
+      odds: bet.odds,
+
+      label: betLabel,
+
+      bet: bet.bet,
+
+      line: bet.line || "",
+
+      // Market information
+      marketId: String(marketId),
+
+      market: marketName,
+
+      marketName: marketName,
+
+      market_name: marketName,
+
+      // Event information
+      eventId: event.id,
+
+      home: event.home,
+
+      away: event.away,
+
+      league: event.league,
+
+      sport: event.sport,
+
+      kickoff_time: event.kickoff_time,
+
+      eventDate: event.date,
+    };
+
+    onOddSelect?.(selection);
+  };
+
+  // ==========================================================
+  // CHECK SELECTED
+  // ==========================================================
+
+  const isBetSelected = (bet) => {
+    return (
+      String(selectedBet?.id) ===
+      String(bet?.id)
+    );
+  };
+
+  // ==========================================================
+  // RENDER NORMAL ODD
+  // ==========================================================
+
+  const renderOdd = ({
+    bet,
+    marketId,
+    marketName,
+    betLabel,
+    key,
+  }) => {
+    // --------------------------------------------------------
+    // BET DOES NOT EXIST
+    // --------------------------------------------------------
+
+    if (!bet) {
+      return (
+        <button
+          key={key}
+          type="button"
+          className="
+            more-market-odd
+            odd-unavailable
+          "
+          disabled
+        >
+          <span>
+            {betLabel}
+          </span>
+
+          <strong>
+            -
+          </strong>
+        </button>
+      );
+    }
+
+    // --------------------------------------------------------
+    // STATUS
+    // --------------------------------------------------------
+
+    const isSelected =
+      isBetSelected(bet);
+
+    const isLocked =
+      String(bet.locked) === "1";
+
+    const isBlocked =
+      String(bet.blocked) === "1";
+
+    // --------------------------------------------------------
+    // CLICK
+    // --------------------------------------------------------
+
+    const handleClick = () => {
+      handleOddSelect(
+        bet,
+        marketId,
+        marketName,
+        betLabel
+      );
+    };
+
+    // --------------------------------------------------------
+    // BUTTON
+    // --------------------------------------------------------
+
+    return (
+      <button
+        key={key}
+        type="button"
+        className={`
+          more-market-odd
+
+          ${
+            isSelected
+              ? "odd-selected"
+              : ""
+          }
+
+          ${
+            isLocked || isBlocked
+              ? "odd-locked"
+              : ""
+          }
+        `}
+        disabled={
+          isLocked ||
+          isBlocked
+        }
+        onClick={handleClick}
+      >
+        <span>
+          {betLabel}
+        </span>
+
+        <strong>
+          {bet.odds}
+        </strong>
+      </button>
+    );
   };
 
   // ==========================================================
@@ -117,6 +279,10 @@ const MoreMarkets = ({
             {event.league}
           </div>
 
+          {/* ==================================================
+              TEAMS
+          ================================================== */}
+
           <div className="more-markets-teams">
 
             <div className="more-market-home">
@@ -138,7 +304,6 @@ const MoreMarkets = ({
           </div>
 
         </div>
-
       </div>
 
       {/* ====================================================
@@ -151,32 +316,60 @@ const MoreMarkets = ({
           ([marketId, market]) => {
 
             // =================================================
-            // MARKET HEADERS
+            // MARKET DATA
             // =================================================
 
             const headers =
               market.headers
                 ? market.headers
                     .split(",")
-                    .map((item) =>
-                      item.trim()
+                    .map(
+                      (item) =>
+                        item.trim()
                     )
                 : [];
-
-            // =================================================
-            // BETS
-            // =================================================
 
             const bets =
               market.bets || {};
 
-            // =================================================
-            // MARKET NAME
-            // =================================================
-
             const marketName =
               getMarketName(market) ||
               `Market ${marketId}`;
+
+            // =================================================
+            // CHECK OVER / UNDER MARKET
+            // =================================================
+
+            const isOverUnder =
+              String(marketId) === "4";
+
+            // =================================================
+            // GET OVER/UNDER LINES
+            // =================================================
+
+            const overUnderLines =
+              isOverUnder
+                ? [
+                    ...new Set(
+                      Object.values(bets)
+                        .map(
+                          (bet) =>
+                            String(
+                              bet.line || ""
+                            ).trim()
+                        )
+                        .filter(Boolean)
+                    ),
+                  ].sort(
+                    (a, b) =>
+                      parseFloat(a) -
+                      parseFloat(b)
+                  )
+                : [];
+
+            // =================================================
+            // MARKET CARD
+            // =================================================
 
             return (
               <div
@@ -196,215 +389,136 @@ const MoreMarkets = ({
 
                 </div>
 
-                {/* ==========================================
-                    MARKET ODDS
-                ========================================== */}
+                {/* =================================================
+                    OVER / UNDER
+                ================================================= */}
 
-                <div className="market-bets">
+                {isOverUnder ? (
 
-                  {headers.map(
-                    (header) => {
+                  <div className="over-under-market">
 
-                      const bet =
-                        bets[header];
+                    {/* =========================================
+                        COLUMN HEADERS
+                    ========================================= */}
 
-                      // =====================================
-                      // BET DOES NOT EXIST
-                      // =====================================
+                    <div className="over-under-header">
 
-                      if (!bet) {
+                      <div>
+                        
+                      </div>
+
+                      <div>
+                        OVER
+                      </div>
+
+                      <div>
+                        UNDER
+                      </div>
+
+                    </div>
+
+                    {/* =========================================
+                        LINES
+                    ========================================= */}
+
+                    {overUnderLines.map(
+                      (line) => {
+
+                        const overBet =
+                          bets[
+                            `Over ${line}`
+                          ];
+
+                        const underBet =
+                          bets[
+                            `Under ${line}`
+                          ];
 
                         return (
-                          <button
-                            key={header}
-                            type="button"
-                            className="
-                              more-market-odd
-                              odd-unavailable
-                            "
-                            disabled
+                          <div
+                            key={line}
+                            className="over-under-row"
                           >
-                            <span>
-                              {header}
-                            </span>
 
-                            <strong>
-                              -
-                            </strong>
-                          </button>
+                            {/* ==========================
+                                LINE
+                            ========================== */}
+
+                            <div className="over-under-line">
+                              {line}
+                            </div>
+
+                            {/* ==========================
+                                OVER
+                            ========================== */}
+
+                            <div className="over-under-cell">
+
+                              {renderOdd({
+                                bet: overBet,
+                                marketId,
+                                marketName,
+                                betLabel: "Over",
+                                key: `over-${line}`,
+                              })}
+
+                            </div>
+
+                            {/* ==========================
+                                UNDER
+                            ========================== */}
+
+                            <div className="over-under-cell">
+
+                              {renderOdd({
+                                bet: underBet,
+                                marketId,
+                                marketName,
+                                betLabel: "Under",
+                                key: `under-${line}`,
+                              })}
+
+                            </div>
+
+                          </div>
                         );
                       }
+                    )}
 
-                      // =====================================
-                      // BET LABEL
-                      // =====================================
+                  </div>
 
-                      const betLabel =
-                        getBetLabel(
-                          bet,
-                          header
-                        );
+                ) : (
 
-                      // =====================================
-                      // SELECTED
-                      // =====================================
+                  /* =================================================
+                     NORMAL MARKETS
+                  ================================================= */
 
-                      const isSelected =
-                        String(
-                          selectedBet?.id
-                        ) ===
-                        String(bet.id);
+                  <div className="market-bets">
 
-                      // =====================================
-                      // LOCKED
-                      // =====================================
+                    {headers.map(
+                      (header) => {
 
-                      const isLocked =
-                        String(
-                          bet.locked
-                        ) === "1";
+                        const bet =
+                          bets[header];
 
-                      // =====================================
-                      // BLOCKED
-                      // =====================================
-
-                      const isBlocked =
-                        String(
-                          bet.blocked
-                        ) === "1";
-
-                      // =====================================
-                      // CLICK
-                      // =====================================
-
-                      const handleOddClick =
-                        () => {
-
-                          if (
-                            isLocked ||
-                            isBlocked
-                          ) {
-                            return;
-                          }
-
-                          /*
-                           * Build a complete selection.
-                           *
-                           * IMPORTANT:
-                           * marketId and marketName
-                           * come from the CURRENT market,
-                           * not from the event.
-                           */
-
-                          const selection = {
-
-                            ...bet,
-
-                            // Bet information
-                            id: bet.id,
-
-                            odds:
-                              bet.odds,
-
-                            label:
-                              betLabel,
-
-                            bet:
-                              bet.bet,
-
-                            line:
-                              bet.line || "",
-
-                            // Market information
-                            marketId:
-                              String(
-                                marketId
-                              ),
-
-                            market:
-                              marketName,
-
-                            marketName:
-                              marketName,
-
-                            market_name:
-                              marketName,
-
-                            // Event information
-                            eventId:
-                              event.id,
-
-                            home:
-                              event.home,
-
-                            away:
-                              event.away,
-
-                            league:
-                              event.league,
-
-                            sport:
-                              event.sport,
-
-                            kickoff_time:
-                              event.kickoff_time,
-
-                            eventDate:
-                              event.date,
-                          };
-
-                          onOddSelect?.(
-                            selection
+                        const betLabel =
+                          getBetLabel(
+                            bet,
+                            header
                           );
-                        };
 
-                      // =====================================
-                      // RENDER BET
-                      // =====================================
+                        return renderOdd({
+                          bet,
+                          marketId,
+                          marketName,
+                          betLabel,
+                          key: header,
+                        });
+                      }
+                    )}
 
-                      return (
-                        <button
-                          key={header}
-                          type="button"
-                          className={`
-                            more-market-odd
-
-                            ${
-                              isSelected
-                                ? "odd-selected"
-                                : ""
-                            }
-
-                            ${
-                              isLocked ||
-                              isBlocked
-                                ? "odd-locked"
-                                : ""
-                            }
-                          `}
-                          disabled={
-                            isLocked ||
-                            isBlocked
-                          }
-                          onClick={
-                            handleOddClick
-                          }
-                        >
-
-                          <span>
-                            {betLabel}
-                          </span>
-
-                          <strong>
-                            {bet.odds}
-                          </strong>
-
-                        </button>
-                      );
-                    }
-                  )}
-
-                </div>
+                  </div>
+                )}
 
               </div>
             );
@@ -418,4 +532,3 @@ const MoreMarkets = ({
 };
 
 export default MoreMarkets;
-
