@@ -1543,7 +1543,51 @@ export const feedData = {
             locked: "0",
           },
         },
-      },      
+      },  
+      "6": {
+
+          cols: "3",
+          headers: "1/X,1/2,X/2",
+
+          bets: {
+
+            "1X": {
+              id: "406100010",
+              event_id: "196100",
+              market_id: "6",
+              market_name: "Double Chance",
+              bet: "1/X",
+              line: "",
+              odds: "1.40",
+              locked: "0",
+            },
+
+            "12": {
+              id: "406100011",
+              event_id: "196100",
+              market_id: "6",
+              market_name: "Double Chance",
+              bet: "1/2",
+              line: "",
+              odds: "1.25",
+              locked: "0",
+            },
+
+            "X2": {
+              id: "406100012",
+              event_id: "196100",
+              market_id: "6",
+              market_name: "Double Chance",
+              bet: "X/2",
+              line: "",
+              odds: "1.30",
+              locked: "0",
+            },
+
+          },
+        },
+      
+      
 
       },
     },
