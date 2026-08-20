@@ -7,7 +7,7 @@ import PageHeader from "./components/PageHeader/PageHeader.jsx";
 import LeaguePanel from "./components/LeaguePanel/LeaguePanel.jsx";
 import EventsPage from "./pages/EventsPage/EventsPage.jsx";
 import Betslips from "./components/Betslips/Betslips.jsx";
-import Footer from "./components/Footer/Footer.jsx";
+
 import authFormSchemas from "./data/authFormSchemas.js";
 import GenericForm from "./components/GenericForm/GenericForm.jsx";
 
@@ -70,7 +70,7 @@ function App() {
 
         </div>
 
-        <Footer />
+        
 
       </div>
 

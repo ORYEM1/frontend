@@ -5,12 +5,9 @@ import {
   useState,
 } from "react";
 import { FaChevronDown,FaChevronRight } from "react-icons/fa";
-
 import { useSports } from "../../contexts/SportsContext.jsx";
 import { feedData } from "../../data/feedData.js";
-
 import CountryFlag from "../CountryFlag/CountryFlag.jsx";
-
 import "./LeaguePanel.css";
 
 const LeaguePanel = () => {
@@ -88,16 +85,9 @@ const LeaguePanel = () => {
         // ====================================================
 
         grouped[region].leagues.push({
-          // Original feed name
           name: leagueName,
-
-          // Display name
           displayName,
-
-          // Region
           region,
-
-          // Number of events
           events: sportEvents.length,
         });
 

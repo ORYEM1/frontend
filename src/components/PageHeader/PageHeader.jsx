@@ -1,5 +1,5 @@
 import {
-  NavLink,
+  NavLink,Link
 } from "react-router-dom";
 
 import {
@@ -62,10 +62,11 @@ const PageHeader = () => {
     <header className="sports-header">
       <div className="sports-header-top">
         <div className="sports-logo">
-
+          <Link to={'/'}>
           <strong>
             <img src="/logo.webp" alt="Logo" />
           </strong>
+          </Link>
 
         </div>
 

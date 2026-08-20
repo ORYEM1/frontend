@@ -4,9 +4,14 @@
 
 .events-page {
   width: 100%;
+  height: 100vh;
+
   min-width: 0;
+  min-height: 0;
+
   display: flex;
   flex-direction: column;
+
   overflow: hidden;
 }
 
@@ -16,19 +21,28 @@
 ============================================================ */
 
 .event-category-menu {
+
   flex-shrink: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: 100%;
   min-height: 45px;
+
   padding: 0 12px;
   gap: 6px;
+
   background: #ffffff;
+
   border-bottom: 1px solid #e5e5e5;
+
   overflow-x: auto;
   overflow-y: hidden;
+
   scrollbar-width: none;
+
   box-sizing: border-box;
 }
 
@@ -42,20 +56,34 @@
 ============================================================ */
 
 .event-category-menu button {
+
   flex-shrink: 0;
+
   height: 34px;
+
   padding: 0 16px;
+
   border: none;
   border-radius: 6px;
+
   background: transparent;
+
   color: #555;
+
   font-size: 14px;
   font-weight: 500;
+
   cursor: pointer;
+
   transition:
     background-color 0.2s ease,
     color 0.2s ease;
 }
+
+
+/* ============================================================
+   MENU ICONS
+============================================================ */
 
 .menu-icon {
   font-size: 18px;
@@ -79,22 +107,27 @@
 
 
 /* ============================================================
-   HOVER
+   CATEGORY HOVER
 ============================================================ */
 
 .event-category-menu button:hover {
+
   background: #444;
+
   color: #f90;
 }
 
 
 /* ============================================================
-   ACTIVE
+   CATEGORY ACTIVE
 ============================================================ */
 
 .event-category-menu button.active {
+
   background: #444;
+
   color: #f90;
+
   font-weight: 600;
 }
 
@@ -104,9 +137,15 @@
 ============================================================ */
 
 .events-page-header {
+
+  flex-shrink: 0;
+
   width: 100%;
+
   background: #ffffff;
+
   border-bottom: 1px solid #ddd;
+
   box-sizing: border-box;
 }
 
@@ -116,17 +155,26 @@
 ============================================================ */
 
 .market-header {
+
   display: flex;
+
   align-items: center;
+
   min-height: 48px;
+
   padding: 0 15px;
+
   box-sizing: border-box;
 }
 
 .market-header h3 {
+
   margin: 0;
+
   font-size: 16px;
+
   font-weight: 600;
+
   color: #fff;
 }
 
@@ -136,11 +184,17 @@
 ============================================================ */
 
 .filters {
+
   display: flex;
+
   align-items: center;
+
   gap: 8px;
+
   width: 100%;
+
   padding: 10px 15px;
+
   box-sizing: border-box;
 }
 
@@ -151,13 +205,21 @@
 
 .date-filter,
 .market-filter {
+
   height: 36px;
+
   padding: 0 10px;
+
   border: 1px solid #d5d5d5;
+
   border-radius: 4px;
+
   background: #ffffff;
+
   font-size: 13px;
+
   cursor: pointer;
+
   box-sizing: border-box;
 }
 
@@ -175,32 +237,50 @@
 ============================================================ */
 
 .search-wrapper {
+
   position: relative;
+
   display: flex;
+
   align-items: center;
+
   flex: 1;
+
   min-width: 180px;
 }
 
 .search-icon {
+
   position: absolute;
+
   left: 10px;
+
   font-size: 13px;
+
   color: #777;
 }
 
 .search-input {
+
   width: 100%;
+
   height: 36px;
+
   box-sizing: border-box;
+
   padding: 0 35px;
+
   border: 1px solid #d5d5d5;
+
   border-radius: 4px;
+
   outline: none;
+
   font-size: 13px;
 }
 
 .search-input:focus {
+
   border-color: #999;
 }
 
@@ -210,13 +290,21 @@
 ============================================================ */
 
 .clear-search {
+
   position: absolute;
+
   right: 8px;
+
   border: none;
+
   background: transparent;
+
   font-size: 20px;
+
   line-height: 1;
+
   color: #777;
+
   cursor: pointer;
 }
 
@@ -226,18 +314,30 @@
 ============================================================ */
 
 .search-button {
+
   display: flex;
+
   align-items: center;
   justify-content: center;
+
   gap: 7px;
+
   height: 36px;
+
   padding: 0 15px;
+
   border: none;
+
   border-radius: 4px;
+
   background: #333;
+
   color: #ffffff;
+
   font-size: 13px;
+
   cursor: pointer;
+
   box-sizing: border-box;
 }
 
@@ -251,13 +351,21 @@
 ============================================================ */
 
 .clear-league-button {
+
   height: 36px;
+
   padding: 0 14px;
+
   border: 1px solid #ccc;
+
   border-radius: 4px;
+
   background: #ffffff;
+
   font-size: 13px;
+
   cursor: pointer;
+
   box-sizing: border-box;
 }
 
@@ -271,8 +379,99 @@
 ============================================================ */
 
 .events-page-content {
+
+  position: relative;
+
   width: 100%;
+
+  flex: 1;
+
   min-width: 0;
+  min-height: 0;
+
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   EVENTS VIEW
+============================================================ */
+
+.events-view {
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  overflow: hidden;
+
+  transform: translateX(0);
+
+  opacity: 1;
+
+  transition:
+    transform 0.5s ease,
+    opacity 0.2s ease;
+}
+
+
+/* ============================================================
+   MORE MARKETS VIEW
+============================================================ */
+
+.more-markets-view {
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  transform: translateX(50px);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    transform 0.5s ease,
+    opacity 0.2s ease;
+}
+
+
+/* ============================================================
+   SHOW MORE MARKETS
+============================================================ */
+
+.events-page-content.show-more-markets
+.events-view {
+
+  transform: translateX(-50px);
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+
+.events-page-content.show-more-markets
+.more-markets-view {
+
+  transform: translateX(0);
+
+  opacity: 1;
+
+  pointer-events: auto;
 }
 
 
@@ -282,22 +481,13 @@
 
 @media (max-width: 1024px) {
 
-  .event-category-menu {
-    justify-content: flex-start;
-  }
-
-  .event-category-menu button {
-    padding: 0 12px;
-    font-size: 13px;
-  }
-
   .filters {
     gap: 6px;
     padding: 8px 10px;
   }
 
   .date-filter {
-    width: 100px;
+    width: 95px;
   }
 
   .market-filter {
@@ -305,17 +495,12 @@
   }
 
   .search-wrapper {
-    min-width: 150px;
+    min-width: 140px;
   }
 
   .search-button {
     padding: 0 12px;
   }
-
-  .clear-league-button {
-    padding: 0 10px;
-  }
-
 }
 
 
@@ -323,54 +508,39 @@
    MOBILE
 ============================================================ */
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
 
   .events-page {
-    width: 100%;
-    min-width: 0;
-    overflow-x: hidden;
+    height: 100vh;
   }
 
-
-  /* ==========================================================
-     CATEGORY MENU
-  ========================================================== */
-
   .event-category-menu {
-    width: 100%;
-    min-height: 45px;
+
     justify-content: flex-start;
-    padding: 5px 8px;
-    gap: 5px;
-    overflow-x: auto;
+
+    min-height: 44px;
+
+    padding: 0 6px;
   }
 
   .event-category-menu button {
+
     height: 34px;
+
     padding: 0 12px;
-    font-size: 12px;
+
+    font-size: 13px;
   }
-
-  .menu-icon {
-    font-size: 16px;
-  }
-
-
-  /* ==========================================================
-     PAGE HEADER
-  ========================================================== */
 
   .events-page-header {
-    width: 100%;
+
+    flex-shrink: 0;
   }
 
-
-  /* ==========================================================
-     MARKET HEADER
-  ========================================================== */
-
   .market-header {
+
     min-height: 42px;
+
     padding: 0 10px;
   }
 
@@ -378,77 +548,46 @@
     font-size: 14px;
   }
 
-
-  /* ==========================================================
-     FILTERS
-  ========================================================== */
-
   .filters {
+
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    width: 100%;
-    padding: 10px;
+
+    grid-template-columns:
+      1fr 1fr;
+
+    gap: 6px;
+
+    padding: 8px;
   }
 
-  .date-filter {
-    width: 100%;
-    min-width: 0;
-  }
-
+  .date-filter,
   .market-filter {
+
     width: 100%;
-    min-width: 0;
   }
-
-
-  /* ==========================================================
-     SEARCH
-  ========================================================== */
 
   .search-wrapper {
+
     width: 100%;
+
     min-width: 0;
-    grid-column: 1 / -1;
+
+    grid-column: 1 / 3;
   }
-
-  .search-input {
-    width: 100%;
-  }
-
-
-  /* ==========================================================
-     SEARCH BUTTON
-  ========================================================== */
 
   .search-button {
+
     width: 100%;
-    min-height: 36px;
-    grid-column: 1 / -1;
+
+    grid-column: 1 / 3;
   }
-
-
-  /* ==========================================================
-     ALL LEAGUES
-  ========================================================== */
 
   .clear-league-button {
+
     width: 100%;
-    min-height: 36px;
-    grid-column: 1 / -1;
+
+    grid-column: 1 / 3;
   }
-
-
-  /* ==========================================================
-     EVENT CONTENT
-  ========================================================== */
-
-  .events-page-content {
-    width: 100%;
-    min-width: 0;
-    overflow-x: auto;
-  }
-
 }
 
 
@@ -458,53 +597,19 @@
 
 @media (max-width: 480px) {
 
-  .event-category-menu {
-    min-height: 42px;
-    padding: 4px 6px;
-  }
-
   .event-category-menu button {
-    height: 32px;
+
     padding: 0 10px;
-    font-size: 11px;
-  }
 
-  .menu-icon {
-    font-size: 15px;
-  }
-
-
-  /* ==========================================================
-     MARKET HEADER
-  ========================================================== */
-
-  .market-header {
-    min-height: 40px;
-    padding: 0 8px;
+    font-size: 12px;
   }
 
   .market-header h3 {
     font-size: 13px;
   }
 
-
-  /* ==========================================================
-     FILTERS
-  ========================================================== */
-
   .filters {
-    grid-template-columns: 1fr;
-    padding: 8px;
-    gap: 7px;
-  }
-
-  .date-filter,
-  .market-filter,
-  .search-wrapper,
-  .search-button,
-  .clear-league-button {
-    width: 100%;
-    grid-column: auto;
+    padding: 6px;
   }
 
   .date-filter,
@@ -512,18 +617,6 @@
   .search-input,
   .search-button,
   .clear-league-button {
-    min-height: 36px;
+    height: 34px;
   }
-
-
-  /* ==========================================================
-     EVENT CONTENT
-  ========================================================== */
-
-  .events-page-content {
-    width: 100%;
-    min-width: 0;
-    overflow-x: auto;
-  }
-
 }

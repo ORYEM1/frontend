@@ -86,7 +86,8 @@
 ============================================================ */
 
 .betslip-content {
-  padding: 12px;
+  padding: 10px;
+  border: 1px solid #ddd;
 }
 
 
@@ -124,7 +125,7 @@
 .bets-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 1px;
 }
 
 
@@ -147,9 +148,12 @@
 }
 
 .bet-event {
+  display: grid;
+  gap: 10px;
   font-size: 13px;
   font-weight: 600;
   line-height: 1.4;
+  cursor: pointer;
 }
 
 .remove-bet {
@@ -175,12 +179,14 @@
   margin-top: 4px;
   font-size: 11px;
   color: #8a8f98;
-}.bet-teams {
+}
+.bet-teams {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
   gap: 10px;
-  line-height: 1.4;
-  color: #000;
 }
 
 .bet-teams strong {
