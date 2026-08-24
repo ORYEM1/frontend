@@ -10,7 +10,6 @@ import { useEffect, useRef } from "react";
 
 import EventBoard from "../../components/EventBoard/EventBoard.jsx";
 import MoreMarkets from "../../components/MoreMarket/MoreMarkets.jsx";
-
 import { useSports } from "../../contexts/SportsContext.jsx";
 
 import "./EventsPage.css";
@@ -455,6 +454,7 @@ const EventsPage = () => {
         </div>
 
       </div>
+       
 
     </section>
 
