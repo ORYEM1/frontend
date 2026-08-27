@@ -1,8 +1,14 @@
+/* ==========================================================
+   MARKETS
+   ========================================================== */
+
 .markets {
   width: 100%;
+
   display: flex;
   flex-direction: column;
-  gap: 10px;
+
+  gap: 8px;
 }
 
 
@@ -12,27 +18,50 @@
 
 .market-card {
   width: 100%;
+
   background: #fff;
+
   border: 1px solid #e5e5e5;
   border-radius: 6px;
+
   overflow: hidden;
+  margin: auto;
+  position: relative;
 }
 
 
 /* ==========================================================
-   MARKET HEADER
+   ACCORDION HEADER
    ========================================================== */
 
 .market-card-header {
-  min-height: 42px;
+  width: 100%;
+  min-height: 45px;
+
   padding: 10px 14px;
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
+
+  border: none;
+  border-bottom: 1px solid #e5e5e5;
 
   background: #f5f5f5;
-  border-bottom: 1px solid #e5e5e5;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  transition:
+    background 0.15s ease;
 }
+
+
+.market-card-header:hover {
+  background: #eeeeee;
+}
+
 
 .market-card-header strong {
   font-size: 14px;
@@ -41,17 +70,80 @@
 
 
 /* ==========================================================
+   ACCORDION ARROW
+   ========================================================== */
+
+.market-accordion-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 11px;
+
+  transition:
+    transform 0.25s ease;
+}
+
+
+.market-accordion-icon.open {
+  transform: rotate(180deg);
+}
+
+
+/* ==========================================================
+   ACCORDION CONTENT
+   ========================================================== */
+
+.market-card-content {
+  width: 100%;
+
+  max-height: 0;
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transition:
+    max-height 0.3s ease,
+    opacity 0.2s ease,
+    visibility 0s linear 0.3s;
+}
+
+
+.market-card-content.open {
+  max-height: 2000px;
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transition:
+    max-height 0.3s ease,
+    opacity 0.2s ease,
+    visibility 0s linear 0s;
+}
+
+
+/* ==========================================================
    NORMAL BETS
    ========================================================== */
 
 .market-bets {
+  width: 100%;
+
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(150px, 1fr)
-  );
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(150px, 1fr)
+    );
 
   gap: 8px;
+
   padding: 10px;
 }
 
@@ -64,6 +156,7 @@
   min-height: 44px;
 
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
@@ -83,38 +176,55 @@
     border-color 0.15s ease;
 }
 
+
 .market-odd:hover {
   background: #f0f0f0;
 }
 
+
 .market-odd span {
   font-size: 13px;
+
   text-align: left;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+
 .market-odd strong {
+  flex-shrink: 0;
+
   font-size: 14px;
 }
 
 
 /* ==========================================================
-   SELECTED
+   SELECTED ODD
    ========================================================== */
 
 .market-odd.odd-selected {
   border-color: #2196f3;
+
   background: #eaf4ff;
 }
 
 
 /* ==========================================================
-   LOCKED
+   LOCKED / UNAVAILABLE
    ========================================================== */
 
 .market-odd.odd-locked,
 .market-odd.odd-unavailable {
   opacity: 0.5;
+
   cursor: not-allowed;
+}
+
+
+.market-odd.odd-locked:hover,
+.market-odd.odd-unavailable:hover {
+  background: #fafafa;
 }
 
 
@@ -123,24 +233,37 @@
    ========================================================== */
 
 .market-line-market {
+  width: 100%;
+
   display: flex;
   flex-direction: column;
 }
 
 
+/* ==========================================================
+   LINE ROW
+   ========================================================== */
+
 .market-line-row {
   display: grid;
-  grid-template-columns: 80px 1fr;
+
+  grid-template-columns:
+    80px 1fr;
 
   align-items: center;
 
   border-bottom: 1px solid #eee;
 }
 
+
 .market-line-row:last-child {
   border-bottom: none;
 }
 
+
+/* ==========================================================
+   LINE
+   ========================================================== */
 
 .market-line {
   padding: 10px;
@@ -151,6 +274,10 @@
   text-align: center;
 }
 
+
+/* ==========================================================
+   LINE OPTIONS
+   ========================================================== */
 
 .market-line-options {
   display: grid;
@@ -172,6 +299,8 @@
    ========================================================== */
 
 .markets-empty {
+  width: 100%;
+
   padding: 30px;
 
   text-align: center;
@@ -191,22 +320,75 @@
 
 @media (max-width: 600px) {
 
-  .market-bets {
-    grid-template-columns:
-      repeat(2, 1fr);
+  /* --------------------------------------------------------
+     MARKETS
+     -------------------------------------------------------- */
 
-    padding: 8px;
+  .markets {
     gap: 6px;
   }
 
 
+  /* --------------------------------------------------------
+     MARKET CARD
+     -------------------------------------------------------- */
+
+  .market-card {
+    border-radius: 5px;
+  }
+
+
+  /* --------------------------------------------------------
+     ACCORDION HEADER
+     -------------------------------------------------------- */
+
+  .market-card-header {
+    min-height: 43px;
+
+    padding: 9px 12px;
+  }
+
+
+  .market-card-header strong {
+    font-size: 13px;
+  }
+
+
+  .market-accordion-icon {
+    font-size: 10px;
+  }
+
+
+  /* --------------------------------------------------------
+     NORMAL BETS
+     -------------------------------------------------------- */
+
+  .market-bets {
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 6px;
+
+    padding: 8px;
+  }
+
+
+  /* --------------------------------------------------------
+     ODD BUTTON
+     -------------------------------------------------------- */
+
   .market-odd {
     min-height: 42px;
+
     padding: 7px 9px;
+
+    gap: 6px;
   }
 
 
   .market-odd span {
+    min-width: 0;
+
     font-size: 12px;
   }
 
@@ -216,17 +398,49 @@
   }
 
 
+  /* --------------------------------------------------------
+     LINE ROW
+     -------------------------------------------------------- */
+
   .market-line-row {
-    grid-template-columns: 55px 1fr;
+    grid-template-columns:
+      55px 1fr;
   }
 
+
+  /* --------------------------------------------------------
+     LINE
+     -------------------------------------------------------- */
+
+  .market-line {
+    padding: 8px 4px;
+
+    font-size: 12px;
+  }
+
+
+  /* --------------------------------------------------------
+     LINE OPTIONS
+     -------------------------------------------------------- */
 
   .market-line-options {
     grid-template-columns:
       repeat(2, 1fr);
 
     gap: 5px;
+
     padding: 6px;
+  }
+
+
+  /* --------------------------------------------------------
+     EMPTY
+     -------------------------------------------------------- */
+
+  .markets-empty {
+    padding: 25px 15px;
+
+    font-size: 13px;
   }
 
 }
