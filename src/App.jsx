@@ -1,5 +1,9 @@
 
-import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 import { SportsProvider } from "./contexts/SportsContext.jsx";
 
@@ -13,73 +17,144 @@ import GenericForm from "./components/GenericForm/GenericForm.jsx";
 
 import "./App.css";
 
+
+// ============================================================
+// AUTH FORM ROUTE
+// ============================================================
+
 function AuthFormRoute({ formType }) {
+
   const formConfig = authFormSchemas[formType];
 
   return (
     <div className="auth-form-page">
+
       <GenericForm
         requestContext={formConfig}
         submitLabel={formConfig.submitLabel}
       />
+
     </div>
   );
 }
 
-function App() {
 
- return (
-  <SportsProvider>
+// ============================================================
+// BETTING LAYOUT
+// ============================================================
 
-    <Router>
+function BettingLayout() {
 
-      <div className="app">
+  return (
+    <div className="app">
 
-        <PageHeader />
+      <PageHeader />
 
-        <div className="sports-layout">
+      <div className="sports-layout">
 
-          <section className="league-section">
-            <LeaguePanel />
-          </section>
+        {/* ==================================================
+            LEFT SIDE - LEAGUES
+        ================================================== */}
 
-          <main className="events-section">
-            <Routes>
+        <section className="league-section">
 
-              <Route
-                path="/"
-                element={<EventsPage />}
-              />
+          <LeaguePanel />
 
-              <Route
-                path="/register"
-                element={<AuthFormRoute formType="register" />}
-              />
+        </section>
 
-              <Route
-                path="/login"
-                element={<AuthFormRoute formType="login" />}
-              />
 
-            </Routes>
-          </main>
+        {/* ==================================================
+            CENTER - EVENTS / PAGES
+        ================================================== */}
 
-          <aside className="betslip-section">
-            <Betslips />
-          </aside>
+        <main className="events-section">
 
-        </div>
+          <Routes>
 
-        
+            <Route
+              path="/"
+              element={<EventsPage />}
+            />
+
+          </Routes>
+
+        </main>
+
+
+        {/* ==================================================
+            RIGHT SIDE - BETSLIP
+        ================================================== */}
+
+        <aside className="betslip-section">
+
+          <Betslips />
+
+        </aside>
 
       </div>
 
-    </Router>
+    </div>
+  );
+}
 
-  </SportsProvider>
-);
 
+// ============================================================
+// MAIN APP
+// ============================================================
+
+function App() {
+
+  return (
+
+    <SportsProvider>
+
+      <Router>
+
+        <Routes>
+
+          {/* ==================================================
+              AUTHENTICATION PAGES
+          ================================================== */}
+
+          <Route
+            path="/login"
+            element={
+              <AuthFormRoute
+                formType="login"
+              />
+            }
+          />
+
+          <Route
+            path="/register"
+            element={
+              <AuthFormRoute
+                formType="register"
+              />
+            }
+          />
+
+
+          {/* ==================================================
+              BETTING APPLICATION
+          ================================================== */}
+
+          <Route
+            path="/*"
+            element={
+              <BettingLayout />
+            }
+          />
+
+        </Routes>
+
+      </Router>
+
+    </SportsProvider>
+
+  );
 }
 
 
 export default App;
+

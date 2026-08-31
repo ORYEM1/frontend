@@ -1,7 +1,9 @@
+
 import React from "react";
 import { FaArrowLeft } from "react-icons/fa";
 
 import Markets from "../Markets/Markets.jsx";
+import Footer from "../Footer/Footer.jsx";
 
 import "./MoreMarkets.css";
 
@@ -79,14 +81,26 @@ const MoreMarkets = ({
           MARKETS
       ===================================================== */}
 
-      <Markets
-        event={event}
-        selectedOdds={selectedOdds}
-        onOddSelect={onOddSelect}
-      />
+      <div className="more-markets-content">
+
+        <Markets
+          event={event}
+          selectedOdds={selectedOdds}
+          onOddSelect={onOddSelect}
+        />
+
+      </div>
+
+
+      {/* =====================================================
+          FOOTER
+      ===================================================== */}
+
+      <Footer />
 
     </section>
   );
 };
 
 export default MoreMarkets;
+

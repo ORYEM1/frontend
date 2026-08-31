@@ -1,3 +1,4 @@
+
 import {
   FaSearch,
   FaFire,
@@ -58,7 +59,6 @@ const EventsPage = () => {
   ========================================================== */
 
   const {
-    activeSport,
     activeMenu,
     setActiveMenu,
     filteredFeed,
@@ -96,10 +96,8 @@ const EventsPage = () => {
   const handleMoreClick = (event) => {
 
     /*
-      Save the EventBoard's own scroll position.
-
-      We do NOT use window.scrollY because
-      EventBoard is now the scroll container.
+      Save EventBoard's scroll position
+      before opening More Markets.
     */
 
     if (eventBoardRef.current) {
@@ -120,8 +118,8 @@ const EventsPage = () => {
   useEffect(() => {
 
     /*
-      Restore the previous EventBoard position
-      after returning from More Markets.
+      When More Markets is closed,
+      restore the previous EventBoard position.
     */
 
     if (
@@ -200,7 +198,31 @@ const EventsPage = () => {
 
 
   /* ==========================================================
-     RENDER
+     MORE MARKETS PAGE 
+  ========================================================== */
+
+  if (selectedEvent) {
+
+    return (
+
+      <section className="events-page more-markets-page">
+
+        <MoreMarkets
+          event={selectedEvent}
+          selectedOdds={selectedOdds}
+          onBack={closeMoreMarkets}
+          onOddSelect={selectOdd}
+        />
+
+      </section>
+
+    );
+
+  }
+
+
+  /* ==========================================================
+     NORMAL EVENTS PAGE
   ========================================================== */
 
   return (
@@ -408,17 +430,7 @@ const EventsPage = () => {
           EVENT CONTENT
       ====================================================== */}
 
-      <div
-        className={`events-page-content ${
-          selectedEvent
-            ? "show-more-markets"
-            : ""
-        }`}
-      >
-
-        {/* ====================================================
-            EVENTS VIEW
-        ==================================================== */}
+      <div className="events-page-content">
 
         <div className="events-view">
 
@@ -433,28 +445,7 @@ const EventsPage = () => {
 
         </div>
 
-
-        {/* ====================================================
-            MORE MARKETS VIEW
-        ==================================================== */}
-
-        <div className="more-markets-view">
-
-          {selectedEvent && (
-
-            <MoreMarkets
-              event={selectedEvent}
-              selectedOdds={selectedOdds}
-              onBack={closeMoreMarkets}
-              onOddSelect={selectOdd}
-            />
-
-          )}
-
-        </div>
-
       </div>
-       
 
     </section>
 
@@ -463,3 +454,4 @@ const EventsPage = () => {
 
 
 export default EventsPage;
+

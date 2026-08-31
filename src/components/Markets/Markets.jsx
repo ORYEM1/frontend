@@ -349,18 +349,12 @@ const Markets = ({
 
 
     Object.entries(
-      bets || {}
-    ).forEach(
+      bets || {} ).forEach(
       ([key, bet]) => {
 
-        const line =
-          String(
-            bet?.line || ""
-          ).trim();
+        const line = String(bet?.line || "" ).trim();
 
-
-        const groupKey =
-          line || "default";
+        const groupKey = line || "default";
 
 
         if (!groups[groupKey]) {
@@ -391,10 +385,8 @@ const Markets = ({
     bets
   ) => {
 
-    const normalizedHeader =
-      String(
-        header || ""
-      )
+    const normalizedHeader = String(header || ""
+)
         .trim()
         .toLowerCase();
 
@@ -446,14 +438,6 @@ const Markets = ({
     }
 
 
-    // --------------------------------------------------------
-    // 3. Normalize separators
-    //
-    // Example:
-    // 1/X === 1X
-    // 1/2 === 12
-    // X/2 === X2
-    // --------------------------------------------------------
 
     const compactHeader =
       normalizedHeader.replace(
@@ -462,8 +446,7 @@ const Markets = ({
       );
 
 
-    const compactMatch =
-      Object.values(
+    const compactMatch =Object.values(
         bets || {}
       ).find(
         (bet) => {

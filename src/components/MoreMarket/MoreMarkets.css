@@ -286,86 +286,7 @@
 }
 
 
-/* =========================================================
-   MOBILE
-========================================================= */
 
-@media (max-width: 600px) {
-
-    .more-markets-header {
-        padding: 8px;
-    }
-
-    .more-markets-teams {
-        grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr);
-
-        gap: 5px;
-
-        font-size: 14px;
-    }
-
-    .more-market-home {
-        padding-right: 8px;
-    }
-
-    .more-market-away {
-        padding-left: 8px;
-    }
-
-    .more-markets-content {
-        padding: 7px;
-    }
-
-    .market-card-header {
-        padding: 8px;
-
-        text-align: center;
-    }
-
-    .market-bets {
-        grid-template-columns: repeat(3, 1fr);
-
-        gap: 5px;
-
-        padding: 6px;
-    }
-
-    .more-market-odd {
-        min-height: 52px;
-    }
-
-}
-
-
-/* =========================================================
-   VERY SMALL PHONES
-========================================================= */
-
-@media (max-width: 380px) {
-
-    .more-markets-teams {
-        font-size: 13px;
-    }
-
-    .market-bets {
-        gap: 4px;
-    }
-
-    .more-market-odd {
-        min-height: 50px;
-
-        padding: 5px 3px;
-    }
-
-    .more-market-odd span {
-        font-size: 11px;
-    }
-
-    .more-market-odd strong {
-        font-size: 13px;
-    }
-
-}
 /* =========================================================
    OVER / UNDER MARKET
 ========================================================= */
@@ -544,52 +465,5 @@
 }
 
 
-/* =========================================================
-   MOBILE
-========================================================= */
 
-@media (max-width: 600px) {
 
-    .over-under-header {
-        grid-template-columns:
-            55px
-            minmax(0, 1fr)
-            minmax(0, 1fr);
-
-        padding: 7px 4px;
-
-        font-size: 10px;
-    }
-
-    .over-under-row {
-        grid-template-columns:
-            55px
-            minmax(0, 1fr)
-            minmax(0, 1fr);
-
-        gap: 4px;
-
-        padding: 4px;
-    }
-
-    .over-under-line {
-        font-size: 12px;
-    }
-
-    .over-under-cell
-    .more-market-odd {
-        min-height: 48px;
-
-        padding: 4px;
-    }
-
-    .over-under-cell
-    .more-market-odd span {
-        font-size: 10px;
-    }
-
-    .over-under-cell
-    .more-market-odd strong {
-        font-size: 13px;
-    }
-}

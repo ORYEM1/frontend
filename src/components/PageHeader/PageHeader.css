@@ -2,18 +2,31 @@
 /* ============================================================
    SPORTS HEADER
 ============================================================ */
+/* ============================================================
+   SPORTS HEADER
+============================================================ */
 
 .sports-header {
   width: min(1300px, 100%);
-  background: #ffffff;
+
+  height: 172px;
+
+  background: #fff;
+
   border-bottom: 1px solid #ddd;
+
   position: fixed;
+
   top: 0;
   left: 50%;
+
   transform: translateX(-50%);
+
   z-index: 1000;
-  margin-top: 0;
-  
+
+  margin: 0;
+
+  box-sizing: border-box;
 }
 
 
