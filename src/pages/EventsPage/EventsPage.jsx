@@ -1,4 +1,3 @@
-
 import {
   FaSearch,
   FaFire,
@@ -95,11 +94,6 @@ const EventsPage = () => {
 
   const handleMoreClick = (event) => {
 
-    /*
-      Save EventBoard's scroll position
-      before opening More Markets.
-    */
-
     if (eventBoardRef.current) {
 
       scrollPosition.current =
@@ -116,11 +110,6 @@ const EventsPage = () => {
   ========================================================== */
 
   useEffect(() => {
-
-    /*
-      When More Markets is closed,
-      restore the previous EventBoard position.
-    */
 
     if (
       !selectedEvent &&
@@ -198,7 +187,7 @@ const EventsPage = () => {
 
 
   /* ==========================================================
-     MORE MARKETS PAGE 
+     MORE MARKETS PAGE
   ========================================================== */
 
   if (selectedEvent) {
@@ -454,4 +443,3 @@ const EventsPage = () => {
 
 
 export default EventsPage;
-

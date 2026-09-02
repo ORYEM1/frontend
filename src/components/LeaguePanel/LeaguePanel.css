@@ -1,20 +1,27 @@
-
 /* ==========================================================
    LEAGUE PANEL
 ========================================================== */
 
 .league-panel {
+
   width: 240px;
-  flex-shrink: 0;
+
+  flex: 0 0 240px;
+
+  height: 100%;
+
+  min-height: 0;
+
+  display: flex;
+
+  flex-direction: column;
 
   background: #444;
 
-  min-height: 100%;
-
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
 
   box-sizing: border-box;
+
 }
 
 
@@ -23,26 +30,37 @@
 ========================================================== */
 
 .league-panel-header {
+
   height: 45px;
 
+  min-height: 45px;
+
+  flex-shrink: 0;
+
   display: flex;
+
   align-items: center;
 
   padding: 0 15px;
 
   background-color: #f90;
+
   border: 1px solid #f90;
 
   box-sizing: border-box;
+
 }
 
 .league-panel-header h3 {
+
   margin: 0;
 
   font-size: 15px;
+
   font-weight: 600;
 
   color: #222;
+
 }
 
 
@@ -51,13 +69,27 @@
 ========================================================== */
 
 .league-list {
+
   display: flex;
+
   flex-direction: column;
 
   width: 100%;
 
+  flex: 1;
+
+  min-height: 0;
+
+  overflow-y: auto;
+
+  overflow-x: hidden;
+
   padding: 0;
+
   margin: 0;
+
+  box-sizing: border-box;
+
 }
 
 
@@ -66,7 +98,9 @@
 ========================================================== */
 
 .league-list > .league-item:first-child {
+
   border-bottom: 1px solid #f90;
+
 }
 
 
@@ -75,12 +109,15 @@
 ========================================================== */
 
 .league-section {
+
   width: 100%;
 
   margin: 0;
+
   padding: 0;
 
   box-sizing: border-box;
+
 }
 
 
@@ -89,12 +126,15 @@
 ========================================================== */
 
 .league-section-title {
+
   width: 100%;
 
   height: 32px;
+
   min-height: 32px;
 
   display: flex;
+
   align-items: center;
 
   gap: 7px;
@@ -110,9 +150,11 @@
   color: #f90;
 
   font-size: 11px;
+
   font-weight: 700;
 
   text-transform: uppercase;
+
 }
 
 
@@ -121,9 +163,11 @@
 ========================================================== */
 
 .league-section-title svg {
+
   flex-shrink: 0;
 
   font-size: 11px;
+
 }
 
 
@@ -131,13 +175,11 @@
    SEPARATE SECTIONS
 ========================================================== */
 
-/*
-  Only add a small separation between sections.
-*/
-
 .popular-countries-section,
 .other-countries-section {
+
   margin-top: 6px;
+
 }
 
 
@@ -146,8 +188,11 @@
 ========================================================== */
 
 .popular-leagues-section {
+
   margin: 0;
+
   padding: 0;
+
 }
 
 
@@ -156,10 +201,13 @@
 ========================================================== */
 
 .popular-leagues-list {
+
   width: 100%;
 
   margin: 0;
+
   padding: 0;
+
 }
 
 
@@ -168,17 +216,25 @@
 ========================================================== */
 
 .popular-leagues-list .league-item {
+
   width: 100%;
 
   min-height: 38px;
 
+  height: 38px;
+
+  flex-shrink: 0;
+
   display: flex;
+
   align-items: center;
 
   padding: 0 12px;
+
   margin: 0;
 
   border: none;
+
   border-bottom: 1px solid #000;
 
   background: #444;
@@ -190,10 +246,13 @@
   text-align: left;
 
   box-sizing: border-box;
+
 }
 
 .popular-leagues-list .league-item:hover {
+
   background: #333;
+
 }
 
 
@@ -202,10 +261,13 @@
 ========================================================== */
 
 .league-region-group {
+
   width: 100%;
 
   margin: 0;
+
   padding: 0;
+
 }
 
 
@@ -214,18 +276,27 @@
 ========================================================== */
 
 .league-region-header {
+
   width: 100%;
 
   min-height: 36px;
 
+  height: 36px;
+
+  flex-shrink: 0;
+
   display: flex;
+
   align-items: center;
 
   padding: 0 10px;
+
   margin: 0;
 
   border: none;
+
   border-top: 1px solid #444;
+
   border-bottom: 1px solid #444;
 
   background: #444;
@@ -235,13 +306,17 @@
   color: #fff;
 
   font-weight: 700;
+
   text-align: left;
 
   box-sizing: border-box;
+
 }
 
 .league-region-header:hover {
+
   background: #555;
+
 }
 
 
@@ -250,12 +325,15 @@
 ========================================================== */
 
 .region-info {
+
   min-width: 0;
 
   display: flex;
+
   align-items: center;
 
   gap: 10px;
+
 }
 
 
@@ -264,19 +342,25 @@
 ========================================================== */
 
 .region-name {
+
   flex: 1;
+
   min-width: 0;
 
   overflow: hidden;
+
   text-overflow: ellipsis;
+
   white-space: nowrap;
 
   font-size: 11px;
+
   font-weight: 700;
 
   text-transform: uppercase;
 
   color: #fff;
+
 }
 
 
@@ -285,6 +369,7 @@
 ========================================================== */
 
 .region-event-count {
+
   min-width: 25px;
 
   margin-left: auto;
@@ -296,6 +381,7 @@
   color: #fff;
 
   flex-shrink: 0;
+
 }
 
 
@@ -304,8 +390,11 @@
 ========================================================== */
 
 .region-arrow {
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   margin-left: 5px;
@@ -313,6 +402,7 @@
   font-size: 12px;
 
   flex-shrink: 0;
+
 }
 
 
@@ -321,10 +411,13 @@
 ========================================================== */
 
 .region-leagues {
+
   width: 100%;
 
   margin: 0;
+
   padding: 0;
+
 }
 
 
@@ -333,14 +426,150 @@
 ========================================================== */
 
 .league-item {
+
   width: 100%;
 
+  min-height: 38px;
+
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 0 12px;
+
+  margin: 0;
+
+  border: none;
+
+  border-bottom: 1px solid #000;
+
+  background: #444;
+
+  color: #fff;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  box-sizing: border-box;
+
+}
+
+.league-item:hover {
+
+  background: #333;
+
+  color: #fff;
+
+}
+
+
+/* ==========================================================
+   LEAGUE NAME
+========================================================== */
+
+.league-item .league-name {
+
+  flex: 1;
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  font-size: 12px;
+
+  color: #fff;
+
+}
+
+
+/* ==========================================================
+   LEAGUE EVENT COUNT
+========================================================== */
+
+.league-event-count {
+
+  margin-left: auto;
+
+  min-width: 25px;
+
+  text-align: right;
+
+  font-size: 11px;
+
+  color: #fff;
+
+  flex-shrink: 0;
+
+}
+
+
+/* ==========================================================
+   ACTIVE LEAGUE
+========================================================== */
+
+.league-item.active {
+
+  background: #333;
+
+  color: #fff;
+
+  font-weight: 600;
+
+}
+
+.league-item.active .league-name {
+
+  color: #fff;
+
+  font-weight: 600;
+
+}
+
+
+/* ==========================================================
+   NO LEAGUES
+========================================================== */
+
+.no-leagues {
+
+  width: 100%;
+
+  padding: 15px 10px;
+
+  box-sizing: border-box;
+
+  color: #aaa;
+
+  font-size: 12px;
+
+}
+
+/* ==========================================================
+   POPULAR LEAGUE ITEM
+========================================================== */
+
+.popular-leagues-list .league-item {
+  width: 100%;
+
+  height: 38px;
   min-height: 38px;
 
   display: flex;
   align-items: center;
 
+  gap: 8px;
+
   padding: 0 12px;
+
   margin: 0;
 
   border: none;
@@ -357,22 +586,29 @@
   box-sizing: border-box;
 }
 
-.league-item:hover {
-  background: #333;
-  color: #fff;
+
+/* ==========================================================
+   POPULAR LEAGUE FLAG
+========================================================== */
+
+.popular-leagues-list .country-flag {
+  flex-shrink: 0;
 }
 
 
 /* ==========================================================
-   LEAGUE NAME
+   POPULAR LEAGUE NAME
 ========================================================== */
 
-.league-item .league-name {
+.popular-leagues-list .league-name {
   flex: 1;
+
   min-width: 0;
 
   overflow: hidden;
+
   text-overflow: ellipsis;
+
   white-space: nowrap;
 
   font-size: 12px;
@@ -382,56 +618,19 @@
 
 
 /* ==========================================================
-   LEAGUE EVENT COUNT
+   EVENT COUNT
 ========================================================== */
 
-.league-event-count {
+.popular-leagues-list .league-event-count {
   margin-left: auto;
 
   min-width: 25px;
+
+  flex-shrink: 0;
 
   text-align: right;
 
   font-size: 11px;
 
   color: #fff;
-
-  flex-shrink: 0;
 }
-
-
-/* ==========================================================
-   ACTIVE LEAGUE
-========================================================== */
-
-.league-item.active {
-  background: #333;
-
-  color: #fff;
-
-  font-weight: 600;
-}
-
-.league-item.active .league-name {
-  color: #fff;
-
-  font-weight: 600;
-}
-
-
-/* ==========================================================
-   NO LEAGUES
-========================================================== */
-
-.no-leagues {
-  width: 100%;
-
-  padding: 15px 10px;
-
-  box-sizing: border-box;
-
-  color: #aaa;
-
-  font-size: 12px;
-}
-

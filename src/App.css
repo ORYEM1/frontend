@@ -3,15 +3,23 @@
    ============================================================ */
 
 .app {
+
   --header-height: 172px;
+
   width: 100%;
+
   min-height: 100vh;
+
   display: flex;
+
   flex-direction: column;
-  overflow: visible;
-  margin-top: 0;
+
+  margin: 0;
+
   padding-top: var(--header-height);
+
   box-sizing: border-box;
+
 }
 
 
@@ -20,38 +28,71 @@
    ============================================================ */
 
 .sports-layout {
-  display: flex;
-  align-items: flex-start;
-  width: 100%;
-  flex: 1;
-  min-height: 0;
-  overflow: visible;
-}
 
-.auth-form-page {
+  display: flex;
+
+  align-items: flex-start;
+
+  width: 100%;
+
   flex: 1;
+
   min-height: 0;
-  overflow-y: auto;
-  padding: 28px 18px 36px;
-  background: #fff;
-  box-sizing: border-box;
+
+  overflow: visible;
+
+  gap: 3px;
+
 }
 
 
 /* ============================================================
-   /LEFT - LEAGUES
-  */
+   AUTH PAGE
+   ============================================================ */
 
-.league-section {
-  width: 240px;
-  flex-shrink: 0;
-  border-right: 1px solid #ddd;
-  background: #fff;
-  position: sticky;
-  top: var(--header-height);
-  max-height: calc(100vh - var(--header-height));
+.auth-form-page {
+
+  flex: 1;
+
+  min-height: 0;
+
   overflow-y: auto;
-  overflow-x: hidden;
+
+  padding: 28px 18px 36px;
+
+  background: #fff;
+
+  box-sizing: border-box;
+
+}
+
+
+/* ============================================================
+   LEFT - LEAGUES
+   ============================================================ */
+
+.league-sidebar {
+
+  width: 240px;
+
+  flex: 0 0 240px;
+
+  height: calc(100vh - var(--header-height));
+
+  min-height: 0;
+
+  background: #444;
+
+  border-right: 1px solid #ddd;
+
+  position: sticky;
+
+  top: var(--header-height);
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
 }
 
 
@@ -60,11 +101,19 @@
    ============================================================ */
 
 .events-section {
+
   flex: 1;
+
   min-width: 0;
+
   min-height: 0;
+
   background: #fff;
+
   overflow: visible;
+
+  box-sizing: border-box;
+
 }
 
 
@@ -73,94 +122,55 @@
    ============================================================ */
 
 .betslip-section {
+
   width: 320px;
-  flex-shrink: 0;
+
+  flex: 0 0 320px;
+
+  height: calc(100vh - var(--header-height));
+
+  min-height: 0;
+
   border-left: 1px solid #ddd;
+
   background: #fff;
+
   position: sticky;
+
   top: var(--header-height);
-  max-height: calc(100vh - var(--header-height));
+
   overflow-y: auto;
+
   overflow-x: hidden;
+
+  box-sizing: border-box;
+
 }
 
- /* ============================================================
-    HIDE SCROLLBARS
-    ============================================================ */
 
-.league-section,
+/* ============================================================
+   HIDE SCROLLBARS
+   ============================================================ */
+
+.league-sidebar,
 .events-section,
 .betslip-section {
+
   scrollbar-width: none;
+
   -ms-overflow-style: none;
+
 }
 
-.league-section::-webkit-scrollbar,
+
+.league-sidebar::-webkit-scrollbar,
 .events-section::-webkit-scrollbar,
 .betslip-section::-webkit-scrollbar {
+
   display: none;
+
   width: 0;
+
   height: 0;
-}
-
-/* ============================================================
-   TABLET
-   ============================================================ */
-
-@media (max-width: 1000px) {
-
-  .league-section {
-    width: 200px;
-  }
-
-  .betslip-section {
-    width: 280px;
-  }
-
-}
-
-
-/* ============================================================
-   MOBILE
-   ============================================================ */
-
-@media (max-width: 768px) {
-
-  .app {
-    --header-height: 127px;
-    height: auto;
-    min-height: 100vh;
-    overflow: visible;
-  }
-
-  .sports-layout {
-    display: block;
-
-    min-height: auto;
-
-    overflow: visible;
-  }
-
-  .league-section,
-  .betslip-section,
-  .events-section {
-    width: 100%;
-
-    min-height: auto;
-    max-height: none;
-    position: static;
-
-    overflow: visible;
-  }
-
-  .league-section {
-    border-right: none;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .betslip-section {
-    border-left: none;
-    border-top: 1px solid #ddd;
-  }
 
 }

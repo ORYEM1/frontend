@@ -56,7 +56,7 @@ function BettingLayout() {
             LEFT SIDE - LEAGUES
         ================================================== */}
 
-        <section className="league-section">
+        <section className="league-sidebar">
 
           <LeaguePanel />
 

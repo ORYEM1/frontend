@@ -37,9 +37,7 @@ const popularLeagues = [
   "Italy - Serie A",
   "Germany - Bundesliga",
   "France - Ligue 1",
-  "Portugal - Primeira Liga",
-  "Netherlands - Eredivisie",
-  "Belgium - Jupiler Pro League",
+  "Europe - Eufa Champions League"
 ];
 
 
@@ -712,89 +710,94 @@ const LeaguePanel = () => {
 
         </button>
 
+{/* ====================================================
+    POPULAR LEAGUES
+==================================================== */}
 
-        {/* ====================================================
-            POPULAR LEAGUES
-        ==================================================== */}
+{groupedSections.popularLeagues.length > 0 && (
 
-        {groupedSections
-          .popularLeagues
-          .length > 0 && (
+  <div className="league-section popular-leagues-section">
 
-          <div className="league-section popular-leagues-section">
+    <div className="league-section-title">
 
-            <div className="league-section-title">
+      <FaFire />
 
-              <FaFire />
+      <span>
+        Popular Leagues
+      </span>
 
-              <span>
-                Popular Leagues
-              </span>
-
-            </div>
+    </div>
 
 
-            {/* ================================================
-                FLAT POPULAR LEAGUE LIST
+    {/* ==================================================
+        POPULAR LEAGUE LIST
+    ================================================== */}
 
-                NO COUNTRY GROUPING HERE
-            ================================================= */}
+    <div className="popular-leagues-list">
 
-            <div className="popular-leagues-list">
+      {groupedSections.popularLeagues.map(
+        (league) => (
 
-              {groupedSections
-                .popularLeagues
-                .map(
-                  (league) => (
+          <button
+            key={league.name}
+            type="button"
+            className={`
+              league-item
+              ${
+                selectedLeague?.name === league.name
+                  ? "active"
+                  : ""
+              }
+            `}
+            onClick={() =>
+              selectLeague(league)
+            }
+          >
 
-                    <button
-                      key={
-                        league.name
-                      }
-                      type="button"
-                      className={`
-                        league-item
-                        ${
-                          selectedLeague?.name ===
-                          league.name
-                            ? "active"
-                            : ""
-                        }
-                      `}
-                      onClick={() =>
-                        selectLeague(
-                          league
-                        )
-                      }
-                    >
+            {/* ==========================================
+                COUNTRY FLAG
+            ========================================== */}
 
-                      <span className="league-name">
-
-                        {
-                          league.displayName
-                        }
-
-                      </span>
+            <CountryFlag
+              country={
+                league.country ||
+                league.region
+              }
+            />
 
 
-                      <span className="league-event-count">
+            {/* ==========================================
+                LEAGUE NAME
+            ========================================== */}
 
-                        {
-                          league.events
-                        }
+            <span className="league-name">
 
-                      </span>
+              {league.displayName}
 
-                    </button>
+            </span>
 
-                  )
-                )}
 
-            </div>
+            {/* ==========================================
+                EVENT COUNT
+            ========================================== */}
 
-          </div>
+            <span className="league-event-count">
 
-        )}
+              {league.events}
+
+            </span>
+
+          </button>
+
+        )
+      )}
+
+    </div>
+
+  </div>
+
+)}
+       
 
 
         {/* ====================================================

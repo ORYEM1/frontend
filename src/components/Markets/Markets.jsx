@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaChevronDown } from "react-icons/fa";
 
 import "./Markets.css";
 
@@ -8,42 +9,37 @@ const Markets = ({
   onOddSelect,
 }) => {
 
-  // ==========================================================
+  
   // ACCORDION STATE
-  // ==========================================================
-
+  
   const [openMarkets, setOpenMarkets] = useState({});
 
-
-  // ==========================================================
   // EVENT CHECK
-  // ==========================================================
+  
 
   if (!event) {
     return null;
   }
 
 
-  // ==========================================================
   // GET EVERY MARKET FROM THE EVENT
-  // ==========================================================
-
+  
   const markets = Object.entries(
     event.markets || {}
   );
 
 
-  // ==========================================================
-  // CURRENTLY SELECTED BET
-  // ==========================================================
 
+
+ 
+  // CURRENTLY SELECTED BET
+ 
   const selectedBet = selectedOdds?.[String(event.id)];
 
 
-  // ==========================================================
+  
   // TOGGLE MARKET
-  // ==========================================================
-
+ 
   const toggleMarket = (marketId) => {
 
     setOpenMarkets((previous) => ({
@@ -54,14 +50,10 @@ const Markets = ({
   };
 
 
-  // ==========================================================
+ 
   // MARKET NAME
-  // ==========================================================
-
-  const getMarketName = (
-    market,
-    marketId
-  ) => {
+  
+  const getMarketName = (market,marketId) => {
 
     if (market?.market_name) {
       return market.market_name;
@@ -86,15 +78,11 @@ const Markets = ({
   // BET LABEL
   // ==========================================================
 
-  const getBetLabel = (
-    bet,
-    fallback
-  ) => {
+  const getBetLabel = (bet,fallback) => {
 
     if (!bet) {
       return fallback;
     }
-
 
     const name =
       bet.bet ||
@@ -119,9 +107,9 @@ const Markets = ({
   };
 
 
-  // ==========================================================
+  
   // CHECK SELECTED
-  // ==========================================================
+  
 
   const isBetSelected = (bet) => {
 
@@ -133,10 +121,9 @@ const Markets = ({
   };
 
 
-  // ==========================================================
+  
   // HANDLE BET SELECTION
-  // ==========================================================
-
+ 
   const handleBetSelect = ({bet,marketId,marketName,label,}) => {
 
     if (!bet) {
@@ -220,17 +207,10 @@ const Markets = ({
   // ODD BUTTON
   // ==========================================================
 
-  const renderOdd = ({
-    bet,
-    marketId,
-    marketName,
-    label,
-    key,
-  }) => {
+  const renderOdd = ({bet,marketId,marketName,label,key,}) => {
 
-    // --------------------------------------------------------
     // BET DOES NOT EXIST
-    // --------------------------------------------------------
+    
 
     if (!bet) {
 
@@ -321,10 +301,9 @@ const Markets = ({
   };
 
 
-  // ==========================================================
+  
   // DETECT LINES
-  // ==========================================================
-
+  
   const hasLines = (bets) => {
 
     return Object.values(
@@ -339,9 +318,8 @@ const Markets = ({
   };
 
 
-  // ==========================================================
+
   // GROUP BETS BY LINE
-  // ==========================================================
 
   const groupByLine = (bets) => {
 
@@ -380,13 +358,10 @@ const Markets = ({
   // FIND BET FOR HEADER
   // ==========================================================
 
-  const findBetForHeader = (
-    header,
-    bets
-  ) => {
+  const findBetForHeader = (header,bets) => {
 
     const normalizedHeader = String(header || ""
-)
+    )
         .trim()
         .toLowerCase();
 
@@ -415,18 +390,9 @@ const Markets = ({
       ).find(
         (bet) => {
 
-          const value =
-            bet?.bet ||
-            bet?.label ||
-            bet?.name ||
-            "";
-
-
+          const value = bet?.bet || bet?.label || bet?.name || "";
           return (
-            String(value)
-              .trim()
-              .toLowerCase() ===
-            normalizedHeader
+            String(value).trim().toLowerCase() ===normalizedHeader
           );
 
         }
@@ -437,40 +403,19 @@ const Markets = ({
       return exactMatch;
     }
 
-
-
-    const compactHeader =
-      normalizedHeader.replace(
-        /[\s/_-]/g,
-        ""
-      );
-
+    const compactHeader = normalizedHeader.replace( /[\s/_-]/g, "");
 
     const compactMatch =Object.values(
         bets || {}
       ).find(
         (bet) => {
 
-          const value =
-            bet?.bet ||
-            bet?.label ||
-            bet?.name ||
-            "";
+          const value = bet?.bet || bet?.label || bet?.name || "";
 
-
-          const compactValue =
-            String(value)
-              .trim()
-              .toLowerCase()
-              .replace(
-                /[\s/_-]/g,
-                ""
-              );
-
+          const compactValue = String(value).trim().toLowerCase().replace(  /[\s/_-]/g,  "");
 
           return (
-            compactValue ===
-            compactHeader
+            compactValue ===compactHeader
           );
 
         }
@@ -486,21 +431,11 @@ const Markets = ({
   // RENDER ONE MARKET
   // ==========================================================
 
-  const renderMarket = (
-    marketId,
-    market
-  ) => {
+  const renderMarket = (marketId,market) => {
 
-    const bets =
-      market?.bets || {};
+    const bets = market?.bets || {};
 
-
-    const marketName =
-      getMarketName(
-        market,
-        marketId
-      );
-
+    const marketName = getMarketName(market,marketId);
 
     const headers =
       market?.headers
@@ -514,28 +449,14 @@ const Markets = ({
         : [];
 
 
-    const isOpen =
-      Boolean(
-        openMarkets[marketId]
-      );
-
-
-    // ========================================================
-    // MARKET CONTENT
-    // ========================================================
+    const isOpen = Boolean(openMarkets[marketId] );
 
     let marketContent;
 
-
-    // ========================================================
-    // LINE-BASED MARKET
-    // ========================================================
-
+    /**market base on line */
     if (hasLines(bets)) {
 
-      const grouped =
-        groupByLine(bets);
-
+      const grouped =groupByLine(bets);
 
       marketContent = (
         <div className="market-line-market">
@@ -561,18 +482,9 @@ const Markets = ({
 
                 <div className="market-line-options">
 
-                  {lineBets.map(
-                    ({
-                      key,
-                      bet,
-                    }) => {
+                  {lineBets.map(({ key,bet}) => {
 
-                      const label =
-                        getBetLabel(
-                          bet,
-                          key
-                        );
-
+                      const label = getBetLabel(bet,key);
 
                       return renderOdd({
                         bet,
@@ -598,31 +510,22 @@ const Markets = ({
     }
 
 
-    // ========================================================
+   
     // NORMAL MARKET
-    // ========================================================
+  
 
     else {
 
       const entries =
-        headers.length
+          headers.length
 
-          ? headers.map(
-              (
-                header,
-                index
-              ) => {
+          ? headers.map((header,index) => {
 
-                const bet =
-                  findBetForHeader(
-                    header,
-                    bets
-                  );
+                const bet =findBetForHeader(header,bets);
 
 
                 return {
-                  key:
-                    `${header}-${index}`,
+                  key:`${header}-${index}`,
 
                   bet,
                 };
@@ -643,26 +546,11 @@ const Markets = ({
       marketContent = (
         <div className="market-bets">
 
-          {entries.map(
-            ({
-              key,
-              bet,
-            }) => {
+          {entries.map(({key,bet}) => {
 
-              const label =
-                getBetLabel(
-                  bet,
-                  key
-                );
+              const label = getBetLabel(bet,key);
 
-
-              return renderOdd({
-                bet,
-                marketId,
-                marketName,
-                label,
-                key,
-              });
+              return renderOdd({ bet, marketId, marketName, label, key});
 
             }
           )}
@@ -708,7 +596,7 @@ const Markets = ({
               ${isOpen ? "open" : ""}
             `}
           >
-            ▼
+            <FaChevronDown/>
           </span>
 
         </button>

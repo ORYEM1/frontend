@@ -1,11 +1,11 @@
-
 import React, { useState } from "react";
 import "./Accordion.css";
 
 const Accordion = ({
     title,
     children,
-    defaultOpen = true
+    defaultOpen = true,
+    className = "",
 }) => {
 
     const [isOpen, setIsOpen] = useState(defaultOpen);
@@ -18,9 +18,11 @@ const Accordion = ({
 
     return (
         <div
-            className={`accordion ${
-                isOpen ? "accordion-open" : ""
-            }`}
+            className={`
+                accordion
+                ${isOpen ? "accordion-open" : ""}
+                ${className}
+            `}
         >
 
             <button
@@ -31,12 +33,14 @@ const Accordion = ({
             >
 
                 {/* ARROW FIRST */}
+
                 <span className="accordion-arrow">
                     {isOpen ? "-" : "+"}
                 </span>
 
 
                 {/* TITLE SECOND */}
+
                 <span className="accordion-title">
                     {title}
                 </span>
