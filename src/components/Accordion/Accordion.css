@@ -1,0 +1,107 @@
+
+/* =========================================================
+   ACCORDION
+========================================================= */
+
+.accordion {
+    width: 100%;
+    margin-bottom: 10px;
+
+    border: 1px solid #ddd;
+    border-radius: 6px;
+
+    overflow: hidden;
+
+    background: #fff;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.accordion-header {
+    width: 100%;
+    min-height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding: 8px 12px;
+
+    border: none;
+    background: #eeeeee;
+
+    cursor: pointer;
+    text-align: left;
+
+    gap: 8px;
+}
+
+
+/* =========================================================
+   ARROW
+========================================================= */
+
+.accordion-arrow {
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.accordion-title {
+    font-size: 13px;
+    font-weight: 600;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.accordion-content {
+    display: grid;
+    grid-template-rows: 0fr;
+
+    opacity: 0;
+
+    transition:
+        grid-template-rows 0.3s ease,
+        opacity 0.25s ease;
+}
+
+
+.accordion-content-inner {
+    min-height: 0;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   OPEN
+========================================================= */
+
+.accordion-open .accordion-content {
+    grid-template-rows: 1fr;
+
+    opacity: 1;
+}
+

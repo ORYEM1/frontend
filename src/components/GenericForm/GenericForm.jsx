@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import './GenericForm.css'
+import Footer from "../Footer/Footer.jsx";
 
 const NATIVE_INPUT_TYPES = new Set([
   'text',
@@ -475,6 +476,8 @@ function GenericForm({
           <pre>{JSON.stringify(submittedData, null, 2)}</pre>
         </section>
       )}
+
+      <Footer/>
     </section>
   )
 }

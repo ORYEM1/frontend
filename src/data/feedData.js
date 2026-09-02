@@ -22,6 +22,7 @@ export const feedData = {
 
         /**match result (1X2) */
         "3": {
+          
           cols: "3",
           headers: "1,X,2",
           bets: {
@@ -115,10 +116,11 @@ export const feedData = {
               market_id: "4",
               market_name: "Over/Under",
               bet: "Over",
-              line: "2.5",
+              line: "1.5",
               odds: "1.85",
               locked: "0",
             },
+            
 
             Under: {
               id: "40519132",
@@ -126,10 +128,32 @@ export const feedData = {
               market_id: "4",
               market_name: "Over/Under",
               bet: "Under",
+              line: "1.5",
+              odds: "1.90",
+              locked: "0",
+            },
+            Over:{
+              id: "40519133",
+              event_id: "194989",
+              market_id: "4",
+              market_name: "Over/Under",
+              bet: "Over",
               line: "2.5",
               odds: "1.90",
               locked: "0",
             },
+              Under: {
+              id: "40519134",
+              event_id: "194989",
+              market_id: "4",
+              market_name: "Over/Under",
+              bet: "Under",
+              line: "2.5",
+              odds: "1.90",
+              locked: "0",
+            }
+
+
 
           },
         },

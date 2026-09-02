@@ -12,7 +12,7 @@ import "./Betslips.css";
 
 const Betslips = () => {
   
-  const {bets,removeBet,clearBetslip} = useSports();
+  const {bets,removeBet,clearBetslip,filteredFeed,openMoreMarkets} = useSports();
 
   const [stake, setStake] = useState("");
   const [activeTab, setActiveTab] = useState("bets");
@@ -58,6 +58,28 @@ const Betslips = () => {
     setMessage("");
     setStake("");
   };
+
+  //open more market
+  const handleBetEvent = (bet)=>{
+    const eventId = String(bet?.eventId);
+    if(!eventId)
+    {
+      return ;
+    }
+    for(const leagueEvents of Object.values(filteredFeed || {}))
+    {
+      for(const event of Object.values(leagueEvents || {}))
+      {
+        if(String(event?.id) === eventId)
+        {
+          openMoreMarkets(event);
+          return;
+        }
+      }
+    }
+    
+
+  }
 
    
   // ==========================================================
@@ -164,24 +186,27 @@ const Betslips = () => {
 
                     <div className="bet-card-top">
 
-                      <div className="bet-event">
-
-                        <div className="bet-teams">
+                      <div className="bet-event"
+                      onClick={()=>handleBetEvent(bet)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(event)=>{
+                        if(event.key === "Enter" || 
+                          event.key === ""
+                        ){
+                          event.preventDefault();
+                          handleBetEvent(bet);
+                        }
+                      }}   
+                           >
 
                           <strong>
                             {bet.home}
                           </strong>
-
-                          <span>
-                            vs
-                          </span>
-
                           <strong>
                             {bet.away}
                           </strong>
-
-                        </div>
-
+                          
                       </div>
 
                       <button

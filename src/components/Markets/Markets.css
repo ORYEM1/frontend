@@ -1,0 +1,311 @@
+/* ==========================================================
+   MARKETS
+   ========================================================== */
+
+.markets {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+
+/* ==========================================================
+   MARKET CARD
+   ========================================================== */
+
+.markets .market-card {
+  width: 100%;
+
+  background: #fff;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+
+  overflow: hidden;
+  margin: auto;
+  position: relative;
+}
+
+
+/* ==========================================================
+   ACCORDION HEADER
+   ========================================================== */
+
+.markets .market-card-header {
+  width: 100%;
+  min-height: 45px;
+
+  padding: 10px 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: none;
+  border-bottom: 1px solid #e5e5e5;
+
+  background: #f5f5f5;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  transition:
+    background 0.15s ease;
+}
+
+
+.markets .market-card-header:hover {
+  background: #eeeeee;
+}
+
+
+.markets .market-card-header strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* ==========================================================
+   ACCORDION ARROW
+   ========================================================== */
+
+.markets .market-accordion-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 11px;
+
+  transition:
+    transform 0.25s ease;
+}
+
+
+.markets .market-accordion-icon.open {
+  transform: rotate(180deg);
+}
+
+
+/* ==========================================================
+   ACCORDION CONTENT
+   ========================================================== */
+
+.markets .market-card-content {
+  width: 100%;
+
+  max-height: 0;
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transition:
+    max-height 0.3s ease,
+    opacity 0.2s ease,
+    visibility 0s linear 0.3s;
+}
+
+
+.markets .market-card-content.open {
+  max-height: 2000px;
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transition:
+    max-height 0.3s ease,
+    opacity 0.2s ease,
+    visibility 0s linear 0s;
+}
+
+
+/* ==========================================================
+   NORMAL BETS
+   ========================================================== */
+
+.markets .market-bets {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(150px, 1fr)
+    );
+
+  gap: 8px;
+
+  padding: 10px;
+}
+
+
+/* ==========================================================
+   ODD BUTTON
+   ========================================================== */
+
+.markets .market-odd {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #036;
+  cursor: pointer;
+  width: 95%;
+  color: #f5f5f5;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+
+.markets .market-odd:hover {
+  background: #039;
+}
+
+
+.markets .market-odd span {
+  font-size: 13px;
+
+  text-align: left;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.markets .market-odd strong {
+  flex-shrink: 0;
+
+  font-size: 14px;
+}
+
+
+/* ==========================================================
+   SELECTED ODD
+   ========================================================== */
+
+.markets .market-odd.odd-selected {
+  border-color: #3a0;
+
+  background: #3a0;
+}
+
+
+/* ==========================================================
+   LOCKED / UNAVAILABLE
+   ========================================================== */
+
+.markets .market-odd.odd-locked,
+.markets .market-odd.odd-unavailable {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+
+.markets .market-odd.odd-locked:hover,
+.markets .market-odd.odd-unavailable:hover {
+  background: #fafafa;
+}
+
+
+/* ==========================================================
+   LINE MARKETS
+   ========================================================== */
+
+.markets .market-line-market {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ==========================================================
+   LINE ROW
+   ========================================================== */
+
+.markets .market-line-row {
+  display: grid;
+
+  grid-template-columns:
+    80px 1fr;
+
+  align-items: center;
+
+  border-bottom: 1px solid #eee;
+}
+
+
+.markets .market-line-row:last-child {
+  border-bottom: none;
+}
+
+
+/* ==========================================================
+   LINE
+   ========================================================== */
+
+.markets .market-line {
+  padding: 10px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-align: center;
+}
+
+
+/* ==========================================================
+   LINE OPTIONS
+   ========================================================== */
+
+.markets .market-line-options {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(140px, 1fr)
+    );
+
+  gap: 8px;
+
+  padding: 8px;
+}
+
+
+/* ==========================================================
+   EMPTY
+   ========================================================== */
+
+.markets .markets-empty {
+  width: 100%;
+
+  padding: 30px;
+
+  text-align: center;
+
+  color: #777;
+
+  background: #fff;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+}
+
+
+
