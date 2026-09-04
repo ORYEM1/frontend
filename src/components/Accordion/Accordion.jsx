@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import "./Accordion.css";
 
-const Accordion = ({
-    title,
-    children,
-    defaultOpen = true,
-    className = "",
-}) => {
+const Accordion = ({title,children,defaultOpen = true,className = ""}) => {
 
     const [isOpen, setIsOpen] = useState(defaultOpen);
 

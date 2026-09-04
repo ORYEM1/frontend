@@ -4,11 +4,9 @@
 
 .markets {
   width: 100%;
-
   display: flex;
   flex-direction: column;
-
-  gap: 8px;
+  gap: 2px;
 }
 
 
@@ -18,12 +16,9 @@
 
 .markets .market-card {
   width: 100%;
-
   background: #fff;
-
   border: 1px solid #e5e5e5;
   border-radius: 6px;
-
   overflow: hidden;
   margin: auto;
   position: relative;
@@ -33,79 +28,76 @@
 /* ==========================================================
    ACCORDION HEADER
    ========================================================== */
+/* ==========================================================
+   MARKET HEADER
+========================================================== */
 
-.markets .market-card-header {
+.market-card-header {
   width: 100%;
-  min-height: 45px;
-
-  padding: 10px 14px;
+  min-height: 42px;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+
+  gap: 8px;
+
+  padding: 0 12px;
 
   border: none;
-  border-bottom: 1px solid #e5e5e5;
-
-  background: #f5f5f5;
+  background: #fff;
 
   cursor: pointer;
 
   text-align: left;
 
-  transition:
-    background 0.15s ease;
-}
-
-
-.markets .market-card-header:hover {
-  background: #eeeeee;
-}
-
-
-.markets .market-card-header strong {
-  font-size: 14px;
-  font-weight: 600;
+  box-sizing: border-box;
 }
 
 
 /* ==========================================================
-   ACCORDION ARROW
-   ========================================================== */
+   ACCORDION ICON
+========================================================== */
 
-.markets .market-accordion-icon {
+.market-accordion-icon {
+  flex: 0 0 auto;
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   font-size: 11px;
-
-  transition:
-    transform 0.25s ease;
+  transition: transform 0.2s ease;
 }
 
 
-.markets .market-accordion-icon.open {
+/* ==========================================================
+   OPEN STATE
+========================================================== */
+
+.market-accordion-icon.open {
   transform: rotate(180deg);
 }
 
 
+/* ==========================================================
+   MARKET NAME
+========================================================== */
+
+.market-card-header strong {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+}
 /* ==========================================================
    ACCORDION CONTENT
    ========================================================== */
 
 .markets .market-card-content {
   width: 100%;
-
   max-height: 0;
-
   overflow: hidden;
-
   opacity: 0;
-
   visibility: hidden;
-
   transition:
     max-height 0.3s ease,
     opacity 0.2s ease,
@@ -115,11 +107,8 @@
 
 .markets .market-card-content.open {
   max-height: 2000px;
-
   opacity: 1;
-
   visibility: visible;
-
   transition:
     max-height 0.3s ease,
     opacity 0.2s ease,
@@ -133,9 +122,7 @@
 
 .markets .market-bets {
   width: 100%;
-
   display: grid;
-
   grid-template-columns:
     repeat(
       auto-fit,
@@ -143,7 +130,6 @@
     );
 
   gap: 8px;
-
   padding: 10px;
 }
 
@@ -153,18 +139,18 @@
    ========================================================== */
 
 .markets .market-odd {
-  min-height: 44px;
+  min-height: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
   padding: 8px 12px;
-  border: 1px solid #ddd;
+  border: 1px solid rgb(219, 220, 221);
   border-radius: 5px;
-  background: #036;
+  background: rgb(219, 220, 221);
   cursor: pointer;
   width: 95%;
-  color: #f5f5f5;
+  color: #141313;
   transition:
     background 0.15s ease,
     border-color 0.15s ease;
@@ -172,15 +158,13 @@
 
 
 .markets .market-odd:hover {
-  background: #039;
+  background: rgb(219, 220, 221);
 }
 
 
 .markets .market-odd span {
   font-size: 13px;
-
   text-align: left;
-
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -188,7 +172,6 @@
 
 .markets .market-odd strong {
   flex-shrink: 0;
-
   font-size: 14px;
 }
 
@@ -199,7 +182,7 @@
 
 .markets .market-odd.odd-selected {
   border-color: #3a0;
-
+  color: #fff;
   background: #3a0;
 }
 
@@ -239,7 +222,7 @@
    ========================================================== */
 
 .markets .market-line-row {
-  display: grid;
+  display: block;
 
   grid-template-columns:
     80px 1fr;
@@ -259,14 +242,14 @@
    LINE
    ========================================================== */
 
-.markets .market-line {
+/*.markets .market-line {
   padding: 10px;
 
   font-size: 13px;
   font-weight: 600;
 
   text-align: center;
-}
+}*/
 
 
 /* ==========================================================
@@ -307,5 +290,14 @@
   border-radius: 6px;
 }
 
-
-
+.market-group-button{
+  gap:10px;
+  background-color: rgb(219, 220, 221);
+  width: 60px;
+  cursor: pointer;
+  border:1px solid rgb(219, 220, 221);
+  margin: 5px;
+}
+.market-group-button:active{
+  background-color: #036;
+}

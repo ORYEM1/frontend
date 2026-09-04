@@ -44,9 +44,7 @@ const EventBoard = forwardRef(({
 
   const activeMarketId = String(marketId);
 
-  const activeMarketName =
-    marketNames[activeMarketId] ||
-    "Unknown Market";
+  const activeMarketName = marketNames[activeMarketId] || "Unknown Market";
 
 
   return (
@@ -91,10 +89,7 @@ const EventBoard = forwardRef(({
                MAIN MARKET
             ================================================= */
 
-            const mainMarket =
-              firstEvent?.markets?.[
-                activeMarketId
-              ];
+            const mainMarket =firstEvent?.markets?.[ activeMarketId];
 
 
             /* =================================================

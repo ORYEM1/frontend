@@ -1,21 +1,9 @@
 
-import {
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
-
-import {
-  FaChevronDown,
-  FaChevronRight,
-  FaFire,
-} from "react-icons/fa";
-
+import {useEffect,useMemo,useState} from "react";
+import {FaChevronDown,FaChevronRight,FaFire} from "react-icons/fa";
 import { useSports } from "../../contexts/SportsContext.jsx";
 import { feedData } from "../../data/feedData.js";
-
 import CountryFlag from "../CountryFlag/CountryFlag.jsx";
-
 import "./LeaguePanel.css";
 
 
@@ -37,7 +25,7 @@ const popularLeagues = [
   "Italy - Serie A",
   "Germany - Bundesliga",
   "France - Ligue 1",
-  "Europe - Eufa Champions League"
+  "Europe - UEFA Champions League"
 ];
 
 
@@ -76,25 +64,9 @@ const normalizeText = (value) => {
 
 const LeaguePanel = () => {
 
-  /* ==========================================================
-     SPORTS CONTEXT
-  ========================================================== */
+  const {activeSport,selectedLeague,selectLeague} = useSports();
 
-  const {
-    activeSport,
-    selectedLeague,
-    selectLeague,
-  } = useSports();
-
-
-  /* ==========================================================
-     COLLAPSED REGIONS
-  ========================================================== */
-
-  const [
-    collapsedRegions,
-    setCollapsedRegions,
-  ] = useState({});
+  const [collapsedRegions,setCollapsedRegions] = useState({});
 
 
   /* ==========================================================
@@ -105,26 +77,20 @@ const LeaguePanel = () => {
 
     const grouped = {};
 
-
-    Object.entries(feedData || {}).forEach(
-      ([leagueName, leagueEvents]) => {
+    Object.entries(feedData || {}).forEach(([leagueName, leagueEvents]) => {
 
         /* ====================================================
            GET EVENTS FOR ACTIVE SPORT
         ==================================================== */
 
-        const sportEvents =
-          Object.values(
-            leagueEvents || {}
-          ).filter((event) => {
+        const sportEvents = Object.values(leagueEvents || {}).filter((event) => {
 
             if (!event) {
               return false;
             }
 
             return (
-              normalizeText(event.sport) ===
-              normalizeText(activeSport)
+              normalizeText(event.sport) === normalizeText(activeSport)
             );
 
           });
@@ -134,9 +100,8 @@ const LeaguePanel = () => {
            IGNORE EMPTY LEAGUES
         ==================================================== */
 
-        if (
-          sportEvents.length === 0
-        ) {
+        if (sportEvents.length === 0)
+        {
           return;
         }
 
@@ -145,44 +110,20 @@ const LeaguePanel = () => {
            GET REGION
         ==================================================== */
 
-        const firstEvent =
-          sportEvents[0];
-
-
-        const region =
-          String(
-            firstEvent?.region ||
-            "Other"
-          ).trim();
-
+        const firstEvent = sportEvents[0];
+        const region = String(firstEvent?.region ||"Other").trim();
 
         /* ====================================================
            CREATE DISPLAY NAME
         ==================================================== */
 
-        let displayName =
-          String(leagueName).trim();
+        let displayName = String(leagueName).trim();
+        const regionPrefix = `${region} - `;
 
+        if (normalizeText(displayName).startsWith(normalizeText(regionPrefix)))
+        {
 
-        const regionPrefix =
-          `${region} - `;
-
-
-        if (
-          normalizeText(displayName)
-            .startsWith(
-              normalizeText(
-                regionPrefix
-              )
-            )
-        ) {
-
-          displayName =
-            displayName
-              .substring(
-                regionPrefix.length
-              )
-              .trim();
+          displayName = displayName.substring(regionPrefix.length).trim();
 
         }
 
@@ -191,16 +132,12 @@ const LeaguePanel = () => {
            CREATE REGION
         ==================================================== */
 
-        if (
-          !grouped[region]
-        ) {
-
+        if (!grouped[region])
+        {
           grouped[region] = {
 
             region,
-
             leagues: [],
-
             eventCount: 0,
 
           };
@@ -217,11 +154,8 @@ const LeaguePanel = () => {
           .push({
 
             name: leagueName,
-
             displayName,
-
             region,
-
             events:
               sportEvents.length,
 
@@ -248,22 +182,13 @@ const LeaguePanel = () => {
 
 
     Object.keys(grouped)
-      .sort((a, b) =>
-        a.localeCompare(b)
-      )
-      .forEach((region) => {
-
+      .sort((a, b) =>a.localeCompare(b)).forEach((region) => {
         grouped[region]
           .leagues
-          .sort((a, b) =>
-            a.displayName.localeCompare(
-              b.displayName
-            )
-          );
+          .sort((a, b) =>a.displayName.localeCompare(b.displayName));
 
 
-        sortedRegions[region] =
-          grouped[region];
+        sortedRegions[region] = grouped[region];
 
       });
 
@@ -277,210 +202,181 @@ const LeaguePanel = () => {
      CREATE DISPLAY GROUPS
   ========================================================== */
 
-  const groupedSections = useMemo(() => {
+ /* ==========================================================
+   CREATE DISPLAY GROUPS
+========================================================== */
 
-    const popularLeagueList = [];
+const groupedSections = useMemo(() => {
 
-    const popularCountryGroups = {};
+  const popularLeagueList = [];
 
-    const otherCountryGroups = {};
+  const popularCountryGroups = {};
 
-
-    /* ========================================================
-       LOOP THROUGH REGIONS
-    ======================================================== */
-
-    Object.entries(
-      leaguesByRegion
-    ).forEach(
-      ([region, regionData]) => {
+  const otherCountryGroups = {};
 
 
-        /* ====================================================
-           CHECK POPULAR COUNTRY
-        ==================================================== */
+  /* ========================================================
+     LOOP THROUGH REGIONS
+  ======================================================== */
 
-        const isPopularCountry =
-          popularCountries.some(
-            (country) =>
-              normalizeText(country) ===
-              normalizeText(region)
-          );
+  Object.entries(leaguesByRegion).forEach(
+    ([region, regionData]) => {
 
 
-        /* ====================================================
-           SEPARATE POPULAR LEAGUES
-        ==================================================== */
+      /* ====================================================
+         CHECK POPULAR COUNTRY
+      ==================================================== */
 
-        const popularLeaguesInRegion =
-          regionData.leagues.filter(
-            (league) => {
-
-              return popularLeagues.some(
-                (popularLeague) => {
-
-                  const popular =
-                    normalizeText(
-                      popularLeague
-                    );
-
-                  const name =
-                    normalizeText(
-                      league.name
-                    );
-
-                  const display =
-                    normalizeText(
-                      league.displayName
-                    );
+      const isPopularCountry =
+        popularCountries.some(
+          (country) =>
+            normalizeText(country) ===
+            normalizeText(region)
+        );
 
 
-                  return (
-                    popular === name ||
-                    popular === display
-                  );
+      /* ====================================================
+         FIND POPULAR LEAGUES
+         
+         These leagues are added to the separate
+         Popular Leagues section.
+         
+         IMPORTANT:
+         They are NOT removed from their country.
+      ==================================================== */
 
-                }
-              );
-
-            }
-          );
-
-
-        /* ====================================================
-           ADD POPULAR LEAGUES TO FLAT LIST
-        ==================================================== */
-
-        popularLeaguesInRegion.forEach(
+      const popularLeaguesInRegion =
+        regionData.leagues.filter(
           (league) => {
 
-            popularLeagueList.push(
-              league
+            return popularLeagues.some(
+              (popularLeague) => {
+
+                const popular =
+                  normalizeText(
+                    popularLeague
+                  );
+
+                const name =
+                  normalizeText(
+                    league.name
+                  );
+
+                const display =
+                  normalizeText(
+                    league.displayName
+                  );
+
+                return (
+                  popular === name ||
+                  popular === display
+                );
+
+              }
             );
 
           }
         );
 
 
-        /* ====================================================
-           REMOVE POPULAR LEAGUES
-           FROM COUNTRY GROUPS
-        ==================================================== */
+      /* ====================================================
+         ADD POPULAR LEAGUES TO POPULAR LEAGUES SECTION
+      ==================================================== */
 
-        const remainingLeagues =
-          regionData.leagues.filter(
-            (league) => {
+      popularLeaguesInRegion.forEach(
+        (league) => {
 
-              return !popularLeagues.some(
-                (popularLeague) => {
-
-                  const popular =
-                    normalizeText(
-                      popularLeague
-                    );
-
-                  const name =
-                    normalizeText(
-                      league.name
-                    );
-
-                  const display =
-                    normalizeText(
-                      league.displayName
-                    );
-
-
-                  return (
-                    popular === name ||
-                    popular === display
-                  );
-
-                }
-              );
-
-            }
+          popularLeagueList.push(
+            league
           );
 
-
-        /* ====================================================
-           POPULAR COUNTRIES
-        ==================================================== */
-
-        if (
-          isPopularCountry &&
-          remainingLeagues.length > 0
-        ) {
-
-          popularCountryGroups[
-            region
-          ] = {
-
-            ...regionData,
-
-            leagues:
-              remainingLeagues,
-
-            eventCount:
-              remainingLeagues.reduce(
-                (
-                  total,
-                  league
-                ) =>
-                  total +
-                  league.events,
-                0
-              ),
-
-          };
-
         }
+      );
 
 
-        /* ====================================================
-           OTHER COUNTRIES
-        ==================================================== */
+      /* ====================================================
+         KEEP ALL LEAGUES IN THEIR COUNTRY
+         
+         DO NOT REMOVE POPULAR LEAGUES.
+      ==================================================== */
 
-        if (
-          !isPopularCountry
-        ) {
+      const countryLeagues =
+        regionData.leagues;
 
-          otherCountryGroups[
-            region
-          ] = regionData;
 
-        }
+      /* ====================================================
+         POPULAR COUNTRIES
+      ==================================================== */
+
+      if (
+        isPopularCountry &&
+        countryLeagues.length > 0
+      ) {
+
+        popularCountryGroups[region] = {
+
+          ...regionData,
+
+          leagues:
+            countryLeagues,
+
+          eventCount:
+            countryLeagues.reduce(
+              (total, league) =>
+                total + league.events,
+              0
+            ),
+
+        };
 
       }
-    );
 
 
-    /* ========================================================
-       SORT POPULAR LEAGUES
-       ALPHABETICALLY
-    ======================================================== */
+      /* ====================================================
+         OTHER COUNTRIES
+      ==================================================== */
 
-    popularLeagueList.sort(
-      (a, b) =>
-        a.displayName.localeCompare(
-          b.displayName
-        )
-    );
+      if (!isPopularCountry) {
+
+        otherCountryGroups[region] =
+          regionData;
+
+      }
+
+    }
+  );
 
 
-    return {
+  /* ========================================================
+     SORT POPULAR LEAGUES
+  ======================================================== */
 
-      popularLeagues:
-        popularLeagueList,
+  popularLeagueList.sort(
+    (a, b) =>
+      a.displayName.localeCompare(
+        b.displayName
+      )
+  );
 
-      popularCountries:
-        popularCountryGroups,
 
-      otherCountries:
-        otherCountryGroups,
+  /* ========================================================
+     RETURN
+  ======================================================== */
 
-    };
+  return {
 
-  }, [leaguesByRegion]);
+    popularLeagues:
+      popularLeagueList,
+
+    popularCountries:
+      popularCountryGroups,
+
+    otherCountries:
+      otherCountryGroups,
+
+  };
+
+}, [leaguesByRegion]);
 
 
   /* ==========================================================
@@ -490,22 +386,14 @@ const LeaguePanel = () => {
   useEffect(() => {
 
     const collapsed = {};
-
-
-    Object.keys(
-      leaguesByRegion
-    ).forEach(
-      (region) => {
+    Object.keys(leaguesByRegion).forEach((region) => {
 
         collapsed[region] = true;
 
       }
     );
 
-
-    setCollapsedRegions(
-      collapsed
-    );
+    setCollapsedRegions(collapsed);
 
   }, [leaguesByRegion]);
 
@@ -514,9 +402,7 @@ const LeaguePanel = () => {
      TOGGLE REGION
   ========================================================== */
 
-  const toggleRegion = (
-    region
-  ) => {
+  const toggleRegion = (region) => {
 
     setCollapsedRegions(
       (current) => ({
@@ -536,21 +422,11 @@ const LeaguePanel = () => {
      RENDER COUNTRY REGIONS
   ========================================================== */
 
-  const renderRegions = (
-    regions
-  ) => {
+  const renderRegions = (regions) => {
 
-    return Object.entries(
-      regions
-    ).map(
-      ([region, regionData]) => {
+    return Object.entries(regions).map(([region, regionData]) => {
 
-        const isCollapsed =
-          collapsedRegions[
-            region
-          ] ?? true;
-
-
+        const isCollapsed = collapsedRegions[region] ?? true;
         return (
 
           <div
@@ -689,52 +565,23 @@ const LeaguePanel = () => {
             ALL LEAGUES
         ==================================================== */}
 
-        <button
-          type="button"
-          className={`
-            league-item
-            ${
-              !selectedLeague
-                ? "active"
-                : ""
-            }
-          `}
-          onClick={() =>
-            selectLeague(null)
-          }
-        >
+       
 
-          <span className="league-name">
-            All Leagues
-          </span>
-
-        </button>
-
-{/* ====================================================
-    POPULAR LEAGUES
-==================================================== */}
-
-{groupedSections.popularLeagues.length > 0 && (
-
+    {/* ====================================================
+        POPULAR LEAGUES
+      ==================================================== */}
+    {groupedSections.popularLeagues.length > 0 && (
   <div className="league-section popular-leagues-section">
-
     <div className="league-section-title">
-
       <FaFire />
-
       <span>
         Popular Leagues
       </span>
-
     </div>
-
-
     {/* ==================================================
         POPULAR LEAGUE LIST
     ================================================== */}
-
-    <div className="popular-leagues-list">
-
+   <div className="popular-leagues-list">
       {groupedSections.popularLeagues.map(
         (league) => (
 
@@ -749,9 +596,7 @@ const LeaguePanel = () => {
                   : ""
               }
             `}
-            onClick={() =>
-              selectLeague(league)
-            }
+            onClick={() => selectLeague(league)}
           >
 
             {/* ==========================================
@@ -759,10 +604,7 @@ const LeaguePanel = () => {
             ========================================== */}
 
             <CountryFlag
-              country={
-                league.country ||
-                league.region
-              }
+              country={league.country ||league.region}
             />
 
 
@@ -796,7 +638,7 @@ const LeaguePanel = () => {
 
   </div>
 
-)}
+    )}
        
 
 
@@ -804,30 +646,15 @@ const LeaguePanel = () => {
             POPULAR COUNTRIES
         ==================================================== */}
 
-        {Object.keys(
-          groupedSections
-            .popularCountries
-        ).length > 0 && (
+        {Object.keys(groupedSections.popularCountries).length > 0 && (
 
           <div className="league-section">
-
             <div className="league-section-title">
-
-              <span>
-                🌍
-              </span>
-
               <span>
                 Popular Countries
               </span>
-
             </div>
-
-
-            {renderRegions(
-              groupedSections
-                .popularCountries
-            )}
+            {renderRegions(groupedSections.popularCountries)}
 
           </div>
 
@@ -838,30 +665,15 @@ const LeaguePanel = () => {
             OTHER COUNTRIES
         ==================================================== */}
 
-        {Object.keys(
-          groupedSections
-            .otherCountries
-        ).length > 0 && (
+        {Object.keys(groupedSections.otherCountries).length > 0 && (
 
           <div className="league-section">
-
             <div className="league-section-title">
-
-              <span>
-                🌍
-              </span>
-
               <span>
                 Other Countries
               </span>
-
             </div>
-
-
-            {renderRegions(
-              groupedSections
-                .otherCountries
-            )}
+            {renderRegions(groupedSections.otherCountries)}
 
           </div>
 
@@ -872,9 +684,7 @@ const LeaguePanel = () => {
             NO LEAGUES
         ==================================================== */}
 
-        {Object.keys(
-          leaguesByRegion
-        ).length === 0 && (
+        {Object.keys(leaguesByRegion).length === 0 && (
 
           <div className="no-leagues">
 

@@ -94,15 +94,12 @@ const Betslips = () => {
       ==================================================== */}
 
       <div className="betslip-header">
-
         <h3>
           Betslip
         </h3>
-
         <span className="betslip-count">
           {bets.length}
         </span>
-
       </div>
 
       {/* ====================================================
