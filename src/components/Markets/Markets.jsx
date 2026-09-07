@@ -387,22 +387,12 @@ const Markets = ({event,selectedOdds,onOddSelect}) => {
      FIND BET FOR HEADER
   ========================================================== */
 
-  const findBetForHeader = (
-    header,
-    bets
-  ) => {
+  const findBetForHeader = (header,bets) => {
 
-    const normalizedHeader =
-      String(
-        header || ""
-      )
-        .trim()
-        .toLowerCase();
+    const normalizedHeader = String(header || "").trim().toLowerCase();
 
-
-    if (
-      !normalizedHeader
-    ) {
+    if (!normalizedHeader)
+    {
       return null;
     }
 
@@ -411,13 +401,9 @@ const Markets = ({event,selectedOdds,onOddSelect}) => {
        1. TRY EXACT OBJECT KEY
     -------------------------------------------------------- */
 
-    if (
-      bets?.[header]
-    ) {
-
-      return bets[
-        header
-      ];
+    if (bets?.[header])
+    {
+     return bets[ header];
 
     }
 
@@ -426,33 +412,21 @@ const Markets = ({event,selectedOdds,onOddSelect}) => {
        2. TRY EXACT BET / LABEL / NAME
     -------------------------------------------------------- */
 
-    const exactMatch =
-      Object.values(
-        bets || {}
-      ).find(
-        (bet) => {
+    const exactMatch =Object.values(bets || {}).find((bet) => {
 
           const value =
             bet?.bet ||
             bet?.label ||
             bet?.name ||
             "";
-
-
-          return (
-            String(value)
-              .trim()
-              .toLowerCase() ===
-            normalizedHeader
-          );
+          return (String(value).trim().toLowerCase() ===normalizedHeader);
 
         }
       );
 
 
-    if (
-      exactMatch
-    ) {
+    if (exactMatch)
+    {
       return exactMatch;
     }
 
@@ -468,11 +442,7 @@ const Markets = ({event,selectedOdds,onOddSelect}) => {
       );
 
 
-    const compactMatch =
-      Object.values(
-        bets || {}
-      ).find(
-        (bet) => {
+    const compactMatch =Object.values(bets || {} ).find((bet) => {
 
           const value =
             bet?.bet ||
@@ -481,19 +451,14 @@ const Markets = ({event,selectedOdds,onOddSelect}) => {
             "";
 
 
-          const compactValue =
-            String(value)
-              .trim()
-              .toLowerCase()
-              .replace(
+          const compactValue = String(value).trim().toLowerCase().replace(
                 /[\s/_-]/g,
                 ""
               );
 
 
           return (
-            compactValue ===
-            compactHeader
+            compactValue === compactHeader
           );
 
         }
@@ -512,40 +477,22 @@ const Markets = ({event,selectedOdds,onOddSelect}) => {
      RENDER ONE MARKET
   ========================================================== */
 
-  const renderMarket = (
-    marketId,
-    market
-  ) => {
+  const renderMarket = (marketId,market) => {
 
-    const bets =
-      market?.bets || {};
+    const bets = market?.bets || {};
+
+    const marketName = getMarketName( market, marketId);
 
 
-    const marketName =
-      getMarketName(
-        market,
-        marketId
-      );
-
-
-    const headers =
-      market?.headers
-        ? market.headers
+    const headers = market?.headers? market.headers
             .split(",")
-            .map(
-              (item) =>
-                item.trim()
+            .map((item) =>item.trim()
             )
             .filter(Boolean)
         : [];
 
 
-    const isOpen =
-      Boolean(
-        openMarkets[
-          marketId
-        ]
-      );
+    const isOpen =  Boolean(openMarkets[marketId]);
 
 
     let marketContent;
@@ -555,9 +502,8 @@ const Markets = ({event,selectedOdds,onOddSelect}) => {
        MARKET BASED ON LINE
     ======================================================== */
 
-    if (
-      hasLines(bets)
-    ) {
+    if (hasLines(bets))
+    {
 
       const grouped =
         groupByLine(
@@ -569,10 +515,7 @@ const Markets = ({event,selectedOdds,onOddSelect}) => {
 
         <div className="market-line-market">
 
-          {Object.entries(
-            grouped
-          ).map(
-            ([line, lineBets]) => (
+          {Object.entries(grouped).map(([line, lineBets]) => (
 
               <div
                 key={line}
@@ -625,39 +568,17 @@ const Markets = ({event,selectedOdds,onOddSelect}) => {
 
     else {
 
-      const entries =
-        headers.length
-          ? headers.map(
-              (
-                header,
-                index
-              ) => {
+      const entries = headers.length ? headers.map((header,index) => {
 
-                const bet =
-                  findBetForHeader(
-                    header,
-                    bets
-                  );
-
+                const bet =findBetForHeader(header,bets);
 
                 return {
-                  key:
-                    `${header}-${index}`,
-
-                  bet,
-                };
+                  key: `${header}-${index}`, bet };
 
               }
             )
 
-          : Object.entries(
-              bets
-            ).map(
-              ([key, bet]) => ({
-                key,
-                bet,
-              })
-            );
+          : Object.entries(bets).map(([key, bet]) => ({key,bet}));
 
 
       marketContent = (

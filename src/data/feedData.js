@@ -2,12 +2,12 @@ export const feedData = {
 
  
 
-  "Africa - Africa Cup of Nations Women": {
+  "International - Africa Cup of Nations Women": {
 
     "0": {
       id: "194989",
       sport: "Football",
-      region: "Africa",
+      region: "International",
       league: "Africa Cup of Nations Women",
       live: "0",
       home: "Senegal (W)",
@@ -228,7 +228,7 @@ export const feedData = {
 
       id: "194992",
       sport: "Football",
-      region: "Africa",
+      region: "International",
       league: "Africa Cup of Nations Women",
       live: "0",
       home: "Nigeria (W)",
@@ -347,13 +347,13 @@ export const feedData = {
   },
 
 
-  "Africa - Africa Cup of Nations U20 Qualification": {
+  "International - Africa Cup of Nations U20 Qualification": {
 
     "0": {
 
       id: "194990",
       sport: "Football",
-      region: "Africa",
+      region: "International",
       league: "Africa Cup of Nations U20 Qualification",
       live: "0",
       home: "Togo U20",
@@ -491,7 +491,7 @@ export const feedData = {
 
       id: "194991",
       sport: "Football",
-      region: "Africa",
+      region: "International",
       league: "Africa Cup of Nations U20 Qualification",
       period: "-1",
       live: "0",
@@ -619,7 +619,7 @@ export const feedData = {
 
       id: "194993",
       sport: "Football",
-      region: "Africa",
+      region: "International",
       league: "Africa Cup of Nations U20 Qualification",
       live: "0",
       blocked: "0",

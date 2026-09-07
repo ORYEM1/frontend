@@ -4,34 +4,55 @@ import { useSports } from "../../contexts/SportsContext.jsx";
 
 import "./Betslips.css";
 
-
-
-
+// ==========================================================
 // BETSLIPS
-
+// ==========================================================
 
 const Betslips = () => {
-  
-  const {bets,removeBet,clearBetslip,filteredFeed,openMoreMarkets} = useSports();
+
+  const {
+    bets,
+    removeBet,
+    clearBetslip,
+    findEventById,
+    openMoreMarkets,
+  } = useSports();
+
+  // ==========================================================
+  // LOCAL STATE
+  // ==========================================================
 
   const [stake, setStake] = useState("");
-  const [activeTab, setActiveTab] = useState("bets");
-  const [bookingCode, setBookingCode] = useState("");
-  const [message, setMessage] = useState("");
-  const [bookingResult, setBookingResult] = useState(null);
 
-  
+  const [activeTab, setActiveTab] =
+    useState("bets");
+
+  const [bookingCode, setBookingCode] =
+    useState("");
+
+  const [message, setMessage] =
+    useState("");
+
+  // ==========================================================
   // TOTAL ODDS
+  // ==========================================================
 
-  const totalOdds = bets.reduce((product, bet) => product * Number(bet.odds || 0), 1 );
+  const totalOdds = bets.reduce(
+    (product, bet) =>
+      product * Number(bet.odds || 0),
+    1
+  );
 
- 
+  // ==========================================================
   // POSSIBLE WIN
-  
-  const possibleWin = Number(stake || 0) * totalOdds;
+  // ==========================================================
 
+  const possibleWin =
+    Number(stake || 0) * totalOdds;
 
+  // ==========================================================
   // FORMAT MONEY
+  // ==========================================================
 
   const formatMoney = (amount) => {
     return new Intl.NumberFormat(
@@ -42,46 +63,117 @@ const Betslips = () => {
     ).format(amount);
   };
 
-  
+  // ==========================================================
   // REMOVE BET
- 
+  // ==========================================================
+
   const handleRemove = (id) => {
     removeBet(id);
   };
 
-  
+  // ==========================================================
   // CLEAR BETSLIP
-  
+  // ==========================================================
+
   const handleClear = () => {
     clearBetslip();
 
     setMessage("");
+
     setStake("");
   };
 
-  //open more market
-  const handleBetEvent = (bet)=>{
-    const eventId = String(bet?.eventId);
-    if(!eventId)
-    {
-      return ;
-    }
-    for(const leagueEvents of Object.values(filteredFeed || {}))
-    {
-      for(const event of Object.values(leagueEvents || {}))
-      {
-        if(String(event?.id) === eventId)
-        {
-          openMoreMarkets(event);
-          return;
-        }
-      }
-    }
-    
+  // ==========================================================
+  // OPEN MORE MARKETS
+  //
+  // This does NOT depend on filteredFeed.
+  //
+  // The event is found from the complete feed using its ID.
+  // Therefore an event from Football can be opened while
+  // Basketball, Tennis, etc. is currently active.
+  // ==========================================================
 
-  }
+  const handleBetEvent = (bet) => {
 
-   
+    const eventId =
+      String(
+        bet?.eventId || ""
+      ).trim();
+
+    // --------------------------------------------------------
+    // Make sure an event ID exists
+    // --------------------------------------------------------
+
+    if (!eventId) {
+      console.warn(
+        "No event ID found in bet:",
+        bet
+      );
+
+      return;
+    }
+
+    // --------------------------------------------------------
+    // Find event from COMPLETE feed
+    // --------------------------------------------------------
+
+    const event =
+      findEventById(eventId);
+
+    // --------------------------------------------------------
+    // Event no longer exists
+    // --------------------------------------------------------
+
+    if (!event) {
+
+      console.warn(
+        "Event not found:",
+        eventId
+      );
+
+      setMessage(
+        "This event is no longer available."
+      );
+
+      return;
+    }
+
+    // --------------------------------------------------------
+    // Open More Markets
+    //
+    // openMoreMarkets() in SportsContext should:
+    //
+    // 1. Determine the event sport
+    // 2. Switch active sport
+    // 3. Clear incompatible filters
+    // 4. Set selectedEvent
+    // --------------------------------------------------------
+
+    setMessage("");
+
+    openMoreMarkets(event);
+  };
+
+  // ==========================================================
+  // KEYBOARD SUPPORT
+  // ==========================================================
+
+  const handleBetEventKeyDown = (
+    event,
+    bet
+  ) => {
+
+    if (
+      event.key === "Enter" ||
+      event.key === " "
+    ) {
+
+      event.preventDefault();
+
+      handleBetEvent(bet);
+    }
+  };
+
   // ==========================================================
   // RENDER
   // ==========================================================
@@ -94,13 +186,17 @@ const Betslips = () => {
       ==================================================== */}
 
       <div className="betslip-header">
+
         <h3>
           Betslip
         </h3>
+
         <span className="betslip-count">
           {bets.length}
         </span>
+
       </div>
+
 
       {/* ====================================================
           TABS
@@ -122,6 +218,7 @@ const Betslips = () => {
           Betslip
         </button>
 
+
         <button
           type="button"
           className={
@@ -138,6 +235,7 @@ const Betslips = () => {
 
       </div>
 
+
       {/* ====================================================
           BETSLIP TAB
       ==================================================== */}
@@ -145,6 +243,10 @@ const Betslips = () => {
       {activeTab === "bets" && (
 
         <div className="betslip-content">
+
+          {/* ==================================================
+              EMPTY BETSLIP
+          ================================================== */}
 
           {bets.length === 0 ? (
 
@@ -168,9 +270,9 @@ const Betslips = () => {
 
             <>
 
-              {/* ==========================================
+              {/* ==============================================
                   BET ITEMS
-              ========================================== */}
+              ============================================== */}
 
               <div className="bets-list">
 
@@ -181,30 +283,41 @@ const Betslips = () => {
                     className="bet-card"
                   >
 
+                    {/* ========================================
+                        EVENT
+                    ======================================== */}
+
                     <div className="bet-card-top">
 
-                      <div className="bet-event"
-                      onClick={()=>handleBetEvent(bet)}
-                      role="button"
-                      tabIndex={0}
-                      onKeyDown={(event)=>{
-                        if(event.key === "Enter" || 
-                          event.key === ""
-                        ){
-                          event.preventDefault();
-                          handleBetEvent(bet);
+                      <div
+                        className="bet-event"
+                        onClick={() =>
+                          handleBetEvent(bet)
                         }
-                      }}   
-                           >
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(event) =>
+                          handleBetEventKeyDown(
+                            event,
+                            bet
+                          )
+                        }
+                      >
 
-                          <strong>
-                            {bet.home}
-                          </strong>
-                          <strong>
-                            {bet.away}
-                          </strong>
-                          
+                        <strong>
+                          {bet.home}
+                        </strong>
+
+                        <strong>
+                          {bet.away}
+                        </strong>
+
                       </div>
+
+
+                      {/* ======================================
+                          REMOVE BET
+                      ====================================== */}
 
                       <button
                         type="button"
@@ -221,15 +334,39 @@ const Betslips = () => {
 
                     </div>
 
+
+                    {/* ========================================
+                        BET SELECTION
+                    ======================================== */}
+
                     <div className="bet-selection">
+
+                      {/* MARKET */}
 
                       <span>
                         {bet.market}
                       </span>
 
+
+                      {/* PERIOD */}
+
+                      {bet.period && (
+
+                        <span className="bet-period">
+                          {bet.period}
+                        </span>
+
+                      )}
+
+
+                      {/* BET LABEL */}
+
                       <span className="bet-label">
                         {bet.label}
                       </span>
+
+
+                      {/* ODDS */}
 
                       <strong className="bet-odd">
 
@@ -247,9 +384,10 @@ const Betslips = () => {
 
               </div>
 
-              {/* ==========================================
+
+              {/* ==================================================
                   STAKE
-              ========================================== */}
+              ================================================== */}
 
               <div className="stake-section">
 
@@ -278,11 +416,14 @@ const Betslips = () => {
 
               </div>
 
-              {/* ==========================================
+
+              {/* ==================================================
                   SUMMARY
-              ========================================== */}
+              ================================================== */}
 
               <div className="bet-summary">
+
+                {/* TOTAL ODDS */}
 
                 <div className="summary-row">
 
@@ -295,6 +436,9 @@ const Betslips = () => {
                   </strong>
 
                 </div>
+
+
+                {/* POSSIBLE WIN */}
 
                 <div className="summary-row">
 
@@ -311,6 +455,9 @@ const Betslips = () => {
 
                 </div>
 
+
+                {/* TAX */}
+
                 <div className="summary-row">
 
                   <span>
@@ -322,6 +469,9 @@ const Betslips = () => {
                   </strong>
 
                 </div>
+
+
+                {/* NET WIN */}
 
                 <div className="summary-row net-win">
 
@@ -340,9 +490,10 @@ const Betslips = () => {
 
               </div>
 
-              {/* ==========================================
+
+              {/* ==================================================
                   MESSAGE
-              ========================================== */}
+              ================================================== */}
 
               {message && (
 
@@ -352,9 +503,10 @@ const Betslips = () => {
 
               )}
 
-              {/* ==========================================
+
+              {/* ==================================================
                   ACTIONS
-              ========================================== */}
+              ================================================== */}
 
               <div className="bet-actions">
 
@@ -368,20 +520,24 @@ const Betslips = () => {
                   Clear Betslip
                 </button>
 
+
                 <button
                   type="button"
                   className="place-bet-button"
-                  
                 >
                   Place Bet
                 </button>
 
               </div>
 
+
+              {/* ==================================================
+                  BOOK TICKET
+              ================================================== */}
+
               <button
                 type="button"
                 className="book-ticket-button"
-                
               >
                 Book Ticket
               </button>
@@ -393,6 +549,7 @@ const Betslips = () => {
         </div>
 
       )}
+
 
       {/* ====================================================
           LOAD TICKET TAB
@@ -417,13 +574,14 @@ const Betslips = () => {
             }
           />
 
+
           <button
             type="button"
             className="load-ticket-button"
-            
           >
             Load Ticket
           </button>
+
 
           {message && (
 
@@ -436,7 +594,6 @@ const Betslips = () => {
         </div>
 
       )}
- 
 
     </div>
   );
