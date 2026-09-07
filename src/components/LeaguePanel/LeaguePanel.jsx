@@ -46,8 +46,7 @@ const LeaguePanel = () => {
     const sportKey = normalizeText(activeSport);
 
     return (
-      popularBySport[sportKey] ||
-      popularBySport.default
+      popularBySport[sportKey] || popularBySport.default
     );
 
   }, [activeSport]);
@@ -82,17 +81,14 @@ const LeaguePanel = () => {
            GET EVENTS FOR ACTIVE SPORT
         ==================================================== */
 
-        const sportEvents = Object.values(
-          leagueEvents || {}
-        ).filter((event) => {
+        const sportEvents = Object.values(leagueEvents || {}).filter((event) => {
 
           if (!event) {
             return false;
           }
 
           return (
-            normalizeText(event.sport) ===
-            normalizeText(activeSport)
+            normalizeText(event.sport) === normalizeText(activeSport)
           );
 
         });
@@ -113,33 +109,22 @@ const LeaguePanel = () => {
 
         const firstEvent = sportEvents[0];
 
-        const region = String(
-          firstEvent?.region || "Other"
-        ).trim();
+        const region = String(firstEvent?.region || "Other").trim();
 
 
         /* ====================================================
            CREATE DISPLAY NAME
         ==================================================== */
 
-        let displayName =
-          String(leagueName).trim();
+        let displayName = String(leagueName).trim();
+
+        const regionPrefix = `${region} - `;
 
 
-        const regionPrefix =
-          `${region} - `;
+        if (normalizeText(displayName).startsWith(normalizeText(regionPrefix)))
+        {
 
-
-        if (
-          normalizeText(displayName).startsWith(
-            normalizeText(regionPrefix)
-          )
-        ) {
-
-          displayName =
-            displayName
-              .substring(regionPrefix.length)
-              .trim();
+          displayName = displayName.substring(regionPrefix.length).trim();
 
         }
 
@@ -166,11 +151,8 @@ const LeaguePanel = () => {
         grouped[region].leagues.push({
 
           name: leagueName,
-
           displayName,
-
           region,
-
           events: sportEvents.length,
 
         });
@@ -180,8 +162,7 @@ const LeaguePanel = () => {
            REGION EVENT COUNT
         ==================================================== */
 
-        grouped[region].eventCount +=
-          sportEvents.length;
+        grouped[region].eventCount += sportEvents.length;
 
       }
     );
@@ -236,8 +217,7 @@ const LeaguePanel = () => {
        LOOP THROUGH REGIONS
     ======================================================== */
 
-    Object.entries(leaguesByRegion).forEach(
-      ([region, regionData]) => {
+    Object.entries(leaguesByRegion).forEach(([region, regionData]) => {
 
 
         /* ====================================================
@@ -326,17 +306,14 @@ const LeaguePanel = () => {
            POPULAR COUNTRIES
         ==================================================== */
 
-        if (
-          isPopularCountry &&
-          countryLeagues.length > 0
-        ) {
+        if (isPopularCountry &&countryLeagues.length > 0)
+        {
 
           popularCountryGroups[region] = {
 
             ...regionData,
 
-            leagues:
-              countryLeagues,
+            leagues:countryLeagues,
 
             eventCount:
               countryLeagues.reduce(
