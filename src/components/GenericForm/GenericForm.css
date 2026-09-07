@@ -62,7 +62,7 @@
 
 .generic-form__grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 1rem;
 }
 
@@ -114,6 +114,14 @@
   border-color: var(--accent);
   box-shadow: 0 0 0 0.1875rem rgba(0, 51, 102, 0.18);
   outline: none;
+}
+
+.generic-form__field textarea {
+  min-height: 0;
+  height: 2.625rem;
+  resize: none;
+  overflow: hidden;
+  line-height: 1.45;
 }
 
 .generic-form__option-group {
