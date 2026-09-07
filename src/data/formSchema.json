@@ -73,11 +73,10 @@
       "options": ["Social Media", "Friend/Family", "Online Ad", "Search Engine", "Other"]
     },
     {
-      "type": "textarea",
+      "type": "text",
       "label": "Address",
       "name": "address",
       "required": false,
-      "rows": 3,
       "placeholder": "Street, district, landmark"
     },
     {

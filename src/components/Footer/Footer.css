@@ -9,10 +9,10 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  padding: 20px 24px;
+  padding: 1.25rem 1.5rem;
   margin-top: 0;
   background: #036;
-  border-radius: 0 0 5px 5px;
+  border-radius: 0 0 0.3125rem 0.3125rem;
   color: #fff;
   box-sizing: border-box;
 }
@@ -37,10 +37,10 @@
 .footer-contact {
 
   width: 100%;
-  padding: 0 0 15px 0;
-  margin: 0 0 15px 0;
+  padding: 0 0 0.9375rem 0;
+  margin: 0 0 0.9375rem 0;
   box-sizing: border-box;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.25);
 }
 
 
@@ -58,11 +58,11 @@
 ========================================================== */
 
 .footer h4 {
-  margin: 0 0 10px 0;
+  margin: 0 0 0.625rem 0;
   display: flex;
   align-items: center;
-  gap: 7px;
-  font-size: 15px;
+  gap: 0.4375rem;
+  font-size: 0.9375rem;
   font-weight: 600;
 }
 
@@ -73,7 +73,7 @@
 
 .footer-terms {
 
-  font-size: 15px;
+  font-size: 0.9375rem;
 
   margin-bottom: 0;
 }
@@ -85,7 +85,7 @@
 
 .footer p {
 
-  margin: 5px 0;
+  margin: 0.3125rem 0;
 
   line-height: 1.5;
 }
@@ -97,13 +97,13 @@
 
 .footer img {
 
-  width: 50px;
+  width: 3.125rem;
 
-  height: 40px;
+  height: 2.5rem;
 
   object-fit: contain;
 
-  margin-right: 8px;
+  margin-right: 0.5rem;
 }
 
 
@@ -113,7 +113,7 @@
 
 .footer-deposit p {
 
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 
@@ -127,16 +127,16 @@
 
   align-items: center;
 
-  gap: 8px;
+  gap: 0.5rem;
 
-  margin: 8px 0;
+  margin: 0.5rem 0;
 }
 
 
 
 .footer-sports {
 
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 
@@ -144,16 +144,16 @@
    TABLET
 ========================================================== */
 
-@media (max-width: 1024px) {
+@media (max-width: 64rem) {
 
   .footer {
 
-    padding: 20px;
+    padding: 1.25rem;
   }
 
   .footer-main {
 
-    gap: 18px;
+    gap: 1.125rem;
   }
 
   .footer-terms,
@@ -161,7 +161,7 @@
   .footer-sports,
   .footer-contact {
 
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
 }
@@ -171,7 +171,7 @@
    MOBILE
 ========================================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
 
   .footer {
 
@@ -185,7 +185,7 @@
 
     flex-direction: column;
 
-    padding: 25px 16px;
+    padding: 1.5625rem 1rem;
 
     border-radius: 0;
 
@@ -201,7 +201,7 @@
 
     flex-direction: column;
 
-    gap: 20px;
+    gap: 1.25rem;
   }
 
 
@@ -216,7 +216,7 @@
 
   .footer-terms {
 
-    font-size: 14px;
+    font-size: 0.875rem;
 
     margin-bottom: 0;
   }
@@ -224,27 +224,27 @@
 
   .footer-deposit p {
 
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
 
   .footer-sports {
 
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
 
   .footer-contact {
 
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
 
   .footer img {
 
-    width: 45px;
+    width: 2.8125rem;
 
-    height: 35px;
+    height: 2.1875rem;
   }
 
 }
@@ -254,19 +254,19 @@
    SMALL MOBILE
 ========================================================== */
 
-@media (max-width: 480px) {
+@media (max-width: 30rem) {
 
   .footer {
 
     width: 100%;
 
-    padding: 22px 12px;
+    padding: 1.375rem 0.75rem;
   }
 
 
   .footer-main {
 
-    gap: 16px;
+    gap: 1rem;
   }
 
 
@@ -275,15 +275,15 @@
   .footer-sports,
   .footer-contact {
 
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 
 
   .footer img {
 
-    width: 42px;
+    width: 2.625rem;
 
-    height: 32px;
+    height: 2rem;
   }
 
 }

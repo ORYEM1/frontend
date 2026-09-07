@@ -7,13 +7,13 @@
 ============================================================ */
 
 .sports-header {
-  width: min(1300px, 100%);
+  width: min(81.25rem, 100%);
 
-  height: 172px;
+  height: 10.75rem;
 
   background: #fff;
 
-  border-bottom: 1px solid #ddd;
+  border-bottom: 0.0625rem solid #ddd;
 
   position: fixed;
 
@@ -34,11 +34,11 @@
    TOP SECTION
 ============================================================ */
 .sports-header-top {
-  height: 120px;
+  height: 7.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 1.5rem;
   background: #036;
   box-sizing: border-box;
 }
@@ -47,7 +47,7 @@
    LOGO
 ============================================================ */
 .sports-header-logo {
-  width: 40px;
+  width: 2.5rem;
   font-weight: 700;
   cursor: pointer;  
 }
@@ -66,21 +66,21 @@
 .sports-header-auth {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 .sports-header-auth a,
 .sports-header-auth button {
-  height: 38px;
-  padding: 0 20px;
+  height: 2.375rem;
+  padding: 0 1.25rem;
   border: none;
-  border-radius: 5px;
-  font-size: 14px;
+  border-radius: 0.3125rem;
+  font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   text-decoration: none;
   box-sizing: border-box;
 }
@@ -126,11 +126,11 @@
 
   align-items: center;
 
-  min-height: 52px;
+  min-height: 3.25rem;
 
-  padding: 0 24px;
+  padding: 0 1.5rem;
 
-  border: 1px solid #f90;
+  border: 0.0625rem solid #f90;
 
   background: #444;
 
@@ -152,17 +152,17 @@
 
   justify-content: center;
 
-  gap: 8px;
+  gap: 0.5rem;
 
-  height: 52px;
+  height: 3.25rem;
 
-  padding: 0 18px;
+  padding: 0 1.125rem;
 
   background: transparent;
 
   border: none;
 
-  font-size: 14px;
+  font-size: 0.875rem;
 
   font-weight: 600;
 
@@ -183,7 +183,7 @@
 
   justify-content: center;
 
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 
@@ -214,12 +214,12 @@
 .header-menu-item.active::after {
   content: "";
   position: absolute;
-  left: 18px;
+  left: 1.125rem;
 
-  right: 18px;
+  right: 1.125rem;
 
   bottom: 0;
-  height: 3px;
+  height: 0.1875rem;
   background: currentColor;
 }
 
@@ -237,39 +237,39 @@
    RESPONSIVE
 ============================================================ */
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
 
   .sports-header-top {
-    height: 75px;
+    height: 4.6875rem;
 
-    padding: 0 12px;
+    padding: 0 0.75rem;
   }
 
 
   .sports-header-logo img {
-    width: 100px;
+    width: 6.25rem;
 
-    max-height: 55px;
+    max-height: 3.4375rem;
   }
 
 
   .sports-header-auth {
-    gap: 5px;
+    gap: 0.3125rem;
   }
 
 
   .sports-header-auth a,
   .sports-header-auth button {
-    height: 34px;
+    height: 2.125rem;
 
-    padding: 0 12px;
+    padding: 0 0.75rem;
 
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
 
   .sports-header-menu {
-    padding: 0 8px;
+    padding: 0 0.5rem;
 
     overflow-x: auto;
   }
@@ -278,7 +278,7 @@
   .header-menu-item {
     flex-shrink: 0;
 
-    padding: 0 12px;
+    padding: 0 0.75rem;
   }
 
 }
