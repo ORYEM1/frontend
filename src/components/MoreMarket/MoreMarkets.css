@@ -17,7 +17,7 @@
 @keyframes moreMarketsSlideIn {
     from {
         opacity: 0;
-        transform: translateX(40px);
+        transform: translateX(2.5rem);
     }
 
     to {
@@ -33,10 +33,10 @@
 
 .more-markets-header {
     background: #036;
-    padding: 10px 12px;
+    padding: 0.625rem 0.75rem;
     color: #fff;
-    border-bottom: 1px solid #036;
-    margin-bottom: 1px;
+    border-bottom: 0.0625rem solid #036;
+    margin-bottom: 0.0625rem;
 }
 
 
@@ -49,11 +49,11 @@
 
     align-items: center;
 
-    gap: 6px;
+    gap: 0.375rem;
 
     color: #036;
 
-    border-radius: 4px;
+    border-radius: 0.25rem;
 
     border: none;
 
@@ -61,7 +61,7 @@
 
     cursor: pointer;
 
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 
@@ -72,7 +72,7 @@
 .more-markets-event {
     width: 100%;
 
-    margin-top: 8px;
+    margin-top: 0.5rem;
 }
 
 
@@ -81,10 +81,10 @@
 ========================================================= */
 
 .more-market-league {
-    font-size: 12px;
+    font-size: 0.75rem;
     color: #fff;
     text-align: center;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
 }
 
 
@@ -98,17 +98,17 @@
     display: grid;
 
     grid-template-columns:
-        1fr 40px 1fr;
+        1fr 2.5rem 1fr;
 
     align-items: center;
 
     text-align: center;
 
-    gap: 10px;
+    gap: 0.625rem;
 
     font-weight: 600;
 
-    font-size: 15px;
+    font-size: 0.9375rem;
 }
 
 
@@ -121,7 +121,7 @@
 
     text-align: right;
 
-    padding-right: 10px;
+    padding-right: 0.625rem;
 
     white-space: normal;
 
@@ -129,7 +129,7 @@
 
     color: #fff;
 
-    font-size: 18px;
+    font-size: 1.125rem;
 }
 
 
@@ -140,7 +140,7 @@
 .more-markets-teams span {
     text-align: center;
 
-    font-size: 15px;
+    font-size: 0.9375rem;
 
     color: #fff;
 }
@@ -155,13 +155,13 @@
 
     text-align: left;
 
-    padding-left: 10px;
+    padding-left: 0.625rem;
 
     white-space: normal;
 
     word-break: break-word;
 
-    font-size: 18px;
+    font-size: 1.125rem;
 
     color: #fff;
 }
@@ -174,9 +174,9 @@
 .more-market-time {
     text-align: center;
 
-    margin-top: 6px;
+    margin-top: 0.375rem;
 
-    font-size: 15px;
+    font-size: 0.9375rem;
 
     color: #777;
 }
@@ -189,7 +189,7 @@
 .more-markets-content {
     align-content: center;
 
-    padding: 10px;
+    padding: 0.625rem;
 }
 
 
@@ -198,15 +198,15 @@
 ========================================================= */
 
 .more-markets .market-card {
-    width: calc(100% - 16px);
+    width: calc(100% - 1rem);
 
-    margin: 10px;
+    margin: 0.625rem;
 
     background: #fff;
 
-    border: 1px solid #e5e5e5;
+    border: 0.0625rem solid #e5e5e5;
 
-    border-radius: 6px;
+    border-radius: 0.375rem;
 
     overflow: hidden;
 
@@ -221,15 +221,15 @@
 .more-markets .market-card-header {
     width: 100%;
 
-    padding: 8px 10px;
+    padding: 0.5rem 0.625rem;
 
     background: #eeeeee;
 
     text-align: left;
 
-    font-size: 13px;
+    font-size: 0.8125rem;
 
-    border-bottom: 1px solid #ddd;
+    border-bottom: 0.0625rem solid #ddd;
 }
 
 
@@ -250,12 +250,12 @@
     grid-template-columns:
         repeat(
             auto-fit,
-            minmax(70px, 1fr)
+            minmax(4.375rem, 1fr)
         );
 
-    gap: 6px;
+    gap: 0.375rem;
 
-    padding: 4px;
+    padding: 0.25rem;
 }
 
 
@@ -266,7 +266,7 @@
 .more-markets .more-market-odd {
     width: 100%;
 
-    min-height: 40px;
+    min-height: 2.5rem;
 
     display: flex;
 
@@ -278,17 +278,17 @@
 
     color: #000;
 
-    gap: 4px;
+    gap: 0.25rem;
 
-    border: 1px solid rgb(232, 234, 236);
+    border: 0.0625rem solid rgb(232, 234, 236);
 
-    border-radius: 5px;
+    border-radius: 0.3125rem;
 
     background: rgb(213, 216, 219);
 
     cursor: pointer;
 
-    padding: 7px 5px;
+    padding: 0.4375rem 0.3125rem;
 }
 
 
@@ -303,9 +303,9 @@
 
     text-align: center;
 
-    font-size: 12px;
+    font-size: 0.75rem;
 
-    line-height: 16px;
+    line-height: 1rem;
 
     white-space: normal;
 
@@ -320,7 +320,7 @@
 .more-markets .more-market-odd strong {
     display: block;
 
-    font-size: 14px;
+    font-size: 0.875rem;
 
     font-weight: 700;
 }
@@ -331,7 +331,7 @@
 ========================================================= */
 
 .more-markets .more-market-odd.odd-selected {
-    border: 2px solid rgb(5, 160, 5);
+    border: 0.125rem solid rgb(5, 160, 5);
 
     background: rgb(5, 160, 5);
 }
@@ -376,7 +376,7 @@
     display: grid;
 
     grid-template-columns:
-        70px
+        4.375rem
         minmax(0, 1fr)
         minmax(0, 1fr);
 
@@ -386,13 +386,13 @@
 
     background: #eeeeee;
 
-    border-bottom: 1px solid #ddd;
+    border-bottom: 0.0625rem solid #ddd;
 
-    font-size: 11px;
+    font-size: 0.6875rem;
 
     font-weight: 700;
 
-    padding: 8px 5px;
+    padding: 0.5rem 0.3125rem;
 }
 
 
@@ -404,17 +404,17 @@
     display: grid;
 
     grid-template-columns:
-        70px
+        4.375rem
         minmax(0, 1fr)
         minmax(0, 1fr);
 
     align-items: center;
 
-    gap: 5px;
+    gap: 0.3125rem;
 
-    padding: 5px;
+    padding: 0.3125rem;
 
-    border-bottom: 1px solid #eeeeee;
+    border-bottom: 0.0625rem solid #eeeeee;
 }
 
 
@@ -429,7 +429,7 @@
 
     justify-content: center;
 
-    font-size: 13px;
+    font-size: 0.8125rem;
 
     font-weight: 600;
 }
@@ -453,7 +453,7 @@
 .more-market-odd {
     width: 100%;
 
-    min-height: 50px;
+    min-height: 3.125rem;
 
     display: flex;
 
@@ -463,13 +463,13 @@
 
     justify-content: center;
 
-    gap: 3px;
+    gap: 0.1875rem;
 
-    padding: 5px;
+    padding: 0.3125rem;
 
-    border: 1px solid #ddd;
+    border: 0.0625rem solid #ddd;
 
-    border-radius: 5px;
+    border-radius: 0.3125rem;
 
     background: #f8f8f8;
 
@@ -487,9 +487,9 @@
 .over-under-cell
 .more-market-odd
 span {
-    font-size: 11px;
+    font-size: 0.6875rem;
 
-    line-height: 14px;
+    line-height: 0.875rem;
 
     text-align: center;
 }
@@ -503,7 +503,7 @@ span {
 .over-under-cell
 .more-market-odd
 strong {
-    font-size: 14px;
+    font-size: 0.875rem;
 
     font-weight: 700;
 }
@@ -516,7 +516,7 @@ strong {
 .more-markets
 .over-under-cell
 .more-market-odd.odd-selected {
-    border: 2px solid #2196f3;
+    border: 0.125rem solid #2196f3;
 
     background: #eaf4ff;
 

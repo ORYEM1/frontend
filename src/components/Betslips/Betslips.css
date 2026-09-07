@@ -6,8 +6,8 @@
 .betslip-card {
   width: 100%;
   background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 0px;
+  border: 0.0625rem solid #e5e7eb;
+  border-radius: 0;
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -21,14 +21,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 12px;
+  padding: 0.625rem 0.75rem;
   background: #f90;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 0.0625rem solid #e5e7eb;
 }
 
 .betslip-header h3 {
   margin: 0;
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 700;
   text-transform: uppercase;
   justify-content: center;
@@ -36,16 +36,16 @@
 }
 
 .betslip-count {
-  min-width: 24px;
-  height: 24px;
-  padding: 0 7px;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.4375rem;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #036;
   color: #ffffff;
-  border-radius: 50px;
-  font-size: 12px;
+  border-radius: 3.125rem;
+  font-size: 0.75rem;
   font-weight: 700;
 }
 
@@ -56,19 +56,19 @@
 
 .betslip-tabs {
   display: flex;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 0.0625rem solid #e5e7eb;
 }
 
 .betslip-tabs button {
   flex: 1;
   border: none;
   background: transparent;
-  padding: 12px 8px;
+  padding: 0.75rem 0.5rem;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: #6b7280;
-  border-bottom: 2px solid transparent;
+  border-bottom: 0.125rem solid transparent;
 }
 
 .betslip-tabs button:hover {
@@ -86,8 +86,8 @@
 ============================================================ */
 
 .betslip-content {
-  padding: 10px;
-  border: 1px solid #ddd;
+  padding: 0.625rem;
+  border: 0.0625rem solid #ddd;
 }
 
 
@@ -96,24 +96,24 @@
 ============================================================ */
 
 .empty-betslip {
-  padding: 35px 15px;
+  padding: 2.1875rem 0.9375rem;
   text-align: center;
 }
 
 .empty-icon {
-  font-size: 34px;
-  margin-bottom: 10px;
+  font-size: 2.125rem;
+  margin-bottom: 0.625rem;
 }
 
 .empty-betslip h4 {
-  margin: 0 0 6px;
-  font-size: 15px;
+  margin: 0 0 0.375rem;
+  font-size: 0.9375rem;
 }
 
 .empty-betslip p {
   margin: 0;
   color: #8a8f98;
-  font-size: 13px;
+  font-size: 0.8125rem;
   line-height: 1.5;
 }
 
@@ -125,7 +125,7 @@
 .bets-list {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 0.0625rem;
 }
 
 
@@ -134,9 +134,9 @@
 ============================================================ */
 
 .bet-card {
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  padding: 10px;
+  border: 0.0625rem solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 0.625rem;
   background: #fafafa;
 }
 
@@ -144,13 +144,13 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 .bet-event {
   display: grid;
-  gap: 10px;
-  font-size: 13px;
+  gap: 0.625rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   line-height: 1.4;
   cursor: pointer;
@@ -158,16 +158,16 @@
 
 .remove-bet {
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
   border: none;
   border-radius: 50%;
   color: #fff;
   background-color: #036;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 500;
-  line-height: 15px;
+  line-height: 0.9375rem;
   padding: 0;
 }
 
@@ -176,8 +176,8 @@
 }
 
 .bet-market {
-  margin-top: 4px;
-  font-size: 11px;
+  margin-top: 0.25rem;
+  font-size: 0.6875rem;
   color: #8a8f98;
 }
 .bet-teams {
@@ -186,7 +186,7 @@
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 .bet-teams strong {
@@ -196,7 +196,7 @@
 .bet-vs {
   flex-shrink: 0;
   color: #777;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
 }
 
@@ -204,36 +204,36 @@
 .bet-teams.long-team-names {
   flex-direction: column;
   align-items: flex-start;
-  gap: 3px;
+  gap: 0.1875rem;
 }
 
 .bet-teams.long-team-names .bet-vs {
-  margin-left: 5px;
+  margin-left: 0.3125rem;
 }
 
 .bet-selection {
-  margin-top: 8px;
+  margin-top: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 13px;
+  font-size: 0.8125rem;
   color:#036;
   
 }
 
 .bet-label {
   display: inline-flex;
-  padding: 3px 5px;
+  padding: 0.1875rem 0.3125rem;
   background: #e6f7ff;
   /*color: #1677ff;*/
   color: green;
-  border-radius: 4px;
-  font-size: 12px;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
   font-weight: 800;
 }
 
 .bet-odd {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 
@@ -242,14 +242,14 @@
 ============================================================ */
 
 .stake-section {
-  margin-top: 14px;
+  margin-top: 0.875rem;
 }
 
 .stake-section label,
 .load-ticket-content label {
   display: block;
-  margin-bottom: 6px;
-  font-size: 12px;
+  margin-bottom: 0.375rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #4b5563;
 }
@@ -257,16 +257,16 @@
 .stake-input-wrapper {
   display: flex;
   align-items: center;
-  border: 1px solid #d1d5db;
-  border-radius: 5px;
+  border: 0.0625rem solid #d1d5db;
+  border-radius: 0.3125rem;
   overflow: hidden;
 }
 
 .stake-input-wrapper span {
-  padding: 9px 10px;
+  padding: 0.5625rem 0.625rem;
   background: #f3f4f6;
-  border-right: 1px solid #d1d5db;
-  font-size: 12px;
+  border-right: 0.0625rem solid #d1d5db;
+  font-size: 0.75rem;
   font-weight: 600;
 }
 
@@ -274,8 +274,8 @@
   width: 100%;
   border: none;
   outline: none;
-  padding: 9px 10px;
-  font-size: 14px;
+  padding: 0.5625rem 0.625rem;
+  font-size: 0.875rem;
 }
 
 
@@ -284,18 +284,18 @@
 ============================================================ */
 
 .bet-summary {
-  margin-top: 14px;
-  padding: 12px;
+  margin-top: 0.875rem;
+  padding: 0.75rem;
   background: #f8fafc;
-  border-radius: 6px;
+  border-radius: 0.375rem;
 }
 
 .summary-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 0;
-  font-size: 13px;
+  padding: 0.3125rem 0;
+  font-size: 0.8125rem;
 }
 
 .summary-row span {
@@ -307,9 +307,9 @@
 }
 
 .summary-row.net-win {
-  margin-top: 5px;
-  padding-top: 9px;
-  border-top: 1px solid #e5e7eb;
+  margin-top: 0.3125rem;
+  padding-top: 0.5625rem;
+  border-top: 0.0625rem solid #e5e7eb;
 }
 
 .summary-row.net-win strong {
@@ -323,17 +323,17 @@
 .bet-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 12px;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
 }
 
 .bet-actions button,
 .book-ticket-button,
 .load-ticket-button {
-  min-height: 38px;
-  border-radius: 5px;
+  min-height: 2.375rem;
+  border-radius: 0.3125rem;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 600;
 }
 
@@ -341,12 +341,12 @@
   border: none;
   background: #f90;
   color: #ffffff;
-  border:1px solid #f90;
+  border:0.0625rem solid #f90;
 }
 
 .clear-bets-button:hover {
   background: #f70;
-  border:1px solid #f70;
+  border:0.0625rem solid #f70;
 }
 
 .place-bet-button {
@@ -361,15 +361,15 @@
 
 .book-ticket-button {
   width: 100%;
-  margin-top: 8px;
-  border: 1px solid #036;
+  margin-top: 0.5rem;
+  border: 0.0625rem solid #036;
   background: #036;
   color: #fff;
 }
 
 .book-ticket-button:hover {
   background: #0958d9;
-  border: 1px solid #0958d9;
+  border: 0.0625rem solid #0958d9;
 }
 
 
@@ -380,22 +380,22 @@
    RESPONSIVE — TABLET
 ============================================================ */
 
-@media (max-width: 1024px) {
+@media (max-width: 64rem) {
 
   .betslip-card {
     width: 100%;
   }
 
   .betslip-header {
-    padding: 10px 12px;
+    padding: 0.625rem 0.75rem;
   }
 
   .betslip-header h3 {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .betslip-content {
-    padding: 10px;
+    padding: 0.625rem;
   }
 
 }
@@ -406,7 +406,7 @@
    FULL SCREEN
 ============================================================ */
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
 
   .betslip-card {
     width: 100vw;
@@ -423,18 +423,18 @@
 
   .betslip-header {
     width: 100%;
-    min-height: 45px;
-    padding: 10px 12px;
+    min-height: 2.8125rem;
+    padding: 0.625rem 0.75rem;
     box-sizing: border-box;
   }
 
   .betslip-header h3 {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .betslip-count {
-    min-width: 24px;
-    height: 24px;
+    min-width: 1.5rem;
+    height: 1.5rem;
   }
 
 
@@ -445,8 +445,8 @@
   }
 
   .betslip-tabs button {
-    padding: 12px 8px;
-    font-size: 13px;
+    padding: 0.75rem 0.5rem;
+    font-size: 0.8125rem;
   }
 
 
@@ -454,7 +454,7 @@
 
   .betslip-content {
     width: 100%;
-    padding: 12px;
+    padding: 0.75rem;
     box-sizing: border-box;
   }
 
@@ -463,7 +463,7 @@
 
   .bets-list {
     width: 100%;
-    gap: 8px;
+    gap: 0.5rem;
   }
 
 
@@ -520,7 +520,7 @@
   .booking-modal {
     width: 100%;
     max-width: 100%;
-    padding: 18px;
+    padding: 1.125rem;
     box-sizing: border-box;
   }
 
@@ -532,7 +532,7 @@
    STILL FULL SCREEN
 ============================================================ */
 
-@media (max-width: 480px) {
+@media (max-width: 30rem) {
 
   .betslip-card {
     width: 100vw;
@@ -543,51 +543,51 @@
   }
 
   .betslip-header {
-    min-height: 45px;
-    padding: 10px;
+    min-height: 2.8125rem;
+    padding: 0.625rem;
   }
 
   .betslip-header h3 {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .betslip-content {
-    padding: 10px;
+    padding: 0.625rem;
   }
 
   .bet-card {
-    padding: 9px;
+    padding: 0.5625rem;
   }
 
   .bet-event {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   .bet-market {
-    font-size: 10px;
+    font-size: 0.625rem;
   }
 
   .bet-teams {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   .bet-label {
-    font-size: 11px;
+    font-size: 0.6875rem;
   }
 
   .bet-odd {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 
   .summary-row {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   .bet-actions button,
   .book-ticket-button,
   .load-ticket-button {
-    min-height: 40px;
-    font-size: 12px;
+    min-height: 2.5rem;
+    font-size: 0.75rem;
   }
 
 }
