@@ -477,7 +477,7 @@ function GenericForm({
         </section>
       )}
 
-      <Footer/>
+    
     </section>
   )
 }
