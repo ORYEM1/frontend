@@ -76,6 +76,24 @@ function BettingLayout() {
               element={<EventsPage />}
             />
 
+            <Route
+              path="/login"
+              element={
+                <AuthFormRoute
+                  formType="login"
+                />
+              }
+            />
+
+            <Route
+              path="/register"
+              element={
+                <AuthFormRoute
+                  formType="register"
+                />
+              }
+            />
+
           </Routes>
 
         </main>
@@ -110,43 +128,10 @@ function App() {
 
       <Router>
 
-        <Routes>
+        {/* Betting layout keeps header + left/right panels
+            on all pages, auth forms render in the center. */}
 
-          {/* ==================================================
-              AUTHENTICATION PAGES
-          ================================================== */}
-
-          <Route
-            path="/login"
-            element={
-              <AuthFormRoute
-                formType="login"
-              />
-            }
-          />
-
-          <Route
-            path="/register"
-            element={
-              <AuthFormRoute
-                formType="register"
-              />
-            }
-          />
-
-
-          {/* ==================================================
-              BETTING APPLICATION
-          ================================================== */}
-
-          <Route
-            path="/*"
-            element={
-              <BettingLayout />
-            }
-          />
-
-        </Routes>
+        <BettingLayout />
 
       </Router>
 

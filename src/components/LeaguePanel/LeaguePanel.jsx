@@ -1,5 +1,6 @@
 
 import {useEffect,useMemo,useState} from "react";
+import { useNavigate } from "react-router-dom";
 import {FaChevronDown,FaChevronRight,FaFire} from "react-icons/fa";
 import { useSports } from "../../contexts/SportsContext.jsx";
 import { feedData } from "../../data/feedData.js";
@@ -68,7 +69,24 @@ const LeaguePanel = () => {
 
   const {activeSport,selectedLeague,selectLeague} = useSports();
 
+  const navigate = useNavigate();
+
   const [collapsedRegions,setCollapsedRegions] = useState({});
+
+
+  /* ==========================================================
+     SELECT LEAGUE + SHOW EVENTS
+     Ensures center leaves /login or /register
+     so the league games become visible.
+  ========================================================== */
+
+  const handleLeagueSelect = (league) => {
+
+    selectLeague(league);
+
+    navigate("/");
+
+  };
 
 
   /* ==========================================================
@@ -463,7 +481,7 @@ const groupedSections = useMemo(() => {
                         }
                       `}
                       onClick={() =>
-                        selectLeague(
+                        handleLeagueSelect(
                           league
                         )
                       }
@@ -551,7 +569,7 @@ const groupedSections = useMemo(() => {
                   : ""
               }
             `}
-            onClick={() => selectLeague(league)}
+            onClick={() => handleLeagueSelect(league)}
           >
 
             {/* ==========================================
