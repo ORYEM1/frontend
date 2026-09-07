@@ -63,7 +63,7 @@ const LeaguePanel = () => {
      POPULAR COUNTRIES
   ========================================================== */
 
-  const popularCountries = sportPopularity?.countries || [];
+  const popularCountries =sportPopularity?.countries || [];
 
 
   /* ==========================================================
