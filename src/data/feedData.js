@@ -4,225 +4,1491 @@ export const feedData = {
 
   "International - Africa Cup of Nations Women": {
 
-    "0": {
-      id: "194989",
-      sport: "Football",
-      region: "International",
-      league: "Africa Cup of Nations Women",
-      live: "0",
-      home: "Senegal (W)",
-      away: "Kenya (W)",
-      blocked: "0",
-      event_status: "Not Started",
-      date: "30/07",
-      kickoff_time: "20:00",
-      live_time: null,
-      live_scores: {},
-      markets: {
+ 
+  "0": {
+    id: "194989",
+    sport: "Football",
+    region: "International",
+    league: "Africa Cup of Nations Women",
+    live: "0",
+    home: "Senegal (W)",
+    away: "Kenya (W)",
+    blocked: "0",
+    event_status: "Not Started",
+    date: "30/07",
+    kickoff_time: "20:00",
+    live_time: null,
+    live_scores: {},
 
-        /**match result (1X2) */
-        "3": {
-          
-          cols: "3",
-          headers: "1,X,2",
-          bets: {
-            "1": {
-              id: "40519125",
-              event_id: "194989",
-              market_id: "3",
-              market_name: "Match Result",
-              bet: "1",
-              line: "",
-              odds: "1.60",
-              locked: "0",
-            },
+    markets: {
 
-            X: {
-              id: "40519126",
-              event_id: "194989",
-              market_id: "3",
-              market_name: "Match Result",
-              bet: "X",
-              line: "",
-              odds: "3.75",
-              locked: "0",
-            },
+      /* =====================================================
+         1. MATCH RESULT
+      ===================================================== */
 
-            "2": {
-              id: "40519127",
-              event_id: "194989",
-              market_id: "3",
-              market_name: "Match Result",
-              bet: "2",
-              line: "",
-              odds: "4.50",
-              locked: "0",
-            },
+      "3": {
+        cols: "3",
+        headers: "1,X,2",
+        bets: {
+          "1": {
+            id: "40519125",
+            event_id: "194989",
+            market_id: "3",
+            market_name: "Match Result",
+            bet: "1",
+            line: "",
+            odds: "1.60",
+            locked: "0"
           },
-        },
-
-        /**double chance market */
-
-        "6": {
-          cols: "3",
-          headers: "1/X,1/2,X/2",
-          bets: {
-            "1X": {
-              id: "40519128",
-              event_id: "194989",
-              market_id: "6",
-              market_name: "Double Chance",
-              bet: "1/X",
-              line: "",
-              odds: "1.25",
-              locked: "0",
-            },
-
-            "12": {
-              id: "40519129",
-              event_id: "194989",
-              market_id: "6",
-              market_name: "Double Chance",
-              bet: "1/2",
-              line: "",
-              odds: "1.20",
-              locked: "0",
-            },
-
-            "X2": {
-              id: "40519130",
-              event_id: "194989",
-              market_id: "6",
-              market_name: "Double Chance",
-              bet: "X/2",
-              line: "",
-              odds: "1.80",
-              locked: "0",
-            },
-
+          "X": {
+            id: "40519126",
+            event_id: "194989",
+            market_id: "3",
+            market_name: "Match Result",
+            bet: "X",
+            line: "",
+            odds: "3.75",
+            locked: "0"
           },
-        },
-
-
-               /**over under */
-        "4": {
-          cols: "2",
-          headers: "Over,Under",
-        
-          bets: {
-            "40519131": {
-              id: "40519131",
-              event_id: "194989",
-              market_id: "4",
-              market_name: "Over/Under",
-              bet: "Over",
-              line: "1.5",
-              odds: "1.85",
-              locked: "0",
-            },
-          
-            "40519132": {
-              id: "40519132",
-              event_id: "194989",
-              market_id: "4",
-              market_name: "Over/Under",
-              bet: "Under",
-              line: "1.5",
-              odds: "1.90",
-              locked: "0",
-            },
-          
-            "40519133": {
-              id: "40519133",
-              event_id: "194989",
-              market_id: "4",
-              market_name: "Over/Under",
-              bet: "Over",
-              line: "2.5",
-              odds: "1.90",
-              locked: "0",
-            },
-          
-            "40519134": {
-              id: "40519134",
-              event_id: "194989",
-              market_id: "4",
-              market_name: "Over/Under",
-              bet: "Under",
-              line: "2.5",
-              odds: "1.90",
-              locked: "0",
-            },
-          },
-        },
-
-
-        /**both teams to score */
-
-        "304": {
-          cols: "2",
-          headers: "Yes,No",
-
-          bets: {
-
-            Yes: {
-              id: "40519133",
-              event_id: "194989",
-              market_id: "304",
-              market_name: "Both Teams To Score",
-              bet: "Yes",
-              line: "",
-              odds: "1.70",
-              locked: "0",
-            },
-
-            No: {
-              id: "40519134",
-              event_id: "194989",
-              market_id: "304",
-              market_name: "Both Teams To Score",
-              bet: "No",
-              line: "",
-              odds: "2.05",
-              locked: "0",
-            },
-
-          },
-        },
-
-        /**odd even */
-
-        "45": {
-          cols: "2",
-          headers: "Odd,Even",
-          bets: {
-            Odd: {
-              id: "40519135",
-              event_id: "194989",
-              market_id: "45",
-              market_name: "Odd/Even",
-              bet: "Odd",
-              line: "",
-              odds: "1.90",
-              locked: "0",
-            },
-
-            Even: {
-              id: "40519136",
-              event_id: "194989",
-              market_id: "45",
-              market_name: "Odd/Even",
-              bet: "Even",
-              line: "",
-              odds: "1.90",
-              locked: "0",
-            },
-
-          },
-        },
-
+          "2": {
+            id: "40519127",
+            event_id: "194989",
+            market_id: "3",
+            market_name: "Match Result",
+            bet: "2",
+            line: "",
+            odds: "4.50",
+            locked: "0"
+          }
+        }
       },
-    },
+
+      /* =====================================================
+         2. DOUBLE CHANCE
+      ===================================================== */
+
+      "6": {
+        cols: "3",
+        headers: "1/X,1/2,X/2",
+        bets: {
+          "1X": {
+            id: "40519128",
+            event_id: "194989",
+            market_id: "6",
+            market_name: "Double Chance",
+            bet: "1/X",
+            line: "",
+            odds: "1.25",
+            locked: "0"
+          },
+          "12": {
+            id: "40519129",
+            event_id: "194989",
+            market_id: "6",
+            market_name: "Double Chance",
+            bet: "1/2",
+            line: "",
+            odds: "1.20",
+            locked: "0"
+          },
+          "X2": {
+            id: "40519130",
+            event_id: "194989",
+            market_id: "6",
+            market_name: "Double Chance",
+            bet: "X/2",
+            line: "",
+            odds: "1.80",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         3. OVER / UNDER
+      ===================================================== */
+
+      "4": {
+        cols: "2",
+        headers: "Over,Under",
+        bets: {
+          "Over_0.5": {
+            id: "40519131",
+            event_id: "194989",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Over",
+            line: "0.5",
+            odds: "1.10",
+            locked: "0"
+          },
+          "Under_0.5": {
+            id: "40519132",
+            event_id: "194989",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Under",
+            line: "0.5",
+            odds: "7.50",
+            locked: "0"
+          },
+
+          "Over_1.5": {
+            id: "40519133",
+            event_id: "194989",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Over",
+            line: "1.5",
+            odds: "1.85",
+            locked: "0"
+          },
+          "Under_1.5": {
+            id: "40519134",
+            event_id: "194989",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Under",
+            line: "1.5",
+            odds: "1.90",
+            locked: "0"
+          },
+
+          "Over_2.5": {
+            id: "40519135",
+            event_id: "194989",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Over",
+            line: "2.5",
+            odds: "2.10",
+            locked: "0"
+          },
+          "Under_2.5": {
+            id: "40519136",
+            event_id: "194989",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Under",
+            line: "2.5",
+            odds: "1.70",
+            locked: "0"
+          },
+
+          "Over_3.5": {
+            id: "40519137",
+            event_id: "194989",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Over",
+            line: "3.5",
+            odds: "3.10",
+            locked: "0"
+          },
+          "Under_3.5": {
+            id: "40519138",
+            event_id: "194989",
+            market_id: "4",
+            market_name: "Over/Under",
+            bet: "Under",
+            line: "3.5",
+            odds: "1.35",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         4. BOTH TEAMS TO SCORE
+      ===================================================== */
+
+      "304": {
+        cols: "2",
+        headers: "Yes,No",
+        bets: {
+          "Yes": {
+            id: "40519139",
+            event_id: "194989",
+            market_id: "304",
+            market_name: "Both Teams To Score",
+            bet: "Yes",
+            line: "",
+            odds: "1.70",
+            locked: "0"
+          },
+          "No": {
+            id: "40519140",
+            event_id: "194989",
+            market_id: "304",
+            market_name: "Both Teams To Score",
+            bet: "No",
+            line: "",
+            odds: "2.05",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         5. ODD / EVEN
+      ===================================================== */
+
+      "45": {
+        cols: "2",
+        headers: "Odd,Even",
+        bets: {
+          "Odd": {
+            id: "40519141",
+            event_id: "194989",
+            market_id: "45",
+            market_name: "Odd/Even",
+            bet: "Odd",
+            line: "",
+            odds: "1.90",
+            locked: "0"
+          },
+          "Even": {
+            id: "40519142",
+            event_id: "194989",
+            market_id: "45",
+            market_name: "Odd/Even",
+            bet: "Even",
+            line: "",
+            odds: "1.90",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         6. DRAW NO BET
+      ===================================================== */
+
+      "7": {
+        cols: "2",
+        headers: "1,2",
+        bets: {
+          "1": {
+            id: "40519143",
+            event_id: "194989",
+            market_id: "7",
+            market_name: "Draw No Bet",
+            bet: "1",
+            line: "",
+            odds: "1.35",
+            locked: "0"
+          },
+          "2": {
+            id: "40519144",
+            event_id: "194989",
+            market_id: "7",
+            market_name: "Draw No Bet",
+            bet: "2",
+            line: "",
+            odds: "2.75",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         7. HALF TIME RESULT
+      ===================================================== */
+
+      "8": {
+        cols: "3",
+        headers: "1,X,2",
+        bets: {
+          "1": {
+            id: "40519145",
+            event_id: "194989",
+            market_id: "8",
+            market_name: "Half Time Result",
+            bet: "1",
+            line: "",
+            odds: "2.20",
+            locked: "0"
+          },
+          "X": {
+            id: "40519146",
+            event_id: "194989",
+            market_id: "8",
+            market_name: "Half Time Result",
+            bet: "X",
+            line: "",
+            odds: "2.10",
+            locked: "0"
+          },
+          "2": {
+            id: "40519147",
+            event_id: "194989",
+            market_id: "8",
+            market_name: "Half Time Result",
+            bet: "2",
+            line: "",
+            odds: "5.00",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         8. HALF TIME / FULL TIME
+      ===================================================== */
+
+      "9": {
+        cols: "9",
+        headers: "1/1,1/X,1/2,X/1,X/X,X/2,2/1,2/X,2/2",
+        bets: {
+          "1/1": {
+            id: "40519148",
+            event_id: "194989",
+            market_id: "9",
+            market_name: "Half Time/Full Time",
+            bet: "1/1",
+            line: "",
+            odds: "2.40",
+            locked: "0"
+          },
+          "1/X": {
+            id: "40519149",
+            event_id: "194989",
+            market_id: "9",
+            market_name: "Half Time/Full Time",
+            bet: "1/X",
+            line: "",
+            odds: "12.00",
+            locked: "0"
+          },
+          "1/2": {
+            id: "40519150",
+            event_id: "194989",
+            market_id: "9",
+            market_name: "Half Time/Full Time",
+            bet: "1/2",
+            line: "",
+            odds: "25.00",
+            locked: "0"
+          },
+          "X/1": {
+            id: "40519151",
+            event_id: "194989",
+            market_id: "9",
+            market_name: "Half Time/Full Time",
+            bet: "X/1",
+            line: "",
+            odds: "4.50",
+            locked: "0"
+          },
+          "X/X": {
+            id: "40519152",
+            event_id: "194989",
+            market_id: "9",
+            market_name: "Half Time/Full Time",
+            bet: "X/X",
+            line: "",
+            odds: "5.00",
+            locked: "0"
+          },
+          "X/2": {
+            id: "40519153",
+            event_id: "194989",
+            market_id: "9",
+            market_name: "Half Time/Full Time",
+            bet: "X/2",
+            line: "",
+            odds: "10.00",
+            locked: "0"
+          },
+          "2/1": {
+            id: "40519154",
+            event_id: "194989",
+            market_id: "9",
+            market_name: "Half Time/Full Time",
+            bet: "2/1",
+            line: "",
+            odds: "20.00",
+            locked: "0"
+          },
+          "2/X": {
+            id: "40519155",
+            event_id: "194989",
+            market_id: "9",
+            market_name: "Half Time/Full Time",
+            bet: "2/X",
+            line: "",
+            odds: "14.00",
+            locked: "0"
+          },
+          "2/2": {
+            id: "40519156",
+            event_id: "194989",
+            market_id: "9",
+            market_name: "Half Time/Full Time",
+            bet: "2/2",
+            line: "",
+            odds: "7.00",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         9. ASIAN HANDICAP
+      ===================================================== */
+
+      "2": {
+        cols: "2",
+        headers: "1,2",
+        bets: {
+          "1_-0.5": {
+            id: "40519157",
+            event_id: "194989",
+            market_id: "2",
+            market_name: "Asian Handicap",
+            bet: "1",
+            line: "-0.5",
+            odds: "1.75",
+            locked: "0"
+          },
+          "2_+0.5": {
+            id: "40519158",
+            event_id: "194989",
+            market_id: "2",
+            market_name: "Asian Handicap",
+            bet: "2",
+            line: "+0.5",
+            odds: "2.05",
+            locked: "0"
+          },
+
+          "1_-1.0": {
+            id: "40519159",
+            event_id: "194989",
+            market_id: "2",
+            market_name: "Asian Handicap",
+            bet: "1",
+            line: "-1.0",
+            odds: "2.20",
+            locked: "0"
+          },
+          "2_+1.0": {
+            id: "40519160",
+            event_id: "194989",
+            market_id: "2",
+            market_name: "Asian Handicap",
+            bet: "2",
+            line: "+1.0",
+            odds: "1.65",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         10. EUROPEAN HANDICAP
+      ===================================================== */
+
+      "10": {
+        cols: "3",
+        headers: "1,X,2",
+        bets: {
+          "1_-1": {
+            id: "40519161",
+            event_id: "194989",
+            market_id: "10",
+            market_name: "European Handicap",
+            bet: "1",
+            line: "-1",
+            odds: "2.70",
+            locked: "0"
+          },
+          "X_-1": {
+            id: "40519162",
+            event_id: "194989",
+            market_id: "10",
+            market_name: "European Handicap",
+            bet: "X",
+            line: "-1",
+            odds: "3.75",
+            locked: "0"
+          },
+          "2_+1": {
+            id: "40519163",
+            event_id: "194989",
+            market_id: "10",
+            market_name: "European Handicap",
+            bet: "2",
+            line: "+1",
+            odds: "2.10",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         11. CORRECT SCORE
+      ===================================================== */
+
+      "11": {
+        cols: "3",
+        headers: "Home,Draw,Away",
+        bets: {
+          "0-0": {
+            id: "40519164",
+            event_id: "194989",
+            market_id: "11",
+            market_name: "Correct Score",
+            bet: "0-0",
+            line: "",
+            odds: "8.00",
+            locked: "0"
+          },
+          "1-0": {
+            id: "40519165",
+            event_id: "194989",
+            market_id: "11",
+            market_name: "Correct Score",
+            bet: "1-0",
+            line: "",
+            odds: "6.50",
+            locked: "0"
+          },
+          "1-1": {
+            id: "40519166",
+            event_id: "194989",
+            market_id: "11",
+            market_name: "Correct Score",
+            bet: "1-1",
+            line: "",
+            odds: "6.00",
+            locked: "0"
+          },
+          "2-0": {
+            id: "40519167",
+            event_id: "194989",
+            market_id: "11",
+            market_name: "Correct Score",
+            bet: "2-0",
+            line: "",
+            odds: "8.00",
+            locked: "0"
+          },
+          "2-1": {
+            id: "40519168",
+            event_id: "194989",
+            market_id: "11",
+            market_name: "Correct Score",
+            bet: "2-1",
+            line: "",
+            odds: "7.50",
+            locked: "0"
+          },
+          "2-2": {
+            id: "40519169",
+            event_id: "194989",
+            market_id: "11",
+            market_name: "Correct Score",
+            bet: "2-2",
+            line: "",
+            odds: "12.00",
+            locked: "0"
+          },
+          "0-1": {
+            id: "40519170",
+            event_id: "194989",
+            market_id: "11",
+            market_name: "Correct Score",
+            bet: "0-1",
+            line: "",
+            odds: "10.00",
+            locked: "0"
+          },
+          "0-2": {
+            id: "40519171",
+            event_id: "194989",
+            market_id: "11",
+            market_name: "Correct Score",
+            bet: "0-2",
+            line: "",
+            odds: "16.00",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         12. FIRST TEAM TO SCORE
+      ===================================================== */
+
+      "12": {
+        cols: "3",
+        headers: "1,None,2",
+        bets: {
+          "1": {
+            id: "40519172",
+            event_id: "194989",
+            market_id: "12",
+            market_name: "First Team To Score",
+            bet: "1",
+            line: "",
+            odds: "1.50",
+            locked: "0"
+          },
+          "None": {
+            id: "40519173",
+            event_id: "194989",
+            market_id: "12",
+            market_name: "First Team To Score",
+            bet: "None",
+            line: "",
+            odds: "8.00",
+            locked: "0"
+          },
+          "2": {
+            id: "40519174",
+            event_id: "194989",
+            market_id: "12",
+            market_name: "First Team To Score",
+            bet: "2",
+            line: "",
+            odds: "3.00",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         13. TEAM TO SCORE
+      ===================================================== */
+
+      "13": {
+        cols: "2",
+        headers: "Yes,No",
+        bets: {
+          "Home_Yes": {
+            id: "40519175",
+            event_id: "194989",
+            market_id: "13",
+            market_name: "Home Team To Score",
+            bet: "Yes",
+            line: "",
+            odds: "1.30",
+            locked: "0"
+          },
+          "Home_No": {
+            id: "40519176",
+            event_id: "194989",
+            market_id: "13",
+            market_name: "Home Team To Score",
+            bet: "No",
+            line: "",
+            odds: "3.20",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         14. TOTAL GOALS - EXACT
+      ===================================================== */
+
+      "14": {
+        cols: "4",
+        headers: "0,1,2,3+",
+        bets: {
+          "0": {
+            id: "40519177",
+            event_id: "194989",
+            market_id: "14",
+            market_name: "Total Goals",
+            bet: "0",
+            line: "",
+            odds: "8.00",
+            locked: "0"
+          },
+          "1": {
+            id: "40519178",
+            event_id: "194989",
+            market_id: "14",
+            market_name: "Total Goals",
+            bet: "1",
+            line: "",
+            odds: "3.75",
+            locked: "0"
+          },
+          "2": {
+            id: "40519179",
+            event_id: "194989",
+            market_id: "14",
+            market_name: "Total Goals",
+            bet: "2",
+            line: "",
+            odds: "3.20",
+            locked: "0"
+          },
+          "3+": {
+            id: "40519180",
+            event_id: "194989",
+            market_id: "14",
+            market_name: "Total Goals",
+            bet: "3+",
+            line: "",
+            odds: "1.75",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         15. GOAL RANGE
+      ===================================================== */
+
+      "15": {
+        cols: "4",
+        headers: "0-1,2-3,4-5,6+",
+        bets: {
+          "0-1": {
+            id: "40519181",
+            event_id: "194989",
+            market_id: "15",
+            market_name: "Goal Range",
+            bet: "0-1",
+            line: "",
+            odds: "2.30",
+            locked: "0"
+          },
+          "2-3": {
+            id: "40519182",
+            event_id: "194989",
+            market_id: "15",
+            market_name: "Goal Range",
+            bet: "2-3",
+            line: "",
+            odds: "1.90",
+            locked: "0"
+          },
+          "4-5": {
+            id: "40519183",
+            event_id: "194989",
+            market_id: "15",
+            market_name: "Goal Range",
+            bet: "4-5",
+            line: "",
+            odds: "3.50",
+            locked: "0"
+          },
+          "6+": {
+            id: "40519184",
+            event_id: "194989",
+            market_id: "15",
+            market_name: "Goal Range",
+            bet: "6+",
+            line: "",
+            odds: "8.00",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         16. WIN TO NIL
+      ===================================================== */
+
+      "16": {
+        cols: "2",
+        headers: "1,2",
+        bets: {
+          "1": {
+            id: "40519185",
+            event_id: "194989",
+            market_id: "16",
+            market_name: "Win To Nil",
+            bet: "1",
+            line: "",
+            odds: "2.75",
+            locked: "0"
+          },
+          "2": {
+            id: "40519186",
+            event_id: "194989",
+            market_id: "16",
+            market_name: "Win To Nil",
+            bet: "2",
+            line: "",
+            odds: "5.50",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         17. CLEAN SHEET
+      ===================================================== */
+
+      "17": {
+        cols: "2",
+        headers: "1,2",
+        bets: {
+          "1": {
+            id: "40519187",
+            event_id: "194989",
+            market_id: "17",
+            market_name: "Clean Sheet",
+            bet: "1",
+            line: "",
+            odds: "1.90",
+            locked: "0"
+          },
+          "2": {
+            id: "40519188",
+            event_id: "194989",
+            market_id: "17",
+            market_name: "Clean Sheet",
+            bet: "2",
+            line: "",
+            odds: "3.20",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         18. BOTH TEAMS TO SCORE + RESULT
+      ===================================================== */
+
+      "18": {
+        cols: "6",
+        headers: "1+Yes,1+No,X+Yes,X+No,2+Yes,2+No",
+        bets: {
+          "1_Yes": {
+            id: "40519189",
+            event_id: "194989",
+            market_id: "18",
+            market_name: "BTTS + Match Result",
+            bet: "1 + Yes",
+            line: "",
+            odds: "3.25",
+            locked: "0"
+          },
+          "1_No": {
+            id: "40519190",
+            event_id: "194989",
+            market_id: "18",
+            market_name: "BTTS + Match Result",
+            bet: "1 + No",
+            line: "",
+            odds: "2.50",
+            locked: "0"
+          },
+          "X_Yes": {
+            id: "40519191",
+            event_id: "194989",
+            market_id: "18",
+            market_name: "BTTS + Match Result",
+            bet: "X + Yes",
+            line: "",
+            odds: "4.50",
+            locked: "0"
+          },
+          "X_No": {
+            id: "40519192",
+            event_id: "194989",
+            market_id: "18",
+            market_name: "BTTS + Match Result",
+            bet: "X + No",
+            line: "",
+            odds: "3.00",
+            locked: "0"
+          },
+          "2_Yes": {
+            id: "40519193",
+            event_id: "194989",
+            market_id: "18",
+            market_name: "BTTS + Match Result",
+            bet: "2 + Yes",
+            line: "",
+            odds: "6.00",
+            locked: "0"
+          },
+          "2_No": {
+            id: "40519194",
+            event_id: "194989",
+            market_id: "18",
+            market_name: "BTTS + Match Result",
+            bet: "2 + No",
+            line: "",
+            odds: "5.00",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         19. HOME TEAM TOTAL
+      ===================================================== */
+
+      "19": {
+        cols: "2",
+        headers: "Over,Under",
+        bets: {
+          "Home_Over_0.5": {
+            id: "40519195",
+            event_id: "194989",
+            market_id: "19",
+            market_name: "Home Team Total Goals",
+            bet: "Over",
+            line: "0.5",
+            odds: "1.30",
+            locked: "0"
+          },
+          "Home_Under_0.5": {
+            id: "40519196",
+            event_id: "194989",
+            market_id: "19",
+            market_name: "Home Team Total Goals",
+            bet: "Under",
+            line: "0.5",
+            odds: "3.20",
+            locked: "0"
+          },
+          "Home_Over_1.5": {
+            id: "40519197",
+            event_id: "194989",
+            market_id: "19",
+            market_name: "Home Team Total Goals",
+            bet: "Over",
+            line: "1.5",
+            odds: "1.90",
+            locked: "0"
+          },
+          "Home_Under_1.5": {
+            id: "40519198",
+            event_id: "194989",
+            market_id: "19",
+            market_name: "Home Team Total Goals",
+            bet: "Under",
+            line: "1.5",
+            odds: "1.80",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         20. AWAY TEAM TOTAL
+      ===================================================== */
+
+      "20": {
+        cols: "2",
+        headers: "Over,Under",
+        bets: {
+          "Away_Over_0.5": {
+            id: "40519199",
+            event_id: "194989",
+            market_id: "20",
+            market_name: "Away Team Total Goals",
+            bet: "Over",
+            line: "0.5",
+            odds: "1.50",
+            locked: "0"
+          },
+          "Away_Under_0.5": {
+            id: "40519200",
+            event_id: "194989",
+            market_id: "20",
+            market_name: "Away Team Total Goals",
+            bet: "Under",
+            line: "0.5",
+            odds: "2.50",
+            locked: "0"
+          },
+          "Away_Over_1.5": {
+            id: "40519201",
+            event_id: "194989",
+            market_id: "20",
+            market_name: "Away Team Total Goals",
+            bet: "Over",
+            line: "1.5",
+            odds: "2.30",
+            locked: "0"
+          },
+          "Away_Under_1.5": {
+            id: "40519202",
+            event_id: "194989",
+            market_id: "20",
+            market_name: "Away Team Total Goals",
+            bet: "Under",
+            line: "1.5",
+            odds: "1.55",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         21. FIRST HALF OVER / UNDER
+      ===================================================== */
+
+      "21": {
+        cols: "2",
+        headers: "Over,Under",
+        bets: {
+          "Over_0.5": {
+            id: "40519203",
+            event_id: "194989",
+            market_id: "21",
+            market_name: "First Half Over/Under",
+            bet: "Over",
+            line: "0.5",
+            odds: "1.55",
+            locked: "0"
+          },
+          "Under_0.5": {
+            id: "40519204",
+            event_id: "194989",
+            market_id: "21",
+            market_name: "First Half Over/Under",
+            bet: "Under",
+            line: "0.5",
+            odds: "2.30",
+            locked: "0"
+          },
+          "Over_1.5": {
+            id: "40519205",
+            event_id: "194989",
+            market_id: "21",
+            market_name: "First Half Over/Under",
+            bet: "Over",
+            line: "1.5",
+            odds: "2.50",
+            locked: "0"
+          },
+          "Under_1.5": {
+            id: "40519206",
+            event_id: "194989",
+            market_id: "21",
+            market_name: "First Half Over/Under",
+            bet: "Under",
+            line: "1.5",
+            odds: "1.45",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         22. SECOND HALF OVER / UNDER
+      ===================================================== */
+
+      "22": {
+        cols: "2",
+        headers: "Over,Under",
+        bets: {
+          "Over_0.5": {
+            id: "40519207",
+            event_id: "194989",
+            market_id: "22",
+            market_name: "Second Half Over/Under",
+            bet: "Over",
+            line: "0.5",
+            odds: "1.45",
+            locked: "0"
+          },
+          "Under_0.5": {
+            id: "40519208",
+            event_id: "194989",
+            market_id: "22",
+            market_name: "Second Half Over/Under",
+            bet: "Under",
+            line: "0.5",
+            odds: "2.50",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         23. SCORE AT HALF TIME
+      ===================================================== */
+
+      "23": {
+        cols: "3",
+        headers: "1,X,2",
+        bets: {
+          "1": {
+            id: "40519209",
+            event_id: "194989",
+            market_id: "23",
+            market_name: "Half Time Result",
+            bet: "1",
+            line: "",
+            odds: "2.20",
+            locked: "0"
+          },
+          "X": {
+            id: "40519210",
+            event_id: "194989",
+            market_id: "23",
+            market_name: "Half Time Result",
+            bet: "X",
+            line: "",
+            odds: "2.10",
+            locked: "0"
+          },
+          "2": {
+            id: "40519211",
+            event_id: "194989",
+            market_id: "23",
+            market_name: "Half Time Result",
+            bet: "2",
+            line: "",
+            odds: "5.00",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         24. WINNING MARGIN
+      ===================================================== */
+
+      "24": {
+        cols: "3",
+        headers: "1 Goal,2+ Goals,Draw",
+        bets: {
+          "1": {
+            id: "40519212",
+            event_id: "194989",
+            market_id: "24",
+            market_name: "Winning Margin",
+            bet: "1 Goal",
+            line: "",
+            odds: "3.20",
+            locked: "0"
+          },
+          "2+": {
+            id: "40519213",
+            event_id: "194989",
+            market_id: "24",
+            market_name: "Winning Margin",
+            bet: "2+ Goals",
+            line: "",
+            odds: "2.10",
+            locked: "0"
+          },
+          "Draw": {
+            id: "40519214",
+            event_id: "194989",
+            market_id: "24",
+            market_name: "Winning Margin",
+            bet: "Draw",
+            line: "",
+            odds: "3.75",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         25. TO WIN EITHER HALF
+      ===================================================== */
+
+      "25": {
+        cols: "2",
+        headers: "1,2",
+        bets: {
+          "1": {
+            id: "40519215",
+            event_id: "194989",
+            market_id: "25",
+            market_name: "Team To Win Either Half",
+            bet: "1",
+            line: "",
+            odds: "1.35",
+            locked: "0"
+          },
+          "2": {
+            id: "40519216",
+            event_id: "194989",
+            market_id: "25",
+            market_name: "Team To Win Either Half",
+            bet: "2",
+            line: "",
+            odds: "2.80",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         26. TO WIN BOTH HALVES
+      ===================================================== */
+
+      "26": {
+        cols: "2",
+        headers: "1,2",
+        bets: {
+          "1": {
+            id: "40519217",
+            event_id: "194989",
+            market_id: "26",
+            market_name: "Team To Win Both Halves",
+            bet: "1",
+            line: "",
+            odds: "3.20",
+            locked: "0"
+          },
+          "2": {
+            id: "40519218",
+            event_id: "194989",
+            market_id: "26",
+            market_name: "Team To Win Both Halves",
+            bet: "2",
+            line: "",
+            odds: "7.50",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         27. NEXT GOAL
+      ===================================================== */
+
+      "27": {
+        cols: "3",
+        headers: "1,None,2",
+        bets: {
+          "1": {
+            id: "40519219",
+            event_id: "194989",
+            market_id: "27",
+            market_name: "Next Goal",
+            bet: "1",
+            line: "",
+            odds: "1.70",
+            locked: "0"
+          },
+          "None": {
+            id: "40519220",
+            event_id: "194989",
+            market_id: "27",
+            market_name: "Next Goal",
+            bet: "None",
+            line: "",
+            odds: "5.50",
+            locked: "0"
+          },
+          "2": {
+            id: "40519221",
+            event_id: "194989",
+            market_id: "27",
+            market_name: "Next Goal",
+            bet: "2",
+            line: "",
+            odds: "2.90",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         28. DOUBLE CHANCE + OVER/UNDER
+      ===================================================== */
+
+      "28": {
+        cols: "6",
+        headers: "1X Over,1X Under,12 Over,12 Under,X2 Over,X2 Under",
+        bets: {
+          "1X_Over": {
+            id: "40519222",
+            event_id: "194989",
+            market_id: "28",
+            market_name: "Double Chance + Over/Under",
+            bet: "1X + Over 1.5",
+            line: "1.5",
+            odds: "1.70",
+            locked: "0"
+          },
+          "1X_Under": {
+            id: "40519223",
+            event_id: "194989",
+            market_id: "28",
+            market_name: "Double Chance + Over/Under",
+            bet: "1X + Under 1.5",
+            line: "1.5",
+            odds: "1.60",
+            locked: "0"
+          },
+          "12_Over": {
+            id: "40519224",
+            event_id: "194989",
+            market_id: "28",
+            market_name: "Double Chance + Over/Under",
+            bet: "12 + Over 1.5",
+            line: "1.5",
+            odds: "1.80",
+            locked: "0"
+          },
+          "12_Under": {
+            id: "40519225",
+            event_id: "194989",
+            market_id: "28",
+            market_name: "Double Chance + Over/Under",
+            bet: "12 + Under 1.5",
+            line: "1.5",
+            odds: "2.10",
+            locked: "0"
+          },
+          "X2_Over": {
+            id: "40519226",
+            event_id: "194989",
+            market_id: "28",
+            market_name: "Double Chance + Over/Under",
+            bet: "X2 + Over 1.5",
+            line: "1.5",
+            odds: "2.00",
+            locked: "0"
+          },
+          "X2_Under": {
+            id: "40519227",
+            event_id: "194989",
+            market_id: "28",
+            market_name: "Double Chance + Over/Under",
+            bet: "X2 + Under 1.5",
+            line: "1.5",
+            odds: "1.45",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         29. RESULT + OVER/UNDER
+      ===================================================== */
+
+      "29": {
+        cols: "6",
+        headers: "1+Over,1+Under,X+Over,X+Under,2+Over,2+Under",
+        bets: {
+          "1_Over": {
+            id: "40519228",
+            event_id: "194989",
+            market_id: "29",
+            market_name: "Result + Over/Under",
+            bet: "1 + Over 2.5",
+            line: "2.5",
+            odds: "2.70",
+            locked: "0"
+          },
+          "1_Under": {
+            id: "40519229",
+            event_id: "194989",
+            market_id: "29",
+            market_name: "Result + Over/Under",
+            bet: "1 + Under 2.5",
+            line: "2.5",
+            odds: "2.80",
+            locked: "0"
+          },
+          "X_Over": {
+            id: "40519230",
+            event_id: "194989",
+            market_id: "29",
+            market_name: "Result + Over/Under",
+            bet: "X + Over 2.5",
+            line: "2.5",
+            odds: "4.50",
+            locked: "0"
+          },
+          "X_Under": {
+            id: "40519231",
+            event_id: "194989",
+            market_id: "29",
+            market_name: "Result + Over/Under",
+            bet: "X + Under 2.5",
+            line: "2.5",
+            odds: "4.00",
+            locked: "0"
+          },
+          "2_Over": {
+            id: "40519232",
+            event_id: "194989",
+            market_id: "29",
+            market_name: "Result + Over/Under",
+            bet: "2 + Over 2.5",
+            line: "2.5",
+            odds: "6.50",
+            locked: "0"
+          },
+          "2_Under": {
+            id: "40519233",
+            event_id: "194989",
+            market_id: "29",
+            market_name: "Result + Over/Under",
+            bet: "2 + Under 2.5",
+            line: "2.5",
+            odds: "4.00",
+            locked: "0"
+          }
+        }
+      },
+
+      /* =====================================================
+         30. BTTS + OVER/UNDER
+      ===================================================== */
+
+      "30": {
+        cols: "4",
+        headers: "Yes+Over,Yes+Under,No+Over,No+Under",
+        bets: {
+          "Yes_Over": {
+            id: "40519234",
+            event_id: "194989",
+            market_id: "30",
+            market_name: "BTTS + Over/Under",
+            bet: "Yes + Over 2.5",
+            line: "2.5",
+            odds: "2.20",
+            locked: "0"
+          },
+          "Yes_Under": {
+            id: "40519235",
+            event_id: "194989",
+            market_id: "30",
+            market_name: "BTTS + Over/Under",
+            bet: "Yes + Under 2.5",
+            line: "2.5",
+            odds: "3.25",
+            locked: "0"
+          },
+          "No_Over": {
+            id: "40519236",
+            event_id: "194989",
+            market_id: "30",
+            market_name: "BTTS + Over/Under",
+            bet: "No + Over 2.5",
+            line: "2.5",
+            odds: "3.50",
+            locked: "0"
+          },
+          "No_Under": {
+            id: "40519237",
+            event_id: "194989",
+            market_id: "30",
+            market_name: "BTTS + Over/Under",
+            bet: "No + Under 2.5",
+            line: "2.5",
+            odds: "2.80",
+            locked: "0"
+          }
+        }
+      }
+
+    }
+  },
+
 
     "1": {
 
