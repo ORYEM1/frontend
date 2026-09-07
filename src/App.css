@@ -152,7 +152,11 @@
 
 .league-sidebar,
 .events-section,
-.betslip-section {
+.betslip-section,
+.auth-form-page,
+.event-board,
+.more-markets-view,
+.generic-form__result pre {
 
   scrollbar-width: none;
 
@@ -163,7 +167,11 @@
 
 .league-sidebar::-webkit-scrollbar,
 .events-section::-webkit-scrollbar,
-.betslip-section::-webkit-scrollbar {
+.betslip-section::-webkit-scrollbar,
+.auth-form-page::-webkit-scrollbar,
+.event-board::-webkit-scrollbar,
+.more-markets-view::-webkit-scrollbar,
+.generic-form__result pre::-webkit-scrollbar {
 
   display: none;
 
