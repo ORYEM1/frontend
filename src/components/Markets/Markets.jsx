@@ -48,18 +48,14 @@ const marketGroups = [
    MARKETS COMPONENT
 ========================================================== */
 
-const Markets = ({
-  event,
-  selectedOdds,
-  onOddSelect,
-}) => {
+const Markets = ({event,selectedOdds,onOddSelect}) => {
 
 
   /* ========================================================
      INDIVIDUAL MARKET ACCORDION STATE
   ======================================================== */
 
-  const [openMarkets, setOpenMarkets] = useState("true");
+  const [openMarkets, setOpenMarkets] = useState({});
 
 
   /* ========================================================
@@ -68,8 +64,7 @@ const Markets = ({
      "all" = show every market
   ======================================================== */
 
-  const [selectedGroup, setSelectedGroup] =
-    useState("all");
+  const [selectedGroup, setSelectedGroup] = useState("all");
 
 
   /* ========================================================
@@ -85,28 +80,21 @@ const Markets = ({
      GET EVERY MARKET FROM EVENT
   ======================================================== */
 
-  const markets = Object.entries(
-    event.markets || {}
-  );
+  const markets = Object.entries(event.markets || {});
 
 
   /* ========================================================
      CURRENTLY SELECTED BET
   ======================================================== */
 
-  const selectedBet =
-    selectedOdds?.[
-      String(event.id)
-    ];
+  const selectedBet = selectedOdds?.[String(event.id)];
 
 
   /* ========================================================
      TOGGLE INDIVIDUAL MARKET
   ======================================================== */
 
-  const toggleMarket = (
-    marketId
-  ) => {
+  const toggleMarket = (marketId) => {
 
     setOpenMarkets(
       (previous) => ({
@@ -124,20 +112,14 @@ const Markets = ({
      GET MARKET NAME
   ======================================================== */
 
-  const getMarketName = (
-    market,
-    marketId
-  ) => {
+  const getMarketName = ( market, marketId) => {
 
     if (market?.market_name) {
       return market.market_name;
     }
 
 
-    const firstBet =
-      Object.values(
-        market?.bets || {}
-      )[0];
+    const firstBet = Object.values(market?.bets || {})[0];
 
 
     return (
@@ -152,10 +134,7 @@ const Markets = ({
      GET BET LABEL
   ======================================================== */
 
-  const getBetLabel = (
-    bet,
-    fallback
-  ) => {
+  const getBetLabel = (bet,fallback) => {
 
     if (!bet) {
       return fallback;
@@ -169,10 +148,7 @@ const Markets = ({
       fallback;
 
 
-    const line =
-      String(
-        bet.line || ""
-      ).trim();
+    const line =String(bet.line || "").trim();
 
 
     if (line) {
@@ -189,17 +165,10 @@ const Markets = ({
      CHECK SELECTED
   ======================================================== */
 
-  const isBetSelected = (
-    bet
-  ) => {
+  const isBetSelected = (bet) => {
 
     return (
-      String(
-        selectedBet?.id
-      ) ===
-      String(
-        bet?.id
-      )
+      String(selectedBet?.id) === String(bet?.id)
     );
 
   };
@@ -209,34 +178,19 @@ const Markets = ({
      HANDLE BET SELECTION
   ======================================================== */
 
-  const handleBetSelect = ({
-    bet,
-    marketId,
-    marketName,
-    label,
-  }) => {
+  const handleBetSelect = ({bet,marketId,marketName,label}) => {
 
     if (!bet) {
       return;
     }
 
 
-    const locked =
-      String(
-        bet.locked
-      ) === "1";
+    const locked = String(bet.locked) === "1";
+
+    const blocked =String(bet.blocked) === "1";
 
 
-    const blocked =
-      String(
-        bet.blocked
-      ) === "1";
-
-
-    if (
-      locked ||
-      blocked
-    ) {
+    if ( locked || blocked) {
       return;
     }
 
@@ -245,69 +199,32 @@ const Markets = ({
 
       ...bet,
 
-
-      /* ------------------------------------------------------
-         BET
-      ------------------------------------------------------ */
-
-      id:
-        bet.id,
-
-      odds:
-        bet.odds,
-
+      id:bet.id,
+      odds:bet.odds,
       label,
-
-      bet:
-        bet.bet,
-
-      line:
-        bet.line || "",
+      bet: bet.bet,
+      line: bet.line || "",
 
 
       /* ------------------------------------------------------
          MARKET
       ------------------------------------------------------ */
 
-      marketId:
-        String(
-          marketId
-        ),
-
-      market:
-        marketName,
-
-      marketName:
-        marketName,
-
-      market_name:
-        marketName,
+      marketId:String(marketId),
+      market_name:marketName,
 
 
       /* ------------------------------------------------------
          EVENT
       ------------------------------------------------------ */
 
-      eventId:
-        event.id,
-
-      home:
-        event.home,
-
-      away:
-        event.away,
-
-      league:
-        event.league,
-
-      sport:
-        event.sport,
-
-      kickoff_time:
-        event.kickoff_time,
-
-      eventDate:
-        event.date,
+      eventId:event.id,
+      home:event.home,
+      away:event.away,
+      league:event.league,
+      sport:event.sport,
+      kickoff_time:event.kickoff_time,
+      eventDate:event.date,
 
     };
 
@@ -323,18 +240,8 @@ const Markets = ({
      RENDER ODD BUTTON
   ========================================================== */
 
-  const renderOdd = ({
-    bet,
-    marketId,
-    marketName,
-    label,
-    key,
-  }) => {
+  const renderOdd = ({bet,marketId,marketName,label,key}) => {
 
-
-    /* --------------------------------------------------------
-       BET DOES NOT EXIST
-    -------------------------------------------------------- */
 
     if (!bet) {
 
@@ -369,22 +276,11 @@ const Markets = ({
        STATUS
     -------------------------------------------------------- */
 
-    const locked =
-      String(
-        bet.locked
-      ) === "1";
+    const locked = String(bet.locked) === "1";
 
+    const blocked = String(bet.blocked) === "1";
 
-    const blocked =
-      String(
-        bet.blocked
-      ) === "1";
-
-
-    const selected =
-      isBetSelected(
-        bet
-      );
+    const selected = isBetSelected(bet);
 
 
     /* --------------------------------------------------------
@@ -418,13 +314,7 @@ const Markets = ({
           blocked
         }
 
-        onClick={() =>
-          handleBetSelect({
-            bet,
-            marketId,
-            marketName,
-            label,
-          })
+        onClick={() =>handleBetSelect({bet,marketId,marketName,label})
         }
       >
 
@@ -446,15 +336,9 @@ const Markets = ({
      DETECT LINES
   ========================================================== */
 
-  const hasLines = (
-    bets
-  ) => {
+  const hasLines = (bets) => {
 
-    return Object.values(
-      bets || {}
-    ).some(
-      (bet) =>
-        String(
+    return Object.values(bets || {}).some((bet) =>String(
           bet?.line || ""
         ).trim() !== ""
     );
@@ -466,27 +350,16 @@ const Markets = ({
      GROUP BETS BY LINE
   ========================================================== */
 
-  const groupByLine = (
-    bets
-  ) => {
+  const groupByLine = (bets) => {
 
     const groups = {};
 
 
-    Object.entries(
-      bets || {}
-    ).forEach(
-      ([key, bet]) => {
+    Object.entries(bets || {}).forEach(([key, bet]) => {
 
-        const line =
-          String(
-            bet?.line || ""
-          ).trim();
+        const line =String(bet?.line || "").trim();
 
-
-        const groupKey =
-          line ||
-          "default";
+        const groupKey = line || "default";
 
 
         if (
@@ -499,10 +372,7 @@ const Markets = ({
         }
 
 
-        groups[groupKey].push({
-          key,
-          bet,
-        });
+        groups[groupKey].push({key,bet});
 
       }
     );

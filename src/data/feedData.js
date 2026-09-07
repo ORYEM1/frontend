@@ -104,13 +104,13 @@ export const feedData = {
         },
 
 
-       /**over under */
-
+               /**over under */
         "4": {
           cols: "2",
           headers: "Over,Under",
+        
           bets: {
-            Over: {
+            "40519131": {
               id: "40519131",
               event_id: "194989",
               market_id: "4",
@@ -120,9 +120,8 @@ export const feedData = {
               odds: "1.85",
               locked: "0",
             },
-            
-
-            Under: {
+          
+            "40519132": {
               id: "40519132",
               event_id: "194989",
               market_id: "4",
@@ -132,7 +131,8 @@ export const feedData = {
               odds: "1.90",
               locked: "0",
             },
-            Over:{
+          
+            "40519133": {
               id: "40519133",
               event_id: "194989",
               market_id: "4",
@@ -142,7 +142,8 @@ export const feedData = {
               odds: "1.90",
               locked: "0",
             },
-              Under: {
+          
+            "40519134": {
               id: "40519134",
               event_id: "194989",
               market_id: "4",
@@ -151,10 +152,7 @@ export const feedData = {
               line: "2.5",
               odds: "1.90",
               locked: "0",
-            }
-
-
-
+            },
           },
         },
 
@@ -3380,7 +3378,7 @@ export const feedData = {
   },
 },
 
- "Uganda - Uganda Premier League": {
+"Uganda - Uganda Premier League": {
 
     "0": {
       id: "1981190",

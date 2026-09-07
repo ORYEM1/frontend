@@ -26,6 +26,8 @@ const popularLeagues = [
   "Germany - Bundesliga",
   "France - Ligue 1",
   "Europe - UEFA Champions League"
+  
+
 ];
 
 
@@ -227,11 +229,7 @@ const groupedSections = useMemo(() => {
          CHECK POPULAR COUNTRY
       ==================================================== */
 
-      const isPopularCountry =
-        popularCountries.some(
-          (country) =>
-            normalizeText(country) ===
-            normalizeText(region)
+      const isPopularCountry = popularCountries.some((country) => normalizeText(country) === normalizeText(region)
         );
 
 
@@ -245,31 +243,16 @@ const groupedSections = useMemo(() => {
          They are NOT removed from their country.
       ==================================================== */
 
-      const popularLeaguesInRegion =
-        regionData.leagues.filter(
-          (league) => {
+      const popularLeaguesInRegion =regionData.leagues.filter((league) => {
 
-            return popularLeagues.some(
-              (popularLeague) => {
+            return popularLeagues.some((popularLeague) => {
 
-                const popular =
-                  normalizeText(
-                    popularLeague
-                  );
-
-                const name =
-                  normalizeText(
-                    league.name
-                  );
-
-                const display =
-                  normalizeText(
-                    league.displayName
-                  );
+                const popular =normalizeText(popularLeague);
+                const name = normalizeText(league.name);
+                const display = normalizeText(league.displayName);
 
                 return (
-                  popular === name ||
-                  popular === display
+                  popular === name || popular === display
                 );
 
               }
@@ -283,16 +266,11 @@ const groupedSections = useMemo(() => {
          ADD POPULAR LEAGUES TO POPULAR LEAGUES SECTION
       ==================================================== */
 
-      popularLeaguesInRegion.forEach(
-        (league) => {
-
-          popularLeagueList.push(
-            league
-          );
+      popularLeaguesInRegion.forEach((league) => {
+        popularLeagueList.push(league);
 
         }
       );
-
 
       /* ====================================================
          KEEP ALL LEAGUES IN THEIR COUNTRY
@@ -300,32 +278,20 @@ const groupedSections = useMemo(() => {
          DO NOT REMOVE POPULAR LEAGUES.
       ==================================================== */
 
-      const countryLeagues =
-        regionData.leagues;
+      const countryLeagues = regionData.leagues;
 
 
       /* ====================================================
          POPULAR COUNTRIES
       ==================================================== */
 
-      if (
-        isPopularCountry &&
-        countryLeagues.length > 0
-      ) {
-
+      if (isPopularCountry && countryLeagues.length > 0)
+      {
         popularCountryGroups[region] = {
 
           ...regionData,
-
-          leagues:
-            countryLeagues,
-
-          eventCount:
-            countryLeagues.reduce(
-              (total, league) =>
-                total + league.events,
-              0
-            ),
+          leagues:countryLeagues,
+          eventCount: countryLeagues.reduce( (total, league) =>total + league.events, 0),
 
         };
 
@@ -336,10 +302,9 @@ const groupedSections = useMemo(() => {
          OTHER COUNTRIES
       ==================================================== */
 
-      if (!isPopularCountry) {
-
-        otherCountryGroups[region] =
-          regionData;
+      if (!isPopularCountry) 
+      {
+        otherCountryGroups[region] =regionData;
 
       }
 
@@ -351,12 +316,7 @@ const groupedSections = useMemo(() => {
      SORT POPULAR LEAGUES
   ======================================================== */
 
-  popularLeagueList.sort(
-    (a, b) =>
-      a.displayName.localeCompare(
-        b.displayName
-      )
-  );
+  popularLeagueList.sort((a, b) =>a.displayName.localeCompare(b.displayName));
 
 
   /* ========================================================
@@ -365,14 +325,9 @@ const groupedSections = useMemo(() => {
 
   return {
 
-    popularLeagues:
-      popularLeagueList,
-
-    popularCountries:
-      popularCountryGroups,
-
-    otherCountries:
-      otherCountryGroups,
+    popularLeagues:popularLeagueList,
+    popularCountries:popularCountryGroups,
+    otherCountries:otherCountryGroups,
 
   };
 
