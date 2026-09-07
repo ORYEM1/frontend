@@ -67,6 +67,21 @@ const LeaguePanel = () => {
 
 
   /* ==========================================================
+     SELECT LEAGUE + SHOW EVENTS
+     Ensures center leaves /login or /register
+     so the league games become visible.
+  ========================================================== */
+
+  const handleLeagueSelect = (league) => {
+
+    selectLeague(league);
+
+    navigate("/");
+
+  };
+
+
+  /* ==========================================================
      GROUP LEAGUES BY REGION
   ========================================================== */
 
@@ -537,7 +552,7 @@ const LeaguePanel = () => {
                         }
                       `}
                       onClick={() =>
-                        selectLeague(
+                        handleLeagueSelect(
                           league
                         )
                       }

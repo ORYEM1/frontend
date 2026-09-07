@@ -1,5 +1,5 @@
 import {
-  NavLink,Link
+  NavLink,Link,useNavigate
 } from "react-router-dom";
 
 import {
@@ -24,6 +24,16 @@ const PageHeader = () => {
     activeSport,
     setActiveSport,
   } = useSports();
+
+  const navigate = useNavigate();
+
+  const handleSportSelect = (sportId) => {
+
+    setActiveSport(sportId);
+
+    navigate("/");
+
+  };
 
   // ==========================================================
   // SPORTS
@@ -121,7 +131,7 @@ const PageHeader = () => {
             `}
 
             onClick={() =>
-              setActiveSport(
+              handleSportSelect(
                 sport.id
               )
             }
