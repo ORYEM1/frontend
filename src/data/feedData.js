@@ -4,13 +4,13 @@ export const feedData = {
 
   "International - Africa Cup of Nations Women": {
 
-  
+ 
   "0": {
     id: "194989",
     sport: "Football",
     region: "International",
     league: "Africa Cup of Nations Women",
-    live: "1",
+    live: "0",
     home: "Senegal (W)",
     away: "Kenya (W)",
     blocked: "0",
@@ -1488,10 +1488,6 @@ export const feedData = {
 
     }
   },
-
-
-
-
 
 
     "1": {

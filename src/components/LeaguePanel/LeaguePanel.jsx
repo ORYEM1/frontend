@@ -1,10 +1,13 @@
-
 import { useEffect, useMemo, useState } from "react";
 import {
   FaChevronDown,
   FaChevronRight,
   FaFire,
 } from "react-icons/fa";
+
+import {
+  useNavigate,
+} from "react-router-dom";
 
 import { useSports } from "../../contexts/SportsContext.jsx";
 import { feedData } from "../../data/feedData.js";
@@ -32,9 +35,34 @@ const normalizeText = (value) => {
 
 const LeaguePanel = () => {
 
-  const {activeSport,selectedLeague,selectLeague} = useSports();
+  const {
+    activeSport,
+    selectedLeague,
+    selectLeague,
+  } = useSports();
+
+  const navigate = useNavigate();
+
+
+  /* ==========================================================
+     COLLAPSED COUNTRY REGIONS
+  ========================================================== */
 
   const [collapsedRegions, setCollapsedRegions] = useState({});
+
+
+  /* ==========================================================
+     COLLAPSED MAIN SECTIONS
+     
+     false = expanded
+     true  = collapsed
+  ========================================================== */
+
+  const [collapsedSections, setCollapsedSections] = useState({
+    popularLeagues: false,
+    popularCountries: false,
+    otherCountries: false,
+  });
 
 
   /* ==========================================================
@@ -46,7 +74,8 @@ const LeaguePanel = () => {
     const sportKey = normalizeText(activeSport);
 
     return (
-      popularBySport[sportKey] || popularBySport.default
+      popularBySport[sportKey] ||
+      popularBySport.default
     );
 
   }, [activeSport]);
@@ -58,15 +87,17 @@ const LeaguePanel = () => {
 
   const popularLeagues = sportPopularity?.leagues || [];
 
+
   /* ==========================================================
      POPULAR COUNTRIES
   ========================================================== */
 
-  const popularCountries =sportPopularity?.countries || [];
+  const popularCountries = sportPopularity?.countries || [];
 
 
   /* ==========================================================
      SELECT LEAGUE + SHOW EVENTS
+     
      Ensures center leaves /login or /register
      so the league games become visible.
   ========================================================== */
@@ -98,15 +129,16 @@ const LeaguePanel = () => {
 
         const sportEvents = Object.values(leagueEvents || {}).filter((event) => {
 
-          if (!event) {
-            return false;
-          }
+              if (!event) {
+                return false;
+              }
 
-          return (
-            normalizeText(event.sport) === normalizeText(activeSport)
+              return (
+                normalizeText(event.sport) === normalizeText(activeSport)
+              );
+
+            }
           );
-
-        });
 
 
         /* ====================================================
@@ -122,24 +154,40 @@ const LeaguePanel = () => {
            GET REGION
         ==================================================== */
 
-        const firstEvent = sportEvents[0];
+        const firstEvent =
+          sportEvents[0];
 
-        const region = String(firstEvent?.region || "Other").trim();
+        const region =
+          String(
+            firstEvent?.region ||
+            "Other"
+          ).trim();
 
 
         /* ====================================================
            CREATE DISPLAY NAME
         ==================================================== */
 
-        let displayName = String(leagueName).trim();
+        let displayName =
+          String(leagueName).trim();
 
-        const regionPrefix = `${region} - `;
+        const regionPrefix =
+          `${region} - `;
 
 
-        if (normalizeText(displayName).startsWith(normalizeText(regionPrefix)))
-        {
+        if (
+          normalizeText(displayName)
+            .startsWith(
+              normalizeText(regionPrefix)
+            )
+        ) {
 
-          displayName = displayName.substring(regionPrefix.length).trim();
+          displayName =
+            displayName
+              .substring(
+                regionPrefix.length
+              )
+              .trim();
 
         }
 
@@ -177,7 +225,8 @@ const LeaguePanel = () => {
            REGION EVENT COUNT
         ==================================================== */
 
-        grouped[region].eventCount += sportEvents.length;
+        grouped[region].eventCount +=
+          sportEvents.length;
 
       }
     );
@@ -232,8 +281,10 @@ const LeaguePanel = () => {
        LOOP THROUGH REGIONS
     ======================================================== */
 
-    Object.entries(leaguesByRegion).forEach(([region, regionData]) => {
-
+    Object.entries(
+      leaguesByRegion
+    ).forEach(
+      ([region, regionData]) => {
 
         /* ====================================================
            CHECK POPULAR COUNTRY
@@ -253,7 +304,6 @@ const LeaguePanel = () => {
            Popular leagues are displayed in the
            Popular Leagues section.
 
-           IMPORTANT:
            They remain inside their country too.
         ==================================================== */
 
@@ -321,14 +371,17 @@ const LeaguePanel = () => {
            POPULAR COUNTRIES
         ==================================================== */
 
-        if (isPopularCountry &&countryLeagues.length > 0)
-        {
+        if (
+          isPopularCountry &&
+          countryLeagues.length > 0
+        ) {
 
           popularCountryGroups[region] = {
 
             ...regionData,
 
-            leagues:countryLeagues,
+            leagues:
+              countryLeagues,
 
             eventCount:
               countryLeagues.reduce(
@@ -402,7 +455,9 @@ const LeaguePanel = () => {
     const collapsed = {};
 
 
-    Object.keys(leaguesByRegion).forEach(
+    Object.keys(
+      leaguesByRegion
+    ).forEach(
       (region) => {
 
         collapsed[region] = true;
@@ -419,7 +474,28 @@ const LeaguePanel = () => {
 
 
   /* ==========================================================
-     TOGGLE REGION
+     RESET MAIN SECTIONS WHEN SPORT CHANGES
+     
+     All three main sections start expanded.
+  ========================================================== */
+
+  useEffect(() => {
+
+    setCollapsedSections({
+
+      popularLeagues: false,
+
+      popularCountries: false,
+
+      otherCountries: false,
+
+    });
+
+  }, [activeSport]);
+
+
+  /* ==========================================================
+     TOGGLE COUNTRY REGION
   ========================================================== */
 
   const toggleRegion = (region) => {
@@ -433,6 +509,83 @@ const LeaguePanel = () => {
           !current[region],
 
       })
+    );
+
+  };
+
+
+  /* ==========================================================
+     TOGGLE MAIN SECTION
+  ========================================================== */
+
+  const toggleSection = (section) => {
+
+    setCollapsedSections(
+      (current) => ({
+
+        ...current,
+
+        [section]:
+          !current[section],
+
+      })
+    );
+
+  };
+
+
+  /* ==========================================================
+     RENDER SECTION HEADER
+  ========================================================== */
+
+  const renderSectionHeader = ({
+    title,
+    section,
+    icon = null,
+  }) => {
+
+    const isCollapsed =
+      collapsedSections[section];
+
+
+    return (
+
+      <button
+        type="button"
+        className="league-section-title"
+        onClick={() =>
+          toggleSection(section)
+        }
+        aria-expanded={!isCollapsed}
+      >
+
+        <span className="league-section-title-left">
+
+          {icon && (
+            <span className="league-section-icon">
+              {icon}
+            </span>
+          )}
+
+          <span>
+            {title}
+          </span>
+
+        </span>
+
+
+        <span className="league-section-arrow">
+
+          {isCollapsed ? (
+            <FaChevronRight />
+          ) : (
+            <FaChevronDown />
+          )}
+
+        </span>
+
+      </button>
+
     );
 
   };
@@ -586,83 +739,83 @@ const LeaguePanel = () => {
 
           <div className="league-section popular-leagues-section">
 
-            <div className="league-section-title">
+            {renderSectionHeader({
 
-              <FaFire />
+              title: "Popular Leagues",
 
-              <span>
-                Popular Leagues
-              </span>
+              section: "popularLeagues",
 
-            </div>
+              icon: <FaFire />,
+
+            })}
 
 
-            {/* ================================================
-                POPULAR LEAGUE LIST
-            ================================================ */}
+            {!collapsedSections.popularLeagues && (
 
-            <div className="popular-leagues-list">
+              <div className="popular-leagues-list">
 
-              {groupedSections.popularLeagues.map(
-                (league) => (
+                {groupedSections.popularLeagues.map(
+                  (league) => (
 
-                  <button
-                    key={league.name}
-                    type="button"
-                    className={`
-                      league-item
-                      ${
-                        selectedLeague?.name ===
-                        league.name
-                          ? "active"
-                          : ""
+                    <button
+                      key={league.name}
+                      type="button"
+                      className={`
+                        league-item
+                        ${
+                          selectedLeague?.name ===
+                          league.name
+                            ? "active"
+                            : ""
+                        }
+                      `}
+                      onClick={() =>
+                        handleLeagueSelect(
+                          league
+                        )
                       }
-                    `}
-                    onClick={() =>
-                      selectLeague(
-                        league
-                      )
-                    }
-                  >
+                    >
 
-                    {/* ======================================
-                        COUNTRY FLAG
-                    ====================================== */}
+                      {/* ==================================
+                          COUNTRY FLAG
+                      ================================== */}
 
-                    <CountryFlag
-                      country={
-                        league.region
-                      }
-                    />
+                      <CountryFlag
+                        country={
+                          league.region
+                        }
+                      />
 
 
-                    {/* ======================================
-                        LEAGUE NAME
-                    ====================================== */}
+                      {/* ==================================
+                          LEAGUE NAME
+                      ================================== */}
 
-                    <span className="league-name">
+                      <span className="league-name">
 
-                      {league.displayName}
+                        {league.displayName}
 
-                    </span>
+                      </span>
 
 
-                    {/* ======================================
-                        EVENT COUNT
-                    ====================================== */}
+                      {/* ==================================
+                          EVENT COUNT
+                      ================================== */}
 
-                    <span className="league-event-count">
+                      <span className="league-event-count">
 
-                      {league.events}
+                        {league.events}
 
-                    </span>
+                      </span>
 
-                  </button>
+                    </button>
 
-                )
-              )}
+                  )
+                )}
 
-            </div>
+              </div>
+
+            )}
 
           </div>
 
@@ -680,17 +833,25 @@ const LeaguePanel = () => {
 
             <div className="league-section">
 
-              <div className="league-section-title">
+              {renderSectionHeader({
 
-                <span>
-                  Popular Countries
-                </span>
+                title: "Popular Countries",
 
-              </div>
+                section: "popularCountries",
+
+              })}
 
 
-              {renderRegions(
-                groupedSections.popularCountries
+              {!collapsedSections.popularCountries && (
+
+                <div className="league-section-content">
+
+                  {renderRegions(
+                    groupedSections.popularCountries
+                  )}
+
+                </div>
+
               )}
 
             </div>
@@ -710,17 +871,25 @@ const LeaguePanel = () => {
 
             <div className="league-section">
 
-              <div className="league-section-title">
+              {renderSectionHeader({
 
-                <span>
-                  Other Countries
-                </span>
+                title: "Other Countries",
 
-              </div>
+                section: "otherCountries",
+
+              })}
 
 
-              {renderRegions(
-                groupedSections.otherCountries
+              {!collapsedSections.otherCountries && (
+
+                <div className="league-section-content">
+
+                  {renderRegions(
+                    groupedSections.otherCountries
+                  )}
+
+                </div>
+
               )}
 
             </div>
@@ -757,4 +926,3 @@ const LeaguePanel = () => {
 
 
 export default LeaguePanel;
-
