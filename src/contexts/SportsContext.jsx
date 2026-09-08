@@ -291,11 +291,8 @@ export const SportsProvider = ({ children }) => {
   // ==========================================================
 
   const findEventById = (eventId) => {
-    if (
-      eventId === undefined ||
-      eventId === null ||
-      eventId === ""
-    ) {
+    if (eventId === undefined ||eventId === null ||eventId === "")
+    {
       return null;
     }
 
@@ -311,10 +308,8 @@ export const SportsProvider = ({ children }) => {
       // ----------------------------------------------------
 
       for (const event of Object.values(leagueEvents || {})) {
-        if (
-          event &&
-          String(event.id) === targetId
-        ) {
+        if (event &&String(event.id) === targetId) 
+        {
           return event;
         }
       }
@@ -336,20 +331,14 @@ export const SportsProvider = ({ children }) => {
       return;
     }
 
-    // ------------------------------------------------------
-    // Resolve the complete event
-    // ------------------------------------------------------
-
     let event = null;
 
     // If an actual event object was supplied
-    if (
-      typeof eventOrId === "object"
-    ) {
+    if (typeof eventOrId === "object")
+    {
       event = findEventById(eventOrId.id) || eventOrId;
     }
 
-    // If an event ID was supplied
     else {
       event = findEventById(eventOrId);
     }
@@ -371,45 +360,17 @@ export const SportsProvider = ({ children }) => {
       event.sport
     );
 
-    // ------------------------------------------------------
-    // Switch sport WITHOUT calling changeActiveSport()
-    //
-    // changeActiveSport() clears selectedEvent.
-    // We don't want that here.
-    // ------------------------------------------------------
+    
 
-    if (
-      eventSport &&
-      marketOptionsBySport[eventSport]
-    ) {
+    if (eventSport &&marketOptionsBySport[eventSport])
+    {
       setActiveSport(eventSport);
-
-      // Set the default market for this sport.
-      //
-      // More Markets can still display all markets from
-      // selectedEvent independently.
-      setMarket(
-        defaultMarkets[eventSport]
-      );
+      setMarket(defaultMarkets[eventSport]);
     }
 
-    // ------------------------------------------------------
-    // Clear league/search/date navigation filters.
-    //
-    // This prevents the old sport's league/filter from
-    // interfering with the event we are opening.
-    // ------------------------------------------------------
-
     setSelectedLeague(null);
-
     setSearch("");
-
     setDate("all");
-
-    // ------------------------------------------------------
-    // Finally select the event.
-    // ------------------------------------------------------
-
     setSelectedEvent(event);
   };
 
@@ -417,13 +378,7 @@ export const SportsProvider = ({ children }) => {
   // CLOSE MORE MARKETS
   // ==========================================================
 
-  const closeMoreMarkets = () => {
-    setSelectedEvent(null);
-  };
-
-  // ==========================================================
-  // SEARCH
-  // ==========================================================
+  const closeMoreMarkets = () => {setSelectedEvent(null);};
 
   const clearSearch = () => {
     setSearch("");
@@ -462,39 +417,22 @@ export const SportsProvider = ({ children }) => {
     const bet = {
       ...selection,
 
-      event:
-        `${event.home} - ${event.away}`,
-
-      home:
-        event.home,
-
-      away:
-        event.away,
-
-      league:
-        event.league,
-
-      sport:
-        event.sport,
-
-      time:
-        event.kickoff_time,
-
-      market:
-        selection.market_name,
-
-      label:
-        selection.label,
+      event:`${event.home} - ${event.away}`,
+      home:event.home,
+      away:event.away,
+      league:event.league,
+      sport:event.sport,
+      time:event.kickoff_time,
+      market:selection.market_name,
+      label:selection.label,
     };
 
     // ======================================================
     // SELECTING SAME ODD
     // ======================================================
 
-    if (
-      String(selectedOdds[eventId]?.id) ===
-      String(selection.id)
-    ) {
+    if (String(selectedOdds[eventId]?.id) ===String(selection.id))
+    {
       setSelectedOdds((current) => {
         const updated = {
           ...current,
@@ -661,25 +599,16 @@ export const SportsProvider = ({ children }) => {
     const normalizedActiveSport =
       normalizeSport(activeSport);
 
-    const searchValue =
-      search
-        .trim()
-        .toLowerCase();
+    const searchValue = search.trim().toLowerCase();
 
-    Object.entries(
-      feedData || {}
-    ).forEach(
-      ([leagueName, leagueEvents]) => {
+    Object.entries(feedData || {}).forEach( ([leagueName, leagueEvents]) => {
 
         // ====================================================
         // SELECTED LEAGUE
         // ====================================================
 
-        if (
-          selectedLeague &&
-          selectedLeague.name !==
-            leagueName
-        ) {
+        if (selectedLeague && selectedLeague.name !== leagueName)
+        {
           return;
         }
 
@@ -689,10 +618,7 @@ export const SportsProvider = ({ children }) => {
         // LOOP EVENTS
         // ====================================================
 
-        Object.entries(
-          leagueEvents || {}
-        ).forEach(
-          ([eventKey, event]) => {
+        Object.entries(leagueEvents || {}).forEach(([eventKey, event]) => {
 
             if (!event) {
               return;

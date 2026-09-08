@@ -10,7 +10,7 @@ export const feedData = {
     sport: "Football",
     region: "International",
     league: "Africa Cup of Nations Women",
-    live: "0",
+    live: "1",
     home: "Senegal (W)",
     away: "Kenya (W)",
     blocked: "0",
@@ -1500,7 +1500,7 @@ export const feedData = {
       sport: "Football",
       region: "International",
       league: "Africa Cup of Nations Women",
-      live: "0",
+      live: "1",
       home: "Nigeria (W)",
       away: "Cameroon (W)",
       blocked: "0",
@@ -4932,6 +4932,208 @@ export const feedData = {
             Under: {
               id: "50520104",
               event_id: "295001",
+              market_id: "103",
+              market_name: "Total Points",
+              bet: "Under",
+              line: "218.5",
+              odds: "1.90",
+              locked: "0",
+            },
+          },
+        },
+      },
+    },
+  },
+
+  "Uganda - NBA": {
+    "0": {
+      id: "295001",
+      sport: "Basketball",
+      region: "Uganda",
+      league: "NBA",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+
+      home: "City Oilers",
+      away: "Kampala Kings",
+
+      date: "30/07",
+      kickoff_time: "03:00",
+
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+
+        // ------------------------------------------------------
+        // MONEYLINE
+        // ------------------------------------------------------
+
+        "101": {
+          cols: "2",
+          headers: "Home,Away",
+
+          bets: {
+            Home: {
+              id: "50520000",
+              event_id: "295001",
+              market_id: "101",
+              market_name: "Moneyline",
+              bet: "Home",
+              line: "",
+              odds: "1.75",
+              locked: "0",
+            },
+
+            Away: {
+              id: "50520003",
+              event_id: "295001",
+              market_id: "101",
+              market_name: "Moneyline",
+              bet: "Away",
+              line: "",
+              odds: "2.10",
+              locked: "0",
+            },
+          },
+        },
+
+        // ------------------------------------------------------
+        // SPREAD
+        // ------------------------------------------------------
+
+        "102": {
+          cols: "2",
+          headers: "Home,Away",
+
+          bets: {
+            Home: {
+              id: "50520001",
+              event_id: "295001",
+              market_id: "102",
+              market_name: "Point Spread",
+              bet: "Home",
+              line: "-4.5",
+              odds: "1.90",
+              locked: "0",
+            },
+
+            Away: {
+              id: "50520004",
+              event_id: "295001",
+              market_id: "102",
+              market_name: "Point Spread",
+              bet: "Away",
+              line: "+4.5",
+              odds: "1.90",
+              locked: "0",
+            },
+          },
+        },
+
+        // ------------------------------------------------------
+        // TOTAL POINTS
+        // ------------------------------------------------------
+
+        "103": {
+          cols: "2",
+          headers: "Over,Under",
+
+          bets: {
+            Over: {
+              id: "50520005",
+              event_id: "295001",
+              market_id: "103",
+              market_name: "Total Points",
+              bet: "Over",
+              line: "224.5",
+              odds: "1.85",
+              locked: "0",
+            },
+
+            Under: {
+              id: "50520006",
+              event_id: "295000",
+              market_id: "103",
+              market_name: "Total Points",
+              bet: "Under",
+              line: "224.5",
+              odds: "1.95",
+              locked: "0",
+            },
+          },
+        },
+      },
+    },
+
+    "1": {
+      id: "295002",
+      sport: "Basketball",
+      region: "Uganda",
+      league: "NBA",
+      live: "0",
+      blocked: "0",
+      event_status: "Not Started",
+
+      home: "Giants",
+      away: "Bullets",
+
+      date: "30/07",
+      kickoff_time: "04:30",
+
+      live_time: null,
+      live_scores: {},
+
+      markets: {
+        "101": {
+          cols: "2",
+          headers: "Home,Away",
+
+          bets: {
+            Home: {
+              id: "50520102",
+              event_id: "295002",
+              market_id: "101",
+              market_name: "Moneyline",
+              bet: "Home",
+              line: "",
+              odds: "1.55",
+              locked: "0",
+            },
+
+            Away: {
+              id: "50520103",
+              event_id: "295002",
+              market_id: "101",
+              market_name: "Moneyline",
+              bet: "Away",
+              line: "",
+              odds: "2.40",
+              locked: "0",
+            },
+          },
+        },
+
+        "103": {
+          cols: "2",
+          headers: "Over,Under",
+
+          bets: {
+            Over: {
+              id: "50520104",
+              event_id: "295002",
+              market_id: "103",
+              market_name: "Total Points",
+              bet: "Over",
+              line: "218.5",
+              odds: "1.90",
+              locked: "0",
+            },
+
+            Under: {
+              id: "50520105",
+              event_id: "295002",
               market_id: "103",
               market_name: "Total Points",
               bet: "Under",
