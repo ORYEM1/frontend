@@ -135,56 +135,92 @@
 
 }
 
-
-/* ==========================================================
-   SECTION TITLE
-========================================================== */
+/* ============================================================
+   MAIN SECTION HEADER
+============================================================ */
 
 .league-section-title {
-
   width: 100%;
-
-  height: 2rem;
-
-  min-height: 2rem;
+  min-height: 42px;
 
   display: flex;
-
   align-items: center;
+  justify-content: space-between;
 
-  gap: 0.4375rem;
+  padding: 0 12px;
 
-  padding: 0 0.625rem;
-
-  margin: 0;
-
-  box-sizing: border-box;
-
-  background: #3b3b3b;
+  border: none;
+  background: transparent;
 
   color: #f90;
 
-  font-size: 0.6875rem;
+  font-weight: 600;
 
-  font-weight: 700;
+  text-align: left;
 
-  text-transform: uppercase;
+  cursor: pointer;
 
+  box-sizing: border-box;
 }
 
 
-/* ==========================================================
-   SECTION TITLE ICON
-========================================================== */
+/* ============================================================
+   SECTION HEADER LEFT
+============================================================ */
 
-.league-section-title svg {
+.league-section-title-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  min-width: 0;
+}
+
+
+/* ============================================================
+   SECTION ICON
+============================================================ */
+
+.league-section-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   SECTION ARROW
+============================================================ */
+
+.league-section-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   flex-shrink: 0;
 
-  font-size: 0.6875rem;
-
+  font-size: 11px;
 }
 
+
+/* ============================================================
+   HOVER
+============================================================ */
+
+.league-section-title:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+
+/* ============================================================
+   SECTION CONTENT
+============================================================ */
+
+.league-section-content {
+  width: 100%;
+}
 
 /* ==========================================================
    SEPARATE SECTIONS
