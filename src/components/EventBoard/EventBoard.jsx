@@ -34,13 +34,7 @@ const marketNames = {
 };
 
 
-const EventBoard = forwardRef(({
-  feed,
-  marketId = "3",
-  onOddSelect,
-  selectedOdds = {},
-  onMoreClick,
-}, ref) => {
+const EventBoard = forwardRef(({feed,marketId = "3",onOddSelect,selectedOdds = {},onMoreClick}, ref) => {
 
   const activeMarketId = String(marketId);
 
@@ -284,12 +278,7 @@ const EventBoard = forwardRef(({
                                    SELECTION LABEL
                                 ============================== */
 
-                                const selectionLabel =
-                                  bet.line
-                                    ? `${bet.bet ||
-                                        bet.label ||
-                                        bet.name ||
-                                        header} ${bet.line}`
+                                const selectionLabel = bet.line ? `${bet.bet ||bet.label ||bet.name ||header} ${bet.line}`
                                     : bet.bet ||
                                       bet.label ||
                                       bet.name ||
@@ -300,46 +289,31 @@ const EventBoard = forwardRef(({
                                    SELECTED
                                 ============================== */
 
-                                const isSelected =
-                                  String(
-                                    selectedBet?.id
-                                  ) ===
-                                  String(
-                                    bet.id
-                                  );
+                                const isSelected =String(selectedBet?.id) === String(bet.id);
 
 
                                 /* ==============================
                                    LOCKED
                                 ============================== */
 
-                                const isLocked =
-                                  String(
-                                    bet.locked
-                                  ) === "1";
+                                const isLocked =String( bet.locked) === "1";
 
 
                                 /* ==============================
                                    BLOCKED
                                 ============================== */
 
-                                const isBlocked =
-                                  String(
-                                    event.blocked
-                                  ) === "1";
+                                const isBlocked =String(event.blocked) === "1";
 
 
                                 /* ==============================
                                    ODD CLICK
                                 ============================== */
 
-                                const handleOddClick =
-                                  () => {
+                                const handleOddClick =() => {
 
-                                    if (
-                                      isLocked ||
-                                      isBlocked
-                                    ) {
+                                    if (isLocked ||isBlocked)
+                                    {
                                       return;
                                     }
 
@@ -348,54 +322,24 @@ const EventBoard = forwardRef(({
 
                                       ...bet,
 
-                                      id:
-                                        bet.id,
-
-                                      odds:
-                                        bet.odds,
-
-                                      label:
-                                        selectionLabel,
-
-                                      market:
-                                        activeMarketName,
-
-                                      marketName:
-                                        activeMarketName,
-
-                                      market_name:
-                                        activeMarketName,
-
-                                      marketId:
-                                        activeMarketId,
-
-                                      eventId:
-                                        event.id,
-
-                                      home:
-                                        event.home,
-
-                                      away:
-                                        event.away,
-
-                                      league:
-                                        event.league ||
-                                        leagueName,
-
-                                      sport:
-                                        event.sport,
-
-                                      kickoff_time:
-                                        event.kickoff_time,
-
-                                      eventDate:
-                                        event.date,
+                                      id:bet.id,
+                                      odds:bet.odds,
+                                      label:selectionLabel,
+                                      market:activeMarketName,
+                                      marketName:activeMarketName,
+                                      market_name:activeMarketName,
+                                      marketId:activeMarketId,
+                                      eventId: event.id,
+                                      home:event.home,
+                                      away:event.away,
+                                      league: event.league || leagueName,
+                                      sport:event.sport,
+                                      kickoff_time: event.kickoff_time,
+                                      eventDate:event.date,
                                     };
 
 
-                                    onOddSelect?.(
-                                      selection
-                                    );
+                                    onOddSelect?.(selection);
 
                                   };
 

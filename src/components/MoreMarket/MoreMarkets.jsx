@@ -1,4 +1,3 @@
-
 import React from "react";
 import { FaArrowLeft } from "react-icons/fa";
 
@@ -78,10 +77,14 @@ const MoreMarkets = ({
 
 
       {/* =====================================================
-          MARKETS
+          SCROLLABLE CONTENT
       ===================================================== */}
 
       <div className="more-markets-content">
+
+        {/* ===================================================
+            ALL MARKETS
+        =================================================== */}
 
         <Markets
           event={event}
@@ -89,18 +92,22 @@ const MoreMarkets = ({
           onOddSelect={onOddSelect}
         />
 
+
+        {/* ===================================================
+            FOOTER
+            MUST BE INSIDE THE SCROLL CONTAINER
+        =================================================== */}
+
+        <div className="more-markets-footer">
+
+          <Footer />
+
+        </div>
+
       </div>
-
-
-      {/* =====================================================
-          FOOTER
-      ===================================================== */}
-
-      <Footer />
 
     </section>
   );
 };
 
 export default MoreMarkets;
-
